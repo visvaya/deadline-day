@@ -61,6 +61,7 @@ jobs:
         if: ${{ !cancelled() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
         with:
           node-version-file: .nvmrc
+          check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
           package-manager-cache: false
       - name: Audit production dependencies
         if: ${{ !cancelled() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}

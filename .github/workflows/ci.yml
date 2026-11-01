@@ -42,6 +42,7 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
+          check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Formatting and text rules (documentation-only pull request)
@@ -142,6 +143,7 @@ jobs:
         if: steps.gate.outputs.full == 'true'
         with:
           node-version-file: .nvmrc
+          check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
         if: steps.gate.outputs.full == 'true'
@@ -203,6 +205,7 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
+          check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
@@ -288,6 +291,7 @@ jobs:
         if: steps.head.outputs.current == 'true'
         with:
           node-version-file: .nvmrc
+          check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
           package-manager-cache: false
       - name: Install the deployment tool from its lockfile
         if: steps.head.outputs.current == 'true'

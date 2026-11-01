@@ -31,6 +31,7 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
+          check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
           # No dependency cache here: a cache written by a pull request run
           # must never feed a job that holds a write token.
           package-manager-cache: false
