@@ -6,6 +6,7 @@ test-results/
 coverage/
 playwright-report/
 /playwright/.cache/
+.wrangler/
 
 # Zagniezdzone worktree gita
 .worktrees/

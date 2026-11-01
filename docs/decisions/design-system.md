@@ -8,7 +8,7 @@ Reguły, do których sięga się przy pisaniu każdego komponentu UI. Powstały 
 
 ## Krój pisma
 
-**Figtree**, licencja OFL, dogrywany razem z grą jako plik `.woff2` w `src/`. Dwa podzbiory: `latin` i `latin-ext` — ten drugi jest konieczny, bez niego nie ma ą ć ę ł ń ś ź ż. Razem ok. 40 KB.
+**Figtree**, licencja OFL, dogrywany razem z grą jako plik `.woff2` w `src/`; licencja jedzie z grą jako `public/licenses/figtree-OFL.txt`. Dwa podzbiory: `latin` i `latin-ext` — ten drugi jest konieczny, bez niego nie ma ą ć ę ł ń ś ź ż. Razem ok. 40 KB.
 
 Nigdy `fonts.googleapis.com` ani inny zewnętrzny host — zakaz pobierania fontów z sieci obowiązuje.
 

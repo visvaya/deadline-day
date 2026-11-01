@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // The game is static files only: no Worker script, no bindings, nothing that keeps state.
+  "name": "deadline-day",
+  "compatibility_date": "2026-10-01",
+  // The game's address is the workers.dev one. Version preview addresses stay off: each would be another
+  // origin, with a separate copy of a player's saved careers.
+  "workers_dev": true,
+  "preview_urls": false,
+  "send_metrics": false,
+  "assets": {
+    "directory": "../dist",
+    // "/" serves index.html and "/index.html" redirects to "/". With "none" the root would not be served at all.
+    "html_handling": "auto-trailing-slash",
+    // The game has one address and no client-side routes, so an unknown path is a 404, never the page.
+    "not_found_handling": "none",
+  },
+}

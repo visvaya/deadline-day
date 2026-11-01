@@ -11,6 +11,15 @@ Jak działają CI, łańcuch dostaw i git hooki, i dlaczego. Gdy zmieniasz `.git
 - **Powód oszczędności:** powtórka na identycznym drzewie zajmuje runner, a niczego nie dowodzi.
 - **Ruleset `main`** (od 2026-10-07, ustawienia repozytorium): zmiany wyłącznie przez PR scalany squashem, bez wymaganych zatwierdzeń (jeden opiekun); wymagane checki `verify` i `e2e` (workflow `CI`) oraz `scan` (workflow `Security`); zakaz force-pusha i usuwania gałęzi, bez wyjątków. Hooki gita chronią tylko commit zrobiony na maszynie po `pnpm install`; CI jest bramką, której nie da się pominąć.
 
+## Wdrożenie (Cloudflare Workers, job `deploy`)
+
+- **Co i dokąd.** Wersja rozwojowa jako statyczne pliki Cloudflare Workers (`deploy/wrangler.jsonc`, katalog `../dist`) pod adresem workers.dev, bez migracji zapisów (decyzja właściciela z 2026-11-01; gra uprzedza, że zapisy mogą przepaść). Narzędzie (`wrangler`) jest osobnym projektem pnpm w `deploy/` z własnym lockfile'em i tymi samymi strażnikami wieku i zaufania; główny `pnpm install` go nie instaluje.
+- **Kiedy.** Wyłącznie push do `main`, po sukcesie `verify` i `e2e`, i tylko gdy zmienna repozytorium `vars.DEPLOY_ENABLED` ma wartość `true`; każda inna wartość wstrzymuje publikację. Job nie jest wymaganym checkiem. Środowisko `production` (adres z `vars.PRODUCTION_URL`), sekrety `CLOUDFLARE_API_TOKEN` i `CLOUDFLARE_ACCOUNT_ID`; bez cache zależności, bo działa obok poświadczeń. Jedna publikacja naraz (`production-deployment`, bez przerywania), a commit, który przestał być głową `main`, nie jest publikowany.
+- **Weryfikacja.** Job buduje drzewo jeszcze raz (build jest deterministyczny, a `verify` na pushu mógł go pominąć), publikuje z SHA commitu jako wiadomością, a potem przez maks. dwie minuty czeka, aż `/` zwróci bajty równe `dist/index.html` (nazwy plików z hashem identyfikują wydanie), i sprawdza nagłówki jednego pliku z `/assets/` oraz CSP. Podsumowanie joba mówi, czy opublikowano i dlaczego nie.
+- **Nagłówki.** `public/_headers` (CSP, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, `Cache-Control: no-cache`). `pnpm preview` podaje blok `/*` tego pliku (`vite.config.ts`), więc e2e działa pod produkcyjną CSP, a pełna partia w `tests/e2e/smoke.spec.ts` pada na naruszeniu CSP.
+- **PR zmieniający `deploy/`, `public/_headers` albo `.github/workflows/`** uruchamia w `verify` `wrangler deploy --dry-run` bez poświadczeń.
+- **Wycofanie.** W panelu Cloudflare (Workers, wdrożenia) albo `pnpm exec wrangler rollback` z katalogu `deploy/` z tymi samymi poświadczeniami; przedtem ustawić `DEPLOY_ENABLED` na inną wartość niż `true`, żeby kolejny push nie nadpisał wycofania.
+
 ## Łańcuch dostaw
 
 - **`.github/workflows/security.yml`**: przy każdym pushu i PR zizmor na workflowach i gitleaks na **całej** historii, a co tydzień dodatkowo `pnpm audit --prod`. Wszystko to kroki jednego joba `scan`; każdy krok raportuje także po porażce poprzedniego.

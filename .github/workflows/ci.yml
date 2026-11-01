@@ -63,6 +63,24 @@ jobs:
       - name: Check bundle size budget
         if: steps.gate.outputs.full == 'true'
         run: pnpm check:bundle
+      # The deploy job runs only on main, after a merge. A pull request that changes the tool, the headers
+      # or the workflows tries them here, without credentials: the tool installs from its own lockfile and
+      # accepts the configuration and the built package. An unreadable file list tries them too.
+      - name: The deployment tool accepts the package (dry run)
+        if: steps.gate.outputs.full == 'true' && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          WRANGLER_SEND_METRICS: "false"
+        run: |
+          if changed=$(gh api --paginate "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/files" --jq '.[].filename') &&
+            ! grep -qE '^(deploy/|public/_headers$|\.github/workflows/)' <<< "$changed"; then
+            echo "Nothing the deployment reads changed; skipped."
+            exit 0
+          fi
+          cd deploy
+          pnpm install --frozen-lockfile
+          pnpm exec wrangler deploy --dry-run --message "$GITHUB_SHA"
       # The title becomes the commit on main when the pull request is squashed.
       # Read live rather than from the event, so a rerun after fixing the title
       # sees the new one. Last, and run even after an earlier failure: a bad
@@ -154,3 +172,110 @@ jobs:
           path: ${{ runner.temp }}/verified-tree.txt
           retention-days: 14
           overwrite: true
+
+  # Publishes the built game to Cloudflare Workers static assets. Only on a push to main, after both
+  # required jobs succeeded, and only while the repository variable DEPLOY_ENABLED is "true"; any other
+  # value pauses publishing (before a rollback, for example). Not a required check: a pull request never
+  # reaches it.
+  deploy:
+    name: deploy
+    needs: [verify, e2e]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # The credentials live in this environment, restricted to main in the repository settings.
+    environment:
+      name: production
+      url: ${{ vars.PRODUCTION_URL }}
+    # One publication at a time, never cancelled once started. The head check below covers a run that
+    # waited here while main moved on.
+    concurrency:
+      group: production-deployment
+      cancel-in-progress: false
+    permissions:
+      contents: read
+    env:
+      PRODUCTION_URL: ${{ vars.PRODUCTION_URL }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: The address and the credentials are set
+        env:
+          HAS_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+          HAS_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
+        run: |
+          if [ -z "$PRODUCTION_URL" ]; then
+            echo "::error::The repository variable PRODUCTION_URL is not set; nothing is published."; exit 1
+          fi
+          if [ "$HAS_TOKEN" != "true" ] || [ "$HAS_ACCOUNT" != "true" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID is empty; nothing is published."; exit 1
+          fi
+      # A run that waited, or is run again later, must not put an older commit over a newer one.
+      - name: This commit is still the head of main
+        id: head
+        run: |
+          head=$(git ls-remote origin refs/heads/main | cut -f1)
+          # An empty answer is a failed question, not a branch that has moved on.
+          if [ -z "$head" ]; then
+            echo "::error::The head of main could not be read; nothing is published."; exit 1
+          fi
+          if [ "$head" = "$GITHUB_SHA" ]; then
+            echo "current=true" | tee -a "$GITHUB_OUTPUT"
+          else
+            echo "current=false" | tee -a "$GITHUB_OUTPUT"
+            echo "::notice::main has moved on from this commit; nothing is published."
+          fi
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        if: steps.head.outputs.current == 'true'
+      # No dependency cache: what is restored into this job would run next to the credentials.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        if: steps.head.outputs.current == 'true'
+        with:
+          node-version-file: .nvmrc
+      - run: pnpm install --frozen-lockfile
+        if: steps.head.outputs.current == 'true'
+      # On a push, verify may have skipped its own build because a pull request already verified this
+      # tree. The build is deterministic, so building that verified tree again gives the same package.
+      - run: pnpm build
+        if: steps.head.outputs.current == 'true'
+      - name: Install the deployment tool from its lockfile
+        if: steps.head.outputs.current == 'true'
+        working-directory: deploy
+        run: pnpm install --frozen-lockfile
+      - name: Publish
+        id: publish
+        if: steps.head.outputs.current == 'true'
+        working-directory: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: "false"
+        run: pnpm exec wrangler deploy --message "$GITHUB_SHA"
+      # The page names the hashed files of its release, so equal bytes mean this release is served.
+      - name: The served game is this release
+        if: steps.publish.outcome == 'success'
+        run: |
+          for attempt in $(seq 1 24); do
+            if curl -fsS "$PRODUCTION_URL/" -o served.html && cmp -s served.html dist/index.html; then
+              echo "The served page matches this build (attempt $attempt)."; break
+            fi
+            if [ "$attempt" -eq 24 ]; then
+              echo "::error::After two minutes $PRODUCTION_URL/ still does not serve this build."; exit 1
+            fi
+            sleep 5
+          done
+          asset=$(grep -oE '/assets/[^"]+\.js' dist/index.html | head -n 1)
+          curl -fsSI "$PRODUCTION_URL$asset"
+          curl -fsSI "$PRODUCTION_URL/" | grep -i '^content-security-policy:'
+      - name: Report
+        if: ${{ !cancelled() }}
+        env:
+          CURRENT: ${{ steps.head.outputs.current }}
+          PUBLISHED: ${{ steps.publish.outcome }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          if [ "$CURRENT" != "true" ]; then result="not published: main has moved on or could not be read"
+          elif [ "$PUBLISHED" = "success" ]; then result="published"
+          else result="not published: see the failed step"; fi
+          echo "### Deployment: $result (job $JOB_STATUS, commit $GITHUB_SHA)" >> "$GITHUB_STEP_SUMMARY"
