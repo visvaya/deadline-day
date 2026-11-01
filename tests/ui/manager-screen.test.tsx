@@ -241,6 +241,14 @@ describe("manager screen", () => {
     });
   });
 
+  test("warns that this is a development version whose saves may be lost", async () => {
+    const { container } = await render();
+
+    expect(container.textContent).toContain(
+      "Wersja rozwojowa: partia w toku i zapisane kariery mogą przepaść po aktualizacji gry."
+    );
+  });
+
   test("starts from initialManager when one is provided", async () => {
     const { container } = await render({ firstName: "Anna", lastName: "Nowak" });
 

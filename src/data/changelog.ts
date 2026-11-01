@@ -14,6 +14,10 @@ export const CURRENT_VERSION = "0.34";
 
 export const NEXT_UPDATE_NOTE = "kolejna aktualizacja: wkrótce";
 
+/** Shown under the change history while saves are not migrated between engine versions. */
+export const DEVELOPMENT_NOTICE =
+  "Wersja rozwojowa: partia w toku i zapisane kariery mogą przepaść po aktualizacji gry.";
+
 export const CHANGELOG: readonly ChangelogEntry[] = [
   {
     version: "0.34",
