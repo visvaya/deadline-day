@@ -596,7 +596,7 @@ test("keeps offers usable without the timer at 360 px", async ({ page }) => {
   await page.locator('[data-timer-choice="off"]').click();
   await expect(page.locator('[data-timer-choice="off"]')).toHaveAttribute("aria-pressed", "true");
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-  const noteBounds = await page.locator(".dd-setup-options .dd-note").boundingBox();
+  const noteBounds = await page.locator(".dd-setup-options .dd-note").last().boundingBox();
   const setupBarBounds = await page.locator(".dd-action-bar").boundingBox();
   if (!noteBounds || !setupBarBounds) throw new Error("Setup layout is not measurable");
   expect(noteBounds.y + noteBounds.height).toBeLessThanOrEqual(setupBarBounds.y);

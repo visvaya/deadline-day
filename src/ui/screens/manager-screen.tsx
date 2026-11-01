@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type Dispatch } from "react";
-import { CHANGELOG, NEXT_UPDATE_NOTE } from "../../data/changelog";
+import { CHANGELOG, DEVELOPMENT_NOTICE, NEXT_UPDATE_NOTE } from "../../data/changelog";
 import type { GameAction, ManagerIdentity } from "../../data/types";
 import {
   randomManagerIdentity,
@@ -315,6 +315,7 @@ export const ManagerScreen = ({
 
           <section aria-labelledby="changelog-heading">
             <SectionHeading id="changelog-heading" title="Historia zmian" meta={NEXT_UPDATE_NOTE} />
+            <p className="dd-note">{DEVELOPMENT_NOTICE}</p>
             <ul className="dd-changelog">
               {(changelogExpanded ? CHANGELOG : CHANGELOG.slice(0, 1)).map((entry) => (
                 <li key={entry.version}>
