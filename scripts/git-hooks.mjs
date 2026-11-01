@@ -50,7 +50,18 @@ export const commitMessageProblems = (raw) => {
   ];
 };
 
+/** The maintainer opts in per checkout (`git config hooks.requireOwnerIdentity true`), so a
+ * contributor's own identity is not rejected in a fork. */
+const ownerIdentityRequired = () => {
+  try {
+    return git(["config", "--bool", "--get", "hooks.requireOwnerIdentity"]) === "true";
+  } catch {
+    return false;
+  }
+};
+
 const checkIdentity = () => {
+  if (!ownerIdentityRequired()) return;
   for (const role of ["GIT_AUTHOR_IDENT", "GIT_COMMITTER_IDENT"]) {
     const ident = git(["var", role]);
     if (!isAllowedIdentity(ident)) {

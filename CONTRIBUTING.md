@@ -22,7 +22,8 @@ pnpm verify      # the full gate, the same one CI runs
 pnpm test:e2e    # Playwright on the built bundle (Chromium and WebKit)
 ```
 
-The git hooks run lint, format and text checks before a commit and check the commit message.
+The git hooks run lint, format and text checks before a commit and check the commit message, which
+must not carry `Co-authored-by` or `Generated with` lines.
 Do not bypass them with `--no-verify`; CI runs the same checks and more.
 
 ## Making a change
