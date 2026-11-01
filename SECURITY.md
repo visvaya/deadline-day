@@ -24,7 +24,8 @@ In scope:
 - reading stored data back (`src/ui/game-save.ts`, `src/ui/game-archive.ts` and
   `src/ui/local-storage.ts`), for example script injection through a crafted save;
 - the build, the CI workflows and the dependencies that reach the shipped bundle;
-- the published site itself, including its response headers and content security policy.
+- the published site itself, including its response headers and content security policy
+  (`public/_headers`).
 
 Out of scope: anything that requires the player to modify their own browser storage to cheat in
 their own game.

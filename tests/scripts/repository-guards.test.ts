@@ -94,7 +94,7 @@ describe("check-conventions", () => {
     expect(fileNameProblems("src/ui/player-card.tsx")).toEqual([]);
     expect(fileNameProblems("tests/golden/a-01.replay.json")).toEqual([]);
     expect(fileNameProblems("src/ui/PlayerCard.tsx")).toHaveLength(1);
-    expect(fileNameProblems("src/ui/fonts/OFL.txt")).toEqual([]);
+    expect(fileNameProblems("public/licenses/figtree-OFL.txt")).toEqual([]);
     expect(fileNameProblems("docs/decisions/_rho-2026-09-01.md")).toEqual([]);
   });
 

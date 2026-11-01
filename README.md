@@ -11,8 +11,9 @@ at the end.
 
 ## Status
 
-In active development and not yet deployed; a development preview is
-planned. The version has one source,
+In active development. Once enabled, a development preview is deployed from
+`main` to <https://deadline-day.visvaya.workers.dev>; saves may be lost between
+versions. The version has one source,
 `CURRENT_VERSION` in `src/data/changelog.ts` (for example `0.34`), mirrored as
 semver in `package.json` (`0.34.0`) and in git tags (`v0.34.0`); a test keeps
 them equal. Pushing a matching tag creates a GitHub release with the notes of
@@ -71,6 +72,10 @@ Copyright (C) 2026 visvaya
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Affero General Public License as published by the Free
 Software Foundation, version 3. See [LICENSE](LICENSE).
+
+The Figtree font shipped with the game is licensed under the SIL Open Font
+License 1.1; its licence is served with the game as
+[`public/licenses/figtree-OFL.txt`](public/licenses/figtree-OFL.txt).
 
 Club names and colours belong to their respective owners and are used
 for identification only. Player names are generated and do not refer to real

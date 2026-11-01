@@ -55,6 +55,23 @@ updates:
         update-types: [minor, patch]
         exclude-patterns: ["vitest", "@vitest/*", "oxlint", "oxfmt", "oxlint-*"]
 
+  # The deployment tool, a project of its own with its own lockfile (deploy/).
+  - package-ecosystem: npm
+    directory: /deploy
+    schedule:
+      interval: weekly
+      day: monday
+      timezone: Europe/Warsaw
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: build
+      prefix-development: build
+      include: scope
+    groups:
+      deploy:
+        patterns: ["*"]
+
   - package-ecosystem: github-actions
     directory: /
     schedule:

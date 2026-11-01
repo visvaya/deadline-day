@@ -17,8 +17,6 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
-// Names fixed by a tool or a licence, not chosen by this repository.
-const MANDATED_NAMES = new Set(["OFL.txt"]);
 const KEBAB_CASE = /^\.?[a-z0-9]+(?:[.-][a-z0-9]+)*$/;
 const NAMED_TREES = /^(?:src|tests|scripts)\//;
 const INLINE_STYLE = /style=\{\{([^}]*)\}\}/g;
@@ -26,9 +24,7 @@ const INLINE_STYLE = /style=\{\{([^}]*)\}\}/g;
 export const fileNameProblems = (file) => {
   if (!NAMED_TREES.test(file)) return [];
   const name = path.posix.basename(file);
-  return MANDATED_NAMES.has(name) || KEBAB_CASE.test(name)
-    ? []
-    : [`${file}: file name is not kebab-case`];
+  return KEBAB_CASE.test(name) ? [] : [`${file}: file name is not kebab-case`];
 };
 
 export const inlineStyleProblems = (file, content) => {
