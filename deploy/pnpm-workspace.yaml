@@ -15,3 +15,9 @@ allowBuilds:
 # Keeps pnpm-lock.yaml in one YAML document for GitHub's dependency graph, as in the game's own
 # pnpm-workspace.yaml (docs/decisions/ci-and-supply-chain.md).
 pmOnFail: ignore
+
+# miniflare (pulled in by wrangler, used only by `wrangler dev`) pins undici 7.29.1, which has eight
+# advisories fixed in 7.30.1 (GHSA-4w7w-5xrc-9h26 and others). Remove once the pinned wrangler's
+# miniflare depends on undici 7.30.1 or later.
+overrides:
+  "undici@7.29.1": 7.30.1
