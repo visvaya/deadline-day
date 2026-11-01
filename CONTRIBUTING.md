@@ -13,7 +13,7 @@ replies and reviews come as time allows.
 
 ## Setup
 
-Node.js 24 and pnpm 12 (pinned in `packageManager`); see the README for details.
+Node.js 26 and pnpm 12 (pinned in `packageManager`); see the README for details.
 
 ```sh
 pnpm install     # dependencies and git hooks
