@@ -22,6 +22,10 @@ const config: KnipConfig = {
   // remove the package: scripts/git-hooks.mjs runs it via `pnpm exec` from the
   // commit-msg hook, and without it conventional commits stop being enforced.
 
+  // The deploy jobs run wrangler from deploy/, a separate pnpm project with
+  // its own lockfile, so the root package.json does not list it on purpose.
+  ignoreBinaries: ["wrangler"],
+
   // Exclude exports tagged @internal from being reported as unused.
   // Applies to MetricSemantics and MetricDisplayScale, forward-looking public
   // types for a later UI step (not yet implemented).

@@ -4,6 +4,8 @@ import { availableParallelism } from "node:os";
 import react from "@vitejs/plugin-react";
 import { configDefaults, defineConfig } from "vitest/config";
 
+import { allPathHeaders } from "./scripts/static-headers.ts";
+
 const TEST_FILES = "tests/**/*.test.{ts,tsx}";
 
 /**
@@ -26,6 +28,9 @@ const ISOLATED_TEST_FILES = globSync(TEST_FILES)
 
 export default defineConfig({
   plugins: [react()],
+  // The production headers (public/_headers), so the browser tests, which run against `pnpm preview`,
+  // fail when the content security policy blocks something the game needs.
+  preview: { headers: allPathHeaders(readFileSync("public/_headers", "utf8")) },
   test: {
     // Node by default: 74 of 90 test files never touch a DOM, and giving
     // them a jsdom one cost 409 s of environment time against 94 s of wall

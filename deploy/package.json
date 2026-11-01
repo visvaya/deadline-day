@@ -1,0 +1,14 @@
+{
+  "name": "deadline-day-deploy",
+  "private": true,
+  "description": "The pinned tool that publishes the built game. Installed only by CI, from this directory's own lockfile.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "devDependencies": {
+    "wrangler": "4.152.0"
+  },
+  "packageManager": "pnpm@12.13.0",
+  "engines": {
+    "node": "^24.0.0"
+  }
+}

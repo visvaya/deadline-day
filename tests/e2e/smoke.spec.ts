@@ -639,13 +639,18 @@ test("plays a full game to the legacy screen in a real browser", async ({ page }
   await page.setViewportSize({ width: 360, height: 800 });
 
   const consoleErrors: string[] = [];
+  // Any level: browsers differ in how they report a content security policy violation.
+  const cspViolations: string[] = [];
   page.on("console", (msg) => {
     if (msg.type() === "error") consoleErrors.push(msg.text());
+    if (/content security policy/i.test(msg.text())) cspViolations.push(msg.text());
   });
   const pageErrors: string[] = [];
   page.on("pageerror", (err) => pageErrors.push(err.message));
 
-  await page.goto("/");
+  const response = await page.goto("/");
+  // The preview server sends the production headers (public/_headers, vite.config.ts).
+  expect(response?.headers()["content-security-policy"]).toContain("default-src 'self'");
 
   const figtree = await loadedFigtreeFaces(page);
   expect(figtree.fontFamily).toContain("Figtree");
@@ -755,6 +760,7 @@ test("plays a full game to the legacy screen in a real browser", async ({ page }
   await expect(page.locator("#manager-first-name")).not.toHaveValue("");
   await expect(page.locator("#manager-last-name")).not.toHaveValue("");
 
+  expect(cspViolations).toEqual([]);
   expect(consoleErrors).toEqual([]);
   expect(pageErrors).toEqual([]);
 });

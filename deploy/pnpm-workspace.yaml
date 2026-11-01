@@ -1,0 +1,17 @@
+# This directory is a project of its own, so the game's install never brings the deployment tool in.
+
+# Supply-chain guards, as in the game's pnpm-workspace.yaml: refuse a version younger than seven days (in
+# minutes) and one published with weaker provenance than an earlier one of the same package.
+minimumReleaseAge: 10080
+trustPolicy: no-downgrade
+
+# Build scripts of dependencies run only when allowed here. Neither is needed: each only prepares a binary
+# that the platform package already provides, and publishing static files runs neither a bundler nor the
+# local runtime.
+allowBuilds:
+  esbuild: false
+  workerd: false
+
+# Keeps pnpm-lock.yaml in one YAML document for GitHub's dependency graph, as in the game's own
+# pnpm-workspace.yaml (docs/decisions/ci-and-supply-chain.md).
+pmOnFail: ignore
