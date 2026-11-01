@@ -63,13 +63,16 @@
     "verify": "pnpm verify:fast && pnpm check:text && pnpm check:conventions && pnpm typecheck && pnpm lint:types && pnpm check:career-handicap-anchors && pnpm test:coverage && pnpm test:statistical && pnpm quality:duplicates && pnpm quality:dead",
     "test:coverage": "vitest run --coverage --exclude \"**/*.statistical.test.ts\"",
     "test:statistical": "vitest run .statistical.test",
-    "quality:dead": "cross-env KNIP_DISABLE_RAW_TRANSFER=1 knip"
+    "quality:dead": "cross-env KNIP_DISABLE_RAW_TRANSFER=1 knip",
+    "mutation": "stryker run"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@playwright/test": "^1.64.1",
+    "@stryker-mutator/core": "10.1.1",
+    "@stryker-mutator/vitest-runner": "10.1.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",

@@ -24,6 +24,7 @@
     "tests",
     "scripts",
     "vite.config.ts",
+    "vitest.stryker.config.ts",
     "playwright.config.ts",
     "oxlint.config.ts",
     "oxfmt.config.ts"

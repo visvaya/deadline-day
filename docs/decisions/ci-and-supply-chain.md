@@ -21,6 +21,14 @@ Jak działają CI, łańcuch dostaw i git hooki, i dlaczego. Gdy zmieniasz `.git
 - **PR zmieniający `deploy/`, `public/_headers` albo `.github/workflows/`** uruchamia w `verify` `wrangler deploy --dry-run` bez poświadczeń; lista zmienionych plików jest czytana w osobnym kroku, żeby token GitHuba nie trafiał do kroku z narzędziem z PR.
 - **Wycofanie.** W panelu Cloudflare (Workers, wdrożenia) albo `pnpm exec wrangler rollback` z katalogu `deploy/` z tymi samymi poświadczeniami; przedtem ustawić `DEPLOY_ENABLED` na inną wartość niż `true`, żeby kolejny push nie nadpisał wycofania.
 
+## Testy mutacyjne (Stryker, `.github/workflows/mutation.yml`)
+
+- **Co i kiedy.** `pnpm mutation` (Stryker 10 z `@stryker-mutator/vitest-runner`) w niedzielę o 03:00 UTC i ręcznie (`workflow_dispatch`), wyłącznie na gałęzi domyślnej, z limitem 60 minut. Nie jest wymaganym checkiem i nie biegnie w PR. Progi są informacyjne (`break: null`): wynik niczego nie blokuje.
+- **Zakres.** `mutate` w `stryker.config.json` obejmuje silnik o najwyższym ryzyku: kanał ukrytego sufitu (`staff-assessment.ts`, `staff-projection.ts`), komparator kadry (`squad.ts`), pieniądz (`finance.ts`, `finance-scale.ts`, `opening-budget.ts`) i RNG (`rng.ts`), razem 600 mutantów. Testy wybiera `vitest.stryker.config.ts`: `tests/logic/**` i `tests/rng.test.ts`, bez plików `*.statistical.test.ts` (próbkowanie rozkładów na dziesiątkach tysięcy przebiegów pomnożone przez każdy mutant), bez golden mastera, UI, e2e i skryptów. Mutanty statyczne (inicjalizacja modułu, uruchamiają cały zestaw testów) są pominięte (`ignoreStatic`), bo każdy kosztuje pełny przebieg.
+- **Pomiar (2026-11-01, laptop deweloperski).** Przebieg wstępny `--dryRunOnly`: 713 testów w 2 min 14 s, całość 3 min. Pełny przebieg na `finance-scale.ts` (4 mutanty, wszystkie statyczne): 2 min 23 s. Czas całego zakresu w CI jest szacunkiem; pierwszy przebieg ręczny go potwierdza, a gdy przekroczy 60 minut, zawęża się `mutate`.
+- **Raport.** Artefakt `mutation-report` (`reports/mutation/index.html`). Mutant „survived” to zmiana kodu, której żaden test nie zauważył: brakujący test zachowania albo kod bez obserwowalnego efektu. „No coverage” to kod, którego testy w ogóle nie wykonują.
+- **TypeScript 7.** Stryker przygotowuje sandbox przez API kompilatora TypeScriptu, którego TypeScript 7 nie udostępnia (stryker-js #6110, #6111). Projekt nie ma referencji tsconfig, więc `tsconfigFile` wskazuje nieistniejący `tsconfig.stryker-none.json` i Stryker pomija ten krok. Usunąć, gdy Stryker obsłuży TypeScript 7 bez API kompilatora.
+
 ## Łańcuch dostaw
 
 - **`.github/workflows/security.yml`**: przy każdym pushu i PR zizmor na workflowach i gitleaks na **całej** historii, a co tydzień dodatkowo `pnpm audit --prod`. Wszystko to kroki jednego joba `scan`; każdy krok raportuje także po porażce poprzedniego.

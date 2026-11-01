@@ -58,3 +58,7 @@ scripts/data/spec4-control-2026-09-25/active-raw.csv.gz
 scripts/data/spec4-control-2026-09-25/active-sales.csv.gz
 scripts/data/spec4-control-2026-09-25/active-seasons.csv.gz
 scripts/data/spec4-control-2026-09-25/active-signings.csv.gz
+
+# Mutation testing (pnpm mutation)
+.stryker-tmp/
+reports/
