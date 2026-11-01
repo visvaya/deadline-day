@@ -27,7 +27,7 @@ with axe for end-to-end and accessibility checks.
 
 ## Getting started
 
-Requires Node.js 24 and pnpm 12 (pinned in `packageManager`). pnpm 12 ships as a native binary: a global pnpm older than 12 may download it but fail to start it on Windows, so update the global one first (`pnpm self-update`).
+Requires Node.js 26 and pnpm 12 (pinned in `packageManager`). pnpm 12 ships as a native binary: a global pnpm older than 12 may download it but fail to start it on Windows, so update the global one first (`pnpm self-update`).
 
 ```sh
 pnpm install     # also activates the git hooks
