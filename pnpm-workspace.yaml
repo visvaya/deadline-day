@@ -24,3 +24,9 @@ trustPolicyExclude:
 # raised no alerts. "ignore" drops the document; CI still installs exactly the
 # version in package.json#packageManager through pnpm/action-setup.
 pmOnFail: ignore
+
+# typed-rest-client (pulled in by Stryker, used only by its dashboard reporter, which this project does
+# not use) pins qs 6.15.1, which has four advisories fixed in 6.16.1 (GHSA-6pq8-jhm2-2vcw and others).
+# Remove once the pinned Stryker no longer depends on qs 6.15.1.
+overrides:
+  "qs@6.15.1": 6.16.1
