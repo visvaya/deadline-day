@@ -11,9 +11,9 @@ at the end.
 
 ## Status
 
-In active development. Once enabled, a development preview is deployed from
-`main` to <https://deadline-day.visvaya.workers.dev>; saves may be lost between
-versions. The version has one source,
+In active development. Play the development preview at
+<https://deadline-day.visvaya.workers.dev>, deployed from `main` after the full
+gate; saves may be lost between versions. The version has one source,
 `CURRENT_VERSION` in `src/data/changelog.ts` (for example `0.34`), mirrored as
 semver in `package.json` (`0.34.0`) and in git tags (`v0.34.0`); a test keeps
 them equal. Pushing a matching tag creates a GitHub release with the notes of
