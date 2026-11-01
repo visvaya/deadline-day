@@ -1,0 +1,37 @@
+seed=268435476 clubId=jagiellonia-bialystok club=Jagiellonia budget=0.79 formation=5-3-2 tenureHandicap=47.97 legacyHandicap=74.13 rngDraws=159
+== S1 PROGNOZA miejsce=8 europa=1.09 przychod=3.35 place=1.75 bilans=0.72
+== S1 LATO ruchy=4
+    1 SPRZEDAZ     ŚO  ovr=62 wiek=23 ceiling=70 cena=0.42 -> PAS:OK cena=0.42 kasa=0.79 season=1 payrollBefore=1.75 payrollAfter=1.75 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=gks-katowice
+    2 KUPNO        ŚP  ovr=61 wiek=21 ceiling=73 cena=0.44 -> PAS:OK cena=0.44 kasa=0.79 season=1 payrollBefore=1.75 payrollAfter=1.75 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    3 KUPNO        CN  ovr=54 wiek=21 ceiling=67 cena=0.14 -> PAS:OK cena=0.14 kasa=0.79 season=1 payrollBefore=1.75 payrollAfter=1.75 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    4 SPRZEDAZ     ŚO  ovr=57 wiek=19 ceiling=70 cena=0.25 -> PAS:OK cena=0.25 kasa=0.79 season=1 payrollBefore=1.75 payrollAfter=1.75 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=miedz-legnica
+== S1 R1 pkt=23 bz=21 bs=23
+== S1 ZIMA ruchy=2
+    5 SPRZEDAZ     ŚO  ovr=68 wiek=21 ceiling=72 cena=2.00 -> PAS:OK cena=2.00 kasa=0.79 season=1 payrollBefore=1.75 payrollAfter=1.75 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=red-bull-salzburg
+    6 KUPNO        CLS ovr=60 wiek=18 ceiling=76 cena=0.54 -> PAS:OK cena=0.54 kasa=0.79 season=1 payrollBefore=1.75 payrollAfter=1.75 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S1 KONIEC miejsce=4 pkt=52 bilans=1.80 place=1.75 puchar=nie europa=LK kampania=LE/league kasaEuro=1.00 kasa=1.33 sila=64.54 emeryci=0 bz=46 bs=44 superpuchar=brak rngDraws=1711
+== S2 PROGNOZA miejsce=6 europa=0.51 przychod=3.35 place=2.01 bilans=0.51
+== S2 LATO ruchy=4
+    7 SPRZEDAZ     ŚPD ovr=64 wiek=26 ceiling=65 cena=0.39 -> PAS:OK cena=0.39 kasa=1.33 season=2 payrollBefore=2.01 payrollAfter=2.01 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=lech-poznan
+    8 PRZEDLUZENIE CPS ovr=63 wiek=32 ceiling=65 cena=0.14 -> PAS:OK cena=0.14 kasa=1.33 season=2 payrollBefore=2.01 payrollAfter=2.01 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    9 PRZEDLUZENIE N   ovr=69 wiek=29 ceiling=69 cena=0.19 -> PAS:OK cena=0.19 kasa=1.33 season=2 payrollBefore=2.01 payrollAfter=2.01 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   10 SPRZEDAZ     ŚO  ovr=61 wiek=20 ceiling=70 cena=0.41 -> PAS:OK cena=0.41 kasa=1.33 season=2 payrollBefore=2.01 payrollAfter=2.01 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=wieczysta-krakow
+== S2 R1 pkt=21 bz=21 bs=23
+== S2 ZIMA ruchy=2
+   11 SPRZEDAZ     BR  ovr=61 wiek=21 ceiling=67 cena=0.48 -> PAS:OK cena=0.48 kasa=1.33 season=2 payrollBefore=2.01 payrollAfter=2.01 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=wisla-plock
+   12 WOLNY        ŚPD ovr=68 wiek=30 ceiling=68 cena=0.00 -> PAS:OK cena=0.00 kasa=1.33 season=2 payrollBefore=2.01 payrollAfter=2.01 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S2 KONIEC miejsce=7 pkt=49 bilans=2.19 place=2.01 puchar=tak europa=LE kampania=LK/qualifying kasaEuro=0.30 kasa=1.99 sila=65.99 emeryci=0 bz=52 bs=50 superpuchar=przegrany rngDraws=3243
+== S3 PROGNOZA miejsce=9 europa=1.09 przychod=3.35 place=1.88 bilans=0.58
+== S3 LATO ruchy=4
+   13 SPRZEDAZ     CPS ovr=59 wiek=21 ceiling=63 cena=0.36 -> PAS:OK cena=0.36 kasa=1.99 season=3 payrollBefore=1.88 payrollAfter=1.88 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=cracovia
+   14 SPRZEDAZ     CLS ovr=62 wiek=20 ceiling=69 cena=0.60 -> PAS:OK cena=0.60 kasa=1.99 season=3 payrollBefore=1.88 payrollAfter=1.88 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=gornik-zabrze
+   15 PRZEDLUZENIE ŚPO ovr=64 wiek=29 ceiling=65 cena=0.12 -> PAS:OK cena=0.12 kasa=1.99 season=3 payrollBefore=1.88 payrollAfter=1.88 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   16 KUPNO        ŚPO ovr=78 wiek=28 ceiling=78 cena=2.49 -> PAS:OK cena=2.49 kasa=1.99 season=3 payrollBefore=1.88 payrollAfter=1.88 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S3 R1 pkt=25 bz=23 bs=21
+== S3 ZIMA ruchy=2
+   17 KUPNO        N   ovr=72 wiek=24 ceiling=74 cena=1.12 -> PAS:OK cena=1.12 kasa=1.99 season=3 payrollBefore=1.88 payrollAfter=1.88 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   18 SPRZEDAZ     ŚP  ovr=59 wiek=32 ceiling=60 cena=0.12 -> PAS:OK cena=0.12 kasa=1.99 season=3 payrollBefore=1.88 payrollAfter=1.88 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=lechia-gdansk
+== S3 KONIEC miejsce=17 pkt=36 bilans=1.42 place=1.88 puchar=nie europa=brak kampania=LE/league kasaEuro=1.00 kasa=2.42 sila=64.45 emeryci=0 bz=39 bs=51 superpuchar=brak rngDraws=4784
+== WERDYKT ocena=143 tytul=ROZWIĄZANIE KONTRAKTU
+== DRUGA_SZANSA ceiling=78
+== KONIEC dziedzictwo=196 kasa=2.42 tytul=CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB nastepny=355.8664939505741

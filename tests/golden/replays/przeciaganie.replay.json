@@ -1,0 +1,32 @@
+{
+  "seed": 268435461,
+  "poziom": "sredni",
+  "akcje": [
+    "START:sredni",
+    "CZAS",
+    "CZAS",
+    "CZAS",
+    "BIERZ",
+    "CZAS",
+    "CZAS",
+    "CZAS",
+    "BIERZ",
+    "CZAS",
+    "CZAS",
+    "CZAS",
+    "BIERZ",
+    "CZAS",
+    "CZAS",
+    "CZAS",
+    "BIERZ",
+    "CZAS",
+    "CZAS",
+    "CZAS",
+    "BIERZ",
+    "CZAS",
+    "CZAS",
+    "CZAS",
+    "PAS"
+  ],
+  "engineVersion": "reducer-v1"
+}

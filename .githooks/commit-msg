@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Enforces conventional commits (commitlint), the owner's identity, no
+# co-author trailers, no emoji and no em dash.
+# Activated together with pre-commit via core.hooksPath.
+
+exec node scripts/git-hooks.mjs commit-msg "$1"

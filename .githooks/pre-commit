@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Quality gate for every commit. The logic lives in
+# scripts/git-hooks.mjs so it is written once, in one language.
+#
+# Enabled by scripts/install-git-hooks.mjs, which the package.json "prepare"
+# script runs on install.
+
+exec node scripts/git-hooks.mjs pre-commit

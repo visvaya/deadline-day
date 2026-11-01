@@ -1,0 +1,59 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+test-results/
+coverage/
+playwright-report/
+/playwright/.cache/
+
+# Zagniezdzone worktree gita
+.worktrees/
+
+# Baseline finansowy 2026-09-07. W historii siedzi wylacznie control.csv.gz
+# (0,66 MB) - dump, na ktorym stoi niezmiennik gotowki ze speka 4 par. 5.2.
+# Dwa duze dumpy (active 13,1 MB, signings 23,6 MB) oraz wszystkie rozpakowane
+# CSV (215 MB) sa artefaktem roboczym: odtwarza je jedna komenda z notatki
+# docs/decisions/_baseline-finance-2026-09-07.md, a ich tozsamosc potwierdza
+# zapisany tam sha256. Wymienione jawnie, nie wzorcem *.csv - scripts/data/
+# trzyma tez przypiete zrodla, ktore MUSZA byc w historii
+# (ekstraklasa-results.csv, uecl-*.csv).
+scripts/data/finance-baseline-2026-09-07/control.csv
+scripts/data/finance-baseline-2026-09-07/active.csv
+scripts/data/finance-baseline-2026-09-07/signings.csv
+scripts/data/finance-baseline-2026-09-07/active.csv.gz
+scripts/data/finance-baseline-2026-09-07/signings.csv.gz
+
+# Aktywacja ekonomii 2026-09-10. W historii siedza wylacznie preactivation-rng.json
+# i summary.json - male pliki, ktore SA dowodem pomiaru. Surowe dumpy karier i
+# sezonow sa artefaktem roboczym, odtwarzalnym komendami z raportu aktywacji
+# (docs/decisions/finance-activation-2026-09-10.md). Wymienione jawnie, nie
+# wzorcem *.csv - scripts/data/ trzyma tez przypiete zrodla, ktore MUSZA byc
+# w historii (ekstraklasa-results.csv, uecl-*.csv).
+scripts/data/finance-activation-2026-09-10/preactivation-control-raw.csv
+scripts/data/finance-activation-2026-09-10/preactivation-control-raw.csv.gz
+scripts/data/finance-activation-2026-09-10/control-raw.csv
+scripts/data/finance-activation-2026-09-10/control-seasons.csv
+scripts/data/finance-activation-2026-09-10/active-raw.csv
+scripts/data/finance-activation-2026-09-10/active-seasons.csv
+scripts/data/finance-activation-2026-09-10/active-signings.csv
+
+# Aktywacja budzetu pierwszego okna 2026-09-12. W historii siedza wylacznie
+# preactivation-rng.json i summary.json - male pliki, ktore SA dowodem pomiaru.
+# Surowe dumpy karier i sezonow sa artefaktem roboczym, odtwarzalnym komendami
+# z raportu aktywacji (docs/decisions/opening-budget-activation-2026-09-12.md).
+# Wymienione jawnie, nie wzorcem *.csv - scripts/data/ trzyma tez przypiete
+# zrodla, ktore MUSZA byc w historii (ekstraklasa-results.csv, uecl-*.csv).
+scripts/data/opening-budget-activation-2026-09-12/control-raw.csv
+scripts/data/opening-budget-activation-2026-09-12/control-seasons.csv
+scripts/data/opening-budget-activation-2026-09-12/active-raw.csv
+scripts/data/opening-budget-activation-2026-09-12/active-seasons.csv
+
+# Pomiar kontrolny speka 4, 2026-09-25. W historii siedza control-raw,
+# control-seasons, active-dilemmas i active-free-signings (.csv.gz), raporty
+# trzech audytow i summary.json. Pelne dumpy przebiegu normalnego sa za duze
+# albo powielaja przypiete dumpy kroku 7 i zostaja lokalnie.
+scripts/data/spec4-control-2026-09-25/active-raw.csv.gz
+scripts/data/spec4-control-2026-09-25/active-sales.csv.gz
+scripts/data/spec4-control-2026-09-25/active-seasons.csv.gz
+scripts/data/spec4-control-2026-09-25/active-signings.csv.gz

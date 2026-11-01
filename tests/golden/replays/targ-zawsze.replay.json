@@ -1,0 +1,6 @@
+{
+  "seed": 268435460,
+  "poziom": "sredni",
+  "akcje": ["START:sredni", "TARG", "TARG", "TARG", "TARG", "TARG", "TARG"],
+  "engineVersion": "reducer-v1"
+}

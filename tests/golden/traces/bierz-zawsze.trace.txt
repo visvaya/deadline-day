@@ -1,0 +1,15 @@
+seed=268435466 clubId=zaglebie-lubin club=Zagłębie budget=0.79 formation=4-1-4-1 tenureHandicap=106.33 legacyHandicap=127.00 rngDraws=159
+== S1 PROGNOZA miejsce=14 europa=0.00 przychod=2.83 place=1.54 bilans=0.29
+== S1 LATO ruchy=4
+    1 WOLNY        BR  ovr=71 wiek=33 ceiling=71 cena=0.00 -> BIERZ:OK cena=0.00 kasa=0.79 season=1 payrollBefore=1.54 payrollAfter=1.89 signedPlayerId=ws2z97i signedAnnualWage=0.34 signedBaseAnnualWage=0.18
+    2 KUPNO        ŚP  ovr=72 wiek=25 ceiling=73 cena=0.99 -> BIERZ:BRAK_SRODKOW cena=0.99 kasa=0.79 season=1 payrollBefore=1.89 payrollAfter=1.89 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    3 KUPNO        BR  ovr=62 wiek=19 ceiling=81 cena=0.52 -> PAS:OK cena=0.52 kasa=0.79 season=1 payrollBefore=1.89 payrollAfter=1.89 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    4 KUPNO        BR  ovr=57 wiek=19 ceiling=82 cena=0.27 -> BIERZ:OK cena=0.27 kasa=0.52 season=1 payrollBefore=1.89 payrollAfter=1.94 signedPlayerId=qwnd1gs signedAnnualWage=0.05 signedBaseAnnualWage=0.05
+== S1 R1 pkt=17 bz=14 bs=20
+== S1 ZIMA ruchy=2
+    5 SPRZEDAZ     BR  ovr=71 wiek=33 ceiling=71 cena=0.90 -> BIERZ:OK cena=0.90 kasa=1.42 season=1 payrollBefore=1.94 payrollAfter=1.60 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=motor-lublin
+    6 PANIC        ŚP  ovr=71 wiek=28 ceiling=71 cena=1.78 -> PAS:OK cena=1.78 kasa=1.42 season=1 payrollBefore=1.60 payrollAfter=1.60 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S1 KONIEC miejsce=16 pkt=32 bilans=0.20 place=1.60 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=1.48 sila=62.89 emeryci=0 bz=25 bs=42 superpuchar=brak rngDraws=1719
+== WERDYKT ocena=0 tytul=ROZWIĄZANIE KONTRAKTU
+== DRUGA_SZANSA ceiling=81
+== KONIEC dziedzictwo=61 kasa=1.48 tytul=CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB nastepny=302.9991525822038

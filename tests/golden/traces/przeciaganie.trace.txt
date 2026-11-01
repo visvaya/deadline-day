@@ -1,0 +1,59 @@
+seed=268435461 clubId=slask-wroclaw club=Śląsk budget=0.75 formation=3-5-2 tenureHandicap=110.00 legacyHandicap=130.00 rngDraws=159
+== S1 PROGNOZA miejsce=15 europa=0.00 przychod=2.41 place=1.30 bilans=0.09
+== S1 LATO ruchy=4
+    1 KUPNO        ŚPO ovr=61 wiek=17 ceiling=62 cena=0.76 -> CZAS CZAS CZAS BIERZ:BRAK_SRODKOW cena=0.76 kasa=0.75 season=1 payrollBefore=1.30 payrollAfter=1.30 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    2 KUPNO        BR  ovr=56 wiek=21 ceiling=75 cena=0.42 -> CZAS CZAS CZAS BIERZ:OK cena=0.42 kasa=0.33 season=1 payrollBefore=1.30 payrollAfter=1.37 signedPlayerId=g575546 signedAnnualWage=0.06 signedBaseAnnualWage=0.05
+    3 WOLNY        ŚO  ovr=79 wiek=31 ceiling=79 cena=0.00 -> CZAS CZAS CZAS BIERZ:OK cena=0.00 kasa=0.33 season=1 payrollBefore=1.37 payrollAfter=2.19 signedPlayerId=nkh2wnp signedAnnualWage=0.83 signedBaseAnnualWage=0.34
+    4 PANIC        BR  ovr=61 wiek=20 ceiling=70 cena=0.56 -> CZAS CZAS CZAS BIERZ:BRAK_SRODKOW cena=0.56 kasa=0.33 season=1 payrollBefore=2.19 payrollAfter=2.19 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S1 R1 pkt=20 bz=28 bs=26
+== S1 ZIMA ruchy=2
+    5 WOLNY        BR  ovr=66 wiek=34 ceiling=66 cena=0.00 -> CZAS CZAS CZAS BIERZ:OK cena=0.00 kasa=0.33 season=1 payrollBefore=2.19 payrollAfter=2.47 signedPlayerId=wxv5hki signedAnnualWage=0.28 signedBaseAnnualWage=0.12
+    6 KUPNO        LP  ovr=66 wiek=17 ceiling=85 cena=0.56 -> CZAS CZAS CZAS PAS:OK cena=0.56 kasa=0.33 season=1 payrollBefore=2.47 payrollAfter=2.47 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S1 KONIEC miejsce=12 pkt=42 bilans=-1.02 place=2.47 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=0.02 sila=65.20 emeryci=0 bz=50 bs=48 superpuchar=brak rngDraws=1764
+== S2 PROGNOZA miejsce=8 europa=0.00 przychod=2.41 place=2.51 bilans=-0.97
+== S2 LATO ruchy=4
+    7 SPRZEDAZ     ŚPD ovr=64 wiek=32 ceiling=64 cena=0.16 -> CZAS CZAS CZAS BIERZ:OK cena=0.16 kasa=0.18 season=2 payrollBefore=2.51 payrollAfter=2.41 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=lech-poznan
+    8 KUPNO        ŚPD ovr=67 wiek=18 ceiling=67 cena=0.30 -> CZAS CZAS CZAS PAS:OK cena=0.30 kasa=0.18 season=2 payrollBefore=2.41 payrollAfter=2.41 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    9 WOLNY        BR  ovr=74 wiek=33 ceiling=74 cena=0.00 -> CZAS CZAS CZAS BIERZ:OK cena=0.00 kasa=0.18 season=2 payrollBefore=2.41 payrollAfter=2.95 signedPlayerId=fd7g715 signedAnnualWage=0.54 signedBaseAnnualWage=0.23
+   10 SPRZEDAZ     ŚP  ovr=57 wiek=30 ceiling=57 cena=0.06 -> CZAS CZAS CZAS BIERZ:OK cena=0.06 kasa=0.24 season=2 payrollBefore=2.95 payrollAfter=2.90 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=wisla-plock
+== S2 R1 pkt=19 bz=24 bs=24
+== S2 ZIMA ruchy=2
+   11 KUPNO        LP  ovr=61 wiek=19 ceiling=68 cena=0.41 -> CZAS CZAS CZAS PAS:OK cena=0.41 kasa=0.24 season=2 payrollBefore=2.90 payrollAfter=2.90 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   12 KUPNO        ŚO  ovr=65 wiek=27 ceiling=68 cena=0.41 -> CZAS CZAS CZAS PAS:OK cena=0.41 kasa=0.24 season=2 payrollBefore=2.90 payrollAfter=2.90 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S2 KONIEC miejsce=9 pkt=45 bilans=-1.38 place=2.90 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=-0.17 sila=63.59 emeryci=1 bz=48 bs=47 superpuchar=brak rngDraws=3351
+== S3 PROGNOZA miejsce=10 europa=0.00 przychod=2.41 place=2.69 bilans=-1.19
+== S3 LATO ruchy=4
+   13 SPRZEDAZ     BR  ovr=67 wiek=23 ceiling=75 cena=0.79 -> CZAS CZAS CZAS BIERZ:OK cena=0.79 kasa=0.62 season=3 payrollBefore=2.69 payrollAfter=2.53 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=motor-lublin
+   14 KUPNO        ŚP  ovr=57 wiek=20 ceiling=70 cena=0.38 -> CZAS CZAS CZAS BIERZ:OK cena=0.38 kasa=0.24 season=3 payrollBefore=2.53 payrollAfter=2.60 signedPlayerId=67aiu42 signedAnnualWage=0.07 signedBaseAnnualWage=0.05
+   15 WOLNY        ŚO  ovr=70 wiek=31 ceiling=70 cena=0.00 -> CZAS CZAS CZAS BIERZ:OK cena=0.00 kasa=0.24 season=3 payrollBefore=2.60 payrollAfter=2.99 signedPlayerId=3su65uc signedAnnualWage=0.39 signedBaseAnnualWage=0.16
+   16 KUPNO        ŚPO ovr=64 wiek=20 ceiling=75 cena=0.41 -> CZAS CZAS CZAS PAS:OK cena=0.41 kasa=0.24 season=3 payrollBefore=2.99 payrollAfter=2.99 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S3 R1 pkt=19 bz=19 bs=20
+== S3 ZIMA ruchy=2
+   17 PRZEDLUZENIE N   ovr=54 wiek=30 ceiling=56 cena=0.09 -> CZAS CZAS CZAS BIERZ:OK cena=0.09 kasa=0.24 season=3 payrollBefore=2.99 payrollAfter=3.04 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   18 PRZEDLUZENIE LP  ovr=66 wiek=23 ceiling=67 cena=0.22 -> CZAS CZAS CZAS BIERZ:OK cena=0.22 kasa=0.24 season=3 payrollBefore=3.04 payrollAfter=3.14 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S3 KONIEC miejsce=14 pkt=40 bilans=-1.73 place=3.14 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=-0.28 sila=65.36 emeryci=1 bz=36 bs=37 superpuchar=brak rngDraws=4858
+== S4 PROGNOZA miejsce=7 europa=0.00 przychod=2.41 place=3.00 bilans=-1.44
+== S4 LATO ruchy=4
+   19 SPRZEDAZ     N   ovr=53 wiek=31 ceiling=56 cena=0.05 -> CZAS CZAS CZAS BIERZ:OK cena=0.05 kasa=-0.23 season=4 payrollBefore=3.00 payrollAfter=2.92 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=rakow-czestochowa
+   20 PRZEDLUZENIE CN  ovr=65 wiek=34 ceiling=69 cena=0.19 -> CZAS CZAS CZAS BIERZ:OK cena=0.19 kasa=-0.23 season=4 payrollBefore=2.92 payrollAfter=3.00 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   21 SPRZEDAZ     ŚPO ovr=55 wiek=33 ceiling=60 cena=0.04 -> CZAS CZAS CZAS BIERZ:OK cena=0.04 kasa=-0.19 season=4 payrollBefore=3.00 payrollAfter=2.95 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=stal-mielec
+   22 KUPNO        PP  ovr=67 wiek=24 ceiling=68 cena=0.58 -> CZAS CZAS CZAS PAS:OK cena=0.58 kasa=-0.19 season=4 payrollBefore=2.95 payrollAfter=2.95 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S4 R1 pkt=18 bz=19 bs=23
+== S4 ZIMA ruchy=2
+   23 PRZEDLUZENIE N   ovr=64 wiek=29 ceiling=64 cena=0.17 -> CZAS CZAS CZAS BIERZ:OK cena=0.17 kasa=-0.19 season=4 payrollBefore=2.95 payrollAfter=3.03 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   24 SPRZEDAZ     ŚP  ovr=62 wiek=21 ceiling=70 cena=0.31 -> CZAS CZAS CZAS BIERZ:OK cena=0.31 kasa=0.12 season=4 payrollBefore=3.03 payrollAfter=2.92 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=piast-gliwice
+== S4 KONIEC miejsce=15 pkt=38 bilans=-1.53 place=2.92 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=-0.34 sila=63.75 emeryci=1 bz=32 bs=39 superpuchar=brak rngDraws=6371
+== S5 PROGNOZA miejsce=15 europa=0.00 przychod=2.41 place=2.17 bilans=-0.78
+== S5 LATO ruchy=4
+   25 SPRZEDAZ     LP  ovr=66 wiek=25 ceiling=67 cena=0.45 -> CZAS CZAS CZAS BIERZ:OK cena=0.45 kasa=0.11 season=5 payrollBefore=2.17 payrollAfter=1.95 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=legia-warszawa
+   26 KUPNO        PP  ovr=57 wiek=20 ceiling=69 cena=0.19 -> CZAS CZAS CZAS PAS:OK cena=0.19 kasa=0.11 season=5 payrollBefore=1.95 payrollAfter=1.95 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   27 KUPNO        BR  ovr=55 wiek=19 ceiling=74 cena=0.19 -> CZAS CZAS CZAS PAS:OK cena=0.19 kasa=0.11 season=5 payrollBefore=1.95 payrollAfter=1.95 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   28 WOLNY        PP  ovr=73 wiek=32 ceiling=73 cena=0.00 -> CZAS CZAS CZAS BIERZ:OK cena=0.00 kasa=0.11 season=5 payrollBefore=1.95 payrollAfter=2.46 signedPlayerId=n6w1wsr signedAnnualWage=0.50 signedBaseAnnualWage=0.21
+== S5 R1 pkt=14 bz=11 bs=23
+== S5 ZIMA ruchy=2
+   29 SPRZEDAZ     LP  ovr=61 wiek=21 ceiling=64 cena=0.21 -> CZAS CZAS CZAS BIERZ:OK cena=0.21 kasa=0.32 season=5 payrollBefore=2.46 payrollAfter=2.43 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=korona-kielce
+   30 PANIC        ŚO  ovr=60 wiek=20 ceiling=69 cena=0.54 -> CZAS CZAS CZAS PAS:OK cena=0.54 kasa=0.32 season=5 payrollBefore=2.43 payrollAfter=2.43 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S5 KONIEC miejsce=18 pkt=28 bilans=-1.09 place=2.43 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=-0.01 sila=61.12 emeryci=3 bz=28 bs=52 superpuchar=brak rngDraws=7918
+== WERDYKT ocena=133 tytul=ROZWIĄZANIE KONTRAKTU
+== DRUGA_SZANSA ceiling=85
+== KONIEC dziedzictwo=195 kasa=-0.01 tytul=CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB nastepny=300

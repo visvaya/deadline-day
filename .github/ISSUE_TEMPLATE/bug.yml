@@ -1,0 +1,27 @@
+name: Bug
+description: Something in the game or the tooling does not work as it should.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you saw and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The club, the screen, and the actions that lead to the problem; a screenshot helps.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Game version
+      description: Shown on the start screen (for example 0.34).
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device

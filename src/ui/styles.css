@@ -1,0 +1,4262 @@
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: block;
+  src: url("./fonts/figtree-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: block;
+  src: url("./fonts/figtree-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+:root {
+  --surface-page: oklch(96.62% 0.0034 247.86);
+  --surface-panel: oklch(100% 0 0);
+  --surface-inset: oklch(98.09% 0.0025 228.78);
+  --border-card: oklch(91.42% 0.0081 253.86);
+  --border-subtle: oklch(95.75% 0.0046 258.32);
+  --border-control: oklch(61.89% 0.0204 250.7);
+
+  --text-primary: oklch(18.78% 0.0113 242.4);
+  /* The dark ink every shadow, scrim and text outline is mixed from, at the
+     opacity each needs (`color-mix(in srgb, var(--shadow-base) N%,
+     transparent)`). The same value as --text-primary today, but its own
+     token on purpose: in a dark theme text turns light while shadows stay
+     dark, so the two must be free to part ways. */
+  --shadow-base: oklch(18.78% 0.0113 242.4);
+  --text-secondary: oklch(45.25% 0.0234 253.06);
+  --text-meta: oklch(49.9% 0.0228 253.03);
+  --text-muted: oklch(61.89% 0.0204 250.7);
+  --text-label: oklch(66% 0.0175 253.96);
+  --text-faint: oklch(70.5% 0.0179 250.91);
+  /* Two gaps inside a rating. The glyph hugs the age because they are one
+     statement about one thing; the ovr sits equidistant from that pair on its
+     left and its delta on its right.
+     
+     Absolute, and deliberately so - these were em for a while, scaled to the
+     size of the ovr, which meant a starter's gaps came out twice a
+     substitute's. Proportion is not what the eye is comparing here: the two
+     ratings sit one directly above the other in the same tile, so what reads
+     as wrong is the pair not matching, not either one being off for its own
+     size. Product owner's call, 2026-08-22: one pair of values, tuned to the
+     tighter end of what the em model produced.
+     
+     Both are container gaps, which keeps the symmetry structural - one
+     declaration feeds both sides of the ovr, so they cannot drift apart. The
+     one exception is running text, which has no container to hang a gap on;
+     see .dd-offer-meta .dd-season-change. */
+  --rating-inner-gap: 1px;
+  --rating-outer-gap: 2px;
+  /* The age's side of the ovr, half a pixel tighter than the delta's, so the
+     two look equally close rather than measure equally close.
+
+     Equal boxes did not give equal gaps, because the glyphs' own side bearings
+     differ on the two sides. Calibrated off 6x screenshots, measuring ink to
+     ink at half maximum, in css px:
+
+       2px    age->ovr 5.33   ovr->delta 4.67   +0.67
+       1.5px  age->ovr 4.33   ovr->delta 4.67   -0.33
+       1.25px age->ovr 4.67   ovr->delta 5.00   -0.33
+       1px    age->ovr 4.50   ovr->delta 5.67   -1.17
+
+     1.5px halves the error and puts the age fractionally nearer rather than
+     further, which is the side to err on. Optical, so it is stated separately
+     rather than folded into --rating-outer-gap: the two are the same idea only
+     by coincidence of the type. */
+  --rating-age-gap: 1.5px;
+  --text-caption: oklch(56% 0.0228 253.03);
+  /* Dedicated to the club-select list's "(59,0 xPts)" annotation
+     (tests/ui/club-select-screen.test.tsx and tests/ui/palette-contrast.test.ts
+     both check it): 4.5:1 minimum against --surface-panel, unlike the
+     "Przygaszony" family above, which is documented debt below that bar. */
+  --text-club-list-hint: oklch(56% 0 0);
+  --text-on-emphasis: oklch(100% 0 0);
+
+  --meaning-positive: oklch(51.88% 0.1275 154.12);
+  --meaning-negative: oklch(54.03% 0.1766 28.87);
+  --meaning-warning: oklch(51.41% 0.1065 75.5);
+  --trend-positive: oklch(73.72% 0.0746 161.3);
+  --trend-negative: oklch(75.25% 0.0668 26.98);
+  --trend-reserve-positive: oklch(76.45% 0.0654 162.18);
+  --trend-reserve-negative: oklch(78.43% 0.0585 26.5);
+
+  --offer-purchase: oklch(49.06% 0.1283 258.66);
+  --offer-sale: oklch(51.12% 0.1494 306.94);
+  --offer-extension: oklch(48.34% 0.0789 205.47);
+  --offer-free-agent: oklch(55.1% 0.0234 264.36);
+  --competition-champions-league: oklch(43.08% 0.1413 261.04);
+  --competition-europa-league: oklch(51.41% 0.1065 75.5);
+  --competition-conference-league: oklch(51.88% 0.1275 154.12);
+  --competition-relegation: oklch(54.03% 0.1766 28.87);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  min-height: 100dvh;
+}
+
+html {
+  scrollbar-gutter: stable;
+  overscroll-behavior-y: none;
+  /* Bug fix (2026-09-18, white bands beside the action bar in landscape,
+     Vivaldi on iOS): `html` never had a background of its own, so it fell
+     back to the browser's default canvas colour (white) wherever it showed
+     through. `body` and `.dd-root` each paint --surface-page, but only over
+     their own boxes - WebKit's elastic overscroll bounce can briefly slide
+     that whole document sideways or down past its edge (more readily on a
+     wide-but-short landscape viewport, where there is barely any vertical
+     room to buffer it), exposing bare `html` underneath. In the narrowed
+     desktop-width layout the fixed `.dd-action-bar` stays pinned exactly
+     where it is throughout the bounce - it never shares the document's
+     motion - so the reveal shows up specifically as bands flanking the
+     bar's own centred box, not across the whole width. Giving `html` the
+     same page colour makes the reveal invisible instead of chasing the
+     bounce itself. */
+  background: var(--surface-page);
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+}
+
+.dd-root,
+.dd-root *,
+.dd-root *::before,
+.dd-root *::after {
+  box-sizing: border-box;
+}
+
+.dd-root {
+  display: flex;
+  min-height: 100%;
+  min-height: 100dvh;
+  /* iOS Safari inflates text inside blocks it judges wide relative to the
+     viewport ("text autosizing"), and inside a horizontally scrolling strip
+     that judgement goes wrong - which is how a four-tile back line came out
+     one tile per screen on a phone, with its contents adrift.
+     Both spellings: Safari still only understands the prefixed one. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  flex-direction: column;
+  padding: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+.dd-wrap {
+  padding-left: 17px;
+  padding-right: 17px;
+}
+
+.dd-pasek {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-card);
+  background: var(--surface-panel);
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dd-club-bar {
+  padding: 11px 16px 12px;
+  border-bottom: 1px solid var(--border-card);
+  background: var(--surface-panel);
+}
+
+.dd-club-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dd-club-heading > div {
+  min-width: 0;
+}
+
+.dd-club-heading h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.017em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.dd-club-heading h1:focus,
+.dd-setup-hero h1:focus {
+  outline: none;
+}
+
+.dd-club-heading p {
+  margin: 1px 0 0;
+  color: var(--text-meta);
+  font-size: 12.5px;
+}
+
+.dd-club-crest {
+  display: block;
+  width: 28px;
+  height: 32px;
+  flex: 0 0 auto;
+  filter: saturate(0.45) contrast(0.8);
+  opacity: 0.58;
+}
+
+.dd-club-crest svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dd-club-crest path {
+  fill: var(--text-secondary);
+}
+
+.dd-club-crest text {
+  fill: var(--surface-panel);
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.dd-h {
+  margin: 16px 0 6px;
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.dd-box {
+  margin-bottom: 10px;
+  padding: 12px;
+  border: 1px solid var(--border-card);
+  background: var(--surface-panel);
+}
+
+.dd-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  border: 1px solid var(--border-control);
+  border-left: 4px solid var(--border-control);
+  background: var(--surface-panel);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.dd-btn.tak {
+  border-color: var(--meaning-positive);
+  background: var(--meaning-positive);
+  color: var(--text-on-emphasis);
+}
+
+.dd-btn.targ {
+  border-left-color: var(--meaning-warning);
+}
+
+.dd-btn.czas {
+  border-left-color: var(--meaning-negative);
+}
+
+.dd-btn.pas {
+  border-left-color: var(--border-control);
+  color: var(--text-secondary);
+}
+
+.dd-btn:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+.dd-btn .sub {
+  display: block;
+  margin-top: 3px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.dd-btn.tak .sub {
+  color: var(--surface-inset);
+}
+
+.dd-btn:focus-visible,
+.dd-restart:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+.dd-restart {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 10px;
+  padding: 14px 0 4px;
+  border: 0;
+  background: transparent;
+  color: var(--meaning-negative);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Fallback of the app-level error boundary (components/error-boundary.tsx). */
+.dd-crash .dd-wrap {
+  max-width: 480px;
+  padding-top: 48px;
+  padding-bottom: 32px;
+}
+
+.dd-crash-title {
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.dd-crash-hint {
+  margin: 24px 0 0;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.dd-restart-confirmation {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  background: var(--surface-panel);
+}
+
+.dd-restart-confirmation .dd-restart {
+  min-height: 44px;
+  margin-top: 9px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-control);
+  border-radius: 9px;
+  background: var(--surface-panel);
+  color: var(--text-secondary);
+}
+
+.dd-restart-confirmation .dd-restart.danger {
+  border-color: var(--meaning-negative);
+  background: var(--meaning-negative);
+  color: var(--surface-panel);
+}
+
+.dd-restart-confirmation p {
+  margin: 0;
+  font-weight: 700;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.dd-restart.danger {
+  color: var(--meaning-negative);
+}
+
+.dd-restart:not(.danger) + .dd-restart,
+.dd-restart.danger + .dd-restart {
+  color: var(--text-secondary);
+}
+
+@media (hover: hover) {
+  .dd-restart-confirmation .dd-restart:not(.danger):hover {
+    border-color: var(--text-muted);
+    background: var(--surface-inset);
+    color: var(--text-primary);
+  }
+
+  .dd-restart-confirmation .dd-restart.danger:hover {
+    filter: brightness(0.9);
+  }
+}
+
+.dd-formation-heading {
+  display: flex;
+  margin: 0 0 5px;
+  align-items: center;
+  gap: 9px;
+  color: var(--text-faint);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.dd-formation-heading::after {
+  height: 1px;
+  flex: 1;
+  background: var(--border-card);
+  content: "";
+}
+
+/* Shared by the squad's formation lines and the market anomaly chips - see
+   drag-scroller.tsx. Native overflow does the scrolling so touch keeps its
+   momentum and bounce; the component adds mouse dragging on top. */
+.dd-scroller-shell {
+  position: relative;
+}
+
+/* Edge fades, painted over the strip rather than masked into it: a mask
+   applies whether or not there is anything to scroll, and a four-tile back
+   line is exactly one screen wide, so it clipped both full-backs for nothing.
+   Opacity follows the scroll position, so a strip that fits shows neither
+   fade and a strip scrolled to its end drops the one behind it. */
+.dd-scroller-shell::before,
+.dd-scroller-shell::after {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  pointer-events: none;
+  content: "";
+  opacity: 0;
+  transition: opacity 0.16s ease;
+}
+
+.dd-scroller-shell::before {
+  left: 0;
+  background: linear-gradient(to right, var(--surface-page), transparent);
+}
+
+.dd-scroller-shell::after {
+  right: 0;
+  background: linear-gradient(to left, var(--surface-page), transparent);
+}
+
+.dd-scroller-shell.can-scroll-left::before,
+.dd-scroller-shell.can-scroll-right::after {
+  opacity: 1;
+}
+
+.dd-scroller {
+  overflow-x: auto;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.dd-scroller.is-dragging {
+  cursor: grabbing;
+  /* Only while a mouse drag is in flight: setting it permanently would stop
+     a touch user selecting a player's name. */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dd-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.dd-scroller:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+.dd-formation-shell {
+  /* Carries the line's bottom margin so the fades can run edge to edge of
+     the tiles. Left on the line itself, the pseudo-elements had to stop ten
+     pixels short and left an unfaded strip along the bottom of the tile they
+     were supposed to be covering. */
+  margin-bottom: 10px;
+}
+
+.dd-formation-line {
+  display: flex;
+  align-items: stretch;
+  /* `safe` centres a line that fits and falls back to flex-start once it does
+     not, so an overflowing midfield starts at its left edge instead of having
+     the first tile parked out of reach. */
+  justify-content: safe center;
+  gap: 5px;
+  /* Five across a 360 px screen do not fit, and tiles deliberately do not
+     shrink (flex: 0 0 auto): a five-man midfield scrolls rather than turning
+     into five unreadable slivers. */
+}
+
+.dd-player-tile {
+  display: flex;
+  width: calc(25% - 3.75px);
+  /* Also the reset for the button form: a tile is a <button> wherever it can
+     open its position's reports, and inherits none of the UA chrome. */
+  margin: 0;
+  padding: 7px 5px 8px;
+  flex: 0 0 auto;
+  /* Explicit, not inherited from the UA. A tile is a <button> wherever it can
+     open its position, and a button's UA stylesheet sets its own cross-axis
+     alignment; in a column flex container that governs HORIZONTAL placement,
+     so anything but stretch shrink-wraps the rows and text-align: center then
+     centres them inside boxes narrower than the tile. Desktop Chromium and
+     WebKit both resolve to stretch already - this removes the dependency
+     rather than trusting it. */
+  align-items: stretch;
+  flex-direction: column;
+  border: 1px solid var(--border-card);
+  border-radius: 7px;
+  background: var(--surface-panel);
+  color: inherit;
+  font: inherit;
+  text-align: center;
+}
+
+button.dd-player-tile {
+  cursor: pointer;
+}
+
+button.dd-player-tile:hover {
+  border-color: var(--border-control);
+}
+
+.dd-player-bench {
+  display: block;
+}
+
+.dd-player-tile.is-highlighted {
+  border-color: var(--meaning-positive);
+}
+
+.dd-player-position {
+  color: var(--text-faint);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.dd-player-rating {
+  display: grid;
+  /* minmax(0, 1fr), not 1fr: a bare 1fr is minmax(auto, 1fr) and grows to fit
+     its content, so the wider satellite - "≈ 27" against "?" - stretched its
+     own track and pushed the ovr off the tile's centre line. Zero-floor tracks
+     stay equal whatever they hold. */
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: baseline;
+  /* Set per side: see --rating-age-gap. */
+  column-gap: 0;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* Columns are placed explicitly rather than left to document order. The reason
+   they had to be - an absent delta cell letting "wygasa" flow up into the
+   rating line - is gone twice over: every rating carries a delta now, even if
+   it only says 0, and the label is gone. Kept because a rating's three
+   positions are a fixed grammar, and naming them costs nothing. */
+.dd-player-rating-lead {
+  display: flex;
+  grid-column: 1;
+  align-items: baseline;
+  justify-self: end;
+  margin-right: var(--rating-age-gap);
+  gap: var(--rating-inner-gap);
+}
+
+.dd-player-rating strong {
+  grid-column: 2;
+  font: inherit;
+}
+
+.dd-player-rating > .dd-season-change {
+  grid-column: 3;
+  margin-left: var(--rating-outer-gap);
+  justify-self: start;
+}
+
+/* Tone comes from the rating, not from the tile: the tile carries the
+   starter's ovr, so a tile-scoped rule painted the substitutes with the
+   starter's colour. Reading a position now means reading four numbers whose
+   colours each mean their own player. */
+.dd-player-rating.is-negative strong {
+  color: var(--meaning-negative);
+}
+
+.dd-player-rating.is-warning strong {
+  color: var(--meaning-warning);
+}
+
+.dd-player-rating.is-positive strong {
+  color: var(--meaning-positive);
+}
+
+.dd-age-trend {
+  color: var(--text-faint);
+  font-size: 7.5px;
+  font-weight: 700;
+}
+
+.dd-season-change {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.dd-season-change-marker {
+  display: inline-block;
+  width: 0.64em;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1;
+  text-align: center;
+  transform: translateY(-0.04em);
+}
+
+.dd-season-change.is-up {
+  color: var(--trend-positive);
+}
+
+.dd-season-change.is-down {
+  color: var(--trend-negative);
+}
+
+/* Everything that carries no direction: last season's change seen again in
+   the winter window, a player who did not move, and one the last pass never
+   measured. Quieter by losing the red/green coding, never by fading: the four
+   --trend-* tokens are already the worst contrast in the palette (1.83-2.05
+   against the darkest surface), and tests/ui/palette-contrast.test.ts records
+   that as a known debt rather than a licence to deepen it.
+
+   --text-faint (2.37) rather than --text-muted (3.31): muted came out louder
+   than the red and green it stands next to, which inverted the hierarchy - the
+   cell carrying no signal was the most visible one in the row. Faint is the
+   token the age and the glyph already use, so a rating now has one voice for
+   its context and another for its signal. */
+.dd-season-change.is-neutral {
+  color: var(--text-faint);
+}
+
+.dd-player-age {
+  color: var(--text-faint);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.dd-player-bench {
+  min-height: 20px;
+  margin-top: 4px;
+  margin-bottom: 0;
+  padding-top: 4px;
+  padding-left: 0;
+  flex: 1;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-faint);
+  font-size: 11px;
+  line-height: 1.5;
+  list-style: none;
+}
+
+.dd-player-substitute {
+  display: block;
+}
+
+/* The player this offer is about, marked inside the tile that holds him.
+   Both edges rather than one: everything else in this tile is centred, so a
+   single-sided bar would be the one thing in it that is not.
+
+   Absolutely positioned pseudo-elements rather than a border, for two reasons.
+   A border cannot have rounded ends - border-radius on a box with only side
+   borders tapers them to a point instead. And being out of flow, these take no
+   width from the row at all, so the numbers keep their positions and the ovr
+   its centre line without any margin arithmetic to compensate.
+
+   -5px reaches through the tile's own side padding, putting each bar on the
+   tile's edge - a mark at the boundary of the thing it marks. */
+.dd-player-rating.is-offer {
+  position: relative;
+}
+
+.dd-player-rating.is-offer::before,
+.dd-player-rating.is-offer::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--meaning-positive);
+  content: "";
+}
+
+/* Rounded on the inner side only - the side facing the numbers - and left
+   straight where it meets the tile edge, so the bar reads as a rule running
+   along that edge rather than a lozenge floating beside the numbers.
+
+   Elliptical radii, 4px across by 6px down. A circular radius cannot exceed the
+   bar's own width, so at 2px the arc spanned two pixels of screen and read as a
+   straight line at 100%.
+
+   Six down, not the twelve tried first: a rating row is 16.5px tall for a
+   substitute and 23px for a starter, so two 12px radii overflowed it and the
+   browser scaled them to fit, leaving the bar made entirely of curve and
+   touching its full width at a single point. Two 6px arcs leave a straight run
+   even on the shortest row, so the weight is stated by a flat section rather
+   than by the apex of an arc.
+
+   4px across is a judgement, not a fix. The rendering was measured off
+   screenshots at device scale 1, 1.25, 1.5, 1.75 and 2: the two bars come out
+   with identical column profiles to within 0.03px at every one, at 3px as well
+   as at 4px, so the left bar reading heavier is not something the raster is
+   doing. The likeliest cause is its neighbourhood - a glyph and a two-digit age
+   on the left against a single faint character on the right. A wider bar is
+   simply less susceptible to that. Product owner's call, 2026-08-22. */
+.dd-player-rating.is-offer::before {
+  left: -5px;
+  border-radius: 0 4px 4px 0 / 0 6px 6px 0;
+}
+
+.dd-player-rating.is-offer::after {
+  right: -5px;
+  border-radius: 4px 0 0 4px / 6px 0 0 6px;
+}
+
+.dd-player-rating.is-reserve {
+  font-size: 11px;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+.dd-player-rating.is-reserve .dd-season-change {
+  font-size: 7.5px;
+}
+
+/* Gated on is-up/is-down rather than set unconditionally: the old rule was
+   three classes deep and outranked .dd-season-change.is-neutral, so last
+   season's delta went neutral on the starter and stayed coloured on the
+   substitutes right below him. */
+.dd-player-rating.is-reserve .dd-season-change.is-up {
+  color: var(--trend-reserve-positive);
+}
+
+.dd-player-rating.is-reserve .dd-season-change.is-down {
+  color: var(--trend-reserve-negative);
+}
+
+.dd-player-rating.is-reserve .dd-age-trend {
+  font-size: 6.5px;
+}
+
+.dd-player-rating.is-reserve .dd-player-age {
+  font-size: 9px;
+}
+
+/* A contract running out, said by absence of colour rather than by a word.
+   The label this replaced was uppercase, warning-coloured and spanned a whole
+   grid row of a 78px tile - a lot of room for a fact that is true of one
+   player in a squad of twenty. --text-muted for the ovr and the delta's own
+   neutral tone below it, so the row still reads as a row, just not as one of
+   ours much longer.
+
+   The cost, accepted knowingly: this row no longer carries the quality tone of
+   its ovr, and its delta cannot be distinguished from one already read. */
+.dd-player-rating.is-expiring strong {
+  color: var(--text-muted);
+}
+
+.dd-player-missing {
+  color: var(--text-muted);
+  font-size: 10px;
+  font-style: italic;
+}
+
+.dd-hud {
+  display: flex;
+  margin: 0;
+  padding: 9px 16px 11px;
+  border-bottom: 1px solid var(--border-card);
+  background: var(--surface-panel);
+}
+
+/* The region landmark lives on .dd-hud (see hud.tsx); the <dl> that used to
+   carry it stays in the DOM for its dt/dd pairing but takes no box of its
+   own, so its four cell divs still become .dd-hud's direct flex items. */
+.dd-hud-list {
+  display: contents;
+}
+
+.dd-hud-list > div {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  padding: 0 8px;
+  flex: 1;
+  flex-direction: column;
+  text-align: center;
+}
+
+.dd-hud-list > div + div::before {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  width: 1px;
+  background: var(--border-subtle);
+  content: "";
+}
+
+.dd-hud dd {
+  order: -1;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: 1.2;
+}
+
+.dd-hud dt {
+  overflow: hidden;
+  color: var(--text-meta);
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The forecast carries a help panel. Its term must not clip descendants, and
+   the panel needs more room than one of the HUD's three or four number cells. */
+.dd-hud-forecast dt {
+  overflow: visible;
+}
+
+.dd-hud-forecast .dd-info-popover.is-right-aligned .dd-info-popover-panel {
+  right: 0;
+  left: auto;
+  width: max-content;
+  max-width: min(220px, calc(100vw - 32px));
+}
+
+.dd-hud dd.is-negative {
+  color: var(--meaning-negative);
+}
+
+.dd-hud dd.is-positive {
+  color: var(--meaning-positive);
+}
+
+.dd-fin {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 12px;
+}
+
+.dd-rynek {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.dd-rk {
+  padding: 4px 2px;
+  background: var(--surface-inset);
+  font-size: 11px;
+  text-align: center;
+}
+
+.dd-rk span {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.dd-raport {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-raport div {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.dd-raport div.stat::before {
+  color: var(--text-label);
+  content: "› ";
+}
+
+.dd-tab {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.dd-tab td {
+  padding: 3px 4px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.dd-tab tr.ja td {
+  background: var(--surface-inset);
+  color: var(--meaning-positive);
+  font-weight: 800;
+}
+
+.dd-timer {
+  height: 4px;
+  margin-top: 10px;
+  background: var(--border-card);
+}
+
+.dd-timer i {
+  display: block;
+  height: 100%;
+  background: var(--text-meta);
+  transition: width 0.95s linear;
+}
+
+.dd-timer.napiete i {
+  background: var(--meaning-negative);
+}
+
+.dd-mini {
+  color: var(--text-secondary);
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+.dd-news {
+  margin: 8px 0;
+  padding: 6px 0 6px 10px;
+  border-left: 3px solid var(--border-card);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.dd-duza {
+  color: var(--text-primary);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.dd-cyj {
+  color: var(--text-primary);
+}
+
+.dd-zol {
+  color: var(--meaning-warning);
+}
+
+.dd-zie {
+  color: var(--meaning-positive);
+}
+
+.dd-cze {
+  color: var(--meaning-negative);
+}
+
+.dd-sza {
+  color: var(--text-secondary);
+}
+
+.dd-fiolet {
+  color: var(--meaning-negative);
+}
+
+.dd-offer-content {
+  padding-top: 7px;
+  padding-bottom: calc(var(--dd-action-bar-height, 190px) + 20px);
+}
+
+.dd-offer-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  background: var(--surface-panel);
+}
+
+.dd-offer-card:has(.dd-timer.napiete) {
+  border-color: var(--trend-negative);
+}
+
+.dd-offer-sender {
+  display: flex;
+  min-height: 48px;
+  padding: 9px 13px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-inset);
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.dd-offer-clock {
+  display: block;
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.dd-offer-clock strong,
+.dd-offer-clock span {
+  display: block;
+}
+
+/* Two digits wide even at 9 s and below, so the countdown dropping a digit
+   never shifts the sender line beside it. */
+.dd-offer-clock strong {
+  min-width: 2ch;
+  color: var(--meaning-negative);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.dd-offer-clock span {
+  margin-top: 1px;
+  color: var(--text-faint);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.dd-offer-card > .dd-timer {
+  height: 3px;
+  margin: 0;
+}
+
+.dd-offer-body {
+  position: relative;
+  padding: 13px 13px 12px;
+}
+
+.dd-offer-kind {
+  margin-bottom: 3px;
+  color: var(--offer-purchase);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dd-offer-card.is-sale .dd-offer-kind {
+  color: var(--offer-sale);
+}
+
+.dd-offer-card.is-free-agent .dd-offer-kind {
+  color: var(--offer-free-agent);
+}
+
+.dd-offer-card.is-extension .dd-offer-kind {
+  color: var(--offer-extension);
+}
+
+.dd-offer-name-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.dd-offer-name {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.032em;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.dd-player-kit {
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  display: block;
+  width: 42px;
+  height: 40px;
+  flex: 0 0 auto;
+  color: var(--offer-purchase);
+  filter: saturate(0.45) contrast(0.75);
+  opacity: 0.58;
+}
+
+.dd-offer-card.is-sale .dd-player-kit {
+  color: var(--offer-sale);
+}
+
+.dd-offer-card.is-extension .dd-player-kit {
+  color: var(--offer-extension);
+}
+
+.dd-player-kit.is-free-agent {
+  color: var(--offer-free-agent);
+  filter: none;
+}
+
+.dd-player-kit svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dd-player-kit path {
+  fill: currentcolor;
+}
+
+.dd-player-kit text {
+  fill: var(--surface-panel);
+  font-size: 3.3px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  paint-order: stroke;
+  stroke: color-mix(in srgb, var(--shadow-base) 32%, transparent);
+  stroke-width: 0.5px;
+}
+
+/* Running text, so there is no container gap to use: the offer card's rating
+   line is a paragraph, not a grid. Same value, carried by the delta. */
+.dd-offer-meta .dd-season-change {
+  margin-left: var(--rating-outer-gap);
+}
+
+.dd-offer-meta {
+  margin: 3px 0 0;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+}
+
+.dd-offer-meta strong {
+  color: var(--text-primary);
+  font-size: 15.5px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.dd-offer-meta strong.is-negative {
+  color: var(--meaning-negative);
+}
+
+.dd-offer-meta strong.is-warning {
+  color: var(--meaning-warning);
+}
+
+.dd-offer-meta strong.is-positive {
+  color: var(--meaning-positive);
+}
+
+.dd-offer-club {
+  margin: 4px 0 0;
+  color: var(--text-label);
+  font-size: 12.5px;
+}
+
+.dd-offer-fee {
+  overflow: hidden;
+  margin-top: 12px;
+  border-radius: 9px;
+  background: var(--surface-inset);
+}
+
+.dd-offer-fee-primary {
+  display: flex;
+}
+
+.dd-offer-fee-primary > div {
+  position: relative;
+  min-width: 0;
+  padding: 9px 12px 10px;
+  flex: 1;
+}
+
+.dd-offer-fee-primary > div + div::before,
+.dd-offer-effects > div + div::before {
+  position: absolute;
+  top: 9px;
+  bottom: 9px;
+  left: 0;
+  width: 1px;
+  background: var(--border-card);
+  content: "";
+}
+
+.dd-offer-fee-primary span {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.dd-offer-fee-primary strong {
+  display: block;
+  margin-top: 1px;
+  font-size: clamp(17px, 6vw, 25px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  white-space: nowrap;
+}
+
+.dd-offer-fee-primary strong.is-zero {
+  font-size: 16px;
+  letter-spacing: -0.015em;
+  white-space: normal;
+}
+
+.dd-cash-share {
+  height: 3px;
+  background: var(--border-card);
+}
+
+.dd-cash-share i {
+  display: block;
+  height: 100%;
+  background: var(--trend-negative);
+}
+
+.dd-offer-market {
+  padding: 7px 12px 8px;
+  border-bottom: 1px solid var(--border-card);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dd-offer-market.is-positive {
+  color: var(--meaning-positive);
+}
+
+.dd-offer-market.is-negative {
+  color: var(--meaning-negative);
+}
+
+.dd-offer-market.is-neutral {
+  color: var(--text-secondary);
+}
+
+.dd-offer-effects {
+  display: flex;
+}
+
+.dd-offer-effects > div {
+  position: relative;
+  min-width: 0;
+  padding: 8px 5px 10px;
+  flex: 1;
+  text-align: center;
+}
+
+.dd-offer-effects strong,
+.dd-offer-effects span {
+  display: block;
+}
+
+.dd-offer-effects strong {
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: -0.018em;
+}
+
+.dd-offer-effects strong.is-negative {
+  color: var(--meaning-negative);
+}
+
+.dd-offer-effects strong.is-positive {
+  color: var(--meaning-positive);
+}
+
+.dd-offer-effects span {
+  margin-top: 1px;
+  color: var(--text-label);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.dd-offer-position-squad,
+.dd-analyst-report {
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-offer-section-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--text-faint);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dd-offer-section-label span:last-child {
+  text-transform: none;
+}
+
+/* Replaced the tile preview: tiles are buttons, and this whole block is a
+   button, so previewing them here would nest one inside the other. */
+.dd-offer-squad-cue {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+/* The whole block is the button, so a press anywhere in it opens the drawer.
+   The tiles are the obvious thing to aim at and used to do nothing. */
+.dd-offer-squad-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.dd-offer-squad-trigger .dd-offer-section-label {
+  display: flex;
+}
+
+/* Beside the tiles whenever the lines have room to be readable, underneath
+   them when they do not - decided by the content, not by a breakpoint. A
+   media query got this wrong from both sides: below it the lines dropped
+   under two narrow tiles and left the space beside them empty, above it a
+   three-tile position squeezed them into a column too narrow to read.
+   flex-basis is the threshold: at least this much or wrap. */
+.dd-offer-position-body {
+  display: flex;
+  margin-top: 7px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+/* Two label/value rows answering what the block is there for before anything
+   is opened: how well the position is covered, and what this transfer would
+   change. Same dot-leader grammar as the report's metadata rows, so the card
+   reads as one document rather than two. */
+.dd-offer-position-lines {
+  display: flex;
+  min-width: 0;
+  /* Sized to the longest row this block can hold - "Status zawodnika po
+     transferze" plus its value plus the leader between them. Below that the
+     labels wrap and the value ends up beside the label's first line with the
+     leader squeezed out, which reads as two broken fragments. So the lines
+     drop under the tiles instead, where the full width fits them. */
+  flex: 1 1 240px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dd-offer-position-line {
+  display: flex;
+  align-items: baseline;
+  /* One row, always - the same shape as the report's metadata rows. Letting
+     the ROW wrap dropped the value onto its own line with the leader trailing
+     off the end of the label above it, which read as two broken fragments.
+     The label wraps its own text instead and the value stays put. */
+  gap: 0;
+  /* One step quieter than the tiles it annotates: this is context for the
+     players, not a third thing competing with them. Type matches the report's
+     metadata rows, which are the same kind of statement one screen away. */
+  color: var(--text-meta);
+  font-size: 10px;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* `display: flex` above outranks the hidden attribute's UA `display: none`,
+   so without this the row stays on screen while claiming to be hidden. */
+.dd-offer-position-line[hidden] {
+  display: none;
+}
+
+.dd-offer-position-line .dd-metadata-value {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.dd-offer-position-tiles {
+  display: flex;
+  /* Equal air either side, so the preview does not read as stuck to the left
+     edge of a block whose label starts there. */
+  padding: 0 6px;
+  /* Grows only once it is alone on its row - which is exactly when the lines
+     have wrapped below it - and centres itself in the space it then owns.
+     Beside the lines it keeps its content width and stays left. */
+  flex: 1 0 auto;
+  justify-content: center;
+  gap: 5px;
+}
+
+.dd-offer-position-tiles .dd-player-tile {
+  width: 78px;
+}
+
+.dd-analyst-lines {
+  margin-top: 7px;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.dd-percentile-context {
+  margin: 1px 0 0;
+  color: var(--text-faint);
+  font-size: 10px;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.dd-analyst-lines strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.dd-analyst-lines p,
+.dd-sample,
+.dd-sample-warning {
+  margin: 0;
+}
+
+.dd-analyst-lines p + p {
+  margin-top: 4px;
+}
+
+.dd-sample,
+.dd-sample-warning {
+  margin-top: 6px;
+  color: var(--text-caption);
+  font-size: 11.5px;
+}
+
+.dd-sample-warning {
+  color: var(--meaning-warning);
+}
+
+/* Staff assessment section */
+.dd-staff-assessment {
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-staff-outlook,
+.dd-staff-confidence {
+  display: flex;
+  align-items: center;
+}
+
+/* Row rhythm is deliberately close to the analyst report's metadata rows -
+   the two sections sit next to each other and read as one system, so the
+   staff rows must not look noticeably tighter than the rows below them. */
+/* One weight for the outlook wherever it appears. At 800 it outweighed the
+   14px/700 player name directly above it in a report row - the verdict
+   winning the row against the person it is about - and there is no reason for
+   the offer card to say it differently. */
+.dd-staff-outlook {
+  margin-top: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.dd-staff-confidence {
+  margin-top: 5px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.dd-staff-label {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.dd-staff-leader {
+  margin: 0 6px;
+}
+
+.dd-staff-rating {
+  display: flex;
+  gap: 2px;
+  flex: 0 0 auto;
+}
+
+.dd-star {
+  flex: 0 0 auto;
+  font-size: 10px;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.dd-staff-confidence .dd-star {
+  color: var(--text-muted);
+}
+
+/* Analyst report metrics */
+.dd-analyst-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 5px;
+}
+
+.dd-analyst-metric {
+  position: relative;
+  padding: 6px 0;
+}
+
+.dd-metric-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.dd-metric-name {
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.25;
+  gap: 6px;
+}
+
+.dd-metric-symbol {
+  width: 4px;
+  height: 4px;
+  flex: 0 0 auto;
+  /* Optical nudge only. The glyph stays a baseline-aligned flex item: taking
+     it out of baseline participation (align-self: center) hands the row's
+     baseline to the text span instead, which shifts the row enough to change
+     the card's height - and at 360x800 the card is only just taller than the
+     viewport, so that flipped the scroll-driven action-bar test. relative/top
+     paints it higher without touching layout. */
+  position: relative;
+  top: -1px;
+  border-radius: 50%;
+  background: var(--text-primary);
+}
+
+/* Clip the canonical label, but keep both its marker and help trigger visible. */
+.dd-metric-label-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dd-metric-name > .dd-info-popover {
+  flex: 0 0 auto;
+}
+
+.dd-analyst-metric[data-marker="circle"] .dd-metric-symbol {
+  /* Circle marker is the solid filled circle (default style above). */
+}
+
+.dd-analyst-metric[data-marker="diamond"] .dd-metric-symbol {
+  /* The base glyph is a circle now, so rotating it alone leaves a circle -
+     the corners have to come back before the rotation means anything. */
+  border-radius: 0;
+  transform: rotate(45deg);
+}
+
+/* Dot leader, declared once for both the metric rows and the report header.
+   The metric-row leader has to be a pseudo-element (its row holds text, not a
+   spare element), the header's is a real span - so they share the paint rules
+   through a selector list rather than a class. */
+.dd-metric-name::after,
+.dd-analyst-leader,
+.dd-staff-leader,
+.dd-metadata-leader,
+.dd-player-row-leader {
+  flex: 1 1 auto;
+  align-self: center;
+  height: 1px;
+  min-width: 8px;
+  /* A linear gradient with hard stops on whole pixels, not a radial one.
+     The radial version drew sub-pixel circles: at 0.5px they rounded away to
+     nothing, and at 1px they landed on fractional offsets and came out
+     visibly uneven. This is one crisp pixel every four, identical every time,
+     in the card tone - present but quiet. */
+  background-image: linear-gradient(to right, var(--border-card) 1px, transparent 1px);
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+}
+
+.dd-metric-name::after {
+  content: "";
+  margin-left: 6px;
+}
+
+.dd-metric-result {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dd-metric-result strong {
+  color: var(--text-secondary);
+  font-weight: 800;
+}
+
+.dd-metric-separator {
+  color: var(--text-faint);
+}
+
+.dd-metric-hint {
+  grid-column: 1 / -1;
+  margin-top: 3px;
+  padding-left: 10px;
+  color: var(--text-secondary);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* Evidence rail (0-99 axis) */
+.dd-evidence-rail {
+  position: relative;
+  height: 34px;
+  margin: 4px 0 0;
+  padding-top: 5px;
+}
+
+.dd-rail-track {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  left: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--border-card);
+}
+
+.dd-rail-marker {
+  position: absolute;
+  top: 13px;
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--surface-panel);
+  border-radius: 50%;
+  background: var(--text-primary);
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 1px var(--text-primary);
+}
+
+.dd-rail-marker[data-marker="diamond"] {
+  border-radius: 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* The circle is the smaller mark, so it always sits on top: where the two
+   overlap, the diamond still shows around it, and the reverse would hide the
+   circle completely. */
+.dd-rail-marker[data-marker="circle"] {
+  z-index: 1;
+}
+
+.dd-rail-end {
+  position: absolute;
+  top: 22px;
+  color: var(--text-faint);
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.dd-rail-end--low {
+  left: 0;
+}
+
+.dd-rail-end--high {
+  right: 0;
+}
+
+/* Analyst report header: label, dot leader, minutes. Layout (flex, baseline,
+   gap) comes from .dd-offer-section-label; only the three children need rules.
+   The leader is its own element because a pseudo-element on the label span
+   would not be a flex item of the header row and would collapse to nothing. */
+.dd-analyst-label-text {
+  flex-shrink: 0;
+}
+
+.dd-analyst-minutes {
+  flex-shrink: 0;
+  /* Sample size is information, not decoration, so it stays on a token that
+     clears 4.5:1 rather than inheriting the label's --text-faint. */
+  color: var(--text-meta);
+  font-size: 9.5px;
+  text-transform: none;
+}
+
+/* Analyst metadata lines */
+.dd-analyst-metadata {
+  position: relative;
+  margin-top: 6px;
+  padding-top: 5px;
+}
+
+.dd-analyst-metadata p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.dd-analyst-metadata p + p {
+  margin-top: 4px;
+}
+
+.dd-metadata-label {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.dd-metadata-leader {
+  margin: 0 6px;
+}
+
+.dd-metadata-value {
+  flex: 0 0 auto;
+}
+
+.dd-analyst-metadata strong {
+  font-weight: 800;
+}
+
+.dd-root > main {
+  /* .dd-root is a column flexbox and this is its only growing child, so on
+     a screen short enough that content doesn't fill the viewport, main
+     still reaches the true bottom of the screen.
+
+     The space content reserves for the fixed action bar (its padding-bottom)
+     deliberately has NO panel-coloured backdrop of its own (removed
+     2026-09-21). Such a strip scrolls with the document while the bar is
+     fixed to the viewport, so anything that separates the two for a moment
+     - rubber-band overscroll, the iOS toolbar collapsing, momentum
+     scrolling - showed it as a detached white band. Two earlier fixes each
+     closed one such trigger (0ed864e) and iOS kept finding others. Left in
+     the page colour, the reserved space is invisible however far the two
+     drift apart. It was only ever visible when the bar was not covering it,
+     which is exactly those failure cases: the bar always reveals itself at
+     the bottom of the page. */
+  position: relative;
+  flex: 1 0 auto;
+}
+
+.dd-action-bar {
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* Only the visualViewport correction lives here, and it has no
+     transition: it tracks the mobile toolbar show/hide frame-for-frame, and
+     animating it would fight that. The variable is clamped to zero or above
+     - see viewportCorrectionOffset - so this only ever moves the bar up,
+     clear of a toolbar or the on-screen keyboard; it is never pushed down
+     past its own fixed position, where it would slide under the browser's
+     own toolbar. The drawer-style slide for hiding lives one level
+     down, on .dd-action-bar-inner, so the two never touch the same
+     transform. */
+  transform: translateY(calc(-1 * var(--dd-vv-offset, 0px)));
+}
+
+/* The correction above needs a frame to catch up with the browser's own
+   toolbar animation, and rubber-band overscroll never reports at all, so the
+   bar still spends moments off the bottom edge - and the strip below it
+   would be a transparent hole with page content scrolling through. This
+   skirt is a full viewport tall rather than the measured gap, precisely
+   because the cases it covers are the ones JS did not measure; it just runs
+   off-screen and is only ever seen when there is a gap to fill. z-index
+   keeps it behind the bar itself, so the hide animation slides over it
+   instead of under it. It fades on the same variable and duration as the bar
+   - it must never outlive the panel it is pretending to be part of. */
+.dd-action-bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 100%;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  background: var(--surface-panel);
+  opacity: var(--dd-action-bar-backdrop-opacity, 1);
+  transition: opacity 0.22s ease;
+  pointer-events: none;
+}
+
+.dd-action-bar.is-hidden:focus-within::after {
+  opacity: 1;
+}
+
+/* Bug fix (2026-09-16, latent, exposed by the longer setup screens): a
+   `transform` moves what is painted but never changes the box an element
+   occupies in layout, so hiding the bar by translating `.dd-action-bar-inner`
+   off-screen left the OUTER `.dd-action-bar` - position: fixed, full height,
+   the browser's default pointer-events: auto - still pinned to the bottom
+   edge. That invisible, full-height rectangle swallowed every tap or click
+   underneath it, on every screen long enough to scroll the bar into its
+   hidden state (the eighteen-club list is the first screen tall enough for a
+   player to actually hit this). The inner element's own pointer-events: none
+   below was never reached, because a pointer landing in that space never got
+   past the outer box at all. Restored the moment focus lands anywhere inside
+   the bar (:focus-within), matching the inner element's own reveal-on-focus
+   rule two rules down - pointer-events never affects keyboard input, so a
+   Tab into the bar still works with no rule of its own needed for that. */
+.dd-action-bar.is-hidden {
+  pointer-events: none;
+}
+
+.dd-action-bar.is-hidden:focus-within {
+  pointer-events: auto;
+}
+
+.dd-action-bar.is-hidden .dd-action-bar-inner {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(calc(100% + 14px));
+}
+
+.dd-action-bar.is-hidden:focus-within .dd-action-bar-inner {
+  pointer-events: auto;
+  opacity: 1;
+  transform: none;
+}
+
+.dd-action-bar-inner {
+  /* --dd-vv-offset is clamped to zero or above (see viewportCorrectionOffset)
+     - a positive value means the correction lifted the bar to clear the
+     browser's own toolbar or the on-screen keyboard, and the skirt (see
+     .dd-action-bar::after) fills the strip that opens up underneath with
+     panel colour. That strip sits between the button and the physical
+     bottom edge exactly like the home-indicator padding does, so once the
+     toolbar has lifted the bar partway there, charging the full safe-area
+     inset on top of it reserves the same clearance twice. Credit the lift
+     against the inset and never let the result go below zero. The max(0px,
+     ...) here is defensive - the offset itself never goes negative - not
+     load-bearing. */
+  --dd-vv-lift: max(0px, var(--dd-vv-offset, 0px));
+
+  display: grid;
+  /* env(safe-area-inset-bottom) is written directly in this calc() rather
+     than pre-resolved into a custom property on :root - WebKit has a long
+     history of not re-evaluating env() when it is only reached through a
+     var() indirection, so a value read once at load (commonly 0, if the
+     browser's own toolbar was showing then) can stick even as the toolbar
+     comes and goes later. Repeating env() at every point of use is the
+     documented-safe pattern.
+     max(), not a sum, against the base padding: the inset is already visual
+     breathing room, so adding the base padding on top of it made the panel
+     bottom-heavy - 50px of white under the button against 17px above it
+     once the mobile browser collapsed its toolbar and started reporting
+     the home-indicator inset. Taking the larger of the two keeps the
+     button clear of the gesture area without paying for the same
+     clearance twice. */
+  padding: 13px 16px max(15px, calc(env(safe-area-inset-bottom, 0px) - var(--dd-vv-lift)));
+  gap: 6px;
+  border-top: 1px solid var(--border-card);
+  background: var(--surface-panel);
+  box-shadow: 0 -5px 14px color-mix(in srgb, var(--shadow-base) 5%, transparent);
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.dd-action-bar-inner:has(> button:only-child) {
+  padding-top: 18px;
+  padding-bottom: max(20px, calc(env(safe-area-inset-bottom, 0px) - var(--dd-vv-lift)));
+}
+
+/* Bug fix (2026-09-18, bar "niezgrany z paskiem przeciągania iPhone" in
+   landscape): the 15px/20px floors above exist for devices with NO safe
+   area at all (older iPhones, most Android phones), where
+   env(safe-area-inset-bottom) is legitimately 0 and 15-20px of breathing
+   room is plenty. A landscape iPhone is not that device - it still has a
+   21pt home-indicator exclusion zone (Apple's documented landscape value,
+   smaller than portrait's 34pt but never zero) - yet third-party WebKit
+   browsers that host their own chrome around the page (Vivaldi for iOS is
+   the reported case) have a known history of not forwarding
+   safe-area-inset-bottom accurately in landscape, reporting 0 same as a
+   safe-area-less device. When that happens the calc() above collapses to
+   the bare 15px/20px floor, which is short of the real gesture area by
+   several pixels - close enough to read as "misaligned with the drag bar".
+   Reusing the same short-viewport threshold as the action bar's auto-hide
+   (see action-bar-query.ts's ACTION_BAR_COMPACT_QUERY - the number has to
+   be duplicated here, CSS media features cannot import a JS constant)
+   raises the floor to the documented landscape safe-area value instead of
+   trusting env() alone. On a browser that reports the inset correctly this
+   changes nothing (max() picks the larger of two now-equal numbers); on
+   one that misreports it, the bar still clears the indicator. It stays a
+   flat floor rather than a sum, so the on-screen-keyboard case is
+   unaffected: --dd-vv-lift can still swallow it entirely via the calc()
+   term when the bar is already lifted clear of the keyboard. */
+@media (max-height: 600px) {
+  .dd-action-bar-inner {
+    padding-bottom: max(21px, calc(env(safe-area-inset-bottom, 0px) - var(--dd-vv-lift)));
+  }
+
+  .dd-action-bar-inner:has(> button:only-child) {
+    padding-bottom: max(26px, calc(env(safe-area-inset-bottom, 0px) - var(--dd-vv-lift)));
+  }
+}
+
+.dd-action-bar button {
+  width: 100%;
+  border-radius: 9px;
+  font-family: inherit;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .dd-action-primary:not(:disabled):hover {
+    filter: brightness(0.92);
+  }
+
+  .dd-action-secondary:hover,
+  .dd-action-pass:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+  }
+}
+
+.dd-action-bar button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.dd-action-primary {
+  padding: 11px;
+  border: 0;
+  background: var(--meaning-positive);
+  color: var(--text-on-emphasis);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.dd-action-primary small,
+.dd-action-secondary small {
+  display: block;
+  margin-top: 1px;
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.dd-action-primary small {
+  color: var(--surface-inset);
+  opacity: 0.9;
+}
+
+.dd-action-secondary-row {
+  display: flex;
+  gap: 6px;
+}
+
+.dd-action-secondary {
+  padding: 8px 11px;
+  flex: 1;
+  border: 1px solid var(--border-control);
+  background: var(--surface-panel);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.dd-action-secondary-row:has(> .dd-action-secondary:only-child) .dd-action-secondary {
+  text-align: center;
+}
+
+.dd-action-secondary small {
+  color: var(--text-caption);
+}
+
+.dd-action-pass {
+  padding: 9px;
+  border: 1px solid var(--border-control);
+  background: transparent;
+  color: var(--text-meta);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.dd-action-primary:focus-visible,
+.dd-action-secondary:focus-visible,
+.dd-action-pass:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-timer i {
+    transition: none;
+  }
+
+  .dd-action-bar-inner,
+  .dd-action-bar::after {
+    transition: none;
+  }
+
+  .dd-action-bar.is-hidden .dd-action-bar-inner {
+    pointer-events: auto;
+    opacity: 1;
+    transform: none;
+  }
+
+  .dd-scroller-shell::before,
+  .dd-scroller-shell::after {
+    transition: none;
+  }
+}
+
+.dd-screen-content {
+  padding-top: 0;
+  padding-bottom: calc(var(--dd-action-bar-height, 90px) + 20px);
+}
+
+.dd-section-heading {
+  display: flex;
+  margin: 17px 0 7px;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dd-section-heading h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.012em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.dd-section-heading h2:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+.dd-section-meta {
+  color: var(--text-secondary);
+  font-size: 11px;
+  line-height: 1.3;
+  text-align: right;
+}
+
+.dd-note {
+  margin: 7px 0 0;
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.dd-formation-note {
+  margin-top: 2px;
+}
+
+.dd-summary-list {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid var(--border-card);
+  border-radius: 9px;
+  background: var(--surface-panel);
+}
+
+.dd-summary-list > div {
+  display: flex;
+  min-height: 38px;
+  padding: 8px 11px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.dd-summary-list > div + div {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-summary-list dt,
+.dd-summary-list dd {
+  margin: 0;
+}
+
+.dd-summary-list dt {
+  min-width: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.dd-summary-list dd {
+  flex: 0 0 auto;
+  font-size: 12.5px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.dd-summary-list > div.is-emphasis dd,
+.dd-summary-list > div.is-emphasis dt {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.dd-summary-list dd.is-positive,
+.dd-market-anomalies .is-positive,
+.dd-player-reveals strong.is-positive {
+  color: var(--meaning-positive);
+}
+
+.dd-summary-list dd.is-negative,
+.dd-market-anomalies .is-negative,
+.dd-player-reveals strong.is-negative {
+  color: var(--meaning-negative);
+}
+
+.dd-summary-list dd.is-warning,
+.dd-player-reveals strong.is-warning {
+  color: var(--meaning-warning);
+}
+
+.dd-summary-list dd.is-muted {
+  color: var(--text-muted);
+}
+
+.dd-league-table {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--border-card);
+  border-radius: 9px;
+  background: var(--surface-panel);
+}
+
+.dd-league-table details {
+  display: contents;
+}
+
+.dd-league-table summary {
+  order: 2;
+  padding: 9px 10px;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-meta);
+  font-size: 11.5px;
+  font-weight: 700;
+  text-align: center;
+  list-style: none;
+  cursor: pointer;
+}
+
+.dd-league-table summary::-webkit-details-marker {
+  display: none;
+}
+
+.dd-league-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.dd-league-table-preview {
+  order: 1;
+}
+
+.dd-league-table-full {
+  order: 1;
+}
+
+.dd-league-table details:not([open]) .dd-league-table-full,
+.dd-league-table details[open] + .dd-league-table-preview,
+.dd-league-table .when-open,
+.dd-league-table details[open] .when-closed {
+  display: none;
+}
+
+.dd-league-table details[open] .when-open {
+  display: inline;
+}
+
+.dd-league-table th,
+.dd-league-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 12px;
+  text-align: left;
+}
+
+.dd-league-table th:first-child,
+.dd-league-table td:first-child {
+  padding-left: 16px;
+}
+
+.dd-league-table th:last-child,
+.dd-league-table td:last-child {
+  padding-right: 16px;
+}
+
+.dd-league-table th {
+  background: var(--surface-inset);
+  color: var(--text-faint);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dd-league-table tr.ja td {
+  background: var(--surface-inset);
+  color: var(--meaning-positive);
+  font-weight: 800;
+}
+
+.dd-league-position {
+  width: 34px;
+  color: var(--text-meta);
+  text-align: center;
+}
+
+.dd-league-goals {
+  width: 58px;
+  color: var(--text-meta);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.dd-league-club {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.dd-league-club-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dd-cup-badge {
+  flex: 0 0 auto;
+  padding: 1px 5px;
+  border-radius: 6px;
+  color: var(--text-on-emphasis);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.dd-cup-badge--lm {
+  background: var(--competition-champions-league);
+}
+
+.dd-cup-badge--le {
+  background: var(--competition-europa-league);
+}
+
+.dd-cup-badge--lk {
+  background: var(--competition-conference-league);
+}
+
+.dd-cup-badge--spadek {
+  background: var(--competition-relegation);
+}
+
+.dd-league-table .dd-league-points {
+  width: 48px;
+  text-align: center;
+}
+
+.dd-league-table summary:focus-visible,
+.dd-offer-squad-trigger:focus-visible,
+.dd-squad-drawer-close:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: -3px;
+}
+
+/* Fades, cursor and focus ring come from .dd-scroller-shell / .dd-scroller.
+   What is left is only the bottom room the chips need for their shadow.
+
+   The strip deliberately does NOT bleed into the page gutter. It used to,
+   with a -16px margin and 16px of padding to push the chips back inside,
+   which lined the first chip up with the text but let a chip scrolling out
+   of view stay visible all the way to the edge of the phone. Clipping at the
+   text column instead means a chip leaves where every other block of content
+   ends, which is where the eye expects the strip to stop. */
+.dd-market-scroll {
+  padding-bottom: 5px;
+}
+
+.dd-market-anomalies {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  gap: 6px;
+  list-style: none;
+}
+
+.dd-market-anomalies > li {
+  padding: 8px 10px;
+  border: 1px solid var(--border-card);
+  border-radius: 7px;
+  background: var(--surface-panel);
+  color: var(--text-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.dd-market-anomalies strong {
+  margin-left: 3px;
+  font-weight: 800;
+}
+
+.dd-round-summary,
+.dd-verdict-card,
+.dd-legacy-score {
+  padding: 13px;
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  background: var(--surface-panel);
+}
+
+.dd-round-summary strong,
+.dd-round-summary span {
+  display: block;
+}
+
+.dd-round-summary strong {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.dd-round-summary span {
+  color: var(--text-meta);
+  font-size: 12px;
+}
+
+.dd-transfer-log {
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  border-radius: 9px;
+  background: var(--surface-panel);
+}
+
+.dd-transfer-log p {
+  margin: 0;
+  padding: 9px 11px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.dd-transfer-log p + p {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-verdict-card h3,
+.dd-legacy-score h3 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.dd-verdict-card p,
+.dd-legacy-score p {
+  margin: 7px 0 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.dd-legacy-score p strong {
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.dd-legacy-score p > span {
+  color: var(--text-meta);
+  font-size: 12px;
+}
+
+.dd-legacy-seasons,
+.dd-player-reveals {
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  border-radius: 9px;
+  background: var(--surface-panel);
+}
+
+.dd-legacy-season,
+.dd-player-reveals > article {
+  padding: 10px 11px;
+}
+
+.dd-legacy-season + .dd-legacy-season,
+.dd-player-reveals > article + article {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-legacy-season header,
+.dd-player-reveals > article {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dd-legacy-season h3,
+.dd-legacy-season p,
+.dd-player-reveals h3,
+.dd-player-reveals p {
+  margin: 0;
+}
+
+.dd-legacy-season h3,
+.dd-player-reveals h3 {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dd-legacy-season header p,
+.dd-player-reveals p {
+  color: var(--text-meta);
+  font-size: 11px;
+}
+
+.dd-legacy-season > p {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.dd-player-reveals > article > strong {
+  flex: 0 0 auto;
+  font-size: 13px;
+  text-align: right;
+}
+
+.dd-player-reveals > article > strong span {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 10.5px;
+  font-weight: 400;
+}
+
+.dd-second-chance {
+  padding: 11px 13px;
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  background: var(--surface-panel);
+}
+
+.dd-second-chance-label {
+  display: block;
+  color: var(--text-meta);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dd-second-chance-text {
+  margin: 5px 0 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.dd-archive-list {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border-card);
+  border-radius: 9px;
+  background: var(--surface-panel);
+  list-style: none;
+}
+
+.dd-archive-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 11px;
+}
+
+.dd-archive-entry + .dd-archive-entry {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-archive-entry.is-last {
+  background: var(--surface-inset);
+}
+
+.dd-archive-place {
+  flex: 0 0 auto;
+  color: var(--text-meta);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dd-archive-entry.is-last .dd-archive-place {
+  color: var(--meaning-positive);
+}
+
+.dd-archive-flag {
+  margin-left: 6px;
+  color: var(--meaning-positive);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dd-archive-details {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dd-archive-title {
+  font-size: 13.5px;
+  font-weight: 400;
+}
+
+.dd-archive-meta {
+  overflow: hidden;
+  color: var(--text-meta);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dd-archive-score {
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.dd-action-secondary.is-centered {
+  text-align: center;
+}
+
+.dd-setup-content {
+  padding-bottom: calc(var(--dd-action-bar-height, 90px) + 20px);
+}
+
+.dd-setup-hero {
+  padding: 10px 0 17px;
+  border-bottom: 1px solid var(--border-card);
+  background: var(--surface-panel);
+}
+
+.dd-setup-hero p,
+.dd-setup-hero h1,
+.dd-setup-hero div {
+  margin: 0;
+}
+
+.dd-setup-hero p {
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dd-setup-hero h1 {
+  margin-top: 5px;
+  font-size: clamp(37px, 13vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.dd-setup-hero div {
+  max-width: 42ch;
+  margin-top: 11px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.dd-setup-options {
+  padding-top: 5px;
+}
+
+.dd-setup-options section + section {
+  margin-top: 20px;
+}
+
+.dd-version-tag {
+  color: var(--text-faint);
+}
+
+.dd-changelog {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dd-changelog > li + li {
+  margin-top: 14px;
+}
+
+.dd-changelog-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.dd-changelog-heading strong {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dd-changelog-heading span {
+  color: var(--text-faint);
+  font-size: 11px;
+}
+
+.dd-changelog > li > ul {
+  margin: 4px 0 0;
+  padding-left: 16px;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* Reads as one more line of the changelog rather than a control: same colour
+   and size as the notes above it, no chrome, just a disclosure arrow. */
+.dd-changelog-toggle {
+  display: block;
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-secondary);
+  /* Buttons do not inherit the page font on their own - without this the
+     browser's own control font takes over and the line stops matching the
+     changelog notes it is meant to sit among. */
+  font-family: inherit;
+  font-size: 12.5px;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dd-changelog-toggle:hover {
+  color: var(--text-primary);
+}
+
+.dd-setup-choice-list {
+  display: grid;
+  gap: 7px;
+}
+
+.dd-setup-choice {
+  width: 100%;
+  padding: 11px 12px 12px;
+  border: 1px solid var(--border-control);
+  border-radius: 9px;
+  background: var(--surface-panel);
+  color: var(--text-primary);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dd-setup-choice.is-selected {
+  padding: 10px 11px 11px;
+  border-width: 2px;
+  border-color: var(--meaning-positive);
+  background: var(--surface-inset);
+}
+
+.dd-setup-choice-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dd-setup-choice-title strong {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.dd-setup-choice-title > span,
+.dd-setup-choice-state {
+  color: var(--text-secondary);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.dd-setup-choice-description {
+  display: block;
+  max-width: 54ch;
+  margin-top: 5px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.dd-setup-choice-state {
+  display: block;
+  margin-top: 6px;
+  color: var(--meaning-positive);
+}
+
+.dd-setup-choice:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .dd-setup-choice:hover {
+    border-color: var(--meaning-positive);
+  }
+}
+
+/* Career setup: manager screen (Task 5, not yet wired into app.tsx). */
+
+/* Correction 13 (2026-09-16): Correction 11 below gave the name-entry block
+   its own framed panel (`--border-card`, filled `--surface-panel`), which
+   fixed the inconsistency with Timer/Archiwum by matching their container
+   grammar - but those neighbours are HEADING -> bordered cards, one nesting
+   level shallower than this section's HEADING -> panel -> bordered controls.
+   That extra depth, not the border colour, is why the section still read as
+   foreign. The fix is to drop the panel's own frame entirely so the section
+   matches its neighbours' shape (heading, then controls with a visible
+   outline) and move the strong `--border-control` treatment onto the inputs
+   themselves - see the input rule below. `.dd-manager-panel` now only
+   carries the vertical gap after the note paragraph; Corrections 11 and 12
+   are historical, not reverted line by line. */
+.dd-manager-panel {
+  margin-top: 10px;
+}
+
+/* Correction 12 (2026-09-15): the fields and the randomise button read as
+   too tall. The controls themselves are already pinned to a 44px floor by
+   `min-height: 44px` below (a hard WCAG 2.2 AA requirement axe checks) and
+   cannot go any shorter - so the fix is the vertical rhythm AROUND them:
+   the gap between the two fields (12px -> 8px), the field's own
+   label-to-input gap (5px -> 4px), and the randomise button's top margin
+   (12px -> 8px). Nothing here touches min-height, padding or font-size on
+   the controls themselves. */
+.dd-manager-form {
+  display: grid;
+  gap: 8px;
+}
+
+.dd-manager-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dd-manager-field label {
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Correction (2026-09-15, round 3): font-size raised from 15px to 16px.
+   Below 16px, mobile browsers (not just Safari - reported here in Vivaldi on
+   Android) auto-zoom the viewport on focus and do not zoom back out on
+   blur, stranding the player zoomed in for the rest of the page. The
+   viewport meta tag is already correct and is not the fix here; shrinking
+   `maximum-scale`/`user-scalable` would remove zoom for low-vision users
+   instead, so it is not on the table. `min-height: 44px` (with the global
+   `box-sizing: border-box`) keeps the touch target at its WCAG 2.2 AA floor
+   regardless of font-size - this change does not need a padding reduction
+   to stay under it. */
+/* Correction 13 (2026-09-16): now that `.dd-manager-panel` carries no frame
+   of its own, the input takes the strong `--border-control` outline the
+   neighbouring Timer/Archiwum cards use for their controls (`.dd-setup-
+   choice`), on the same white `--surface-panel` fill rather than the paler
+   inset tone a bare-panel treatment used. This is also the correct place
+   for that outline per design-system.md: the strong border belongs on
+   controls the player interacts with, the pale one on inert containers -
+   previously inverted, with the border on the inert panel and the input
+   left borderless. */
+.dd-manager-field input {
+  min-height: 44px;
+  padding: 11px 12px;
+  border: 1px solid var(--border-control);
+  border-radius: 9px;
+  background: var(--surface-panel);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.dd-manager-field input[aria-invalid="true"] {
+  border-color: var(--meaning-negative);
+}
+
+.dd-manager-field input:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+.dd-manager-error {
+  margin: 10px 0 0;
+  color: var(--meaning-negative);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.dd-manager-random {
+  min-height: 44px;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-control);
+  border-radius: 9px;
+  background: var(--surface-panel);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dd-manager-random:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .dd-manager-random:hover {
+    border-color: var(--meaning-positive);
+    color: var(--text-primary);
+  }
+}
+
+/* Career setup: club choice screen (Task 5, not yet wired into app.tsx). */
+
+.dd-club-fieldset {
+  overflow-anchor: none;
+  margin: 14px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.dd-club-fieldset legend {
+  margin-bottom: 8px;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dd-club-radio-list {
+  display: grid;
+  gap: 6px;
+}
+
+.dd-club-radio {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-control);
+  border-radius: 9px;
+  background: var(--surface-panel);
+  cursor: pointer;
+}
+
+.dd-club-radio.is-selected {
+  border-color: var(--meaning-positive);
+  background: var(--surface-inset);
+}
+
+.dd-club-radio:focus-within {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+.dd-club-radio input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  margin: 0;
+  accent-color: var(--meaning-positive);
+}
+
+.dd-club-radio-name {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Shared "secondary figure" treatment (2026-09-16): paler, lighter-weight and
+   smaller than the primary figure it qualifies, always sitting right next to
+   it on the same baseline rather than looking like an independent stat. Used
+   by the club list's "(59,0 xPts)" annotation below and by the cup-free
+   figure beside the cup-inclusive budget change on `zmiana-budzetu`
+   (`.dd-club-stat-value-cupfree`) - one definition so the two treatments
+   cannot drift apart. `--text-club-list-hint` was already measured at 4.5:1
+   minimum against `--surface-panel` (tests/ui/palette-contrast.test.ts), so
+   reusing it here settles contrast for the second use too. */
+.dd-secondary-figure {
+  color: var(--text-club-list-hint);
+  font-size: 11px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Correction 9 (2026-09-15): the compact list repeats the expected-points
+   fact already in the detail panel (design spec section 6.2 explicitly allows
+   "tyle, ile trzeba do przeglądania stawki"), so it is not a seventh
+   data-dd-club-stat fact. Colour/size/weight come from `.dd-secondary-figure`
+   above; this class only carries the layout (right-aligned in the flex row). */
+.dd-club-radio-points {
+  margin-left: auto;
+  flex: 0 0 auto;
+  padding-left: 8px;
+}
+
+.dd-club-badge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  background: var(--surface-inset);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* The club's own accent colour arrives as data through one custom property
+   set inline on the badge. The outline's tone is picked in TypeScript
+   (accentOutlineTone), but the colour itself is one of the two palette
+   tokens below, so no colour value is written outside :root. */
+.dd-club-badge.has-accent {
+  border-width: 2px;
+  border-color: var(--dd-club-outline);
+  background: var(--dd-club-accent);
+  color: var(--dd-club-outline);
+}
+
+.dd-club-badge.is-dark-outline {
+  --dd-club-outline: var(--text-primary);
+}
+
+.dd-club-badge.is-light-outline {
+  --dd-club-outline: var(--text-on-emphasis);
+}
+
+/* Screen-reader-only utility (a11y fix, 2026-09-16): visually removed via
+   the standard clip-to-1px technique while staying in the accessibility
+   tree, rather than `display: none`/`visibility: hidden`, which both pull
+   an element out of it entirely. Used by the club-select live region below,
+   which must reach assistive tech without adding a visible duplicate of the
+   panel's own text. */
+.dd-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The persistent `#club-detail-panel` wrapper (2026-09-17): a one-row grid
+   whose row is 0fr while no club is selected and 1fr once one is, around a
+   clipping cell holding the bordered panel. The panel's own top margin sits
+   inside the clip, so the closed state is truly zero-height.
+
+   `overflow-anchor: none` on the wrapper and on the list below it: the
+   screen scrolls itself after a selection, to one target computed against
+   the final layout (club-select-screen.tsx, `clubSelectScrollTarget`).
+   Chromium's scroll anchoring would otherwise add its own compensation for
+   the panel growing above the visible rows, and WebKit would not - the same
+   selection would end in two different places. */
+.dd-club-detail-reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow-anchor: none;
+  /* Reveal motion (2026-09-17, product owner: the panel "pops in from
+     nowhere", most visibly on a phone when picking a club near the top).
+     On the first selection the row grows from 0fr to 1fr, so the panel
+     unfolds downwards and pushes the list with it instead of appearing in
+     one frame. 0.22s ease is the action bar's own slide - the other
+     layout-scale motion on these screens. Switching clubs changes nothing
+     here (1fr to 1fr): a difference in content height between two clubs is
+     a line or two and is not animated, which keeps the scroll target
+     computed in club-select-screen.tsx exact on every arrow press. */
+  transition: grid-template-rows 0.22s ease;
+}
+
+.dd-club-detail-reveal.is-open {
+  grid-template-rows: 1fr;
+}
+
+.dd-club-detail-clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* The box (its `animation` sits in the `.dd-club-detail` rule below) fades
+   in with the unfolding, drifting down the last few pixels. Only that first
+   appearance is animated: switching clubs leaves the box where it is and
+   changes only the numbers inside it, so a fade there explained nothing and
+   flickered under a held arrow key (product owner, 2026-09-18). */
+
+@keyframes dd-club-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-club-detail-reveal,
+  .dd-club-detail {
+    transition: none;
+    animation: none;
+  }
+}
+
+.dd-club-detail {
+  /* The scroll target keeps 16px of breathing room above this panel
+     (`PANEL_TOP_MARGIN` in club-select-scroll.ts) - the same value as this
+     margin, so both read as the screen's one vertical rhythm. Nothing on the
+     setup screens is sticky at the top (design-system.md: "Nagłówek nie jest
+     przyklejony"), so there is no header to clear. */
+  margin-top: 16px;
+  padding: 13px;
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  background: var(--surface-panel);
+  animation: dd-club-detail-in 0.22s ease;
+}
+
+.dd-club-detail-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.dd-club-detail-heading .dd-club-badge {
+  width: 36px;
+  height: 36px;
+  font-size: 13px;
+}
+
+.dd-club-detail-heading h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.dd-club-character {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.dd-club-quality {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-card);
+}
+
+.dd-club-quality > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Correction 8 (2026-09-15): a visible divider between the two columns, on
+   top of the grid gap, so the split reads as two columns rather than one
+   wrapped row. */
+.dd-club-quality > div + div {
+  padding-left: 12px;
+  border-left: 1px solid var(--border-card);
+}
+
+/* Decorative only - aria-hidden in the markup, filled vs. hollow dots carry
+   the level, `ratingLabel` next to it carries the meaning in words. Derived
+   from `TEAM_RATINGS` alone via `ratingLevel` (club-select-screen.tsx).
+
+   History of this indicator's box, because it took three attempts to get
+   right and the reasoning matters for whoever touches it next:
+   - Correction 4 (2026-09-15) moved off two different Unicode glyphs
+     (U+25CF/U+25CB) printed as text, because those are two unrelated glyph
+     DESIGNS - the hollow one's stroke drew visibly bigger than the solid
+     one's fill, with no CSS box model involved to fix.
+   - Round 3 replaced that with a 7x7 `<div>` circle via `border-radius: 50%`
+     and found the dots read as ovals: the parent was `inline-flex` with no
+     `flex-shrink: 0`, so the default shrink factor of 1 let the row
+     compress width alone, leaving height untouched.
+   - Round 4 (this version) found the CSS-box approach still uneven even
+     after that fix: a solid disc and a 1px ring with a 5px hole are not the
+     same SHAPE at 7px, so they antialias differently regardless of box
+     model, and 7 being odd puts the centre on a half-pixel besides. The dot
+     is now inline SVG (`RatingDotsRow` in club-select-screen.tsx) - one
+     `<circle cx="4" cy="4" r="3">` shared verbatim between states, varying
+     only `fill`/`stroke`, resolution-independent at any DPR or zoom. */
+.dd-club-rating-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.dd-club-rating-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  color: var(--text-secondary);
+}
+
+/* Shared label register: ATAK/OBRONA (`dt`) and, since correction 2 folded
+   in the follow-up request, the caption introducing the six-number block
+   below (`.dd-club-forecast-note`) - one rule so the two treatments cannot
+   drift apart. The margin/padding/border in the second rule are specific to
+   the caption's extra job as that block's dividing rule; they are not part
+   of the shared label style itself. */
+.dd-club-quality dt,
+.dd-club-caption.dd-club-forecast-note {
+  margin: 0;
+  color: var(--text-label);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dd-club-caption.dd-club-forecast-note {
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-card);
+}
+
+.dd-club-quality dd {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dd-club-stat-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 8px 0 0;
+}
+
+.dd-club-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Correction 5 (2026-09-15): the same divider the attack/defence block
+   carries between its two columns (compare `.dd-club-quality > div + div`
+   above), so both six-number blocks read as one kind of thing. Below the
+   360px reference width the grid collapses to one column - the divider is a
+   two-column affordance, so it goes with the columns it used to separate,
+   never left floating with nothing left to divide.
+
+   Round 3 correction (2026-09-15): `.dd-club-quality`'s divider is a
+   border painted per cell, which is fine there because that block is
+   exactly one row - one cell, one line. This grid is three rows, so the
+   same per-cell approach painted one border PER ROW, leaving visible gaps
+   at each `gap: 10px` row seam - a broken, segmented line instead of one.
+   Drawn once instead, as a `::before` on the grid itself, absolutely
+   positioned and stretched from `top: 0` to `bottom: 0`: one element, one
+   continuous line, regardless of row count. `left: 50%` lands exactly in
+   the middle of the column gap because the two columns are equal-width
+   (`repeat(2, 1fr)`). The right-column cells keep only the padding that
+   makes room for it. */
+.dd-club-stat-grid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--border-card);
+}
+
+.dd-club-stat-grid > .dd-club-stat:nth-child(2n) {
+  padding-left: 10px;
+}
+
+@media (max-width: 359px) {
+  .dd-club-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dd-club-stat-grid::before {
+    display: none;
+  }
+
+  .dd-club-stat-grid > .dd-club-stat:nth-child(2n) {
+    padding-left: 0;
+  }
+}
+
+.dd-club-stat-label {
+  color: var(--text-label);
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.dd-club-stat-value {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The cup-free figure in parentheses, next to the cup-inclusive main value
+   on `zmiana-budzetu` for the five clubs with a season-1 European berth
+   (product owner decision, 2026-09-15; receded visually 2026-09-16).
+   Colour/size/weight come from `.dd-secondary-figure` - the same treatment
+   as the club list's "(xPts)" annotation, so the two cannot drift apart and
+   contrast is settled by that shared token's existing measurement. This
+   class only carries layout: `display: inline-block` keeps the whole
+   "(...)" figure together as one unit so it cannot break mid-parenthesis,
+   and `vertical-align: baseline` (the default, stated explicitly so a
+   future edit cannot silently change it) keeps it sitting on the same
+   baseline as the main value.
+
+   Diagnosed 2026-09-16 after a product owner report that the figure "sits
+   too low": there is no flex row here to mis-align (`.dd-club-stat-value`
+   is a single inline/inline-block span, not a flex container), and this
+   rule carries no `vertical-align` other than the harmless explicit
+   default above - measured in Chromium, the two figures' digit baselines
+   land within 1px of each other on a single line, which is font-hinting
+   noise, not a layout bug. What actually produces the "floating footnote"
+   look is wrapping: at the 360px reference width the combined text is
+   close enough to the column's available width that even a TYPICAL
+   (non-worst-case) value pair wraps the parenthetical onto its own line
+   below the main value - confirmed independent of this correction's
+   colour/size change by reproducing it with the pre-correction
+   12px/700-weight/`--text-secondary` styling too. This is accepted per the
+   task brief: the parenthetical still reads as attached because it is the
+   very next token directly under the main value, never detached onto an
+   unrelated line, and `display: inline-block` is exactly what makes that
+   safe - an atomic inline-level box always gets an unconditional soft-wrap
+   opportunity before it, even with no preceding breakable space (verified
+   by injecting extreme values at 360px: the whole "(...)" moves to its own
+   line as one unit, and the page never gains a horizontal scrollbar). */
+.dd-club-stat-value-cupfree {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.dd-club-caption {
+  margin: 10px 0 0;
+  color: var(--text-faint);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.dd-offer-position-squad {
+  width: 100%;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dd-squad-drawer-backdrop {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: color-mix(in srgb, var(--shadow-base) 42%, transparent);
+}
+
+.dd-squad-drawer {
+  display: flex;
+  width: min(100%, 470px);
+  height: max-content;
+  max-height: 92dvh;
+  padding: 9px 13px calc(13px + env(safe-area-inset-bottom));
+  flex-direction: column;
+  border: 1px solid var(--border-card);
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  background: var(--surface-page);
+  transition: transform 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-squad-drawer {
+    transition: none;
+  }
+}
+
+/* The grab bar and the heading are one drag surface - see squad-drawer.tsx.
+   Everything that makes a press a drag rather than a selection lives here:
+   touch-action so the browser does not claim the gesture for scrolling,
+   user-select so nothing highlights, cursor so it reads as draggable. */
+.dd-squad-drawer-handle {
+  margin-bottom: 9px;
+  padding-top: 2px;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dd-squad-drawer-handle:active {
+  cursor: grabbing;
+}
+
+.dd-squad-drawer-grab {
+  display: block;
+  width: 36px;
+  height: 4px;
+  margin: 0 auto 9px;
+  border-radius: 2px;
+  background: var(--border-control);
+}
+
+.dd-squad-drawer-heading {
+  display: flex;
+  flex-wrap: wrap;
+  /* Centre, not baseline. The title sits inside a flex row alongside the back
+     arrow, and a flex container's baseline comes from its first item - the
+     arrow, which is an svg with no text baseline at all. The subtitle was
+     therefore aligning to the arrow's bottom edge and reading as dropped. */
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px 10px;
+}
+
+.dd-squad-drawer-heading h2,
+.dd-squad-drawer-heading p {
+  margin: 0;
+}
+
+.dd-squad-drawer-heading h2 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.dd-squad-drawer-position {
+  /* Never on a line of its own: it qualifies the title and reads as an
+     orphan the moment it breaks away from it. */
+  margin-left: 5px;
+  white-space: nowrap;
+  color: var(--text-meta);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+}
+
+.dd-squad-drawer-heading p {
+  /* Gives way first when the row is short: the subtitle is the least
+     important thing here, so it drops to its own line rather than squeezing
+     the title until the position breaks off onto a line of its own. */
+  flex: 0 1 auto;
+  color: var(--text-meta);
+  font-size: 11px;
+  text-align: right;
+}
+
+.dd-squad-drawer-content {
+  min-height: 0;
+  /* The drawer's ONE scroller. The report list inside must not become a second
+     one: two nested scrollers put two bars side by side and make it a lottery
+     which of them a gesture moves. */
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Steps back from the reports to the grid. Sits in the header row, left of
+   the title, and is not part of the drag area. */
+/* Arrow and title in their own row so the arrow centres on the title, not on
+   the baseline-aligned heading that also holds the much smaller subtitle. */
+.dd-squad-drawer-title-row {
+  display: flex;
+  min-width: 0;
+  margin-right: auto;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 2px;
+}
+
+.dd-squad-drawer-back {
+  width: 26px;
+  height: 26px;
+  /* Pulled into the drawer's own padding, so the title starts where it starts
+     in the other mode instead of shifting sideways when the arrow appears. */
+  margin: 0 0 0 -8px;
+  padding: 0;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 8px;
+  /* No plate on hover or press. The drawer sits on --surface-page and a panel
+     fill reads as a white box appearing under the arrow. */
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.dd-squad-drawer-back svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+  margin: 0 auto;
+}
+
+.dd-squad-drawer-back:hover {
+  color: var(--text-primary);
+}
+
+.dd-squad-drawer-back:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: -3px;
+}
+
+.dd-position-reports {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  /* The reveal margin above an expanded row is deliberately smaller than this
+     gap - see REVEAL_MARGIN in position-reports.tsx. */
+  gap: 7px;
+  list-style: none;
+}
+
+.dd-player-row {
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  border-radius: 9px;
+  background: var(--surface-panel);
+}
+
+.dd-player-trigger {
+  display: grid;
+  width: 100%;
+  padding: 10px 12px;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2px 6px;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.dd-player-trigger:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: -3px;
+}
+
+/* The row is two lines on each side, so a centred leader floats between them
+   and reads as an artefact. It joins the NAME to the OVR, so it sits on that
+   line - the offset is half the name's line box, measured from the flex
+   container's content top. */
+.dd-player-row-leader {
+  /* One per line, centred on its own line by the grid - no hand-tuned offset
+     to drift when a font size changes. */
+  align-self: center;
+}
+
+.dd-player-row-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.dd-player-row-role,
+.dd-player-row-age {
+  color: var(--text-meta);
+  font-size: 10.5px;
+}
+
+/* Starts where the name above it starts. It shares column 1 with the name, and
+   that column is as wide as the name is, so an end alignment here indented the
+   word by however much shorter it happened to be - visibly further under a
+   long surname than under a short one. */
+.dd-player-row-role {
+  justify-self: start;
+}
+
+.dd-player-row-age {
+  display: flex;
+  justify-self: end;
+  align-items: baseline;
+  gap: var(--rating-inner-gap);
+}
+
+/* Same tone scale as the squad tile: one colour, one meaning, everywhere. */
+.dd-player-row-ovr {
+  display: flex;
+  justify-self: end;
+  align-items: baseline;
+  gap: var(--rating-outer-gap);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.dd-player-row-ovr.is-positive {
+  color: var(--meaning-positive);
+}
+
+.dd-player-row-ovr.is-warning {
+  color: var(--meaning-warning);
+}
+
+.dd-player-row-ovr.is-negative {
+  color: var(--meaning-negative);
+}
+
+/* An expiring contract drains the quality tone, exactly as it does on a squad
+   tile (.dd-player-rating.is-expiring). A rating still worth 72 says nothing
+   useful about a player who leaves at the end of the season, so the colour
+   that grades it stands down and the number stays only as a fact. */
+.dd-player-row-ovr.is-expiring {
+  color: var(--text-muted);
+}
+
+/* Reads as an aside to the name rather than as part of it: same weight as the
+   status line below, and the accent that the offer card already uses for an
+   expiring contract, so the two say the same thing in the same colour. */
+.dd-player-row-expiring {
+  color: var(--meaning-warning);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+/* The glyph keeps the size it has on a squad tile. It means the same thing
+   in both places, so it has no business being bigger in one of them. */
+.dd-player-row-age .dd-age-trend {
+  font-size: 7.5px;
+}
+
+.dd-player-report {
+  padding: 0 12px 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* The staff assessment carries its own top rule for the offer card, where it
+   follows the fee block. Inside a report row the panel already has one, one
+   row above - so the section drew a second, shorter line right under it. */
+.dd-player-report .dd-staff-assessment {
+  margin-top: 0;
+  padding-top: 11px;
+  border-top: 0;
+}
+
+.dd-retiring-players {
+  margin-top: 10px;
+  padding: 11px 12px;
+  border: 1px solid var(--border-card);
+  border-radius: 9px;
+  background: var(--surface-panel);
+}
+
+.dd-retiring-players ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dd-retiring-players li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dd-retiring-players-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dd-retiring-players-replacement {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.dd-retiring-players li + li {
+  margin-top: 7px;
+  padding-top: 7px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-retiring-players-group {
+  margin: 0 0 6px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dd-retiring-players-group ~ .dd-retiring-players-group {
+  margin-top: 14px;
+  padding-top: 14px;
+  margin-right: -12px;
+  margin-left: -12px;
+  padding-right: 12px;
+  padding-left: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-retiring-players-name {
+  color: var(--text-primary);
+  font-size: 12.5px;
+  font-weight: 400;
+}
+
+.dd-retiring-players-meta {
+  color: var(--text-meta);
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+
+.dd-squad-drawer-close {
+  width: 100%;
+  margin-top: 9px;
+  padding: 10px;
+  border: 1px solid var(--border-control);
+  border-radius: 9px;
+  background: var(--surface-panel);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .dd-root {
+    padding-top: 0;
+  }
+
+  .dd-pasek,
+  .dd-club-bar,
+  .dd-setup-hero {
+    width: min(calc(100% - 32px), 590px);
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid var(--border-card);
+    border-top: 0;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+  }
+
+  .dd-club-bar:has(+ .dd-hud) {
+    border-bottom: 0;
+    border-radius: 0;
+  }
+
+  .dd-hud {
+    width: min(calc(100% - 32px), 590px);
+    margin: 0 auto;
+    border: 1px solid var(--border-card);
+    border-top: 1px solid var(--border-subtle);
+    border-radius: 0 0 12px 12px;
+  }
+
+  .dd-action-bar {
+    /* Tried `position: sticky` here to close the dead-space gap that opens
+       between short content and the bar on tall desktop windows (fixed
+       pins to the true viewport bottom regardless of content length).
+       It worked for that, but sticky is genuinely in document flow, so a
+       fast trackpad swipe or any other momentum scroll that briefly
+       overscrolls past the document's end can detach it, showing it float
+       away from the bottom edge - a live rendering issue traded for a
+       cosmetic one. Reverted to fixed, which never participates in scroll
+       physics at all and so can't detach this way; the tall-window gap is
+       still open, tracked but not solved as of 2026-08-11. */
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: min(calc(100% - 32px), 590px);
+    margin: 0 auto;
+  }
+
+  .dd-action-bar-inner {
+    max-width: none;
+    border: 1px solid var(--border-card);
+    border-bottom: 0;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+  }
+
+  .dd-wrap {
+    width: min(calc(100% - 32px), 590px);
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .dd-club-heading {
+    justify-content: center;
+  }
+
+  .dd-squad-drawer {
+    width: min(calc(100% - 32px), 590px);
+  }
+
+  .dd-notification {
+    width: min(calc(100% - 32px), 590px);
+  }
+}
+
+.dd-notification {
+  position: fixed;
+  z-index: 40;
+  top: calc(10px + env(safe-area-inset-top));
+  left: 50%;
+  display: flex;
+  width: min(calc(100% - 24px), 470px);
+  padding: 11px 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  transform: translateX(-50%);
+  touch-action: pan-x;
+  cursor: grab;
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  background: var(--surface-panel);
+  color: var(--text-primary);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--shadow-base) 12%, transparent);
+  animation: dd-notification-in 0.18s ease;
+}
+
+.dd-notification-mark {
+  flex: 0 0 auto;
+  padding-top: 4px;
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 0.65;
+}
+
+@media (min-width: 768px) {
+  .dd-notification-mark {
+    padding-top: 2px;
+  }
+}
+
+.dd-notification-body {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.dd-notification.is-purchase,
+.dd-notification.is-sale,
+.dd-notification.is-extension,
+.dd-notification.is-free-agent {
+  background: color-mix(in oklch, var(--kind-color) 9%, var(--surface-panel));
+  border-color: color-mix(in oklch, var(--kind-color) 32%, var(--surface-panel));
+  color: var(--kind-color);
+}
+
+.dd-notification.is-purchase {
+  --kind-color: var(--offer-purchase);
+}
+
+.dd-notification.is-sale {
+  --kind-color: var(--offer-sale);
+}
+
+.dd-notification.is-extension {
+  --kind-color: var(--offer-extension);
+}
+
+.dd-notification.is-free-agent {
+  --kind-color: var(--offer-free-agent);
+}
+
+.dd-notification.is-leaving {
+  animation: dd-notification-out 0.18s ease forwards;
+}
+
+@keyframes dd-notification-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes dd-notification-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-notification {
+    animation: none;
+  }
+
+  .dd-notification.is-leaving {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.dd-notification p {
+  margin: 0;
+  color: inherit;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+/* At least 24 x 24 px: WCAG 2.2 AA 2.5.8 (target size). With a bare 4 px
+   padding the glyph left a target of about 21 px, which axe does not catch;
+   tests/e2e/smoke.spec.ts measures it. The negative margins keep the glyph
+   where it was, so the banner does not grow around the larger target. */
+.dd-notification-close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-width: 24px;
+  min-height: 24px;
+  margin: -2px -4px -2px auto;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.dd-notification-close:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+/* Explanatory popover
+   ------------------------------------------------------------------------
+   A small "?" that explains the rule stated beside it. First used on the
+   staff report's confidence row, which is the one line of that report a
+   reader cannot interpret from the words alone.
+
+   Opens on hover, on keyboard focus and on one tap - a `title` attribute
+   reaches none of the three reliably. The panel never leaves the DOM and is
+   never hidden from the accessibility tree: it fades on opacity alone, so
+   `aria-describedby` keeps resolving in both states and there is something
+   to animate between. `pointer-events` is what makes the closed panel inert.
+
+   Anchoring is deliberately NOT done here. The panel is positioned against
+   whichever ancestor is `position: relative`, and each caller picks the
+   container that should bound its width. */
+.dd-info-popover {
+  /* Sits in the text flow after the words it explains, so on a label that
+     wraps to two lines it follows the last word instead of floating,
+     vertically centred, against the whole block. */
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-left: 3px;
+}
+
+.dd-info-popover-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  border: 1px solid var(--border-card);
+  border-radius: 50%;
+  background: var(--surface-panel);
+  color: var(--text-meta);
+  font: inherit;
+  font-size: 8.5px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* No optical nudge, and that is a measured result rather than an omission.
+   Measured in Figtree at 400px so the metrics are not rounded to integers:
+   the font box runs 380 above the baseline and 100 below, and "?" inks from
+   287.5 above to 6.25 below - so the ink centre sits 140.6 above the baseline
+   against the box's 140. Six tenths of a pixel at 400px is 0.0016em, which is
+   nothing at 8.5px.
+
+   `display: block` with `line-height: 1` is what makes that hold: it hands
+   flex a box whose centre is the font's centre, so centring the box centres
+   the glyph. Take either declaration away and the button falls back to the
+   inherited 1.4 line-height and the glyph drifts. Horizontally there is
+   nothing to correct either - the two side bearings of "?" differ by 0.05px
+   at this size.
+
+   Being metric-derived rather than hand-nudged is also why it holds on a
+   phone and a desktop alike: it depends on the font, not on the device. */
+.dd-info-popover-trigger > span {
+  display: block;
+  line-height: 1;
+}
+
+.dd-info-popover-trigger:focus-visible {
+  outline: 2px solid var(--border-control);
+  outline-offset: 1px;
+}
+
+.dd-info-popover-panel {
+  position: absolute;
+  z-index: 20;
+  bottom: calc(100% + 6px);
+  /* Shrink to the text, but never past the row. `right: 0` stretched every
+     panel to the full row, so a four-word explanation got the same box as a
+     four-line one and read as a mis-sized card. `max-content` sizes it to the
+     longest line the text wants; `max-width` resolves against the row, which
+     is the containing block, so the containment guarantee is unchanged and a
+     long explanation still wraps instead of spilling.
+
+     `left` is the natural offset only until the panel opens; InfoPopover then
+     centres it on the trigger and clamps it to this row (see popoverLeft). It
+     is set here too so a panel that never opens still has a defined position,
+     and so the measurement pass has something to measure from. */
+  left: 0;
+  width: max-content;
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-card);
+  border-radius: 6px;
+  background: var(--surface-panel);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--shadow-base) 12%, transparent);
+  color: var(--text-secondary);
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  /* A short rise rather than a scale or a slide: the panel belongs to the row
+     it is anchored to, so it should look like it came from there. */
+  transform: translateY(3px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+/* Flipped below the trigger when there is no room above it - see
+   popoverOpensBelow. The HUD is the host that needs this: it sits against the
+   top edge, so a long explanation opened upwards was cut off by the viewport.
+   The rise inverts with the anchor, so the panel still looks like it came from
+   the row it belongs to. */
+.dd-info-popover-panel.is-below {
+  top: calc(100% + 6px);
+  bottom: auto;
+  transform: translateY(-3px);
+}
+
+.dd-info-popover-panel[data-open="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-info-popover-panel {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* The confidence row is what bounds the panel's width. Anchored to the 13px
+   trigger it was centred on an element sitting near the right edge of the
+   card, so half of a two-line explanation fell outside - and no viewport
+   max-width can fix that, because the overflow is against a container far
+   narrower than the viewport. */
+.dd-staff-confidence {
+  position: relative;
+}
+
+/* Squad-depth cut confirmation. Sits above the offer card and the squad
+   drawer, because it interrupts a decision rather than adding a surface to
+   read. Deliberately reuses the existing panel tokens: an eviction is a
+   consequence of an ordinary transfer, not a new category of event, so it
+   gets no colour of its own. */
+.dd-eviction-overlay {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+    max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  overscroll-behavior: contain;
+  background: color-mix(in srgb, var(--shadow-base) 52%, transparent);
+}
+
+.dd-eviction-panel {
+  display: flex;
+  width: min(100%, 430px);
+  max-height: 100%;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  background: var(--surface-panel);
+  color: var(--text-primary);
+  animation: dd-eviction-in 0.16s ease;
+}
+
+@keyframes dd-eviction-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-eviction-panel {
+    animation: none;
+  }
+}
+
+.dd-eviction-kicker {
+  padding: 12px 13px;
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-inset);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dd-eviction-content {
+  display: flex;
+  padding: 13px;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dd-eviction-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.dd-eviction-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dd-eviction-intro,
+.dd-eviction-question {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.dd-eviction-changes {
+  margin: 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.dd-eviction-change {
+  display: grid;
+  padding: 9px 0;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 10px;
+}
+
+.dd-eviction-change + .dd-eviction-change {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dd-eviction-change dt {
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dd-eviction-change dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+/* Wraps rather than scrolls when the labels run out of room. A horizontally
+   scrolling action row could hide the confirm button. */
+.dd-eviction-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dd-eviction-actions button {
+  flex: 1 1 140px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 700;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.dd-eviction-cancel {
+  border: 1px solid var(--border-card);
+  background: var(--surface-panel);
+  color: var(--text-primary);
+}
+
+.dd-eviction-confirm {
+  border: 1px solid var(--text-primary);
+  background: var(--text-primary);
+  color: var(--surface-panel);
+}
+
+@media (hover: hover) {
+  .dd-eviction-cancel:hover {
+    border-color: var(--text-muted);
+    background: var(--surface-inset);
+  }
+
+  .dd-eviction-confirm:hover {
+    filter: brightness(0.92);
+  }
+}
+
+.dd-eviction-cancel:active {
+  background: var(--surface-inset);
+}
+
+.dd-eviction-confirm:active {
+  filter: brightness(0.86);
+}
+
+.dd-eviction-actions button:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}

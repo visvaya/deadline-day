@@ -1,0 +1,15 @@
+seed=268435462 clubId=wisla-krakow club=Wisła K. budget=0.75 formation=4-1-4-1 tenureHandicap=99.75 legacyHandicap=121.61 rngDraws=159
+== S1 PROGNOZA miejsce=13 europa=0.00 przychod=2.83 place=1.45 bilans=0.40
+== S1 LATO ruchy=4
+    1 KUPNO        N   ovr=50 wiek=17 ceiling=60 cena=0.12 -> PAS:OK cena=0.12 kasa=0.75 season=1 payrollBefore=1.45 payrollAfter=1.45 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    2 KUPNO        ŚPD ovr=57 wiek=21 ceiling=57 cena=0.32 -> PAS:OK cena=0.32 kasa=0.75 season=1 payrollBefore=1.45 payrollAfter=1.45 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    3 KUPNO        LP  ovr=77 wiek=27 ceiling=77 cena=0.94 -> PAS:OK cena=0.94 kasa=0.75 season=1 payrollBefore=1.45 payrollAfter=1.45 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    4 PANIC        BR  ovr=60 wiek=17 ceiling=67 cena=0.94 -> PAS:OK cena=0.94 kasa=0.75 season=1 payrollBefore=1.45 payrollAfter=1.45 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S1 R1 pkt=16 bz=25 bs=27
+== S1 ZIMA ruchy=2
+    5 SPRZEDAZ     LO  ovr=61 wiek=24 ceiling=62 cena=0.18 -> PAS:OK cena=0.18 kasa=0.75 season=1 payrollBefore=1.45 payrollAfter=1.45 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=ruch-chorzow
+    6 KUPNO        PP  ovr=65 wiek=21 ceiling=73 cena=0.62 -> PAS:OK cena=0.62 kasa=0.75 season=1 payrollBefore=1.45 payrollAfter=1.45 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S1 KONIEC miejsce=17 pkt=36 bilans=0.32 place=1.45 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=0.85 sila=61.93 emeryci=1 bz=51 bs=61 superpuchar=brak rngDraws=1739
+== WERDYKT ocena=-8 tytul=ROZWIĄZANIE KONTRAKTU
+== DRUGA_SZANSA ceiling=77
+== KONIEC dziedzictwo=51 kasa=0.85 tytul=CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB nastepny=308.3896770681456

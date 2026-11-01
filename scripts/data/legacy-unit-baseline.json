@@ -1,0 +1,304 @@
+{
+  "schemaVersion": 1,
+  "note": "Full-precision inputs for the legacy-unit conversion of spec 4 chapter 5.2. Recomputed from the pinned dumps, not copied from the rounded baseline note. The multipliers here are the HISTORICAL ones (5 and 2). Step 4 replaces them with historicalProduct / newMedian, measured on a paired run of the same type and the same seeds.",
+  "measuredAt": "2026-09-08",
+  "aggregation": {
+    "definition": "pooledMedian",
+    "explanation": "Every career weighted equally, which is what the baseline note measured. medianOfClubMedians is recorded beside it because chapter 12.2 asks its question that way; step 4 must reuse whichever definition it compares to."
+  },
+  "source": {
+    "engineCommit": "81d611a6c50e2e7c718e7c949aba2339ea4a8d15",
+    "engineRevision": "2026-09-07.1",
+    "dumpSchemaVersion": 2,
+    "seed": "0x5eed0001",
+    "runsPerCell": 1000,
+    "baselineNote": "docs/decisions/_baseline-finance-2026-09-07.md"
+  },
+  "artefacts": {
+    "control": {
+      "path": "scripts/data/finance-baseline-2026-09-07/control.csv",
+      "sha256": "ee250dc96a44229eb5a8b032ceb64be0dba107c6571cd74a9badfdf987151efd",
+      "rowCount": 18000,
+      "policies": ["alwaysPass"],
+      "clubs": [
+        "Cracovia",
+        "GKS",
+        "Górnik",
+        "Jagiellonia",
+        "Korona",
+        "Lech",
+        "Legia",
+        "Motor",
+        "Piast",
+        "Pogoń",
+        "Radomiak",
+        "Raków",
+        "Widzew",
+        "Wieczysta",
+        "Wisła K.",
+        "Wisła P.",
+        "Zagłębie",
+        "Śląsk"
+      ],
+      "incomeModes": ["finance-control"],
+      "dumpSchemaVersions": ["2"]
+    },
+    "active": {
+      "path": "scripts/data/finance-baseline-2026-09-07/active.csv",
+      "sha256": "69e7cc611394c4cb52467735ce8b17c117aec91dbfeff4f378f51ddd501085ec",
+      "rowCount": 234000,
+      "policies": [
+        "alwaysHaggle",
+        "alwaysTake",
+        "analystEdgeBuy",
+        "depthFirst",
+        "mixed",
+        "primeOnly",
+        "primeOnlyBuy",
+        "stallThenTake",
+        "veteranOnly",
+        "veteranOnlyBuy",
+        "youngBuySellAlways",
+        "youngOnly",
+        "youngOnlyBuy"
+      ],
+      "clubs": [
+        "Cracovia",
+        "GKS",
+        "Górnik",
+        "Jagiellonia",
+        "Korona",
+        "Lech",
+        "Legia",
+        "Motor",
+        "Piast",
+        "Pogoń",
+        "Radomiak",
+        "Raków",
+        "Widzew",
+        "Wieczysta",
+        "Wisła K.",
+        "Wisła P.",
+        "Zagłębie",
+        "Śląsk"
+      ],
+      "incomeModes": ["normal"],
+      "dumpSchemaVersions": ["2"]
+    }
+  },
+  "invariants": {
+    "cash": {
+      "quantity": "kasa",
+      "run": "finance-control",
+      "measurement": {
+        "count": 18000,
+        "pooledMedian": 3.31,
+        "medianOfClubMedians": 3.17,
+        "perClub": [
+          {
+            "club": "Cracovia",
+            "median": 1.25,
+            "count": 1000
+          },
+          {
+            "club": "GKS",
+            "median": 3.245,
+            "count": 1000
+          },
+          {
+            "club": "Górnik",
+            "median": 4.505,
+            "count": 1000
+          },
+          {
+            "club": "Jagiellonia",
+            "median": 8.02,
+            "count": 1000
+          },
+          {
+            "club": "Korona",
+            "median": 4.055,
+            "count": 1000
+          },
+          {
+            "club": "Lech",
+            "median": -3.3899999999999997,
+            "count": 1000
+          },
+          {
+            "club": "Legia",
+            "median": 4.845,
+            "count": 1000
+          },
+          {
+            "club": "Motor",
+            "median": 4.38,
+            "count": 1000
+          },
+          {
+            "club": "Piast",
+            "median": 2.9850000000000003,
+            "count": 1000
+          },
+          {
+            "club": "Pogoń",
+            "median": 6.875,
+            "count": 1000
+          },
+          {
+            "club": "Radomiak",
+            "median": 2.19,
+            "count": 1000
+          },
+          {
+            "club": "Raków",
+            "median": 5.985,
+            "count": 1000
+          },
+          {
+            "club": "Śląsk",
+            "median": 3.0949999999999998,
+            "count": 1000
+          },
+          {
+            "club": "Widzew",
+            "median": 0.765,
+            "count": 1000
+          },
+          {
+            "club": "Wieczysta",
+            "median": 2.825,
+            "count": 1000
+          },
+          {
+            "club": "Wisła K.",
+            "median": 4.03,
+            "count": 1000
+          },
+          {
+            "club": "Wisła P.",
+            "median": 1.73,
+            "count": 1000
+          },
+          {
+            "club": "Zagłębie",
+            "median": 1.795,
+            "count": 1000
+          }
+        ]
+      },
+      "historicalMultiplier": 5,
+      "product": 16.55
+    },
+    "squadValue": {
+      "quantity": "wartoscKadryMoj",
+      "run": "active",
+      "measurement": {
+        "count": 234000,
+        "pooledMedian": 1.9932376574242872,
+        "medianOfClubMedians": 1.9055612632082046,
+        "perClub": [
+          {
+            "club": "Cracovia",
+            "median": 1.9476610186487013,
+            "count": 13000
+          },
+          {
+            "club": "GKS",
+            "median": 1.863461507767708,
+            "count": 13000
+          },
+          {
+            "club": "Górnik",
+            "median": 2.67968809006394,
+            "count": 13000
+          },
+          {
+            "club": "Jagiellonia",
+            "median": 2.65632505741962,
+            "count": 13000
+          },
+          {
+            "club": "Korona",
+            "median": 1.9537888905545204,
+            "count": 13000
+          },
+          {
+            "club": "Lech",
+            "median": 2.9500941452105156,
+            "count": 13000
+          },
+          {
+            "club": "Legia",
+            "median": 2.9502605475068897,
+            "count": 13000
+          },
+          {
+            "club": "Motor",
+            "median": 1.8244735636772202,
+            "count": 13000
+          },
+          {
+            "club": "Piast",
+            "median": 1.5748060578537235,
+            "count": 13000
+          },
+          {
+            "club": "Pogoń",
+            "median": 2.5877124387138752,
+            "count": 13000
+          },
+          {
+            "club": "Radomiak",
+            "median": 1.3549964396057008,
+            "count": 13000
+          },
+          {
+            "club": "Raków",
+            "median": 3.181589224362148,
+            "count": 13000
+          },
+          {
+            "club": "Śląsk",
+            "median": 1.6187981985814786,
+            "count": 13000
+          },
+          {
+            "club": "Widzew",
+            "median": 2.351396932084385,
+            "count": 13000
+          },
+          {
+            "club": "Wieczysta",
+            "median": 1.5080438450377667,
+            "count": 13000
+          },
+          {
+            "club": "Wisła K.",
+            "median": 1.8139614916771662,
+            "count": 13000
+          },
+          {
+            "club": "Wisła P.",
+            "median": 1.480705087687503,
+            "count": 13000
+          },
+          {
+            "club": "Zagłębie",
+            "median": 1.5106096568188165,
+            "count": 13000
+          }
+        ]
+      },
+      "historicalMultiplier": 2,
+      "product": 3.9864753148485743
+    }
+  },
+  "roundedInTheBaselineNote": {
+    "cashMedian": 3.31,
+    "cashProduct": 16.55,
+    "squadValueMedian": 1.99,
+    "squadValueProduct": 3.99,
+    "warning": "3.99 is not 2 x 1.99. 1.99 is the median rounded for reading; the product above is 2 x the raw median. Rebuilding the product from the rounded median would change the unit step 4 has to preserve."
+  }
+}

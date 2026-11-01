@@ -1,0 +1,342 @@
+season,format,club,articleKey,association,associationRank,associationCoefficient,domesticBasis,seeded,clubCoefficient,entryNote,reachedLeaguePhase
+2021-22,groupStage32,Basel,FC_Basel,SUI,17,26.4,2nd,1,49,,1
+2021-22,groupStage32,Copenhagen,F.C._Copenhagen,DEN,13,29.25,3rd,1,43.5,,1
+2021-22,groupStage32,Viktoria Plzeň,FC_Viktoria_Plzeň,CZE,15,27.3,5th,1,33.5,,0
+2021-22,groupStage32,Gent,KAA_Gent,BEL,8,37.9,PW,1,26.5,,1
+2021-22,groupStage32,Astana,FC_Astana,KAZ,24,19.25,3rd,1,22.5,,0
+2021-22,groupStage32,Feyenoord,Feyenoord,NED,10,35.75,PW,1,21,,1
+2021-22,groupStage32,Qarabağ,Qarabağ_FK,AZE,26,18.75,2nd,1,21,,1
+2021-22,groupStage32,FCSB,FCSB,ROU,28,16.7,2nd,1,21,,0
+2021-22,groupStage32,Maccabi Tel Aviv,Maccabi_Tel_Aviv_F.C.,ISR,23,19.625,CW,1,20.5,,1
+2021-22,groupStage32,AEK Athens,AEK_Athens_F.C.,GRE,18,26.3,4th,1,19.5,,0
+2021-22,groupStage32,Partizan,FK_Partizan,SRB,19,25.5,2nd,1,18,,1
+2021-22,groupStage32,BATE Borisov,FC_BATE_Borisov,BLR,25,18.875,CW,1,17.5,,0
+2021-22,groupStage32,Hapoel Be'er Sheva,Hapoel_Be'er_Sheva_F.C.,ISR,23,19.625,4th,1,17.5,,0
+2021-22,groupStage32,Molde,Molde_FK,NOR,22,21.75,2nd,1,17,,0
+2021-22,groupStage32,Rosenborg,Rosenborg_BK,NOR,22,21.75,4th,1,14,,0
+2021-22,groupStage32,Rijeka,HNK_Rijeka,CRO,20,24.875,3rd,1,13.5,,0
+2021-22,groupStage32,Apollon Limassol,Apollon_Limassol_FC,CYP,16,26.75,2nd,1,13.5,,0
+2021-22,groupStage32,Austria Wien,FK_Austria_Wien,AUT,12,32.925,PW,1,10,,0
+2021-22,groupStage32,Santa Clara,C.D._Santa_Clara,POR,6,49.449,6th,1,9.709,,0
+2021-22,groupStage32,CSKA Sofia,PFC_CSKA_Sofia,BUL,27,17.375,CW,1,8,,1
+2021-22,groupStage32,Hajduk Split,HNK_Hajduk_Split,CRO,20,24.875,4th,1,8,,0
+2021-22,groupStage32,F91 Dudelange,F91_Dudelange,LUX,34,,2nd,1,8,,0
+2021-22,groupStage32,Sochi,PFC_Sochi,RUS,7,45.549,5th,1,7.676,,0
+2021-22,groupStage32,Aberdeen,Aberdeen_F.C.,SCO,14,27.875,4th,1,7.5,,0
+2021-22,groupStage32,Olimpija Ljubljana,NK_Olimpija_Ljubljana,SVN,32,,CW,1,6.75,,0
+2021-22,groupStage32,Hibernian,Hibernian_F.C.,SCO,14,27.875,3rd,1,6.675,,0
+2021-22,groupStage32,Vorskla Poltava,FC_Vorskla_Poltava,UKR,9,36.1,5th,1,6.62,,0
+2021-22,groupStage32,Sivasspor,Sivasspor,TUR,11,33.6,5th,1,6.02,,0
+2021-22,groupStage32,Osijek,NK_Osijek,CRO,20,24.875,2nd,1,6,,0
+2021-22,groupStage32,Universitatea Craiova,CS_Universitatea_Craiova,ROU,28,16.7,CW,1,6,,0
+2021-22,groupStage32,AGF,Aarhus_Gymnastikforening,DEN,13,29.25,PW,1,5.575,,0
+2021-22,groupStage32,AEL Limassol,AEL_Limassol,CYP,16,26.75,3rd,1,5.55,,0
+2021-22,groupStage32,Vaduz,FC_Vaduz,LIE,31,13.5,Abd-Cup,1,5.5,,0
+2021-22,groupStage32,Vojvodina,FK_Vojvodina,SRB,19,25.5,4th,1,5.35,,0
+2021-22,groupStage32,Čukarički,FK_Čukarički,SRB,19,25.5,3rd,1,5.35,,0
+2021-22,groupStage32,Slovácko,1._FC_Slovácko,CZE,15,27.3,4th,1,5.32,,0
+2021-22,groupStage32,Servette,Servette_FC,SUI,17,26.4,3rd,0,5.245,,0
+2021-22,groupStage32,Aris,Aris_Thessaloniki_F.C.,GRE,18,26.3,3rd,0,5.2,,0
+2021-22,groupStage32,Dynamo Brest,FC_Dynamo_Brest,BLR,25,18.875,4th,0,5,,0
+2021-22,groupStage32,DAC Dunajská Streda,FC_DAC_1904_Dunajská_Streda,SVK,30,15.875,2nd,0,5,,0
+2021-22,groupStage32,Ashdod,F.C._Ashdod,ISR,23,19.625,3rd,0,4.875,,0
+2021-22,groupStage32,Vålerenga,Vålerenga_Fotball,NOR,22,21.75,3rd,0,4.2,,0
+2021-22,groupStage32,Hammarby IF,Hammarby_Fotboll,SWE,21,22.75,CW,0,4.1,,0
+2021-22,groupStage32,BK Häcken,BK_Häcken,SWE,21,22.75,3rd,0,4.1,,0
+2021-22,groupStage32,IF Elfsborg,IF_Elfsborg,SWE,21,22.75,2nd,0,4.1,,0
+2021-22,groupStage32,Lokomotiv Plovdiv,PFC_Lokomotiv_Plovdiv,BUL,27,17.375,2nd,0,4.075,,0
+2021-22,groupStage32,Arda,FC_Arda_Kardzhali,BUL,27,17.375,PW,0,4.075,,0
+2021-22,groupStage32,Sepsi OSK,Sepsi_OSK_Sfântu_Gheorghe,ROU,28,16.7,PW,0,3.64,,0
+2021-22,groupStage32,Keşla,Shamakhi_FK,AZE,26,18.75,CW,0,3.375,,0
+2021-22,groupStage32,Sumgayit,Sumgayit_FK,AZE,26,18.75,3rd,0,3.375,,0
+2021-22,groupStage32,Tobol,FC_Tobol,KAZ,24,19.25,2nd,0,3.125,,0
+2021-22,groupStage32,Shakhter Karagandy,FC_Shakhter_Karagandy,KAZ,24,19.25,4th,0,3.125,,0
+2021-22,groupStage32,Újpest,Újpest_FC,HUN,33,12.875,CW,0,3.1,,0
+2021-22,groupStage32,Torpedo-BelAZ Zhodino,FC_Torpedo-BelAZ_Zhodino,BLR,25,18.875,3rd,0,3.05,,0
+2021-22,groupStage32,Raków Częstochowa,Raków_Częstochowa,POL,29,16.625,CW,0,3.025,,0
+2021-22,groupStage32,Pogoń Szczecin,Pogoń_Szczecin,POL,29,16.625,3rd,0,3.025,,0
+2021-22,groupStage32,Panevėžys,FK_Panevėžys,LTU,35,7.875,CW,0,1.75,,0
+2022-23,groupStage32,Basel,FC_Basel,SUI,19,26.225,2nd,1,55,,1
+2022-23,groupStage32,Slavia Prague,SK_Slavia_Prague,CZE,17,26.6,2nd,1,52,,1
+2022-23,groupStage32,Young Boys,BSC_Young_Boys,SUI,19,26.225,3rd,1,37,,0
+2022-23,groupStage32,AZ,AZ_Alkmaar,NED,7,39.2,PW,1,28.5,,1
+2022-23,groupStage32,PAOK,PAOK_FC,GRE,20,,2nd,1,25,,0
+2022-23,groupStage32,İstanbul Başakşehir,İstanbul_Başakşehir_F.K.,TUR,13,30.1,4th,1,25,,1
+2022-23,groupStage32,Maccabi Tel Aviv,Maccabi_Tel_Aviv_F.C.,ISR,21,24.375,3rd,1,24.5,,0
+2022-23,groupStage32,Astana,FC_Astana,KAZ,27,15.625,2nd,1,20.5,,0
+2022-23,groupStage32,Molde,Molde_FK,NOR,22,,CW,1,19,,1
+2022-23,groupStage32,APOEL,APOEL_FC,CYP,15,27.75,3rd,1,18,,0
+2022-23,groupStage32,FCSB,FCSB,ROU,25,18.2,2nd,1,17.5,,1
+2022-23,groupStage32,BATE Borisov,FC_BATE_Borisov,BLR,29,15.25,2nd,1,17.5,,0
+2022-23,groupStage32,Rapid Wien,SK_Rapid_Wien,AUT,10,35.825,PW,1,16,,0
+2022-23,groupStage32,Rijeka,HNK_Rijeka,CRO,18,26.275,4th,1,15,,0
+2022-23,groupStage32,Antwerp,Royal_Antwerp_F.C.,BEL,9,36.5,4th,1,14.5,,0
+2022-23,groupStage32,Hapoel Be'er Sheva,Hapoel_Be'er_Sheva_F.C.,ISR,21,24.375,CW,1,14,,1
+2022-23,groupStage32,Sparta Prague,AC_Sparta_Prague,CZE,17,26.6,3rd,1,13.5,,0
+2022-23,groupStage32,MOL Fehérvár,Fehérvár_FC,HUN,28,15.5,4th,1,11.5,,0
+2022-23,groupStage32,Vitória de Guimarães,Vitória_S.C.,POR,6,48.549,6th,1,10.676,,0
+2022-23,groupStage32,CSKA Sofia,PFC_CSKA_Sofia,BUL,24,20.375,2nd,1,10.5,,0
+2022-23,groupStage32,Sūduva,FK_Sūduva,LTU,34,8.75,2nd,1,10,,0
+2022-23,groupStage32,Brøndby,Brøndby_IF,DEN,14,27.875,4th,1,8.5,,0
+2022-23,groupStage32,Spartak Trnava,FC_Spartak_Trnava,SVK,32,13.625,CW,1,8.5,,0
+2022-23,groupStage32,Kairat,FC_Kairat,KAZ,27,15.625,CW,1,8,,0
+2022-23,groupStage32,Osijek,NK_Osijek,CRO,18,26.275,3rd,1,8,,0
+2022-23,groupStage32,Universitatea Craiova,CS_Universitatea_Craiova,ROU,25,18.2,PW,1,7.5,,0
+2022-23,groupStage32,Motherwell,Motherwell_F.C.,SCO,11,33.375,5th,1,7.38,,0
+2022-23,groupStage32,Neftçi,Neftçi_PFK,AZE,26,16.875,2nd,1,7,,0
+2022-23,groupStage32,Čukarički,FK_Čukarički,SRB,16,26.75,3rd,1,6.675,,0
+2022-23,groupStage32,Radnički Niš,FK_Radnički_Niš,SRB,16,26.75,4th,1,6.675,,0
+2022-23,groupStage32,Vaduz,FC_Vaduz,LIE,33,,CW,1,6.5,,1
+2022-23,groupStage32,Vorskla Poltava,FC_Vorskla_Poltava,UKR,12,33.1,Abd-5th,1,6.36,,0
+2022-23,groupStage32,Aris,Aris_Thessaloniki_F.C.,GRE,20,,3rd,1,5.64,,0
+2022-23,groupStage32,Viking,Viking_FK,NOR,22,,3rd,0,5.45,,0
+2022-23,groupStage32,Lillestrøm,Lillestrøm_SK,NOR,22,,4th,0,5.45,,0
+2022-23,groupStage32,Viborg,Viborg_FF,DEN,14,27.875,PW,0,5.435,,0
+2022-23,groupStage32,Konyaspor,Konyaspor,TUR,13,30.1,3rd,0,5.42,,0
+2022-23,groupStage32,Aris Limassol,Aris_Limassol_FC,CYP,15,27.75,4th,0,5.275,,0
+2022-23,groupStage32,Ararat-Armenia,FC_Ararat-Armenia,ARM,39,7.375,2nd,0,5,,0
+2022-23,groupStage32,AIK,AIK_Fotboll,SWE,23,20.5,2nd,0,5,,0
+2022-23,groupStage32,Maccabi Netanya,Maccabi_Netanya_F.C.,ISR,21,24.375,4th,0,4.875,,0
+2022-23,groupStage32,Djurgårdens IF,Djurgårdens_IF_Fotboll,SWE,23,20.5,3rd,0,4.575,,1
+2022-23,groupStage32,IF Elfsborg,IF_Elfsborg,SWE,23,20.5,4th,0,4.575,,0
+2022-23,groupStage32,Botev Plovdiv,Botev_Plovdiv,BUL,24,20.375,PW,0,3.9,,0
+2022-23,groupStage32,Levski Sofia,PFC_Levski_Sofia,BUL,24,20.375,CW,0,3.9,,0
+2022-23,groupStage32,Gabala,Gabala_SC,AZE,26,16.875,4th,0,3.5,,0
+2022-23,groupStage32,Sepsi OSK,Sepsi_OSK_Sfântu_Gheorghe,ROU,25,18.2,CW,0,3.43,,0
+2022-23,groupStage32,Zira,Zira_FK,AZE,26,16.875,3rd,0,3.4,,0
+2022-23,groupStage32,Puskás Akadémia,Puskás_Akadémia_FC,HUN,28,15.5,3rd,0,3.275,,0
+2022-23,groupStage32,Kisvárda,Kisvárda_FC,HUN,28,15.5,2nd,0,3.275,,0
+2022-23,groupStage32,Raków Częstochowa,Raków_Częstochowa,POL,30,15.125,CW,0,3.175,,0
+2022-23,groupStage32,Kyzylzhar,FC_Kyzylzhar,KAZ,27,15.625,4th,0,3.15,,0
+2022-23,groupStage32,Koper,FC_Koper,SVN,31,14.25,CW,0,3,,0
+2022-23,groupStage32,Gomel,FC_Gomel,BLR,29,15.25,CW,0,2.5,,0
+2022-23,groupStage32,Velež Mostar,FK_Velež_Mostar,BIH,36,,CW,0,2,,0
+2022-23,groupStage32,Valmiera,Valmiera_FC,LVA,40,7.375,2nd,0,2,,0
+2022-23,groupStage32,Racing Union,Racing_FC_Union_Luxembourg,LUX,35,8.25,CW,0,2,,0
+2022-23,groupStage32,St Patrick's Athletic,St_Patrick's_Athletic_F.C.,IRL,37,7.875,CW,0,1.625,,0
+2022-23,groupStage32,Vllaznia,KF_Vllaznia_Shkodër,ALB,41,7.25,CW,0,1.6,,0
+2022-23,groupStage32,Makedonija GP,FK_Makedonija_G.P.,MKD,38,7.625,CW,0,1.4,,0
+2023-24,groupStage32,Club Brugge,Club_Brugge_KV,BEL,13,30.6,4th,1,54,,1
+2023-24,groupStage32,Basel,FC_Basel,SUI,14,29.675,5th,1,53,,0
+2023-24,groupStage32,Gent,KAA_Gent,BEL,13,30.6,5th,1,37.5,,1
+2023-24,groupStage32,Fenerbahçe,Fenerbahçe_S.K._(football),TUR,20,27.1,CW,1,30,,1
+2023-24,groupStage32,CFR Cluj,CFR_Cluj,ROU,25,17.15,PW,1,27.5,,0
+2023-24,groupStage32,Midtjylland,FC_Midtjylland,DEN,18,27.175,PW,1,25.5,,0
+2023-24,groupStage32,PAOK,PAOK_FC,GRE,15,28.2,4th,1,25,,1
+2023-24,groupStage32,Maccabi Tel Aviv,Maccabi_Tel_Aviv_F.C.,ISR,22,24.375,3rd,1,24,,1
+2023-24,groupStage32,Viktoria Plzeň,FC_Viktoria_Plzeň,CZE,16,27.8,3rd,1,22,,1
+2023-24,groupStage32,Bodø/Glimt,FK_Bodø/Glimt,NOR,17,27.25,2nd,1,20,,1
+2023-24,groupStage32,Lech Poznań,Lech_Poznań,POL,28,15.875,3rd,1,19,,0
+2023-24,groupStage32,Hapoel Be'er Sheva,Hapoel_Be'er_Sheva_F.C.,ISR,22,24.375,2nd,1,17,,0
+2023-24,groupStage32,Djurgårdens IF,Djurgårdens_IF_Fotboll,SWE,23,22.875,2nd,1,16.5,,0
+2023-24,groupStage32,APOEL,APOEL_FC,CYP,21,26.375,2nd,1,14.5,,0
+2023-24,groupStage32,Beşiktaş,Beşiktaş_J.K.,TUR,20,27.1,3rd,1,14,,1
+2023-24,groupStage32,CSKA Sofia,PFC_CSKA_Sofia,BUL,24,19.5,2nd,1,13,,0
+2023-24,groupStage32,Twente,FC_Twente,NED,7,49.3,PW,1,11.98,,0
+2023-24,groupStage32,Rijeka,HNK_Rijeka,CRO,19,27.15,4th,1,11.5,,0
+2023-24,groupStage32,Vitória de Guimarães,Vitória_S.C.,POR,6,53.382,6th,1,11.243,,0
+2023-24,groupStage32,FCSB,FCSB,ROU,25,17.15,2nd,1,11,,0
+2023-24,groupStage32,Legia Warsaw,Legia_Warsaw,POL,28,15.875,CW,1,11,,1
+2023-24,groupStage32,Rosenborg,Rosenborg_BK,NOR,17,27.25,3rd,1,11,,0
+2023-24,groupStage32,Spartak Trnava,FC_Spartak_Trnava,SVK,30,15.625,CW,1,10.5,,1
+2023-24,groupStage32,AEK Larnaca,AEK_Larnaca_FC,CYP,21,26.375,3rd,1,10,,0
+2023-24,groupStage32,Omonia,AC_Omonia,CYP,21,26.375,CW,1,10,,0
+2023-24,groupStage32,KuPS,Kuopion_Palloseura,FIN,36,8.875,CW,1,9.5,,0
+2023-24,groupStage32,Neftçi,Neftçi_PFK,AZE,26,,3rd,1,9,,0
+2023-24,groupStage32,Osijek,NK_Osijek,CRO,19,27.15,3rd,1,8,,0
+2023-24,groupStage32,Hibernian,Hibernian_F.C.,SCO,9,36.9,5th,1,7.28,,0
+2023-24,groupStage32,Aris,Aris_Thessaloniki_F.C.,GRE,15,28.2,5th,1,7,,0
+2023-24,groupStage32,Austria Wien,FK_Austria_Wien,AUT,8,38.85,PW,1,6.8,,0
+2023-24,groupStage32,Petrocub Hîncești,FC_Petrocub_Hîncești,MDA,33,11.25,2nd,0,6.5,,0
+2023-24,groupStage32,Drita,FC_Drita,KOS,39,8.166,2nd,0,6.5,,0
+2023-24,groupStage32,Vojvodina,FK_Vojvodina,SRB,11,33.375,5th,0,6.475,,0
+2023-24,groupStage32,Adana Demirspor,Adana_Demirspor,TUR,20,27.1,4th,0,6.42,,0
+2023-24,groupStage32,Luzern,FC_Luzern,SUI,14,29.675,4th,0,6.335,,0
+2023-24,groupStage32,Vorskla Poltava,FC_Vorskla_Poltava,UKR,12,31.8,5th,0,6,,0
+2023-24,groupStage32,Bohemians 1905,Bohemians_1905,CZE,16,27.8,4th,0,5.81,,0
+2023-24,groupStage32,AGF,Aarhus_Gymnastikforening,DEN,18,27.175,3rd,0,5.565,,0
+2023-24,groupStage32,Beitar Jerusalem,Beitar_Jerusalem_F.C.,ISR,22,24.375,CW,0,5,,0
+2023-24,groupStage32,Hammarby IF,Hammarby_Fotboll,SWE,23,22.875,3rd,0,4.75,,0
+2023-24,groupStage32,Kalmar FF,Kalmar_FF,SWE,23,22.875,4th,0,4.75,,0
+2023-24,groupStage32,Levski Sofia,PFC_Levski_Sofia,BUL,24,19.5,PW,0,4.5,,0
+2023-24,groupStage32,Kauno Žalgiris,FK_Kauno_Žalgiris,LTU,34,,2nd,0,4.5,,0
+2023-24,groupStage32,Pogoń Szczecin,Pogoń_Szczecin,POL,28,15.875,4th,0,4.15,,0
+2023-24,groupStage32,Debrecen,Debreceni_VSC,HUN,27,16.375,3rd,0,4.125,,0
+2023-24,groupStage32,Zalaegerszeg,Zalaegerszegi_TE,HUN,27,16.375,CW,0,4.125,,0
+2023-24,groupStage32,Kecskemét,Kecskeméti_TE,HUN,27,16.375,2nd,0,4.125,,0
+2023-24,groupStage32,Sepsi OSK,Sepsi_OSK_Sfântu_Gheorghe,ROU,25,17.15,CW,0,4.1,,0
+2023-24,groupStage32,Gabala,Gabala_SC,AZE,26,,CW,0,4,,0
+2023-24,groupStage32,Borac Banja Luka,FK_Borac_Banja_Luka,BIH,35,9.125,2nd,0,4,,0
+2023-24,groupStage32,CSKA 1948,FC_CSKA_1948_Sofia,BUL,24,19.5,3rd,0,4,,0
+2023-24,groupStage32,Sabah,Sabah_FC_(Azerbaijan),AZE,26,,2nd,0,3.325,,0
+2023-24,groupStage32,Ordabasy,FC_Ordabasy,KAZ,29,15.75,CW,0,2.525,,0
+2023-24,groupStage32,Aktobe,FC_Aktobe,KAZ,29,15.75,2nd,0,2.525,,0
+2023-24,groupStage32,Celje,NK_Celje,SVN,31,,2nd,0,2.5,,0
+2023-24,groupStage32,Auda,FK_Auda,LVA,38,8.625,CW,0,2.125,,0
+2023-24,groupStage32,Differdange 03,FC_Differdange_03,LUX,37,8.75,CW,0,2,,0
+2023-24,groupStage32,Torpedo-BelAZ Zhodino,FC_Torpedo-BelAZ_Zhodino,BLR,32,12.5,CW,0,1.975,,0
+2024-25,leaguePhase36,Copenhagen,F.C._Copenhagen,DEN,17,27.825,PW,1,51.5,,1
+2024-25,leaguePhase36,Gent,KAA_Gent,BEL,8,42.2,PW,1,45,,1
+2024-25,leaguePhase36,İstanbul Başakşehir,İstanbul_Başakşehir_F.K.,TUR,12,32.1,4th,1,29,,1
+2024-25,leaguePhase36,CFR Cluj,CFR_Cluj,ROU,26,20.5,2nd,1,26.5,,0
+2024-25,leaguePhase36,Legia Warsaw,Legia_Warsaw,POL,24,20.75,3rd,1,18,,1
+2024-25,leaguePhase36,Maccabi Haifa,Maccabi_Haifa_F.C.,ISR,21,,2nd,1,18,,0
+2024-25,leaguePhase36,Hapoel Be'er Sheva,Hapoel_Be'er_Sheva_F.C.,ISR,21,,3rd,1,17,,0
+2024-25,leaguePhase36,Djurgårdens IF,Djurgårdens_IF_Fotboll,SWE,23,23.75,4th,1,16.5,,1
+2024-25,leaguePhase36,Go Ahead Eagles,Go_Ahead_Eagles,NED,6,59.9,PW,1,12.26,,0
+2024-25,leaguePhase36,Omonia,AC_Omonia,CYP,22,24.475,3rd,1,12,,1
+2024-25,leaguePhase36,Vitória de Guimarães,Vitória_S.C.,POR,7,56.216,5th,1,11.263,,1
+2024-25,leaguePhase36,Astana,FC_Astana,KAZ,30,12.625,2nd,1,11,,1
+2024-25,leaguePhase36,Riga,Riga_FC,LVA,35,10.625,CW,1,11,,0
+2024-25,leaguePhase36,Olimpija Ljubljana,NK_Olimpija_Ljubljana,SVN,31,12.5,3rd,1,10.5,,1
+2024-25,leaguePhase36,Dnipro-1,SC_Dnipro-1,UKR,14,29.5,4th,1,10.5,,0
+2024-25,leaguePhase36,AEK Athens,AEK_Athens_F.C.,GRE,20,25.225,2nd,1,10,,0
+2024-25,leaguePhase36,Zrinjski Mostar,HŠK_Zrinjski_Mostar,BIH,41,9.75,CW,1,9.5,,0
+2024-25,leaguePhase36,Hajduk Split,HNK_Hajduk_Split,CRO,19,25.4,3rd,1,9,,0
+2024-25,leaguePhase36,Osijek,NK_Osijek,CRO,19,25.4,4th,1,8.5,,0
+2024-25,leaguePhase36,Spartak Trnava,FC_Spartak_Trnava,SVK,28,19.75,3rd,1,8,,0
+2024-25,leaguePhase36,AEK Larnaca,AEK_Larnaca_FC,CYP,22,24.475,2nd,1,8,,0
+2024-25,leaguePhase36,Austria Wien,FK_Austria_Wien,AUT,10,,PW,1,8,,0
+2024-25,leaguePhase36,Ararat-Armenia,FC_Ararat-Armenia,ARM,39,9.875,CW,1,8,,0
+2024-25,leaguePhase36,Vaduz,FC_Vaduz,LIE,34,,CW,1,8,,0
+2024-25,leaguePhase36,DAC Dunajská Streda,FC_DAC_1904_Dunajská_Streda,SVK,28,19.75,2nd,1,8,,0
+2024-25,leaguePhase36,Fehérvár,Fehérvár_FC,HUN,25,20.625,4th,1,7.5,,0
+2024-25,leaguePhase36,Mladá Boleslav,FK_Mladá_Boleslav,CZE,15,29.05,PW,1,7.21,,1
+2024-25,leaguePhase36,Baník Ostrava,FC_Baník_Ostrava,CZE,15,29.05,4th,1,7.21,,0
+2024-25,leaguePhase36,St Mirren,St_Mirren_F.C.,SCO,9,36.4,5th,1,7.21,,0
+2024-25,leaguePhase36,Universitatea Craiova,CS_Universitatea_Craiova,ROU,26,20.5,PW,1,7,,0
+2024-25,leaguePhase36,Brøndby,Brøndby_IF,DEN,17,27.825,2nd,1,7,,0
+2024-25,leaguePhase36,Zürich,FC_Zürich,SUI,13,31.675,4th,1,6.595,,0
+2024-25,leaguePhase36,St. Gallen,FC_St._Gallen,SUI,13,31.675,5th,1,6.595,,1
+2024-25,leaguePhase36,Drita,FC_Drita,KOS,33,11.041,3rd,0,6.5,,0
+2024-25,leaguePhase36,Brann,SK_Brann,NOR,16,,2nd,0,6.325,,0
+2024-25,leaguePhase36,Tromsø,Tromsø_IL,NOR,16,,3rd,0,6.325,,0
+2024-25,leaguePhase36,BK Häcken,BK_Häcken,SWE,23,23.75,3rd,0,6,,0
+2024-25,leaguePhase36,HB,Havnar_Bóltfelag,FRO,43,8.75,CW,0,6,,0
+2024-25,leaguePhase36,Polissya Zhytomyr,FC_Polissya_Zhytomyr,UKR,14,29.5,5th,0,5.6,,0
+2024-25,leaguePhase36,Radnički 1923,FK_Radnički_1923,SRB,11,32.375,5th,0,5.555,,0
+2024-25,leaguePhase36,Śląsk Wrocław,Śląsk_Wrocław,POL,24,20.75,2nd,0,5.075,,0
+2024-25,leaguePhase36,Progrès Niederkorn,FC_Progrès_Niederkorn,LUX,42,,CW,0,4.5,,0
+2024-25,leaguePhase36,Iberia 1999,FC_Iberia_1999,GEO,46,,CW,0,4.5,,0
+2024-25,leaguePhase36,Puskás Akadémia,Puskás_Akadémia_FC,HUN,25,20.625,3rd,0,4.375,,0
+2024-25,leaguePhase36,CSKA 1948,FC_CSKA_1948_Sofia,BUL,27,,PW,0,4.075,,0
+2024-25,leaguePhase36,Cherno More,PFC_Cherno_More_Varna,BUL,27,,2nd,0,4.075,,0
+2024-25,leaguePhase36,Sabah,Sabah_FC_(Azerbaijan),AZE,29,16.625,3rd,0,4.025,,0
+2024-25,leaguePhase36,Sumgayit,Sumgayit_FK,AZE,29,16.625,4th,0,4.025,,0
+2024-25,leaguePhase36,St Patrick's Athletic,St_Patrick's_Athletic_F.C.,IRL,36,10.375,CW,0,4,,0
+2024-25,leaguePhase36,Zimbru Chișinău,FC_Zimbru_Chișinău,MDA,32,12.25,3rd,0,2.625,,0
+2024-25,leaguePhase36,Ilves,Ilves_(football),FIN,37,10.25,CW,0,2.225,,0
+2024-25,leaguePhase36,Neman Grodno,FC_Neman_Grodno,BLR,40,9.875,CW,0,2,,0
+2024-25,leaguePhase36,Cliftonville,Cliftonville_F.C.,NIR,44,8.583,CW,0,2,,0
+2024-25,leaguePhase36,TransINVEST,FK_TransINVEST,LTU,38,,CW,0,1.7,,0
+2024-25,leaguePhase36,Sliema Wanderers,Sliema_Wanderers_F.C.,MLT,45,8.25,CW,0,1.65,,0
+2025-26,leaguePhase36,AZ,AZ_Alkmaar,NED,6,61.3,PW,1,54.5,,1
+2025-26,leaguePhase36,Rapid Wien,SK_Rapid_Wien,AUT,13,32.6,PW,1,32.25,,1
+2025-26,leaguePhase36,Sparta Prague,AC_Sparta_Prague,CZE,10,36.05,4th,1,29.5,,1
+2025-26,leaguePhase36,İstanbul Başakşehir,İstanbul_Başakşehir_F.K.,TUR,9,38.6,5th,1,23,,0
+2025-26,leaguePhase36,Maccabi Haifa,Maccabi_Haifa_F.C.,ISR,17,31.125,3rd,1,18,,0
+2025-26,leaguePhase36,Shamrock Rovers,Shamrock_Rovers_F.C.,IRL,35,10.875,2nd,1,17.875,,1
+2025-26,leaguePhase36,Omonia,AC_Omonia,CYP,23,22.1,3rd,1,17.375,,1
+2025-26,leaguePhase36,Jagiellonia Białystok,Jagiellonia_Białystok,POL,21,25.375,3rd,1,14,,1
+2025-26,leaguePhase36,Santa Clara,C.D._Santa_Clara,POR,7,56.316,5th,1,12.453,,0
+2025-26,leaguePhase36,Astana,FC_Astana,KAZ,33,11.5,2nd,1,12,,0
+2025-26,leaguePhase36,Charleroi,Royal_Charleroi_S.C.,BEL,8,48.8,PW,1,11.37,,0
+2025-26,leaguePhase36,Hajduk Split,HNK_Hajduk_Split,CRO,20,25.525,3rd,1,10,,0
+2025-26,leaguePhase36,Riga,Riga_FC,LVA,37,10.625,2nd,1,10,,0
+2025-26,leaguePhase36,Maribor,NK_Maribor,SVN,30,13.25,2nd,1,9.5,,0
+2025-26,leaguePhase36,AEK Athens,AEK_Athens_F.C.,GRE,15,31.525,4th,1,9.5,,1
+2025-26,leaguePhase36,Ballkani,FC_Ballkani,KOS,32,11.541,2nd,1,8,,0
+2025-26,leaguePhase36,Raków Częstochowa,Raków_Częstochowa,POL,21,25.375,2nd,1,8,,1
+2025-26,leaguePhase36,Rosenborg,Rosenborg_BK,NOR,14,31.625,4th,1,7.937,,0
+2025-26,leaguePhase36,Viking,Viking_FK,NOR,14,31.625,3rd,1,7.937,,0
+2025-26,leaguePhase36,Aris,Aris_Thessaloniki_F.C.,GRE,15,31.525,5th,1,7.862,,0
+2025-26,leaguePhase36,Ararat-Armenia,FC_Ararat-Armenia,ARM,36,10.625,2nd,1,7.5,,0
+2025-26,leaguePhase36,Austria Wien,FK_Austria_Wien,AUT,13,32.6,3rd,1,7.5,,0
+2025-26,leaguePhase36,Vaduz,FC_Vaduz,LIE,40,,CW,1,7.5,,0
+2025-26,leaguePhase36,Dundee United,Dundee_United_F.C.,SCO,11,36.05,4th,1,7.11,,0
+2025-26,leaguePhase36,Brøndby,Brøndby_IF,DEN,16,31.45,3rd,1,7,,0
+2025-26,leaguePhase36,Silkeborg,Silkeborg_IF,DEN,16,31.45,PW,1,6.796,,0
+2025-26,leaguePhase36,Lausanne-Sport,FC_Lausanne-Sport,SUI,12,32.975,5th,1,6.725,,1
+2025-26,leaguePhase36,Puskás Akadémia,Puskás_Akadémia_FC,HUN,24,21.875,2nd,1,6.5,,0
+2025-26,leaguePhase36,Universitatea Craiova,CS_Universitatea_Craiova,ROU,26,21.375,3rd,1,6.5,,1
+2025-26,leaguePhase36,Beitar Jerusalem,Beitar_Jerusalem_F.C.,ISR,17,31.125,4th,1,6.325,,0
+2025-26,leaguePhase36,HB,Havnar_Bóltfelag,FRO,38,10.375,CW,0,6,,0
+2025-26,leaguePhase36,Sarajevo,FK_Sarajevo,BIH,39,,CW,0,6,,0
+2025-26,leaguePhase36,Aris Limassol,Aris_Limassol_FC,CYP,23,22.1,2nd,0,5.507,,0
+2025-26,leaguePhase36,Hammarby IF,Hammarby_Fotboll,SWE,25,21.5,2nd,0,5.5,,0
+2025-26,leaguePhase36,Hibernians,Hibernians_F.C.,MLT,45,8.25,CW,0,5.5,,0
+2025-26,leaguePhase36,AIK,AIK_Fotboll,SWE,25,21.5,3rd,0,5.425,,0
+2025-26,leaguePhase36,Varaždin,NK_Varaždin_(2012),CRO,20,25.525,4th,0,5.405,,0
+2025-26,leaguePhase36,Radnički 1923,FK_Radnički_1923,SRB,19,27.775,5th,0,5.1,,0
+2025-26,leaguePhase36,Novi Pazar,FK_Novi_Pazar,SRB,19,27.775,3rd,0,5.1,,0
+2025-26,leaguePhase36,Žilina,MŠK_Žilina,SVK,29,19.625,2nd,0,5,,0
+2025-26,leaguePhase36,Polissya Zhytomyr,FC_Polissya_Zhytomyr,UKR,18,,4th,0,4.88,,0
+2025-26,leaguePhase36,Oleksandriya,FC_Oleksandriya,UKR,18,,2nd,0,4.88,,0
+2025-26,leaguePhase36,Győri ETO,Győri_ETO_FC,HUN,24,21.875,4th,0,4.8,,0
+2025-26,leaguePhase36,Universitatea Cluj,FC_Universitatea_Cluj,ROU,26,21.375,4th,0,4.65,,0
+2025-26,leaguePhase36,Košice,FC_Košice_(2018),SVK,29,19.625,5th,,4.25,†,0
+2025-26,leaguePhase36,Zira,Zira_FK,AZE,28,20.125,2nd,0,4,,0
+2025-26,leaguePhase36,Cherno More,PFC_Cherno_More_Varna,BUL,27,20.375,3rd,0,3.975,,0
+2025-26,leaguePhase36,Arda,FC_Arda_Kardzhali,BUL,27,20.375,PW,0,3.975,,0
+2025-26,leaguePhase36,Araz-Naxçıvan,Araz-Naxçıvan_PFK,AZE,28,20.125,3rd,0,3.925,,0
+2025-26,leaguePhase36,Zimbru Chișinău,FC_Zimbru_Chișinău,MDA,31,13.125,3rd,0,3,,0
+2025-26,leaguePhase36,KA,Knattspyrnufélag_Akureyrar,ISL,41,9.583,CW,0,2.704,,0
+2025-26,leaguePhase36,Dungannon Swifts,Dungannon_Swifts_F.C.,NIR,42,9.208,CW,0,1.666,,0
+2025-26,leaguePhase36,Banga,FK_Banga_Gargždai,LTU,44,8.5,CW,0,1.65,,0
+2025-26,leaguePhase36,Dinamo City,FC_Dinamo_City,ALB,47,7.375,CW,0,1.575,,0
+2025-26,leaguePhase36,UNA Strassen,FC_UNA_Strassen,LUX,43,8.625,2nd,0,1.375,,0
+2025-26,leaguePhase36,Spaeri,FC_Spaeri,GEO,46,7.625,CW,0,1.325,,0
+2026-27,leaguePhase36,Braga,S.C._Braga,POR,7,62.266,4th,1,63.75,,1
+2026-27,leaguePhase36,Ajax,AFC_Ajax,NED,6,67.15,PW,1,58.25,,1
+2026-27,leaguePhase36,Copenhagen,F.C._Copenhagen,DEN,16,33.981,PW,1,54.375,,1
+2026-27,leaguePhase36,Gent,KAA_Gent,BEL,8,56.85,PW,1,39,,1
+2026-27,leaguePhase36,Rapid Wien,SK_Rapid_Wien,AUT,13,36.45,PW,1,29.75,,0
+2026-27,leaguePhase36,Panathinaikos,Panathinaikos_F.C.,GRE,12,39.312,4th,1,29.25,,1
+2026-27,leaguePhase36,Ludogorets Razgrad,PFC_Ludogorets_Razgrad,BUL,29,19.875,PW,1,28.75,,0
+2026-27,leaguePhase36,FCSB,FCSB,ROU,25,23.25,PW,1,25.5,,0
+2026-27,leaguePhase36,Raków Częstochowa,Raków_Częstochowa,POL,15,,4th,1,22.25,,0
+2026-27,leaguePhase36,Partizan,FK_Partizan,SRB,22,25.5,3rd,1,22,,0
+2026-27,leaguePhase36,Lugano,FC_Lugano,SUI,17,33.625,3rd,1,21.25,,1
+2026-27,leaguePhase36,AEK Larnaca,AEK_Larnaca_FC,CYP,19,27.537,2nd,1,20.25,,0
+2026-27,leaguePhase36,İstanbul Başakşehir,İstanbul_Başakşehir_F.K.,TUR,10,43.9,5th,1,19.5,,0
+2026-27,leaguePhase36,Rijeka,HNK_Rijeka,CRO,21,27.025,4th,1,18.625,,0
+2026-27,leaguePhase36,CFR Cluj,CFR_Cluj,ROU,25,23.25,3rd,1,17.5,,0
+2026-27,leaguePhase36,HJK,Helsingin_Jalkapalloklubi,FIN,38,11.75,CW,1,14,,0
+2026-27,leaguePhase36,Zrinjski Mostar,HŠK_Zrinjski_Mostar,BIH,34,13.031,CW,1,13.25,,0
+2026-27,leaguePhase36,Brann,SK_Brann,NOR,11,39.687,4th,1,12.25,,1
+2026-27,leaguePhase36,Noah,FC_Noah,ARM,35,12.25,CW,1,10.75,,0
+2026-27,leaguePhase36,Spartak Trnava,FC_Spartak_Trnava,SVK,27,21.25,3rd,1,10.5,,0
+2026-27,leaguePhase36,Jablonec,FK_Jablonec,CZE,9,44.1,5th,1,9.705,,1
+2026-27,leaguePhase36,Austria Wien,FK_Austria_Wien,AUT,13,36.45,4th,1,9.5,,0
+2026-27,leaguePhase36,GKS Katowice,GKS_Katowice,POL,15,,5th,1,9.35,,0
+2026-27,leaguePhase36,Vaduz,FC_Vaduz,LIE,44,,CW,1,8.5,,0
+2026-27,leaguePhase36,Nordsjælland,FC_Nordsjælland,DEN,16,33.981,3rd,1,8.421,,1
+2026-27,leaguePhase36,Tobol,FC_Tobol,KAZ,39,11.125,CW,1,8,,0
+2026-27,leaguePhase36,Apollon Limassol,Apollon_Limassol_FC,CYP,19,27.537,3rd,1,7.138,,0
+2026-27,leaguePhase36,Hibernian,Hibernian_F.C.,SCO,14,35.55,5th,1,7,,0
+2026-27,leaguePhase36,HB,Havnar_Bóltfelag,FRO,40,10.75,2nd,1,7,,0
+2026-27,leaguePhase36,Sion,FC_Sion,SUI,17,33.625,4th,1,6.94,,0
+2026-27,leaguePhase36,Panevėžys,FK_Panevėžys,LTU,43,8.25,CW,0,6.5,,0
+2026-27,leaguePhase36,Neftçi,Neftçi_PFK,AZE,30,19.625,4th,0,6.5,,0
+2026-27,leaguePhase36,Motherwell,Motherwell_F.C.,SCO,14,35.55,4th,0,6.41,,0
+2026-27,leaguePhase36,DAC Dunajská Streda,FC_DAC_1904_Dunajská_Streda,SVK,27,21.25,2nd,0,6,,0
+2026-27,leaguePhase36,GAIS,GAIS,SWE,20,27.125,3rd,0,5.925,,0
+2026-27,leaguePhase36,IFK Göteborg,IFK_Göteborg,SWE,20,27.125,4th,0,5.925,,0
+2026-27,leaguePhase36,Varaždin,NK_Varaždin_(2012),CRO,21,27.025,3rd,0,5.631,,0
+2026-27,leaguePhase36,Beitar Jerusalem,Beitar_Jerusalem_F.C.,ISR,18,31.625,2nd,0,5.5,,0
+2026-27,leaguePhase36,Hapoel Tel Aviv,Hapoel_Tel_Aviv_F.C.,ISR,18,31.625,4th,0,5.5,,0
+2026-27,leaguePhase36,Paks,Paksi_FC,HUN,24,,3rd,0,5.437,,0
+2026-27,leaguePhase36,Debrecen,Debreceni_VSC,HUN,24,,4th,0,5.437,,0
+2026-27,leaguePhase36,Polissya Zhytomyr,FC_Polissya_Zhytomyr,UKR,23,24.4,3rd,0,5.182,,0
+2026-27,leaguePhase36,LNZ Cherkasy,FC_LNZ_Cherkasy,UKR,23,24.4,2nd,0,5.182,,0
+2026-27,leaguePhase36,Železničar Pančevo,FK_Železničar_Pančevo,SRB,22,25.5,4th,0,5.15,,0
+2026-27,leaguePhase36,Koper,FC_Koper,SVN,28,20.343,2nd,0,4.893,,0
+2026-27,leaguePhase36,Bravo,NK_Bravo,SVN,28,20.343,3rd,0,4.893,,0
+2026-27,leaguePhase36,Zimbru Chișinău,FC_Zimbru_Chișinău,MDA,32,14.5,3rd,0,4.5,,0
+2026-27,leaguePhase36,Valur,Valur_(men's_football),ISL,33,13.52,2nd,0,4.5,,0
+2026-27,leaguePhase36,Auda,FK_Auda,LVA,36,12.25,CW,0,4.5,,0
+2026-27,leaguePhase36,CSKA 1948,FC_CSKA_1948_Sofia,BUL,29,19.875,2nd,0,4.212,,0
+2026-27,leaguePhase36,Shelbourne,Shelbourne_F.C.,IRL,31,14.968,3rd,0,4,,0
+2026-27,leaguePhase36,Dukagjini,KF_Dukagjini,KOS,37,12.041,CW,0,2.797,,0
+2026-27,leaguePhase36,Valletta,Valletta_F.C.,MLT,41,8.5,CW,0,1.8,,0
+2026-27,leaguePhase36,Coleraine,Coleraine_F.C.,NIR,42,8.333,CW,0,1.45,,0

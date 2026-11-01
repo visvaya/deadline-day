@@ -1,0 +1,20 @@
+{
+  "seed": 268435460,
+  "poziom": "trudny",
+  "akcje": [
+    "START:trudny",
+    "TARG",
+    "BIERZ",
+    "PAS",
+    "TARG",
+    "BIERZ",
+    "PAS",
+    "TARG",
+    "BIERZ",
+    "PAS",
+    "TARG",
+    "BIERZ",
+    "PAS"
+  ],
+  "engineVersion": "reducer-v1"
+}

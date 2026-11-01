@@ -1,0 +1,71 @@
+version: 2
+
+# Weekly, grouped updates keep the PR count low on a single-maintainer repo.
+# Security updates are not grouped here: they arrive on their own as soon as
+# an advisory lands, independent of this schedule.
+#
+# Commit prefixes follow the repo's commitlint rules (conventional commits,
+# no subject-case rule), so a Dependabot commit passes the same gate as any
+# other.
+#
+# `cooldown` waits a week after a version is published before proposing it,
+# matching `minimumReleaseAge` in pnpm-workspace.yaml. Security updates skip
+# the cooldown, but pnpm still refuses a version younger than a week: a patch
+# that cannot wait goes into `minimumReleaseAgeExclude` by hand.
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      timezone: Europe/Warsaw
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: build
+      prefix-development: build
+      include: scope
+    # Group names stay short because they end up in the PR title, which the
+    # CI title check holds to commitlint's 72 characters: "build(deps-dev):
+    # bump the development-minor-patch group across 1 directory with 9
+    # updates" was 89 and failed PR #37 on 2026-10-19.
+    groups:
+      # Vitest refuses mixed versions of its packages: a major bump of
+      # `vitest` alone left `@vitest/coverage-v8` behind and broke coverage
+      # in every test file. The family moves together, majors included.
+      # Order alone did not keep it together: on 2026-10-07 `vitest` came in
+      # this group while `@vitest/coverage-v8` landed in the minor-and-patch
+      # group (then named development-minor-patch), so the other groups
+      # exclude it explicitly.
+      vitest:
+        patterns: ["vitest", "@vitest/*"]
+      # oxlint and oxfmt ship together from one repository, and the lint and
+      # format gates were migrated onto them as a pair; one PR keeps a new
+      # rule and a formatting change from landing as two unrelated failures.
+      # Before 1.0 a minor oxfmt bump can reformat files, so read that diff.
+      oxc:
+        patterns: ["oxlint", "oxfmt", "oxlint-*"]
+      prod:
+        dependency-type: production
+        update-types: [minor, patch]
+        exclude-patterns: ["vitest", "@vitest/*", "oxlint", "oxfmt", "oxlint-*"]
+      dev:
+        dependency-type: development
+        update-types: [minor, patch]
+        exclude-patterns: ["vitest", "@vitest/*", "oxlint", "oxfmt", "oxlint-*"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      timezone: Europe/Warsaw
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: ci
+      include: scope
+    groups:
+      actions:
+        patterns: ["*"]

@@ -1,0 +1,61 @@
+seed=268435482 clubId=legia-warszawa club=Legia budget=1.87 formation=4-4-2 tenureHandicap=0.00 legacyHandicap=0.00 rngDraws=150
+== S1 PROGNOZA miejsce=4 europa=0.00 przychod=9.34 place=2.39 bilans=6.15
+== S1 LATO ruchy=4
+    1 WOLNY        ŚP  ovr=80 wiek=31 ceiling=80 cena=0.00 -> BIERZ:OK cena=0.00 kasa=1.87 season=1 payrollBefore=2.39 payrollAfter=3.12 signedPlayerId=kmwqher signedAnnualWage=0.72 signedBaseAnnualWage=0.37
+    2 SPRZEDAZ     LO  ovr=63 wiek=20 ceiling=69 cena=0.48 -> BIERZ:OK cena=0.48 kasa=2.35 season=1 payrollBefore=3.12 payrollAfter=3.03 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=lechia-gdansk
+    3 KUPNO        PO  ovr=76 wiek=27 ceiling=79 cena=2.29 -> BIERZ:OK cena=2.29 kasa=0.06 season=1 payrollBefore=3.03 payrollAfter=3.29 signedPlayerId=i4o08ol signedAnnualWage=0.27 signedBaseAnnualWage=0.27
+    4 SPRZEDAZ     N   ovr=66 wiek=27 ceiling=70 cena=0.30 -> BIERZ:OK cena=0.30 kasa=0.36 season=1 payrollBefore=3.29 payrollAfter=3.18 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=polonia-warszawa
+== S1 R1 pkt=29 bz=26 bs=17
+== S1 ZIMA ruchy=2
+    5 SPRZEDAZ     N   ovr=68 wiek=22 ceiling=74 cena=0.99 -> BIERZ:OK cena=0.99 kasa=1.35 season=1 payrollBefore=3.18 payrollAfter=3.04 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=motor-lublin
+    6 KUPNO        LP  ovr=71 wiek=24 ceiling=72 cena=1.55 -> PAS:OK cena=1.55 kasa=1.35 season=1 payrollBefore=3.04 payrollAfter=3.04 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S1 KONIEC miejsce=3 pkt=54 bilans=7.22 place=3.04 puchar=tak europa=LE kampania=brak kasaEuro=0.00 kasa=3.52 sila=70.45 emeryci=0 bz=47 bs=35 superpuchar=wygrany rngDraws=1731
+== S2 PROGNOZA miejsce=2 europa=1.18 przychod=9.34 place=3.11 bilans=5.47
+== S2 LATO ruchy=4
+    7 KUPNO        LP  ovr=71 wiek=25 ceiling=74 cena=1.11 -> BIERZ:OK cena=1.11 kasa=2.41 season=2 payrollBefore=3.11 payrollAfter=3.29 signedPlayerId=f681k47 signedAnnualWage=0.18 signedBaseAnnualWage=0.18
+    8 PRZEDLUZENIE PO  ovr=63 wiek=20 ceiling=71 cena=0.11 -> BIERZ:OK cena=0.11 kasa=2.41 season=2 payrollBefore=3.29 payrollAfter=3.31 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    9 KUPNO        BR  ovr=71 wiek=24 ceiling=74 cena=0.90 -> BIERZ:OK cena=0.90 kasa=1.51 season=2 payrollBefore=3.31 payrollAfter=3.49 signedPlayerId=w661ot3 signedAnnualWage=0.18 signedBaseAnnualWage=0.18
+   10 SPRZEDAZ     ŚP  ovr=65 wiek=26 ceiling=67 cena=0.54 -> BIERZ:OK cena=0.54 kasa=2.05 season=2 payrollBefore=3.49 payrollAfter=3.38 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=zaglebie-lubin
+== S2 R1 pkt=26 bz=27 bs=21
+== S2 ZIMA ruchy=2
+   11 SPRZEDAZ     N   ovr=63 wiek=23 ceiling=68 cena=0.55 -> BIERZ:OK cena=0.55 kasa=2.60 season=2 payrollBefore=3.38 payrollAfter=3.33 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=lks-lodz
+   12 PANIC        BR  ovr=61 wiek=18 ceiling=72 cena=1.19 -> PAS:OK cena=1.19 kasa=2.60 season=2 payrollBefore=3.33 payrollAfter=3.33 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S2 KONIEC miejsce=9 pkt=47 bilans=6.11 place=3.33 puchar=nie europa=brak kampania=LE/league kasaEuro=1.00 kasa=4.43 sila=70.57 emeryci=1 bz=49 bs=46 superpuchar=brak rngDraws=3301
+== S3 PROGNOZA miejsce=2 europa=0.00 przychod=9.34 place=3.27 bilans=5.31
+== S3 LATO ruchy=4
+   13 PRZEDLUZENIE ŚO  ovr=62 wiek=35 ceiling=68 cena=0.12 -> BIERZ:OK cena=0.12 kasa=4.43 season=3 payrollBefore=3.27 payrollAfter=3.31 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   14 SPRZEDAZ     PP  ovr=71 wiek=29 ceiling=72 cena=0.94 -> BIERZ:OK cena=0.94 kasa=5.37 season=3 payrollBefore=3.31 payrollAfter=3.17 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=cracovia
+   15 KUPNO        LO  ovr=65 wiek=20 ceiling=70 cena=0.57 -> BIERZ:OK cena=0.57 kasa=4.80 season=3 payrollBefore=3.17 payrollAfter=3.28 signedPlayerId=ej08jgf signedAnnualWage=0.11 signedBaseAnnualWage=0.11
+   16 SPRZEDAZ     BR  ovr=70 wiek=32 ceiling=70 cena=0.68 -> BIERZ:OK cena=0.68 kasa=5.48 season=3 payrollBefore=3.28 payrollAfter=3.12 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=miedz-legnica
+== S3 R1 pkt=25 bz=19 bs=15
+== S3 ZIMA ruchy=2
+   17 KUPNO        LO  ovr=62 wiek=20 ceiling=62 cena=0.44 -> BIERZ:OK cena=0.44 kasa=5.04 season=3 payrollBefore=3.12 payrollAfter=3.20 signedPlayerId=qesez6p signedAnnualWage=0.08 signedBaseAnnualWage=0.08
+   18 PANIC        ŚO  ovr=62 wiek=19 ceiling=82 cena=1.19 -> BIERZ:OK cena=1.19 kasa=3.85 season=3 payrollBefore=3.20 payrollAfter=3.28 signedPlayerId=x2w968b signedAnnualWage=0.08 signedBaseAnnualWage=0.08
+== S3 KONIEC miejsce=5 pkt=50 bilans=5.24 place=3.28 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=5.42 sila=69.19 emeryci=1 bz=38 bs=33 superpuchar=brak rngDraws=4816
+== S4 PROGNOZA miejsce=4 europa=0.00 przychod=9.34 place=3.14 bilans=5.40
+== S4 LATO ruchy=4
+   19 PRZEDLUZENIE LP  ovr=61 wiek=21 ceiling=66 cena=0.11 -> BIERZ:OK cena=0.11 kasa=5.42 season=4 payrollBefore=3.14 payrollAfter=3.18 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   20 SPRZEDAZ     ŚO  ovr=69 wiek=20 ceiling=82 cena=2.35 -> BIERZ:OK cena=2.35 kasa=7.77 season=4 payrollBefore=3.18 payrollAfter=3.03 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=lecce
+   21 PRZEDLUZENIE ŚO  ovr=71 wiek=27 ceiling=72 cena=0.24 -> BIERZ:OK cena=0.24 kasa=7.77 season=4 payrollBefore=3.03 payrollAfter=3.09 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   22 PANIC        ŚP  ovr=60 wiek=17 ceiling=70 cena=1.19 -> BIERZ:OK cena=1.19 kasa=6.58 season=4 payrollBefore=3.09 payrollAfter=3.16 signedPlayerId=boqemi3 signedAnnualWage=0.07 signedBaseAnnualWage=0.07
+== S4 R1 pkt=30 bz=22 bs=12
+== S4 ZIMA ruchy=2
+   23 PRZEDLUZENIE N   ovr=57 wiek=19 ceiling=59 cena=0.07 -> BIERZ:OK cena=0.07 kasa=6.58 season=4 payrollBefore=3.16 payrollAfter=3.18 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   24 WOLNY        ŚP  ovr=71 wiek=31 ceiling=71 cena=0.00 -> BIERZ:OK cena=0.00 kasa=6.58 season=4 payrollBefore=3.18 payrollAfter=3.52 signedPlayerId=g85dwq7 signedAnnualWage=0.34 signedBaseAnnualWage=0.18
+== S4 KONIEC miejsce=4 pkt=57 bilans=6.42 place=3.52 puchar=tak europa=LE kampania=brak kasaEuro=0.00 kasa=8.51 sila=69.93 emeryci=0 bz=45 bs=28 superpuchar=przegrany rngDraws=6355
+== S5 PROGNOZA miejsce=2 europa=1.17 przychod=9.34 place=3.53 bilans=5.05
+== S5 LATO ruchy=4
+   25 PRZEDLUZENIE LO  ovr=68 wiek=22 ceiling=70 cena=0.21 -> BIERZ:OK cena=0.21 kasa=8.51 season=5 payrollBefore=3.53 payrollAfter=3.60 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   26 KUPNO        PO  ovr=62 wiek=20 ceiling=81 cena=0.35 -> BIERZ:OK cena=0.35 kasa=8.16 season=5 payrollBefore=3.60 payrollAfter=3.68 signedPlayerId=81t3f3f signedAnnualWage=0.08 signedBaseAnnualWage=0.08
+   27 PRZEDLUZENIE LP  ovr=61 wiek=29 ceiling=63 cena=0.11 -> BIERZ:OK cena=0.11 kasa=8.16 season=5 payrollBefore=3.68 payrollAfter=3.72 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   28 PANIC        BR  ovr=78 wiek=24 ceiling=79 cena=6.88 -> BIERZ:OK cena=6.88 kasa=1.28 season=5 payrollBefore=3.72 payrollAfter=4.03 signedPlayerId=eomhlcs signedAnnualWage=0.32 signedBaseAnnualWage=0.32
+== S5 R1 pkt=26 bz=17 bs=16
+== S5 ZIMA ruchy=2
+   29 KUPNO        LO  ovr=62 wiek=20 ceiling=94 cena=0.41 -> BIERZ:OK cena=0.41 kasa=0.87 season=5 payrollBefore=4.03 payrollAfter=4.12 signedPlayerId=cq0tnat signedAnnualWage=0.08 signedBaseAnnualWage=0.08
+   30 WOLNY        LO  ovr=79 wiek=33 ceiling=79 cena=0.00 -> BIERZ:OK cena=0.00 kasa=0.87 season=5 payrollBefore=4.12 payrollAfter=4.78 signedPlayerId=nt0zst2 signedAnnualWage=0.67 signedBaseAnnualWage=0.34
+== S5 KONIEC miejsce=9 pkt=47 bilans=4.46 place=4.78 puchar=nie europa=brak kampania=LE/qualifying>LK/qualifying kasaEuro=0.80 kasa=2.21 sila=71.50 emeryci=1 bz=31 bs=39 superpuchar=brak rngDraws=7893
+== WERDYKT ocena=337 tytul=KLUB Z DOŁU TABELI
+== EPILOG s6 miejsce=7 pkt=52 [PRZELOM]
+== EPILOG s7 miejsce=10 pkt=44 [PRZELOM, PUCHAR]
+== EPILOG s8 miejsce=3 pkt=53 [PRZELOM, FLOP]
+== KONIEC dziedzictwo=624 kasa=7.19 tytul=ARCHITEKT nastepny=700

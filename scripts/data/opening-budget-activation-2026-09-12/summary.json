@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 1,
+  "engineRevision": "2026-09-12.1",
+  "measuredAt": "2026-09-12",
+  "mode": "full",
+  "constants": {
+    "INITIAL_BUDGET_SHARE": 0.2,
+    "USEFUL_UPGRADE_OVR_DELTA": 2,
+    "BOARD_REINVESTMENT_RATE": 0.3,
+    "MIN_INITIAL_BUDGET": 0.75,
+    "VERDICT_KASA": 19.022988505747126,
+    "LEGACY_KASA": 17.98913043478261,
+    "LEGACY_WARTOSC_KADRY": 3.1929663214172073
+  },
+  "artefacts": {
+    "controlRaw": {
+      "path": "scripts/data/opening-budget-activation-2026-09-12/control-raw.csv",
+      "sha256": "9add34c5dac81a08c94a8a630ba87238c5bb2770e60a861d8235022362e30a92",
+      "rows": 18000
+    },
+    "controlSeasons": {
+      "path": "scripts/data/opening-budget-activation-2026-09-12/control-seasons.csv",
+      "sha256": "4a6a26f136ec2c7f68342295c3f3898b252a2f5c77639843ab8ded7543a46328",
+      "rows": 68502
+    },
+    "activeRaw": {
+      "path": "scripts/data/opening-budget-activation-2026-09-12/active-raw.csv",
+      "sha256": "eddbe506cba204ecbd3fe26ac16508c523f4c198c4069e81b081624fea840919",
+      "rows": 234000
+    },
+    "activeSeasons": {
+      "path": "scripts/data/opening-budget-activation-2026-09-12/active-seasons.csv",
+      "sha256": "a53ac0ce565be4b716fcac4a2733fccd38a289d878993bd20cbe321f6101c8eb",
+      "rows": 920585
+    },
+    "baseline": "scripts/data/legacy-unit-baseline.json"
+  },
+  "moneyScale": {
+    "balanceMedianOfClubMedians": -0.019950000000000002,
+    "withinTolerance": true
+  },
+  "cashDrift": [
+    {
+      "clubShortName": "Cracovia",
+      "careers": 1000,
+      "medianResidual": -0.04300000000000011,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "GKS",
+      "careers": 1000,
+      "medianResidual": -0.008500000000000063,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Górnik",
+      "careers": 1000,
+      "medianResidual": -0.06299999999999989,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Jagiellonia",
+      "careers": 1000,
+      "medianResidual": -0.033499999999999974,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Korona",
+      "careers": 1000,
+      "medianResidual": -0.019000000000000045,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Lech",
+      "careers": 1000,
+      "medianResidual": -0.06299999999999994,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Legia",
+      "careers": 1000,
+      "medianResidual": -0.0669999999999984,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Motor",
+      "careers": 1000,
+      "medianResidual": -0.013999999999999974,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Piast",
+      "careers": 1000,
+      "medianResidual": 0.012999999999999998,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Pogoń",
+      "careers": 1000,
+      "medianResidual": -0.0449999999999999,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Radomiak",
+      "careers": 1000,
+      "medianResidual": 0.015000000000000013,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Raków",
+      "careers": 1000,
+      "medianResidual": -0.07499999999999996,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Śląsk",
+      "careers": 1000,
+      "medianResidual": 0.01699999999999996,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Widzew",
+      "careers": 1000,
+      "medianResidual": -0.07399999999999989,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Wieczysta",
+      "careers": 1000,
+      "medianResidual": 0.01200000000000015,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Wisła K.",
+      "careers": 1000,
+      "medianResidual": 0.0050000000000000044,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Wisła P.",
+      "careers": 1000,
+      "medianResidual": -0.003000000000000058,
+      "withinTolerance": true
+    },
+    {
+      "clubShortName": "Zagłębie",
+      "careers": 1000,
+      "medianResidual": 0.004999999999999949,
+      "withinTolerance": true
+    }
+  ],
+  "budgets": [
+    {
+      "clubShortName": "Legia",
+      "budget": 1.87,
+      "cost": 1.533332185420262
+    },
+    {
+      "clubShortName": "Lech",
+      "budget": 1.75,
+      "cost": 1.7478079032243548
+    },
+    {
+      "clubShortName": "Widzew",
+      "budget": 1.53,
+      "cost": 1.533332185420262
+    },
+    {
+      "clubShortName": "Wieczysta",
+      "budget": 1.38,
+      "cost": 0.3994178615558216
+    },
+    {
+      "clubShortName": "Cracovia",
+      "budget": 1.34,
+      "cost": 1.3434985836028228
+    },
+    {
+      "clubShortName": "Górnik",
+      "budget": 1.18,
+      "cost": 1.1759757213145414
+    },
+    {
+      "clubShortName": "Raków",
+      "budget": 1.03,
+      "cost": 1.028520126994048
+    },
+    {
+      "clubShortName": "Wisła P.",
+      "budget": 0.9,
+      "cost": 0.8990117539645806
+    },
+    {
+      "clubShortName": "Pogoń",
+      "budget": 0.88,
+      "cost": 0.7854764136944026
+    },
+    {
+      "clubShortName": "Jagiellonia",
+      "budget": 0.79,
+      "cost": 0.7854764136944026
+    },
+    {
+      "clubShortName": "Korona",
+      "budget": 0.79,
+      "cost": 0.7854764136944026
+    },
+    {
+      "clubShortName": "Zagłębie",
+      "budget": 0.79,
+      "cost": 0.7854764136944026
+    },
+    {
+      "clubShortName": "GKS",
+      "budget": 0.79,
+      "cost": 0.7854764136944026
+    },
+    {
+      "clubShortName": "Śląsk",
+      "budget": 0.75,
+      "cost": 0.3490951594991936
+    },
+    {
+      "clubShortName": "Piast",
+      "budget": 0.75,
+      "cost": 0.3994178615558216
+    },
+    {
+      "clubShortName": "Radomiak",
+      "budget": 0.75,
+      "cost": 0.30524345214765
+    },
+    {
+      "clubShortName": "Motor",
+      "budget": 0.75,
+      "cost": 0.5992212523525616
+    },
+    {
+      "clubShortName": "Wisła K.",
+      "budget": 0.75,
+      "cost": 0.3994178615558216
+    }
+  ],
+  "playability": [
+    {
+      "clubShortName": "Śląsk",
+      "budget": 0.75,
+      "firstYearCost": 0.3490951594991936,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Piast",
+      "budget": 0.75,
+      "firstYearCost": 0.3994178615558216,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Radomiak",
+      "budget": 0.75,
+      "firstYearCost": 0.30524345214765,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Motor",
+      "budget": 0.75,
+      "firstYearCost": 0.5992212523525616,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Wisła K.",
+      "budget": 0.75,
+      "firstYearCost": 0.3994178615558216,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Jagiellonia",
+      "budget": 0.79,
+      "firstYearCost": 0.7854764136944026,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Korona",
+      "budget": 0.79,
+      "firstYearCost": 0.7854764136944026,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Zagłębie",
+      "budget": 0.79,
+      "firstYearCost": 0.7854764136944026,
+      "affordable": true
+    },
+    {
+      "clubShortName": "GKS",
+      "budget": 0.79,
+      "firstYearCost": 0.7854764136944026,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Pogoń",
+      "budget": 0.88,
+      "firstYearCost": 0.7854764136944026,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Wisła P.",
+      "budget": 0.9,
+      "firstYearCost": 0.8990117539645806,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Raków",
+      "budget": 1.03,
+      "firstYearCost": 1.028520126994048,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Górnik",
+      "budget": 1.18,
+      "firstYearCost": 1.1759757213145414,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Cracovia",
+      "budget": 1.34,
+      "firstYearCost": 1.3434985836028228,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Wieczysta",
+      "budget": 1.38,
+      "firstYearCost": 0.3994178615558216,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Widzew",
+      "budget": 1.53,
+      "firstYearCost": 1.533332185420262,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Lech",
+      "budget": 1.75,
+      "firstYearCost": 1.7478079032243548,
+      "affordable": true
+    },
+    {
+      "clubShortName": "Legia",
+      "budget": 1.87,
+      "firstYearCost": 1.533332185420262,
+      "affordable": true
+    }
+  ],
+  "clubsOnFloor": ["Śląsk", "Piast", "Radomiak", "Motor", "Wisła K."],
+  "backedClubs": [
+    {
+      "clubShortName": "Widzew",
+      "budget": 1.53,
+      "hasBackerFloor": true,
+      "backerFloorBinds": false,
+      "absoluteFloorBinds": false
+    },
+    {
+      "clubShortName": "Wieczysta",
+      "budget": 1.38,
+      "hasBackerFloor": true,
+      "backerFloorBinds": true,
+      "absoluteFloorBinds": false
+    },
+    {
+      "clubShortName": "Korona",
+      "budget": 0.79,
+      "hasBackerFloor": true,
+      "backerFloorBinds": false,
+      "absoluteFloorBinds": false
+    },
+    {
+      "clubShortName": "Motor",
+      "budget": 0.75,
+      "hasBackerFloor": false,
+      "backerFloorBinds": false,
+      "absoluteFloorBinds": true
+    }
+  ],
+  "europeanStarters": [
+    {
+      "clubShortName": "Lech",
+      "budget": 1.75,
+      "medianSeasonBalance": 2.4379,
+      "medianBudgetChange": 0.73137
+    },
+    {
+      "clubShortName": "Górnik",
+      "budget": 1.18,
+      "medianSeasonBalance": -0.483,
+      "medianBudgetChange": -0.1449
+    },
+    {
+      "clubShortName": "Jagiellonia",
+      "budget": 0.79,
+      "medianSeasonBalance": 0.6339,
+      "medianBudgetChange": 0.19017
+    },
+    {
+      "clubShortName": "Raków",
+      "budget": 1.03,
+      "medianSeasonBalance": 0.6261,
+      "medianBudgetChange": 0.18783
+    },
+    {
+      "clubShortName": "GKS",
+      "budget": 0.79,
+      "medianSeasonBalance": -0.9456,
+      "medianBudgetChange": -0.28368
+    }
+  ],
+  "cashUnits": {
+    "historicalProduct": 16.55,
+    "pooledMedianCashAtHandover": 0.87,
+    "pooledMedianFinalCash": 0.92,
+    "verdictKasaCandidate": 19.022988505747126,
+    "legacyKasaCandidate": 17.98913043478261,
+    "verdictUnit": {
+      "quantity": "kasa przy werdykcie",
+      "historicalProduct": 16.55,
+      "newMedian": 0.87,
+      "multiplier": 19.022988505747126,
+      "rebuiltProduct": 16.55,
+      "relativeError": 0,
+      "withinTolerance": true
+    },
+    "legacyUnit": {
+      "quantity": "kasa po epilogu",
+      "historicalProduct": 16.55,
+      "newMedian": 0.92,
+      "multiplier": 17.98913043478261,
+      "rebuiltProduct": 16.55,
+      "relativeError": 0,
+      "withinTolerance": true
+    }
+  },
+  "squadValue": {
+    "pooledMedian": 1.352815704587367,
+    "multiplier": 3.1929663214172073,
+    "rebuiltProduct": 4.319494983831753,
+    "historicalProduct": 3.9864753148485743,
+    "relativeShift": 0.0835373714074605
+  },
+  "rng": {
+    "snapshot": {
+      "path": "scripts/data/opening-budget-activation-2026-09-12/preactivation-rng.json",
+      "baseSha": "03e4d73a39a471528df670771c29564a346e2df2",
+      "toolSha": "cce808c163e6c317e7538eb1083af8ececd9f48c",
+      "engineVersion": "2026-09-10.1",
+      "careerCount": 18000
+    },
+    "attribution": {
+      "pairs": 18000,
+      "missingBefore": 0,
+      "missingAfter": 0,
+      "identicalPrelude": 18000,
+      "changedPreludeCount": 0,
+      "changedPrelude": [],
+      "changedTrofea": 154,
+      "unexplainedTrofeaCount": 0,
+      "unexplainedTrofea": [],
+      "changedVerdictTitle": 2349,
+      "changedVerdictClass": 336,
+      "identicalDraws": 17668,
+      "explainedByVerdictClass": 332,
+      "unexplainedDrawCount": 0,
+      "unexplainedDraws": [],
+      "seasonCountMismatchCount": 0,
+      "seasonCountMismatch": [],
+      "seasonBalanceMismatchCount": 0,
+      "seasonBalanceMismatch": [],
+      "seasonDrawMismatchCount": 0,
+      "seasonDrawMismatch": [],
+      "allAttributed": true
+    }
+  },
+  "gates": [
+    {
+      "name": "skala pieniądza",
+      "status": "passed",
+      "detail": "mediana klubowych median bilansu -0,0200 mln, tolerancja ±0,25"
+    },
+    {
+      "name": "dryf gotówki",
+      "status": "passed",
+      "detail": "18/18 klubów w granicy 0,50 mln wobec sum(prognoza × 0,30)"
+    },
+    {
+      "name": "grywalność",
+      "status": "passed",
+      "detail": "18/18 klubów stać na reprezentatywne wzmocnienie z pierwszym rokiem płacy"
+    },
+    {
+      "name": "podłoga",
+      "status": "passed",
+      "detail": "MIN_INITIAL_BUDGET wiąże u 5 klubów, oczekiwano 5 (Śląsk, Piast, Radomiak, Motor, Wisła K.)"
+    },
+    {
+      "name": "jednostki gotówki",
+      "status": "passed",
+      "detail": "VERDICT_KASA błąd 0,00%, LEGACY_KASA błąd 0,00%, tolerancja ±5,00%"
+    },
+    {
+      "name": "atrybucja RNG",
+      "status": "passed",
+      "detail": "17668 identycznych, 332 przypisanych klasie werdyktu, 0 nieprzypisanych"
+    }
+  ]
+}

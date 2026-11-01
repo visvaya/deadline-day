@@ -1,0 +1,26 @@
+seed=268435460 clubId=wisla-plock club=Wisła P. budget=0.90 formation=5-3-2 tenureHandicap=110.00 legacyHandicap=130.00 rngDraws=159
+== S1 PROGNOZA miejsce=14 europa=0.00 przychod=0.94 place=1.62 bilans=-1.68
+== S1 LATO ruchy=4
+    1 KUPNO        CLS ovr=57 wiek=18 ceiling=87 cena=0.19 -> TARG:UTARG_KWOTA cena=0.15 kasa=0.75 season=1 payrollBefore=1.62 payrollAfter=1.67 signedPlayerId=51prx00 signedAnnualWage=0.05 signedBaseAnnualWage=0.05
+    2 KUPNO        CPS ovr=70 wiek=28 ceiling=73 cena=0.55 -> BIERZ:OK cena=0.55 kasa=0.20 season=1 payrollBefore=1.67 payrollAfter=1.83 signedPlayerId=5bhz6h2 signedAnnualWage=0.16 signedBaseAnnualWage=0.16
+    3 KUPNO        CLS ovr=61 wiek=19 ceiling=80 cena=0.25 -> PAS:OK cena=0.25 kasa=0.20 season=1 payrollBefore=1.83 payrollAfter=1.83 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    4 WOLNY        CPS ovr=74 wiek=34 ceiling=74 cena=0.00 -> TARG:PRZEPADL cena=0.00 kasa=0.20 season=1 payrollBefore=1.83 payrollAfter=1.83 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S1 R1 pkt=23 bz=19 bs=22
+== S1 ZIMA ruchy=2
+    5 KUPNO        ŚPO ovr=69 wiek=24 ceiling=72 cena=0.25 -> BIERZ:BRAK_SRODKOW cena=0.25 kasa=0.20 season=1 payrollBefore=1.83 payrollAfter=1.83 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    6 PANIC        ŚP  ovr=72 wiek=28 ceiling=74 cena=0.25 -> PAS:OK cena=0.25 kasa=0.20 season=1 payrollBefore=1.83 payrollAfter=1.83 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S1 KONIEC miejsce=10 pkt=47 bilans=-1.81 place=1.83 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=-0.34 sila=63.89 emeryci=2 bz=47 bs=49 superpuchar=brak rngDraws=1791
+== S2 PROGNOZA miejsce=8 europa=0.00 przychod=0.94 place=2.06 bilans=-2.00
+== S2 LATO ruchy=4
+    7 SPRZEDAZ     CLS ovr=53 wiek=31 ceiling=55 cena=0.05 -> TARG:UTARG_KWOTA cena=0.06 kasa=-0.28 season=2 payrollBefore=2.06 payrollAfter=2.02 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=puszcza-niepolomice
+    8 KUPNO        CLS ovr=64 wiek=21 ceiling=71 cena=0.65 -> BIERZ:BRAK_SRODKOW cena=0.65 kasa=-0.28 season=2 payrollBefore=2.02 payrollAfter=2.02 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    9 KUPNO        CLS ovr=69 wiek=28 ceiling=70 cena=0.48 -> PAS:OK cena=0.48 kasa=-0.28 season=2 payrollBefore=2.02 payrollAfter=2.02 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   10 PANIC        ŚPO ovr=66 wiek=21 ceiling=75 cena=1.65 -> TARG:BRAK_SRODKOW cena=1.32 kasa=-0.28 season=2 payrollBefore=2.02 payrollAfter=2.02 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S2 R1 pkt=20 bz=27 bs=34
+== S2 ZIMA ruchy=2
+   11 WOLNY        BR  ovr=75 wiek=33 ceiling=75 cena=0.00 -> BIERZ:BRAK_SRODKOW cena=0.00 kasa=-0.28 season=2 payrollBefore=2.02 payrollAfter=2.02 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   12 SPRZEDAZ     ŚP  ovr=56 wiek=35 ceiling=59 cena=0.06 -> PAS:OK cena=0.06 kasa=-0.28 season=2 payrollBefore=2.02 payrollAfter=2.02 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=wieczysta-krakow
+== S2 KONIEC miejsce=18 pkt=37 bilans=-2.16 place=2.02 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=-0.93 sila=65.70 emeryci=1 bz=42 bs=61 superpuchar=brak rngDraws=3369
+== WERDYKT ocena=6 tytul=ROZWIĄZANIE KONTRAKTU
+== DRUGA_SZANSA ceiling=80
+== KONIEC dziedzictwo=74 kasa=-0.93 tytul=CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB nastepny=300

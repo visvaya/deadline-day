@@ -1,0 +1,62 @@
+seed=268435460 clubId=piast-gliwice club=Piast budget=0.75 formation=5-3-2 tenureHandicap=110.00 legacyHandicap=130.00 rngDraws=159
+== S1 PROGNOZA miejsce=17 europa=0.00 przychod=2.01 place=1.22 bilans=-0.27
+== S1 LATO ruchy=4
+    1 KUPNO        CLS ovr=57 wiek=18 ceiling=87 cena=0.19 -> TARG:UTARG_KWOTA cena=0.15 kasa=0.60 season=1 payrollBefore=1.22 payrollAfter=1.27 signedPlayerId=51prx00 signedAnnualWage=0.05 signedBaseAnnualWage=0.05
+    2 KUPNO        CPS ovr=70 wiek=28 ceiling=73 cena=0.55 -> TARG:PRZEPADL cena=0.55 kasa=0.60 season=1 payrollBefore=1.27 payrollAfter=1.27 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    3 KUPNO        CPS ovr=60 wiek=19 ceiling=81 cena=0.36 -> TARG:UTARG_PLACA cena=0.36 kasa=0.24 season=1 payrollBefore=1.27 payrollAfter=1.33 signedPlayerId=kvvqcrn signedAnnualWage=0.06 signedBaseAnnualWage=0.07
+    4 KUPNO        CPS ovr=75 wiek=26 ceiling=76 cena=0.30 -> TARG:UTARG_KWOTA cena=0.24 kasa=0.00 season=1 payrollBefore=1.33 payrollAfter=1.58 signedPlayerId=rthvxhd signedAnnualWage=0.25 signedBaseAnnualWage=0.25
+== S1 R1 pkt=22 bz=20 bs=29
+== S1 ZIMA ruchy=2
+    5 KUPNO        ŚPD ovr=58 wiek=19 ceiling=73 cena=0.54 -> TARG:BRAK_SRODKOW cena=0.43 kasa=0.00 season=1 payrollBefore=1.58 payrollAfter=1.58 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    6 SPRZEDAZ     BR  ovr=55 wiek=22 ceiling=63 cena=0.27 -> TARG:PRZEPADL cena=0.27 kasa=0.00 season=1 payrollBefore=1.58 payrollAfter=1.58 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=cracovia
+== S1 KONIEC miejsce=13 pkt=45 bilans=-0.55 place=1.58 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=-0.16 sila=61.56 emeryci=0 bz=46 bs=58 superpuchar=brak rngDraws=1786
+== S2 PROGNOZA miejsce=9 europa=0.00 przychod=2.01 place=1.86 bilans=-0.74
+== S2 LATO ruchy=4
+    7 WOLNY        BR  ovr=76 wiek=33 ceiling=76 cena=0.00 -> TARG:BRAK_SRODKOW cena=0.00 kasa=-0.16 season=2 payrollBefore=1.86 payrollAfter=1.86 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    8 KUPNO        ŚO  ovr=64 wiek=21 ceiling=71 cena=0.99 -> TARG:BRAK_SRODKOW cena=0.79 kasa=-0.16 season=2 payrollBefore=1.86 payrollAfter=1.86 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+    9 SPRZEDAZ     CN  ovr=66 wiek=27 ceiling=66 cena=0.47 -> TARG:UTARG_KWOTA cena=0.56 kasa=0.40 season=2 payrollBefore=1.86 payrollAfter=1.74 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=widzew-lodz
+   10 KUPNO        CN  ovr=60 wiek=17 ceiling=79 cena=0.50 -> TARG:BRAK_SRODKOW cena=0.50 kasa=0.40 season=2 payrollBefore=1.74 payrollAfter=1.74 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S2 R1 pkt=13 bz=14 bs=26
+== S2 ZIMA ruchy=2
+   11 SPRZEDAZ     CPS ovr=59 wiek=26 ceiling=61 cena=0.21 -> TARG:UTARG_KWOTA cena=0.25 kasa=0.65 season=2 payrollBefore=1.74 payrollAfter=1.67 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=pogon-szczecin
+   12 PRZEDLUZENIE N   ovr=60 wiek=20 ceiling=66 cena=0.10 -> TARG:PRZEPADL cena=0.10 kasa=0.65 season=2 payrollBefore=1.67 payrollAfter=1.60 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S2 KONIEC miejsce=14 pkt=39 bilans=-0.59 place=1.60 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=0.47 sila=62.54 emeryci=4 bz=38 bs=50 superpuchar=brak rngDraws=3377
+== S3 PROGNOZA miejsce=10 europa=0.00 przychod=2.01 place=1.70 bilans=-0.61
+== S3 LATO ruchy=4
+   13 SPRZEDAZ     ŚO  ovr=58 wiek=26 ceiling=59 cena=0.15 -> TARG:UTARG_KWOTA cena=0.18 kasa=0.65 season=3 payrollBefore=1.70 payrollAfter=1.64 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=gornik-zabrze
+   14 KUPNO        CLS ovr=67 wiek=21 ceiling=73 cena=0.56 -> TARG:UTARG_KWOTA cena=0.45 kasa=0.20 season=3 payrollBefore=1.64 payrollAfter=1.77 signedPlayerId=wy0sxy0 signedAnnualWage=0.13 signedBaseAnnualWage=0.13
+   15 KUPNO        ŚPD ovr=60 wiek=18 ceiling=77 cena=0.25 -> TARG:UTARG_KWOTA cena=0.20 kasa=0.00 season=3 payrollBefore=1.77 payrollAfter=1.84 signedPlayerId=gdb176w signedAnnualWage=0.07 signedBaseAnnualWage=0.07
+   16 KUPNO        ŚO  ovr=67 wiek=27 ceiling=70 cena=0.47 -> TARG:PRZEPADL cena=0.47 kasa=0.00 season=3 payrollBefore=1.84 payrollAfter=1.84 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S3 R1 pkt=21 bz=24 bs=25
+== S3 ZIMA ruchy=2
+   17 KUPNO        ŚPO ovr=69 wiek=24 ceiling=70 cena=1.26 -> TARG:BRAK_SRODKOW cena=1.26 kasa=0.00 season=3 payrollBefore=1.84 payrollAfter=1.84 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   18 PRZEDLUZENIE ŚPD ovr=62 wiek=32 ceiling=62 cena=0.11 -> TARG:UTARG_PLACA cena=0.09 kasa=0.00 season=3 payrollBefore=1.84 payrollAfter=1.85 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S3 KONIEC miejsce=11 pkt=46 bilans=-0.77 place=1.85 puchar=nie europa=brak kampania=brak kasaEuro=0.00 kasa=-0.23 sila=63.82 emeryci=0 bz=49 bs=46 superpuchar=brak rngDraws=4974
+== S4 PROGNOZA miejsce=9 europa=0.00 przychod=2.01 place=2.14 bilans=-1.02
+== S4 LATO ruchy=4
+   19 KUPNO        ŚPD ovr=63 wiek=24 ceiling=66 cena=0.56 -> TARG:BRAK_SRODKOW cena=0.45 kasa=-0.23 season=4 payrollBefore=2.14 payrollAfter=2.14 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   20 KUPNO        CN  ovr=64 wiek=18 ceiling=72 cena=0.73 -> TARG:BRAK_SRODKOW cena=0.73 kasa=-0.23 season=4 payrollBefore=2.14 payrollAfter=2.14 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   21 SPRZEDAZ     ŚP  ovr=63 wiek=25 ceiling=64 cena=0.32 -> TARG:PRZEPADL cena=0.32 kasa=-0.23 season=4 payrollBefore=2.14 payrollAfter=2.14 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=wieczysta-krakow
+   22 WOLNY        CLS ovr=79 wiek=31 ceiling=79 cena=0.00 -> TARG:BRAK_SRODKOW cena=0.00 kasa=-0.23 season=4 payrollBefore=2.14 payrollAfter=2.14 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S4 R1 pkt=26 bz=18 bs=13
+== S4 ZIMA ruchy=2
+   23 KUPNO        CPS ovr=74 wiek=25 ceiling=75 cena=1.44 -> TARG:PRZEPADL cena=1.44 kasa=-0.23 season=4 payrollBefore=2.14 payrollAfter=2.14 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   24 WOLNY        CLS ovr=77 wiek=31 ceiling=77 cena=0.00 -> TARG:PRZEPADL cena=0.00 kasa=-0.23 season=4 payrollBefore=2.14 payrollAfter=2.14 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S4 KONIEC miejsce=4 pkt=54 bilans=-0.92 place=2.14 puchar=nie europa=LE kampania=brak kasaEuro=0.00 kasa=-0.51 sila=65.12 emeryci=0 bz=35 bs=34 superpuchar=brak rngDraws=6492
+== S5 PROGNOZA miejsce=6 europa=1.11 przychod=2.01 place=2.36 bilans=-1.18
+== S5 LATO ruchy=4
+   25 KUPNO        ŚPD ovr=64 wiek=21 ceiling=64 cena=0.82 -> TARG:BRAK_SRODKOW cena=0.66 kasa=-0.51 season=5 payrollBefore=2.36 payrollAfter=2.36 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   26 KUPNO        CPS ovr=77 wiek=24 ceiling=78 cena=1.83 -> TARG:BRAK_SRODKOW cena=1.83 kasa=-0.51 season=5 payrollBefore=2.36 payrollAfter=2.36 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   27 KUPNO        ŚP  ovr=57 wiek=17 ceiling=64 cena=0.30 -> TARG:PRZEPADL cena=0.30 kasa=-0.51 season=5 payrollBefore=2.36 payrollAfter=2.36 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+   28 KUPNO        ŚP  ovr=56 wiek=18 ceiling=76 cena=0.25 -> TARG:PRZEPADL cena=0.25 kasa=-0.51 season=5 payrollBefore=2.36 payrollAfter=2.36 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S5 R1 pkt=31 bz=31 bs=15
+== S5 ZIMA ruchy=2
+   29 SPRZEDAZ     ŚPO ovr=59 wiek=28 ceiling=59 cena=0.19 -> TARG:UTARG_KWOTA cena=0.23 kasa=-0.28 season=5 payrollBefore=2.36 payrollAfter=2.34 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak buyer=slask-wroclaw
+   30 WOLNY        BR  ovr=77 wiek=34 ceiling=77 cena=0.00 -> TARG:PRZEPADL cena=0.00 kasa=-0.28 season=5 payrollBefore=2.34 payrollAfter=2.34 signedPlayerId=brak signedAnnualWage=brak signedBaseAnnualWage=brak
+== S5 KONIEC miejsce=3 pkt=58 bilans=0.10 place=2.34 puchar=nie europa=LE kampania=LE/qualifying>LK/league kasaEuro=1.20 kasa=-0.25 sila=65.94 emeryci=0 bz=57 bs=34 superpuchar=brak rngDraws=8091
+== WERDYKT ocena=237 tytul=KLUB Z DOŁU TABELI
+== EPILOG s6 miejsce=12 pkt=45 [PRZELOM]
+== EPILOG s7 miejsce=2 pkt=64 [PRZELOM]
+== EPILOG s8 miejsce=6 pkt=53 [SEZON_BEZ_HISTORII]
+== DRUGA_SZANSA ceiling=76
+== KONIEC dziedzictwo=427 kasa=-0.41 tytul=SOLIDNA ROBOTA nastepny=485

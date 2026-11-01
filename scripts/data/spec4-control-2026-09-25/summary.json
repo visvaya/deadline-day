@@ -1,0 +1,94 @@
+{
+  "measurement": "spec 4 control measurement (chapter 12.2)",
+  "date": "2026-09-25",
+  "engineRevision": "2026-09-22.2",
+  "runCommit": "4a027d4",
+  "auditCommit": "507fc80",
+  "commands": {
+    "control": "pnpm balance --clubs all --policies alwaysPass --runs 1000 --seed 0x5eed0001 --finance-control --dump-raw control-raw.csv --dump-seasons control-seasons.csv",
+    "active": "pnpm balance --clubs <batch> --runs 1000 --seed 0x5eed0001 --dump-raw --dump-seasons --dump-signings --dump-sales --dump-dilemmas, six batches of three clubs in ACTIVE_CLUBS order, concatenated (header once); equal in content to one --clubs all run",
+    "freeSignings": "rows of active-signings with offerType WOLNY, header kept",
+    "audits": "pnpm audit:opening-budget-activation (active restricted to its 13 original policies), pnpm audit:finance-activation, pnpm audit:spec4-control"
+  },
+  "wallTimeSeconds": {
+    "control": 209,
+    "activeBatches": [741, 661, 632, 661, 781, 611]
+  },
+  "careerErrors": 0,
+  "files": [
+    {
+      "path": "control-raw.csv.gz",
+      "dataRows": 18000,
+      "sha256Csv": "aa14c3d9fbf8fba61a491f391dc4504f93fcca835f1c4ab46b2ba2a1c5f62ce5",
+      "sha256Gz": "d7d867fe060a50672716ae253651a341650cf3ba4b11b2969ae82567277956b8",
+      "gzBytes": 716424,
+      "inHistory": true
+    },
+    {
+      "path": "control-seasons.csv.gz",
+      "dataRows": 68599,
+      "sha256Csv": "f8c61c877d83ec9b43c79aee8e300ce8aeec0ec9f98e92a50462524ae4982fbb",
+      "sha256Gz": "287b23eb93b90838fe80df278caed6dd06c24dd8ccdde77f85a39f88bedaa06d",
+      "gzBytes": 1323851,
+      "inHistory": true
+    },
+    {
+      "path": "active-dilemmas.csv.gz",
+      "dataRows": 270000,
+      "sha256Csv": "b4f5fe1e1801e1bf5bb77b2f56ef629cc8691e5ca4cf73c6d5abdbef53e76dfa",
+      "sha256Gz": "45000a0a0302ac60588dadca278aad20d542737de11c6ce0035ae5e0c587b87a",
+      "gzBytes": 3974588,
+      "inHistory": true
+    },
+    {
+      "path": "active-free-signings.csv.gz",
+      "dataRows": 311203,
+      "sha256Csv": "9bec7e08f77e35ddb8457caa58b2b85ac1947a40a3495e17f905c33a98f76a32",
+      "sha256Gz": "a72b1fb0f66cc0940bbd0144a4df9b79e714287f54d5f7a4946d9c54a84b71fe",
+      "gzBytes": 7206482,
+      "inHistory": true
+    },
+    {
+      "path": "active-raw.csv.gz",
+      "dataRows": 270000,
+      "sha256Csv": "09830f4ee21597e1d2c29139834f04872255df5d122014b418324b8349517a83",
+      "sha256Gz": "63efc32157b845889dd0861f9e50c25d5fab6ca3c6d9687a24d86776bfdf60b0",
+      "gzBytes": 15389670,
+      "inHistory": false
+    },
+    {
+      "path": "active-sales.csv.gz",
+      "dataRows": 1632050,
+      "sha256Csv": "5f4c5ba4cd23f3f9436e16f2bd7a7b9c6929976471fb4d56ac4694b9e62e8aac",
+      "sha256Gz": "da4aac0733b09e1f15155d33e2c41da1076d33e8a047c08dc447f0cb22baec33",
+      "gzBytes": 13942487,
+      "inHistory": false
+    },
+    {
+      "path": "active-seasons.csv.gz",
+      "dataRows": 1057564,
+      "sha256Csv": "4736b22574cbc127a2e85933dace719aede4a6ee10f61e26a16dae004857b8a0",
+      "sha256Gz": "6d4ebc7f4118b9c70fcb9bae9ef76fd7fe5c57238fc6a4bc9156ec46a244290d",
+      "gzBytes": 22856351,
+      "inHistory": false
+    },
+    {
+      "path": "active-signings.csv.gz",
+      "dataRows": 1061768,
+      "sha256Csv": "d2d4844f088dccb06c45bcf0254d5a1dd3af41208eaae3416d8547d0aeb9c4ea",
+      "sha256Gz": "00b206a4f5844a272b2f8cab17e244dc1699234a9e3e5bf852fc4d0184260334",
+      "gzBytes": 27860186,
+      "inHistory": false
+    }
+  ],
+  "dilemmasRegenerated": {
+    "commit": "dfbd9cb",
+    "reason": "first window of the career (final review fix); columns 1-19 unchanged, firstWindow* changed in 14212 of 270000 rows",
+    "command": "pnpm balance --clubs all --runs 1000 --seed 0x5eed0001 --dump-dilemmas active-dilemmas.csv",
+    "wallTimeSeconds": 2987
+  },
+  "comparison": {
+    "path": "compare-control-vs-2026-09-12.md",
+    "command": "pnpm balance:compare --before scripts/data/opening-budget-activation-2026-09-12/control-raw.csv --after control-raw.csv"
+  }
+}

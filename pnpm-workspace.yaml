@@ -1,0 +1,26 @@
+allowBuilds:
+  esbuild: true
+
+# Supply-chain guards. Most malicious npm versions are pulled within days of
+# publication, so a week-long delay keeps them out of the lockfile. Dependabot
+# uses the same window (`cooldown` in .github/dependabot.yml), so its update
+# PRs never propose a version this setting would reject.
+minimumReleaseAge: 10080 # minutes, 7 days
+
+# Refuse a version published with weaker provenance than an earlier one of the
+# same package (for example trusted publishing dropped to a plain token).
+trustPolicy: no-downgrade
+
+# Legitimate provenance "downgrades", each checked by hand before listing:
+# - semver@6.3.1 is the July 2023 ReDoS backport to the 6.x line, published
+#   manually by an npm maintainer three days after 7.5.4 came out of CI with
+#   provenance. pnpm compares by publish date, so it reads as a downgrade.
+trustPolicyExclude:
+  - semver@6.3.1
+
+# pnpm 12 records its own resolved version in a leading YAML document of
+# pnpm-lock.yaml when packageManager pins it. GitHub's dependency graph reads
+# only that first document, so it saw no project dependencies and Dependabot
+# raised no alerts. "ignore" drops the document; CI still installs exactly the
+# version in package.json#packageManager through pnpm/action-setup.
+pmOnFail: ignore

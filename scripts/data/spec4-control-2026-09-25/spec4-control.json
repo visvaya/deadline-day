@@ -1,0 +1,1468 @@
+{
+  "reportSchemaVersion": 1,
+  "measurementMode": "full",
+  "firstWindow": [
+    {
+      "clubId": "cracovia",
+      "windows": 1000,
+      "shareWithUseful": 0.769,
+      "shareWithUsefulHaggle": 0.868,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 99,
+      "failedOnPriceButHaggleReachable": 99,
+      "failedOnTargeting": 132,
+      "passesShare": true,
+      "passesMedian": true
+    },
+    {
+      "clubId": "gks-katowice",
+      "windows": 1000,
+      "shareWithUseful": 0.658,
+      "shareWithUsefulHaggle": 0.906,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 248,
+      "failedOnPriceButHaggleReachable": 248,
+      "failedOnTargeting": 94,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "gornik-zabrze",
+      "windows": 1000,
+      "shareWithUseful": 0.709,
+      "shareWithUsefulHaggle": 0.852,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 143,
+      "failedOnPriceButHaggleReachable": 143,
+      "failedOnTargeting": 148,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "jagiellonia-bialystok",
+      "windows": 1000,
+      "shareWithUseful": 0.64,
+      "shareWithUsefulHaggle": 0.891,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 251,
+      "failedOnPriceButHaggleReachable": 251,
+      "failedOnTargeting": 109,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "korona-kielce",
+      "windows": 1000,
+      "shareWithUseful": 0.655,
+      "shareWithUsefulHaggle": 0.902,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 247,
+      "failedOnPriceButHaggleReachable": 247,
+      "failedOnTargeting": 98,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "lech-poznan",
+      "windows": 1000,
+      "shareWithUseful": 0.605,
+      "shareWithUsefulHaggle": 0.693,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 88,
+      "failedOnPriceButHaggleReachable": 88,
+      "failedOnTargeting": 307,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "legia-warszawa",
+      "windows": 1000,
+      "shareWithUseful": 0.779,
+      "shareWithUsefulHaggle": 0.825,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 46,
+      "failedOnPriceButHaggleReachable": 46,
+      "failedOnTargeting": 175,
+      "passesShare": true,
+      "passesMedian": true
+    },
+    {
+      "clubId": "motor-lublin",
+      "windows": 1000,
+      "shareWithUseful": 0.664,
+      "shareWithUsefulHaggle": 0.909,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 245,
+      "failedOnPriceButHaggleReachable": 245,
+      "failedOnTargeting": 91,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "piast-gliwice",
+      "windows": 1000,
+      "shareWithUseful": 0.726,
+      "shareWithUsefulHaggle": 0.931,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 205,
+      "failedOnPriceButHaggleReachable": 205,
+      "failedOnTargeting": 69,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "pogon-szczecin",
+      "windows": 1000,
+      "shareWithUseful": 0.669,
+      "shareWithUsefulHaggle": 0.881,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 212,
+      "failedOnPriceButHaggleReachable": 212,
+      "failedOnTargeting": 119,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "radomiak-radom",
+      "windows": 1000,
+      "shareWithUseful": 0.731,
+      "shareWithUsefulHaggle": 0.933,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 202,
+      "failedOnPriceButHaggleReachable": 202,
+      "failedOnTargeting": 67,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "rakow-czestochowa",
+      "windows": 1000,
+      "shareWithUseful": 0.616,
+      "shareWithUsefulHaggle": 0.817,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 201,
+      "failedOnPriceButHaggleReachable": 201,
+      "failedOnTargeting": 183,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "slask-wroclaw",
+      "windows": 1000,
+      "shareWithUseful": 0.725,
+      "shareWithUsefulHaggle": 0.929,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 204,
+      "failedOnPriceButHaggleReachable": 204,
+      "failedOnTargeting": 71,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "widzew-lodz",
+      "windows": 1000,
+      "shareWithUseful": 0.726,
+      "shareWithUsefulHaggle": 0.815,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 89,
+      "failedOnPriceButHaggleReachable": 89,
+      "failedOnTargeting": 185,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "wieczysta-krakow",
+      "windows": 1000,
+      "shareWithUseful": 0.878,
+      "shareWithUsefulHaggle": 0.928,
+      "medianUsefulAffordable": 2,
+      "failedOnPrice": 50,
+      "failedOnPriceButHaggleReachable": 50,
+      "failedOnTargeting": 72,
+      "passesShare": true,
+      "passesMedian": true
+    },
+    {
+      "clubId": "wisla-krakow",
+      "windows": 1000,
+      "shareWithUseful": 0.67,
+      "shareWithUsefulHaggle": 0.907,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 237,
+      "failedOnPriceButHaggleReachable": 237,
+      "failedOnTargeting": 93,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "wisla-plock",
+      "windows": 1000,
+      "shareWithUseful": 0.713,
+      "shareWithUsefulHaggle": 0.906,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 193,
+      "failedOnPriceButHaggleReachable": 193,
+      "failedOnTargeting": 94,
+      "passesShare": false,
+      "passesMedian": true
+    },
+    {
+      "clubId": "zaglebie-lubin",
+      "windows": 1000,
+      "shareWithUseful": 0.671,
+      "shareWithUsefulHaggle": 0.908,
+      "medianUsefulAffordable": 1,
+      "failedOnPrice": 237,
+      "failedOnPriceButHaggleReachable": 237,
+      "failedOnTargeting": 92,
+      "passesShare": false,
+      "passesMedian": true
+    }
+  ],
+  "affordableShare": [
+    {
+      "key": "cracovia",
+      "dimension": "club",
+      "externalCards": 246849,
+      "share": 0.48178035965306726,
+      "atPriceCapShareOfExternal": 0.25131558159036493,
+      "atPriceCapShareOfPaidCards": 0.32232873509469256
+    },
+    {
+      "key": "gks-katowice",
+      "dimension": "club",
+      "externalCards": 217042,
+      "share": 0.34004939136204054,
+      "atPriceCapShareOfExternal": 0.3063969185687563,
+      "atPriceCapShareOfPaidCards": 0.3921511970751268
+    },
+    {
+      "key": "gornik-zabrze",
+      "dimension": "club",
+      "externalCards": 258060,
+      "share": 0.5164884135472371,
+      "atPriceCapShareOfExternal": 0.21315198015965278,
+      "atPriceCapShareOfPaidCards": 0.2738115386529942
+    },
+    {
+      "key": "jagiellonia-bialystok",
+      "dimension": "club",
+      "externalCards": 235752,
+      "share": 0.5237537751535511,
+      "atPriceCapShareOfExternal": 0.28666989039329466,
+      "atPriceCapShareOfPaidCards": 0.36766657962310134
+    },
+    {
+      "key": "korona-kielce",
+      "dimension": "club",
+      "externalCards": 222164,
+      "share": 0.3040321564249833,
+      "atPriceCapShareOfExternal": 0.2844115158171441,
+      "atPriceCapShareOfPaidCards": 0.36331332367349756
+    },
+    {
+      "key": "lech-poznan",
+      "dimension": "club",
+      "externalCards": 277559,
+      "share": 0.5844955486941515,
+      "atPriceCapShareOfExternal": 0.07213961716247717,
+      "atPriceCapShareOfPaidCards": 0.09260818085952677
+    },
+    {
+      "key": "legia-warszawa",
+      "dimension": "club",
+      "externalCards": 260671,
+      "share": 0.6899079682818572,
+      "atPriceCapShareOfExternal": 0.06227006456414407,
+      "atPriceCapShareOfPaidCards": 0.07974140048536535
+    },
+    {
+      "key": "motor-lublin",
+      "dimension": "club",
+      "externalCards": 214471,
+      "share": 0.40588238036844143,
+      "atPriceCapShareOfExternal": 0.3508492989728215,
+      "atPriceCapShareOfPaidCards": 0.44895438680230304
+    },
+    {
+      "key": "piast-gliwice",
+      "dimension": "club",
+      "externalCards": 167304,
+      "share": 0.4033734997370057,
+      "atPriceCapShareOfExternal": 0.36177855879118254,
+      "atPriceCapShareOfPaidCards": 0.46017988428407425
+    },
+    {
+      "key": "pogon-szczecin",
+      "dimension": "club",
+      "externalCards": 245216,
+      "share": 0.5674670494584366,
+      "atPriceCapShareOfExternal": 0.2350458371395015,
+      "atPriceCapShareOfPaidCards": 0.30094664236968655
+    },
+    {
+      "key": "radomiak-radom",
+      "dimension": "club",
+      "externalCards": 147360,
+      "share": 0.35444489685124864,
+      "atPriceCapShareOfExternal": 0.3326615092290988,
+      "atPriceCapShareOfPaidCards": 0.42212176009644364
+    },
+    {
+      "key": "rakow-czestochowa",
+      "dimension": "club",
+      "externalCards": 266453,
+      "share": 0.5241862542362068,
+      "atPriceCapShareOfExternal": 0.22523296791554231,
+      "atPriceCapShareOfPaidCards": 0.2893286730143425
+    },
+    {
+      "key": "slask-wroclaw",
+      "dimension": "club",
+      "externalCards": 166056,
+      "share": 0.44801753625283036,
+      "atPriceCapShareOfExternal": 0.3782519150166209,
+      "atPriceCapShareOfPaidCards": 0.48160558196595615
+    },
+    {
+      "key": "widzew-lodz",
+      "dimension": "club",
+      "externalCards": 268970,
+      "share": 0.5177306019258653,
+      "atPriceCapShareOfExternal": 0.21025021377848832,
+      "atPriceCapShareOfPaidCards": 0.27056470712067787
+    },
+    {
+      "key": "wieczysta-krakow",
+      "dimension": "club",
+      "externalCards": 175619,
+      "share": 0.41616795449239546,
+      "atPriceCapShareOfExternal": 0.23091465046492693,
+      "atPriceCapShareOfPaidCards": 0.29452606962066685
+    },
+    {
+      "key": "wisla-krakow",
+      "dimension": "club",
+      "externalCards": 201879,
+      "share": 0.4614348198673463,
+      "atPriceCapShareOfExternal": 0.3612758137300066,
+      "atPriceCapShareOfPaidCards": 0.46079100328531714
+    },
+    {
+      "key": "wisla-plock",
+      "dimension": "club",
+      "externalCards": 208791,
+      "share": 0.27183642973116656,
+      "atPriceCapShareOfExternal": 0.22442538232011916,
+      "atPriceCapShareOfPaidCards": 0.28770008165971844
+    },
+    {
+      "key": "zaglebie-lubin",
+      "dimension": "club",
+      "externalCards": 201401,
+      "share": 0.4533592186731943,
+      "atPriceCapShareOfExternal": 0.35006777523448246,
+      "atPriceCapShareOfPaidCards": 0.44680473522776243
+    },
+    {
+      "key": "alwaysHaggle",
+      "dimension": "policy",
+      "externalCards": 272608,
+      "share": 0.47344905505341,
+      "atPriceCapShareOfExternal": 0.19737131705599248,
+      "atPriceCapShareOfPaidCards": 0.2527254707631318
+    },
+    {
+      "key": "alwaysPass",
+      "dimension": "policy",
+      "externalCards": 259005,
+      "share": 0.5751510588598676,
+      "atPriceCapShareOfExternal": 0.18276481149012566,
+      "atPriceCapShareOfPaidCards": 0.23352540132013852
+    },
+    {
+      "key": "alwaysTake",
+      "dimension": "policy",
+      "externalCards": 270493,
+      "share": 0.4753283818804923,
+      "atPriceCapShareOfExternal": 0.27351539596218755,
+      "atPriceCapShareOfPaidCards": 0.3505071608938918
+    },
+    {
+      "key": "analystEdgeBuy",
+      "dimension": "policy",
+      "externalCards": 264976,
+      "share": 0.43320527142080795,
+      "atPriceCapShareOfExternal": 0.2753683352454562,
+      "atPriceCapShareOfPaidCards": 0.3519503759906231
+    },
+    {
+      "key": "depthFirst",
+      "dimension": "policy",
+      "externalCards": 276206,
+      "share": 0.3064415689738818,
+      "atPriceCapShareOfExternal": 0.30120996647429815,
+      "atPriceCapShareOfPaidCards": 0.38565945374645383
+    },
+    {
+      "key": "mixed",
+      "dimension": "policy",
+      "externalCards": 268021,
+      "share": 0.46891101816648695,
+      "atPriceCapShareOfExternal": 0.24600311169647154,
+      "atPriceCapShareOfPaidCards": 0.3147748539128442
+    },
+    {
+      "key": "primeOnly",
+      "dimension": "policy",
+      "externalCards": 258327,
+      "share": 0.5139067925536239,
+      "atPriceCapShareOfExternal": 0.2514100345685894,
+      "atPriceCapShareOfPaidCards": 0.32135417439794955
+    },
+    {
+      "key": "primeOnlyBuy",
+      "dimension": "policy",
+      "externalCards": 263247,
+      "share": 0.4291786800989185,
+      "atPriceCapShareOfExternal": 0.2912321887808788,
+      "atPriceCapShareOfPaidCards": 0.37228070856965273
+    },
+    {
+      "key": "stallThenTake",
+      "dimension": "policy",
+      "externalCards": 266790,
+      "share": 0.4265452228344391,
+      "atPriceCapShareOfExternal": 0.2945949998125867,
+      "atPriceCapShareOfPaidCards": 0.37756651069839836
+    },
+    {
+      "key": "veteranOnly",
+      "dimension": "policy",
+      "externalCards": 272509,
+      "share": 0.5595521615799846,
+      "atPriceCapShareOfExternal": 0.18047844291381201,
+      "atPriceCapShareOfPaidCards": 0.23119773230478502
+    },
+    {
+      "key": "veteranOnlyBuy",
+      "dimension": "policy",
+      "externalCards": 274213,
+      "share": 0.509228227691612,
+      "atPriceCapShareOfExternal": 0.19725177143315598,
+      "atPriceCapShareOfPaidCards": 0.25314269668179906
+    },
+    {
+      "key": "youngBuySellAlways",
+      "dimension": "policy",
+      "externalCards": 250218,
+      "share": 0.6105995571861337,
+      "atPriceCapShareOfExternal": 0.20456162226538457,
+      "atPriceCapShareOfPaidCards": 0.2619391222467862
+    },
+    {
+      "key": "youngBuySellStars",
+      "dimension": "policy",
+      "externalCards": 262783,
+      "share": 0.3954593714205257,
+      "atPriceCapShareOfExternal": 0.3113709790968213,
+      "atPriceCapShareOfPaidCards": 0.3985242188831795
+    },
+    {
+      "key": "youngOnly",
+      "dimension": "policy",
+      "externalCards": 259422,
+      "share": 0.5036619870327111,
+      "atPriceCapShareOfExternal": 0.2582086330380615,
+      "atPriceCapShareOfPaidCards": 0.33021611815510815
+    },
+    {
+      "key": "youngOnlyBuy",
+      "dimension": "policy",
+      "externalCards": 262799,
+      "share": 0.3878325259989574,
+      "atPriceCapShareOfExternal": 0.314049901255332,
+      "atPriceCapShareOfPaidCards": 0.40190502162141106
+    }
+  ],
+  "pressure": [
+    {
+      "clubId": "cracovia",
+      "windowsUnderPressureShare": 0.7594117201121977,
+      "thresholdCrossingSalesPer100Sales": 27.590932450179867,
+      "thresholdCrossingSalesPerCareer": 0.6442666666666667
+    },
+    {
+      "clubId": "gks-katowice",
+      "windowsUnderPressureShare": 0.6606564513320564,
+      "thresholdCrossingSalesPer100Sales": 20.35833891493637,
+      "thresholdCrossingSalesPerCareer": 0.40526666666666666
+    },
+    {
+      "clubId": "gornik-zabrze",
+      "windowsUnderPressureShare": 0.4037022051385798,
+      "thresholdCrossingSalesPer100Sales": 18.44406308735801,
+      "thresholdCrossingSalesPerCareer": 0.4514
+    },
+    {
+      "clubId": "jagiellonia-bialystok",
+      "windowsUnderPressureShare": 0.3297674640236348,
+      "thresholdCrossingSalesPer100Sales": 18.37549134335524,
+      "thresholdCrossingSalesPerCareer": 0.40826666666666667
+    },
+    {
+      "clubId": "korona-kielce",
+      "windowsUnderPressureShare": 0.6865642604591362,
+      "thresholdCrossingSalesPer100Sales": 20.121578591875462,
+      "thresholdCrossingSalesPerCareer": 0.41706666666666664
+    },
+    {
+      "clubId": "lech-poznan",
+      "windowsUnderPressureShare": 0.1481884203884929,
+      "thresholdCrossingSalesPer100Sales": 11.090107120352867,
+      "thresholdCrossingSalesPerCareer": 0.29333333333333333
+    },
+    {
+      "clubId": "legia-warszawa",
+      "windowsUnderPressureShare": 0.09089352472817556,
+      "thresholdCrossingSalesPer100Sales": 6.946500317191795,
+      "thresholdCrossingSalesPerCareer": 0.1752
+    },
+    {
+      "clubId": "motor-lublin",
+      "windowsUnderPressureShare": 0.48628560383757097,
+      "thresholdCrossingSalesPer100Sales": 21.754421221864952,
+      "thresholdCrossingSalesPerCareer": 0.433
+    },
+    {
+      "clubId": "piast-gliwice",
+      "windowsUnderPressureShare": 0.4135718876239442,
+      "thresholdCrossingSalesPer100Sales": 19.23816852635629,
+      "thresholdCrossingSalesPerCareer": 0.3
+    },
+    {
+      "clubId": "pogon-szczecin",
+      "windowsUnderPressureShare": 0.24042546711538168,
+      "thresholdCrossingSalesPer100Sales": 16.381263804032926,
+      "thresholdCrossingSalesPerCareer": 0.3807333333333333
+    },
+    {
+      "clubId": "radomiak-radom",
+      "windowsUnderPressureShare": 0.4503455946611583,
+      "thresholdCrossingSalesPer100Sales": 16.897173782321108,
+      "thresholdCrossingSalesPerCareer": 0.2248
+    },
+    {
+      "clubId": "rakow-czestochowa",
+      "windowsUnderPressureShare": 0.3397687441522714,
+      "thresholdCrossingSalesPer100Sales": 18.59565683225756,
+      "thresholdCrossingSalesPerCareer": 0.4744
+    },
+    {
+      "clubId": "slask-wroclaw",
+      "windowsUnderPressureShare": 0.3185317857225931,
+      "thresholdCrossingSalesPer100Sales": 18.17181101668795,
+      "thresholdCrossingSalesPerCareer": 0.27513333333333334
+    },
+    {
+      "clubId": "widzew-lodz",
+      "windowsUnderPressureShare": 0.6323859386686612,
+      "thresholdCrossingSalesPer100Sales": 26.682528891910266,
+      "thresholdCrossingSalesPerCareer": 0.6803333333333333
+    },
+    {
+      "clubId": "wieczysta-krakow",
+      "windowsUnderPressureShare": 0.4659021739130435,
+      "thresholdCrossingSalesPer100Sales": 15.415276986903114,
+      "thresholdCrossingSalesPerCareer": 0.25266666666666665
+    },
+    {
+      "clubId": "wisla-krakow",
+      "windowsUnderPressureShare": 0.2964301768055139,
+      "thresholdCrossingSalesPer100Sales": 17.92422907488987,
+      "thresholdCrossingSalesPerCareer": 0.3390666666666667
+    },
+    {
+      "clubId": "wisla-plock",
+      "windowsUnderPressureShare": 0.7301044030867,
+      "thresholdCrossingSalesPer100Sales": 16.187799292109098,
+      "thresholdCrossingSalesPerCareer": 0.311
+    },
+    {
+      "clubId": "zaglebie-lubin",
+      "windowsUnderPressureShare": 0.4917699730995692,
+      "thresholdCrossingSalesPer100Sales": 19.94143076279459,
+      "thresholdCrossingSalesPerCareer": 0.38133333333333336
+    }
+  ],
+  "stars": [
+    {
+      "clubId": "cracovia",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 59,
+      "legacy": {
+        "meanDiff": 1.192,
+        "standardError": 0.8312605669283987,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.16804999999999992,
+        "standardError": 0.029069357148465414,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 20.203389830508474,
+        "standardError": 13.967918064064822,
+        "pairedSeeds": 59
+      },
+      "titlesKeep": {
+        "ARCHITEKT": 88,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 306,
+        "SOLIDNA ROBOTA": 221,
+        "ZAPOMNIANY": 105,
+        "UCZCIWY WYROBNIK": 267,
+        "LEGENDA GABINETU": 13
+      },
+      "titlesSell": {
+        "ARCHITEKT": 98,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 309,
+        "SOLIDNA ROBOTA": 218,
+        "ZAPOMNIANY": 104,
+        "UCZCIWY WYROBNIK": 254,
+        "LEGENDA GABINETU": 17
+      }
+    },
+    {
+      "clubId": "gks-katowice",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 42,
+      "legacy": {
+        "meanDiff": -0.5,
+        "standardError": 0.5948881339309869,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.07344000000000003,
+        "standardError": 0.018355421212488877,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": -11.904761904761905,
+        "standardError": 14.212499182499698,
+        "pairedSeeds": 42
+      },
+      "titlesKeep": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 522,
+        "UCZCIWY WYROBNIK": 191,
+        "ZAPOMNIANY": 178,
+        "ARCHITEKT": 14,
+        "SOLIDNA ROBOTA": 94,
+        "LEGENDA GABINETU": 1
+      },
+      "titlesSell": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 525,
+        "UCZCIWY WYROBNIK": 188,
+        "ZAPOMNIANY": 181,
+        "ARCHITEKT": 17,
+        "SOLIDNA ROBOTA": 88,
+        "LEGENDA GABINETU": 1
+      }
+    },
+    {
+      "clubId": "gornik-zabrze",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 78,
+      "legacy": {
+        "meanDiff": 1.995,
+        "standardError": 0.7430404323346648,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.21733000000000002,
+        "standardError": 0.0318111508817337,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 25.576923076923077,
+        "standardError": 9.165215322348844,
+        "pairedSeeds": 78
+      },
+      "titlesKeep": {
+        "SOLIDNA ROBOTA": 295,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 171,
+        "ARCHITEKT": 195,
+        "LEGENDA GABINETU": 30,
+        "UCZCIWY WYROBNIK": 235,
+        "ZAPOMNIANY": 74
+      },
+      "titlesSell": {
+        "SOLIDNA ROBOTA": 297,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 171,
+        "ARCHITEKT": 204,
+        "LEGENDA GABINETU": 34,
+        "UCZCIWY WYROBNIK": 223,
+        "ZAPOMNIANY": 71
+      }
+    },
+    {
+      "clubId": "jagiellonia-bialystok",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 90,
+      "legacy": {
+        "meanDiff": -0.064,
+        "standardError": 1.0230085290213582,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.17226000000000005,
+        "standardError": 0.02651862231960282,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": -0.7111111111111111,
+        "standardError": 11.424498332899047,
+        "pairedSeeds": 90
+      },
+      "titlesKeep": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 349,
+        "SOLIDNA ROBOTA": 195,
+        "UCZCIWY WYROBNIK": 262,
+        "ZAPOMNIANY": 122,
+        "ARCHITEKT": 67,
+        "LEGENDA GABINETU": 5
+      },
+      "titlesSell": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 356,
+        "SOLIDNA ROBOTA": 203,
+        "UCZCIWY WYROBNIK": 244,
+        "ARCHITEKT": 71,
+        "ZAPOMNIANY": 121,
+        "LEGENDA GABINETU": 5
+      }
+    },
+    {
+      "clubId": "korona-kielce",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 50,
+      "legacy": {
+        "meanDiff": 0.889,
+        "standardError": 0.6178838559627965,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.08766999999999998,
+        "standardError": 0.018554777035870166,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 17.78,
+        "standardError": 12.228814750583215,
+        "pairedSeeds": 50
+      },
+      "titlesKeep": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 500,
+        "SOLIDNA ROBOTA": 91,
+        "UCZCIWY WYROBNIK": 199,
+        "ZAPOMNIANY": 190,
+        "ARCHITEKT": 19,
+        "LEGENDA GABINETU": 1
+      },
+      "titlesSell": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 496,
+        "SOLIDNA ROBOTA": 92,
+        "ZAPOMNIANY": 190,
+        "UCZCIWY WYROBNIK": 200,
+        "ARCHITEKT": 21,
+        "LEGENDA GABINETU": 1
+      }
+    },
+    {
+      "clubId": "lech-poznan",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 28,
+      "legacy": {
+        "meanDiff": 1.436,
+        "standardError": 0.7654448443942965,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.13457,
+        "standardError": 0.030015184930738,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 51.285714285714285,
+        "standardError": 26.068076177885168,
+        "pairedSeeds": 28
+      },
+      "titlesKeep": {
+        "LEGENDA GABINETU": 765,
+        "UCZCIWY WYROBNIK": 4,
+        "ARCHITEKT": 186,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 13,
+        "SOLIDNA ROBOTA": 31,
+        "ZAPOMNIANY": 1
+      },
+      "titlesSell": {
+        "LEGENDA GABINETU": 766,
+        "UCZCIWY WYROBNIK": 4,
+        "ARCHITEKT": 183,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 14,
+        "SOLIDNA ROBOTA": 31,
+        "ZAPOMNIANY": 2
+      }
+    },
+    {
+      "clubId": "legia-warszawa",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 78,
+      "legacy": {
+        "meanDiff": 2.961,
+        "standardError": 1.0052472337693859,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.3175300000000001,
+        "standardError": 0.04535789829829025,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 37.96153846153846,
+        "standardError": 12.281218144662223,
+        "pairedSeeds": 78
+      },
+      "titlesKeep": {
+        "LEGENDA GABINETU": 649,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 125,
+        "ARCHITEKT": 185,
+        "SOLIDNA ROBOTA": 18,
+        "UCZCIWY WYROBNIK": 8,
+        "ZAPOMNIANY": 15
+      },
+      "titlesSell": {
+        "LEGENDA GABINETU": 662,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 126,
+        "ARCHITEKT": 169,
+        "SOLIDNA ROBOTA": 17,
+        "UCZCIWY WYROBNIK": 10,
+        "ZAPOMNIANY": 16
+      }
+    },
+    {
+      "clubId": "motor-lublin",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 60,
+      "legacy": {
+        "meanDiff": -0.204,
+        "standardError": 0.7341439581930463,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.09319000000000001,
+        "standardError": 0.017119398286671816,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": -3.4,
+        "standardError": 12.325349377933899,
+        "pairedSeeds": 60
+      },
+      "titlesKeep": {
+        "ARCHITEKT": 46,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 493,
+        "UCZCIWY WYROBNIK": 227,
+        "ZAPOMNIANY": 83,
+        "SOLIDNA ROBOTA": 148,
+        "LEGENDA GABINETU": 3
+      },
+      "titlesSell": {
+        "ARCHITEKT": 48,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 499,
+        "UCZCIWY WYROBNIK": 213,
+        "SOLIDNA ROBOTA": 150,
+        "ZAPOMNIANY": 86,
+        "LEGENDA GABINETU": 4
+      }
+    },
+    {
+      "clubId": "piast-gliwice",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 65,
+      "legacy": {
+        "meanDiff": 2.252,
+        "standardError": 0.8208607118800997,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.08974000000000004,
+        "standardError": 0.017283467552856722,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 34.646153846153844,
+        "standardError": 12.011481501872384,
+        "pairedSeeds": 65
+      },
+      "titlesKeep": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 817,
+        "UCZCIWY WYROBNIK": 82,
+        "ZAPOMNIANY": 74,
+        "SOLIDNA ROBOTA": 25,
+        "ARCHITEKT": 2
+      },
+      "titlesSell": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 807,
+        "UCZCIWY WYROBNIK": 87,
+        "ZAPOMNIANY": 76,
+        "SOLIDNA ROBOTA": 26,
+        "ARCHITEKT": 4
+      }
+    },
+    {
+      "clubId": "pogon-szczecin",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 89,
+      "legacy": {
+        "meanDiff": 1.9,
+        "standardError": 1.0127159491158328,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.21513000000000002,
+        "standardError": 0.034181781364891785,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 21.348314606741575,
+        "standardError": 11.229431328799858,
+        "pairedSeeds": 89
+      },
+      "titlesKeep": {
+        "SOLIDNA ROBOTA": 263,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 296,
+        "UCZCIWY WYROBNIK": 240,
+        "LEGENDA GABINETU": 19,
+        "ZAPOMNIANY": 91,
+        "ARCHITEKT": 91
+      },
+      "titlesSell": {
+        "SOLIDNA ROBOTA": 257,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 298,
+        "UCZCIWY WYROBNIK": 237,
+        "ARCHITEKT": 96,
+        "ZAPOMNIANY": 88,
+        "LEGENDA GABINETU": 24
+      }
+    },
+    {
+      "clubId": "radomiak-radom",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 46,
+      "legacy": {
+        "meanDiff": 0.596,
+        "standardError": 0.6702895434601891,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.05573999999999999,
+        "standardError": 0.011383146683954773,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 12.956521739130435,
+        "standardError": 14.603816472982652,
+        "pairedSeeds": 46
+      },
+      "titlesKeep": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 893,
+        "ZAPOMNIANY": 60,
+        "UCZCIWY WYROBNIK": 42,
+        "SOLIDNA ROBOTA": 5
+      },
+      "titlesSell": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 892,
+        "ZAPOMNIANY": 55,
+        "UCZCIWY WYROBNIK": 47,
+        "SOLIDNA ROBOTA": 6
+      }
+    },
+    {
+      "clubId": "rakow-czestochowa",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 43,
+      "legacy": {
+        "meanDiff": 1.085,
+        "standardError": 0.6109116040704943,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.13746,
+        "standardError": 0.02549563051927891,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 25.232558139534884,
+        "standardError": 13.854161981819635,
+        "pairedSeeds": 43
+      },
+      "titlesKeep": {
+        "SOLIDNA ROBOTA": 311,
+        "UCZCIWY WYROBNIK": 194,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 96,
+        "LEGENDA GABINETU": 82,
+        "ARCHITEKT": 250,
+        "ZAPOMNIANY": 67
+      },
+      "titlesSell": {
+        "SOLIDNA ROBOTA": 306,
+        "UCZCIWY WYROBNIK": 184,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 98,
+        "LEGENDA GABINETU": 83,
+        "ARCHITEKT": 261,
+        "ZAPOMNIANY": 68
+      }
+    },
+    {
+      "clubId": "slask-wroclaw",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 73,
+      "legacy": {
+        "meanDiff": 2.882,
+        "standardError": 0.995362658945378,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.09699000000000002,
+        "standardError": 0.01788476179893372,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 39.47945205479452,
+        "standardError": 12.970830017792705,
+        "pairedSeeds": 73
+      },
+      "titlesKeep": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 799,
+        "ZAPOMNIANY": 56,
+        "UCZCIWY WYROBNIK": 98,
+        "SOLIDNA ROBOTA": 45,
+        "ARCHITEKT": 2
+      },
+      "titlesSell": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 787,
+        "ZAPOMNIANY": 61,
+        "UCZCIWY WYROBNIK": 95,
+        "SOLIDNA ROBOTA": 51,
+        "ARCHITEKT": 6
+      }
+    },
+    {
+      "clubId": "widzew-lodz",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 53,
+      "legacy": {
+        "meanDiff": 2.102,
+        "standardError": 0.6028557298649722,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.18963000000000008,
+        "standardError": 0.032385638679709575,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 39.660377358490564,
+        "standardError": 10.153464786321605,
+        "pairedSeeds": 53
+      },
+      "titlesKeep": {
+        "ZAPOMNIANY": 165,
+        "SOLIDNA ROBOTA": 283,
+        "UCZCIWY WYROBNIK": 258,
+        "ARCHITEKT": 141,
+        "LEGENDA GABINETU": 28,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 125
+      },
+      "titlesSell": {
+        "ZAPOMNIANY": 158,
+        "SOLIDNA ROBOTA": 281,
+        "UCZCIWY WYROBNIK": 251,
+        "ARCHITEKT": 151,
+        "LEGENDA GABINETU": 31,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 128
+      }
+    },
+    {
+      "clubId": "wieczysta-krakow",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 98,
+      "legacy": {
+        "meanDiff": 0.629,
+        "standardError": 1.0564380816784427,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.16277999999999998,
+        "standardError": 0.024145481479479133,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 6.418367346938775,
+        "standardError": 10.812285477447453,
+        "pairedSeeds": 98
+      },
+      "titlesKeep": {
+        "ZAPOMNIANY": 144,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 820,
+        "SOLIDNA ROBOTA": 4,
+        "UCZCIWY WYROBNIK": 30,
+        "ARCHITEKT": 2
+      },
+      "titlesSell": {
+        "ZAPOMNIANY": 132,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 826,
+        "SOLIDNA ROBOTA": 4,
+        "UCZCIWY WYROBNIK": 35,
+        "ARCHITEKT": 3
+      }
+    },
+    {
+      "clubId": "wisla-krakow",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 70,
+      "legacy": {
+        "meanDiff": 2.027,
+        "standardError": 0.8910534480306145,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.12123000000000005,
+        "standardError": 0.02103377300216729,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 28.957142857142856,
+        "standardError": 12.366009576348965,
+        "pairedSeeds": 70
+      },
+      "titlesKeep": {
+        "ZAPOMNIANY": 84,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 582,
+        "SOLIDNA ROBOTA": 121,
+        "UCZCIWY WYROBNIK": 187,
+        "ARCHITEKT": 24,
+        "LEGENDA GABINETU": 2
+      },
+      "titlesSell": {
+        "ZAPOMNIANY": 80,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 582,
+        "SOLIDNA ROBOTA": 135,
+        "UCZCIWY WYROBNIK": 173,
+        "ARCHITEKT": 27,
+        "LEGENDA GABINETU": 3
+      }
+    },
+    {
+      "clubId": "wisla-plock",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 51,
+      "legacy": {
+        "meanDiff": 0.771,
+        "standardError": 0.6835054782068263,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.13987,
+        "standardError": 0.024154393344023518,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 15.117647058823529,
+        "standardError": 13.367377529153593,
+        "pairedSeeds": 51
+      },
+      "titlesKeep": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 668,
+        "ZAPOMNIANY": 222,
+        "SOLIDNA ROBOTA": 22,
+        "UCZCIWY WYROBNIK": 88
+      },
+      "titlesSell": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 668,
+        "ZAPOMNIANY": 216,
+        "SOLIDNA ROBOTA": 29,
+        "UCZCIWY WYROBNIK": 87
+      }
+    },
+    {
+      "clubId": "zaglebie-lubin",
+      "pairedSeeds": 1000,
+      "careersWithStarSale": 47,
+      "legacy": {
+        "meanDiff": 1.002,
+        "standardError": 0.5988343665811043,
+        "pairedSeeds": 1000
+      },
+      "cash": {
+        "meanDiff": 0.09577999999999999,
+        "standardError": 0.018100309743560056,
+        "pairedSeeds": 1000
+      },
+      "legacyWhenSold": {
+        "meanDiff": 21.319148936170212,
+        "standardError": 12.501363714065706,
+        "pairedSeeds": 47
+      },
+      "titlesKeep": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 586,
+        "ARCHITEKT": 33,
+        "SOLIDNA ROBOTA": 130,
+        "UCZCIWY WYROBNIK": 177,
+        "ZAPOMNIANY": 72,
+        "LEGENDA GABINETU": 2
+      },
+      "titlesSell": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 587,
+        "LEGENDA GABINETU": 3,
+        "SOLIDNA ROBOTA": 133,
+        "UCZCIWY WYROBNIK": 174,
+        "ZAPOMNIANY": 68,
+        "ARCHITEKT": 35
+      }
+    }
+  ],
+  "freeAgents": [
+    {
+      "policyName": "alwaysTake",
+      "signings": 53176,
+      "medianAnnualWage": 0.43871013368243283,
+      "medianAnnualWageShareOfRecurringRevenue": 0.15299341257825827,
+      "medianWageCostToHandover": 0.8599425803086611,
+      "medianSeasonsOnPayroll": 2
+    },
+    {
+      "policyName": "alwaysHaggle",
+      "signings": 31800,
+      "medianAnnualWage": 0.3729036136300679,
+      "medianAnnualWageShareOfRecurringRevenue": 0.12621885685064949,
+      "medianWageCostToHandover": 0.7483983346510557,
+      "medianSeasonsOnPayroll": 2
+    },
+    {
+      "policyName": "mixed",
+      "signings": 26203,
+      "medianAnnualWage": 0.4053104477356206,
+      "medianAnnualWageShareOfRecurringRevenue": 0.14092833693801465,
+      "medianWageCostToHandover": 0.8446832509916418,
+      "medianSeasonsOnPayroll": 2
+    }
+  ],
+  "reinvestment": [
+    {
+      "clubId": "cracovia",
+      "medianRawResultSum": -0.8207500000000001,
+      "medianBudgetChange": -0.24,
+      "medianRateResidual": 0.006484999999999852
+    },
+    {
+      "clubId": "gks-katowice",
+      "medianRawResultSum": -4.0205,
+      "medianBudgetChange": -1.2,
+      "medianRateResidual": 0.004814999999999903
+    },
+    {
+      "clubId": "gornik-zabrze",
+      "medianRawResultSum": -2.1435,
+      "medianBudgetChange": -0.6399999999999999,
+      "medianRateResidual": -0.0009749999999999759
+    },
+    {
+      "clubId": "jagiellonia-bialystok",
+      "medianRawResultSum": 2.8099999999999996,
+      "medianBudgetChange": 0.8499999999999999,
+      "medianRateResidual": 0.0019499999999998407
+    },
+    {
+      "clubId": "korona-kielce",
+      "medianRawResultSum": -4.8622,
+      "medianBudgetChange": -1.4500000000000002,
+      "medianRateResidual": 0.00641999999999987
+    },
+    {
+      "clubId": "lech-poznan",
+      "medianRawResultSum": 12.32945,
+      "medianBudgetChange": 3.7,
+      "medianRateResidual": -0.002349999999999852
+    },
+    {
+      "clubId": "legia-warszawa",
+      "medianRawResultSum": 29.855800000000002,
+      "medianBudgetChange": 8.96,
+      "medianRateResidual": -0.004519999999998969
+    },
+    {
+      "clubId": "motor-lublin",
+      "medianRawResultSum": -0.43119999999999997,
+      "medianBudgetChange": -0.13,
+      "medianRateResidual": -0.002119999999999969
+    },
+    {
+      "clubId": "piast-gliwice",
+      "medianRawResultSum": -0.4895,
+      "medianBudgetChange": -0.14,
+      "medianRateResidual": 0.0015550000000000147
+    },
+    {
+      "clubId": "pogon-szczecin",
+      "medianRawResultSum": 7.69805,
+      "medianBudgetChange": 2.3200000000000003,
+      "medianRateResidual": 0.007830000000000226
+    },
+    {
+      "clubId": "radomiak-radom",
+      "medianRawResultSum": -1.4963000000000002,
+      "medianBudgetChange": -0.45,
+      "medianRateResidual": 0.0017299999999999538
+    },
+    {
+      "clubId": "rakow-czestochowa",
+      "medianRawResultSum": 3.09405,
+      "medianBudgetChange": 0.9199999999999999,
+      "medianRateResidual": -0.005089999999999928
+    },
+    {
+      "clubId": "slask-wroclaw",
+      "medianRawResultSum": 0.2109,
+      "medianBudgetChange": 0.06000000000000005,
+      "medianRateResidual": 0.0008799999999999954
+    },
+    {
+      "clubId": "widzew-lodz",
+      "medianRawResultSum": 0.5169,
+      "medianBudgetChange": 0.15999999999999992,
+      "medianRateResidual": 0.0024949999999999972
+    },
+    {
+      "clubId": "wieczysta-krakow",
+      "medianRawResultSum": -2.8208,
+      "medianBudgetChange": -0.8449999999999999,
+      "medianRateResidual": 0.0008800000000000474
+    },
+    {
+      "clubId": "wisla-krakow",
+      "medianRawResultSum": 1.02755,
+      "medianBudgetChange": 0.31000000000000005,
+      "medianRateResidual": 0.0017299999999999746
+    },
+    {
+      "clubId": "wisla-plock",
+      "medianRawResultSum": -7.457700000000001,
+      "medianBudgetChange": -2.25,
+      "medianRateResidual": -0.0033950000000003144
+    },
+    {
+      "clubId": "zaglebie-lubin",
+      "medianRawResultSum": 0.47250000000000003,
+      "medianBudgetChange": 0.1499999999999999,
+      "medianRateResidual": 0.004339999999999927
+    }
+  ],
+  "quartiles": [
+    {
+      "label": "Q1 (najniższy advantageScore)",
+      "clubIds": [
+        "radomiak-radom",
+        "wisla-plock",
+        "piast-gliwice",
+        "gks-katowice",
+        "slask-wroclaw"
+      ],
+      "careers": 75000,
+      "titles": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 53099,
+        "SOLIDNA ROBOTA": 4164,
+        "UCZCIWY WYROBNIK": 8457,
+        "ZAPOMNIANY": 8320,
+        "ARCHITEKT": 901,
+        "LEGENDA GABINETU": 59
+      },
+      "titleShares": {
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 0.7079866666666667,
+        "SOLIDNA ROBOTA": 0.05552,
+        "UCZCIWY WYROBNIK": 0.11276,
+        "ZAPOMNIANY": 0.11093333333333333,
+        "ARCHITEKT": 0.012013333333333334,
+        "LEGENDA GABINETU": 0.0007866666666666666
+      }
+    },
+    {
+      "label": "Q2",
+      "clubIds": [
+        "motor-lublin",
+        "zaglebie-lubin",
+        "korona-kielce",
+        "wisla-krakow",
+        "wieczysta-krakow"
+      ],
+      "careers": 75000,
+      "titles": {
+        "UCZCIWY WYROBNIK": 11450,
+        "ZAPOMNIANY": 7840,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 43246,
+        "SOLIDNA ROBOTA": 9234,
+        "ARCHITEKT": 2953,
+        "LEGENDA GABINETU": 277
+      },
+      "titleShares": {
+        "UCZCIWY WYROBNIK": 0.15266666666666667,
+        "ZAPOMNIANY": 0.10453333333333334,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 0.5766133333333333,
+        "SOLIDNA ROBOTA": 0.12312,
+        "ARCHITEKT": 0.03937333333333334,
+        "LEGENDA GABINETU": 0.003693333333333333
+      }
+    },
+    {
+      "label": "Q3",
+      "clubIds": ["cracovia", "gornik-zabrze", "jagiellonia-bialystok", "pogon-szczecin"],
+      "careers": 60000,
+      "titles": {
+        "ZAPOMNIANY": 5370,
+        "ARCHITEKT": 8813,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 15999,
+        "LEGENDA GABINETU": 1960,
+        "UCZCIWY WYROBNIK": 12696,
+        "SOLIDNA ROBOTA": 15162
+      },
+      "titleShares": {
+        "ZAPOMNIANY": 0.0895,
+        "ARCHITEKT": 0.14688333333333334,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 0.26665,
+        "LEGENDA GABINETU": 0.03266666666666666,
+        "UCZCIWY WYROBNIK": 0.2116,
+        "SOLIDNA ROBOTA": 0.2527
+      }
+    },
+    {
+      "label": "Q4 (najwyższy advantageScore)",
+      "clubIds": ["rakow-czestochowa", "widzew-lodz", "lech-poznan", "legia-warszawa"],
+      "careers": 60000,
+      "titles": {
+        "LEGENDA GABINETU": 24472,
+        "ZAPOMNIANY": 3022,
+        "ARCHITEKT": 11835,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 5176,
+        "SOLIDNA ROBOTA": 9518,
+        "UCZCIWY WYROBNIK": 5977
+      },
+      "titleShares": {
+        "LEGENDA GABINETU": 0.40786666666666666,
+        "ZAPOMNIANY": 0.050366666666666664,
+        "ARCHITEKT": 0.19725,
+        "CZŁOWIEK, KTÓRY ZRUJNOWAŁ KLUB": 0.08626666666666667,
+        "SOLIDNA ROBOTA": 0.15863333333333332,
+        "UCZCIWY WYROBNIK": 0.09961666666666667
+      }
+    }
+  ]
+}

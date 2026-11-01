@@ -1,0 +1,16 @@
+name: Idea
+description: A suggestion for the game or the tooling.
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: What you would change and what it would give the player.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: >-
+        The game deliberately leaves out contracts as a system, line-ups, tactics, an academy,
+        cup group stages and real player names; ideas in that direction are unlikely to be taken up.
