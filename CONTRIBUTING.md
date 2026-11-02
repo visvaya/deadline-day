@@ -62,6 +62,10 @@ These are the invariants a review checks first. Breaking one is a bug even when 
   regenerated to make a test pass: read the diff and explain every difference in the commit. A change
   to the RNG cascade or to engine behaviour also bumps `ENGINE_REVISION` in
   `src/logic/engine-version.ts`.
+- **A pull request that changes the game moves the version.** Run `pnpm version:bump "<pull request
+  title>"`: a `feat` title moves the middle number (`0.35` to `0.36`), any other type adds a fix number
+  (`0.35.1`), a change that ships nothing (tests, docs, CI) keeps it. Then write the player-facing notes
+  of the new changelog entry in `src/data/changelog.ts`. CI checks the version against the title.
 - **`data-dd-action` and `data-dd-screen` are a public contract** with the DOM parity and e2e tests.
   New values may be added; existing ones change only together with those tests.
 - **Text the player reads is Polish**; code, comments, commits and documentation are English. Older

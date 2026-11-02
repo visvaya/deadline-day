@@ -82,5 +82,7 @@ Menedżer pakietów to **pnpm**, nigdy `npm` ani `npx`. Lockfile: `pnpm-lock.yam
 
 ## Pozostałe
 
-- **`pnpm release:notes <tag>`** – `scripts/release-notes.ts`: odrzuca tag niezgodny z `package.json` albo `CURRENT_VERSION` (kod 1), zgodnemu wypisuje notatki wydania z wpisu changelogu. Używa go `.github/workflows/release.yml`.
+- **`pnpm release:notes <tag>`** – `scripts/release-notes.ts`: odrzuca tag niezgodny z `package.json` albo `CURRENT_VERSION` (kod 1), zgodnemu wypisuje notatki wydania z wpisu changelogu. Używa go `.github/workflows/release.yml`, wołany przez CI po zweryfikowanym wdrożeniu (albo przez ręcznie wypchnięty tag).
+- **`pnpm version:bump "<tytuł PR>" [--base <ref>]`** – `scripts/bump-version.ts`: ustawia wersję PR według tytułu i zmienionych plików (od miejsca, w którym gałąź odeszła od `origin/main`, z niezacommitowanymi zmianami): `feat` podbija środkową liczbę, inny typ dokłada trzecią, zmiana bez plików gry zostawia wersję. Pisze `package.json` i `CURRENT_VERSION` i dodaje pusty wpis changelogu, który test odrzuca, dopóki nie dostanie notatek dla gracza. Pliki gry wylicza `scripts/release-version.ts`.
+- **`pnpm check:version --base <commit> --title "<tytuł PR>"`** – `scripts/check-version.ts`: te same reguły jako sprawdzenie; CI woła go na commicie scalenia PR z `--base HEAD^1`.
 - **`pnpm map`** – generator mapy funkcji i zależności (`scripts/codemap.mjs`) nad `reference/deadline-day-prototyp-v7.jsx`. Narzędzie archeologiczne przy czytaniu historycznego prototypu, nie punkt wejścia do bieżącej pracy; `pnpm map -- --slice <nazwa>` wypisuje kod tylko wskazanej funkcji.

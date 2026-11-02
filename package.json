@@ -58,6 +58,8 @@
     "check:text": "node scripts/check-text.mjs",
     "check:conventions": "node scripts/check-conventions.mjs",
     "release:notes": "tsx scripts/release-notes.ts",
+    "version:bump": "tsx scripts/bump-version.ts",
+    "check:version": "tsx scripts/check-version.ts",
     "check:bundle": "node scripts/check-bundle-size.mjs",
     "verify:fast": "pnpm lint && pnpm format:check",
     "verify": "pnpm verify:fast && pnpm check:text && pnpm check:conventions && pnpm typecheck && pnpm lint:types && pnpm check:career-handicap-anchors && pnpm test:coverage && pnpm test:statistical && pnpm quality:duplicates && pnpm quality:dead",

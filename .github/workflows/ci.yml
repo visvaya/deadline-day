@@ -29,6 +29,8 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          # The merge commit and its first parent, the head of main: the version check compares the two.
+          fetch-depth: 2
       # Skips the heavy steps for a documentation-only pull request, and for a
       # push to main whose tree a pull request run already passed.
       - name: Skip what a pull request already verified on this tree
@@ -103,6 +105,17 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" --jq .title | pnpm exec commitlint
+      # A pull request that changes the game moves the version by the step its title names (`pnpm
+      # version:bump`); any other keeps it. The title is read live, as above, so a rerun after renaming
+      # the pull request sees the new step.
+      - name: Check the version against the title and the changes
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          title=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" --jq .title)
+          pnpm --silent check:version --base HEAD^1 --title "$title"
       # Read by ci-gate.sh on the push to main that follows the merge.
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: github.event_name == 'pull_request' && steps.gate.outputs.full == 'true'
@@ -229,6 +242,9 @@ jobs:
     name: deploy
     needs: [build-release]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_ENABLED == 'true'
+    # Read by the release job: true only once the host serves this build.
+    outputs:
+      verified: ${{ steps.served.outcome == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     # The credentials live in this environment, restricted to main in the repository settings.
@@ -308,6 +324,7 @@ jobs:
         run: pnpm exec wrangler deploy --message "$GITHUB_SHA"
       # The page names the hashed files of its release, so equal bytes mean this release is served.
       - name: The served game is this release
+        id: served
         if: steps.publish.outcome == 'success'
         run: |
           for attempt in $(seq 1 24); do
@@ -333,3 +350,14 @@ jobs:
           elif [ "$PUBLISHED" = "success" ]; then result="published"
           else result="not published: see the failed step"; fi
           echo "### Deployment: $result (job $JOB_STATUS, commit $GITHUB_SHA)" >> "$GITHUB_STEP_SUMMARY"
+
+  # The tag and the GitHub release follow the verified deploy, in a job of their own: it alone may write
+  # to the repository, and it never sees the host credentials. The release workflow decides the tag from
+  # package.json and does nothing when that version is already released (a change that ships nothing).
+  release:
+    name: release
+    needs: [deploy]
+    if: needs.deploy.outputs.verified == 'true'
+    permissions:
+      contents: write
+    uses: ./.github/workflows/release.yml
