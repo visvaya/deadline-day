@@ -85,7 +85,9 @@ jobs:
             exit 0
           fi
           # The peeled commit of an annotated tag, or the commit of a lightweight one.
-          tagged=$(gh api "repos/$GITHUB_REPOSITORY/commits/$TAG" --jq .sha 2> /dev/null || true)
+          # A missing tag is an error answer, whose body gh prints too: only a success names a commit.
+          tagged=""
+          if answer=$(gh api "repos/$GITHUB_REPOSITORY/commits/$TAG" --jq .sha 2> /dev/null); then tagged="$answer"; fi
           if [ -n "$tagged" ] && [ "$tagged" != "$GITHUB_SHA" ]; then
             echo "::warning::$TAG already points to $tagged, not to $GITHUB_SHA; no release is created."
             echo "released=true" >> "$GITHUB_OUTPUT"
