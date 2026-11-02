@@ -211,8 +211,8 @@ describe("shared redesign components", () => {
 
     // The player-facing version, pinned: it is deliberately still below 1.0,
     // and it is not the engine revision a save file trusts.
-    expect(container.querySelector(".dd-version-tag")?.textContent).toBe("v0.34");
-    expect(container.querySelector(".dd-changelog-heading strong")?.textContent).toBe("v0.34");
+    expect(container.querySelector(".dd-version-tag")?.textContent).toBe("v0.35");
+    expect(container.querySelector(".dd-changelog-heading strong")?.textContent).toBe("v0.35");
 
     await click(container, "historia-zmian");
     expect(entries()).toBeGreaterThan(1);
@@ -224,6 +224,7 @@ describe("shared redesign components", () => {
         (heading) => heading.textContent
       )
     ).toEqual([
+      "v0.35",
       "v0.34",
       "v0.33",
       "v0.32",

@@ -10,7 +10,7 @@ export type ChangelogEntry = {
  * came to accept saves from three different engines, because this number
  * moves when there is news and an engine changes whether or not there is.
  */
-export const CURRENT_VERSION = "0.34";
+export const CURRENT_VERSION = "0.35";
 
 export const NEXT_UPDATE_NOTE = "kolejna aktualizacja: wkrótce";
 
@@ -19,6 +19,20 @@ export const DEVELOPMENT_NOTICE =
   "Wersja rozwojowa: partia w toku i zapisane kariery mogą przepaść po aktualizacji gry.";
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  {
+    version: "0.35",
+    date: "2026-11-02",
+    notes: [
+      "Grę można zainstalować na telefonie jak aplikację. Po pierwszym uruchomieniu działa także bez internetu.",
+      "Nowa wersja gry instaluje się, gdy ją zamkniesz. W historii zmian na ekranie startowym możesz też sprawdzić, czy jest nowa wersja, i zainstalować ją od razu.",
+      "Na iPhonie przyciski na dole ekranu nie wchodzą już pod pasek gestu, także w zainstalowanej grze.",
+      "Gdy postępu nie da się zapisać, gra mówi o tym wprost, a komunikat zostaje na ekranie, dopóki go nie zamkniesz.",
+      "Po nieoczekiwanym błędzie zamiast pustej strony widzisz ekran z dwiema drogami powrotu: ponownym wczytaniem gry albo porzuceniem zapisu.",
+      "Każda decyzja transferowa ma jedno zdanie: to samo w powiadomieniu i w liście ostatnich decyzji, zawsze z kwotą i płacą.",
+      "Escape zamyka tylko to, co leży na wierzchu, na przykład samo objaśnienie, a nie całą szufladę kadry.",
+      "Drobne poprawki tekstów i układu oraz lepsza obsługa czytników ekranu.",
+    ],
+  },
   {
     version: "0.34",
     date: "2026-09-23",

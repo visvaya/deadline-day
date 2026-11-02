@@ -75,7 +75,7 @@ describe("releaseNotes", () => {
     const notes = releaseNotes("0.34", CHANGELOG);
     expect(notes).toContain("2026-09-23");
     expect(notes.split("\n").filter((line) => line.startsWith("- "))).toHaveLength(
-      CHANGELOG[0]?.notes.length ?? -1
+      CHANGELOG.find((entry) => entry.version === "0.34")?.notes.length ?? -1
     );
   });
 
