@@ -10,7 +10,7 @@ export type ChangelogEntry = {
  * came to accept saves from three different engines, because this number
  * moves when there is news and an engine changes whether or not there is.
  */
-export const CURRENT_VERSION = "0.37.1";
+export const CURRENT_VERSION = "0.37.2";
 
 /**
  * The changelog note of a version the player never sees a difference in (a
@@ -24,6 +24,11 @@ export const DEVELOPMENT_NOTICE =
   "Wersja rozwojowa: partia w toku i zapisane kariery mogą przepaść po aktualizacji gry.";
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  {
+    version: "0.37.2",
+    date: "2026-11-02",
+    notes: ["Pasek z godziną i baterią u góry ekranu ma w zainstalowanej grze kolor nagłówka."],
+  },
   {
     version: "0.37.1",
     date: "2026-11-02",
