@@ -2706,6 +2706,12 @@ button.dd-player-tile:hover {
   color: var(--text-primary);
 }
 
+/* Busy (checking for an update, installing one): the note under it says what is going on. */
+.dd-changelog-toggle[aria-disabled="true"] {
+  color: var(--text-secondary);
+  cursor: progress;
+}
+
 .dd-setup-choice-list {
   display: grid;
   gap: 7px;

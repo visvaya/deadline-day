@@ -1,0 +1,17 @@
+{
+  "id": "/",
+  "name": "Deadline Day",
+  "short_name": "Deadline Day",
+  "description": "Gra o dyrektorze sportowym klubu Ekstraklasy.",
+  "lang": "pl",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f2f4f6",
+  "theme_color": "#f2f4f6",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

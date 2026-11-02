@@ -15,6 +15,7 @@ import {
 import { AppHero } from "../components/app-hero";
 import { SectionHeading } from "../components/section-heading";
 import { StickyActionBar } from "../components/sticky-action-bar";
+import { UpdateCheck } from "../components/update-check";
 import { writeSetupDraftFields } from "../setup-draft";
 import { at } from "../../logic/invariant";
 import { useUiPreferences, type ActionBarMode } from "../ui-preferences";
@@ -316,6 +317,7 @@ export const ManagerScreen = ({
           <section aria-labelledby="changelog-heading">
             <SectionHeading id="changelog-heading" title="Historia zmian" meta={NEXT_UPDATE_NOTE} />
             <p className="dd-note">{DEVELOPMENT_NOTICE}</p>
+            <UpdateCheck />
             <ul className="dd-changelog">
               {(changelogExpanded ? CHANGELOG : CHANGELOG.slice(0, 1)).map((entry) => (
                 <li key={entry.version}>
