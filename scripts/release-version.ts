@@ -84,6 +84,7 @@ const SHIPPED_FILES = new Set([
   "deploy/wrangler.jsonc",
   "scripts/write-service-worker.mjs",
   "scripts/service-worker-template.js",
+  "scripts/served-release.mjs",
 ]);
 
 type PackageJson = { version: string; scripts?: Record<string, string> } & Record<string, unknown>;

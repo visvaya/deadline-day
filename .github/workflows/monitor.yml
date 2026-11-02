@@ -1,0 +1,41 @@
+name: Monitor
+
+# Checks the deployed game from outside its host, once a day: the address serves a release.json, and every
+# file its service worker lists is served with the bytes it lists, which is the install the players'
+# browsers attempt. It only reads; nothing here publishes, rolls back or needs a credential. A failed run is
+# the alarm: GitHub notifies whoever last changed the schedule, or whoever started the run.
+on:
+  schedule:
+    - cron: "37 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: monitor
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    name: monitor
+    # Paused with publishing: a rollback or a stopped deploy is not an alarm.
+    if: vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PRODUCTION_URL: ${{ vars.PRODUCTION_URL }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # scripts/served-release.mjs uses nothing but Node itself, so no package is installed.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
+          package-manager-cache: false
+      - name: The deployed game is served whole
+        run: |
+          if [ -z "$PRODUCTION_URL" ]; then echo "The repository variable PRODUCTION_URL is not set."; exit 1; fi
+          node scripts/served-release.mjs check "$PRODUCTION_URL" --wait-s 120

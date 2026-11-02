@@ -316,47 +316,63 @@ jobs:
           node-version-file: .nvmrc
           check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
           package-manager-cache: false
-      - name: Install the deployment tool from its lockfile
+      # The same content as the served release is not published again; other content needs a version
+      # above the served one (scripts/served-release.mjs). Node built-ins only: nothing is installed for it.
+      - name: Compare with the served release
+        id: compare
         if: steps.head.outputs.current == 'true'
+        run: node scripts/served-release.mjs compare "$PRODUCTION_URL"
+      - name: Install the deployment tool from its lockfile
+        if: steps.head.outputs.current == 'true' && steps.compare.outputs.same_content != 'true'
         working-directory: deploy
         run: pnpm install --frozen-lockfile
       - name: Publish
         id: publish
-        if: steps.head.outputs.current == 'true'
+        if: steps.head.outputs.current == 'true' && steps.compare.outputs.same_content != 'true'
         working-directory: deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           WRANGLER_SEND_METRICS: "false"
-        run: pnpm exec wrangler deploy --message "$GITHUB_SHA"
-      # The page names the hashed files of its release, so equal bytes mean this release is served.
-      - name: The served game is this release
-        id: served
-        if: steps.publish.outcome == 'success'
         run: |
-          for attempt in $(seq 1 24); do
-            if curl -fsS "$PRODUCTION_URL/" -o served.html && cmp -s served.html dist/index.html; then
-              echo "The served page matches this build (attempt $attempt)."; break
-            fi
-            if [ "$attempt" -eq 24 ]; then
-              echo "::error::After two minutes $PRODUCTION_URL/ still does not serve this build."; exit 1
-            fi
-            sleep 5
-          done
-          asset=$(grep -oE '/assets/[^"]+\.js' dist/index.html | head -n 1)
-          curl -fsSI "$PRODUCTION_URL$asset"
+          set -o pipefail # a failed deploy must fail the step, not vanish into tee
+          pnpm exec wrangler deploy --message "$GITHUB_SHA" | tee "$RUNNER_TEMP/wrangler.log"
+          # The id a rollback names (.github/workflows/rollback.yml).
+          id=$(grep -oE 'Current Version ID: [0-9a-f-]+' "$RUNNER_TEMP/wrangler.log" | cut -d' ' -f4 || true)
+          if [ -z "$id" ]; then echo "::warning::No version id in the output of wrangler; find it in the dashboard for a rollback."; fi
+          echo "version_id=$id" >> "$GITHUB_OUTPUT"
+      # Every file the served worker lists, with its bytes, and release.json from this commit: what the
+      # players' browsers will install. Retried, since the host can mix old and new files for a while.
+      # Also when nothing was published because the host already serves this content: then the release
+      # is checked whole without its commit, and the release job can still create a release an earlier
+      # run left missing.
+      - name: The served game is this release, whole
+        id: served
+        if: steps.publish.outcome == 'success' || steps.compare.outputs.same_content == 'true'
+        env:
+          PUBLISHED: ${{ steps.publish.outcome }}
+        run: |
+          commit=()
+          if [ "$PUBLISHED" = "success" ]; then commit=(--source-sha "$GITHUB_SHA"); fi
+          node scripts/served-release.mjs check "$PRODUCTION_URL" "${commit[@]}" --wait-s 180
           curl -fsSI "$PRODUCTION_URL/" | grep -i '^content-security-policy:'
       - name: Report
         if: ${{ !cancelled() }}
         env:
           CURRENT: ${{ steps.head.outputs.current }}
+          SAME: ${{ steps.compare.outputs.same_content }}
           PUBLISHED: ${{ steps.publish.outcome }}
+          VERSION_ID: ${{ steps.publish.outputs.version_id }}
           JOB_STATUS: ${{ job.status }}
         run: |
           if [ "$CURRENT" != "true" ]; then result="not published: main has moved on or could not be read"
+          elif [ "$SAME" = "true" ]; then result="not published: the host already serves this content"
           elif [ "$PUBLISHED" = "success" ]; then result="published"
           else result="not published: see the failed step"; fi
-          echo "### Deployment: $result (job $JOB_STATUS, commit $GITHUB_SHA)" >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo "### Deployment: $result (job $JOB_STATUS, commit $GITHUB_SHA)"
+            if [ -n "$VERSION_ID" ]; then echo; echo "- Version, for a rollback: \`$VERSION_ID\`"; fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
   # The tag and the GitHub release follow the verified deploy, in a job of their own: it alone may write
   # to the repository, and it never sees the host credentials. The release workflow decides the tag from

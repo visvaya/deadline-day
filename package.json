@@ -1,6 +1,6 @@
 {
   "name": "deadline-day",
-  "version": "0.35.2",
+  "version": "0.35.3",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@12.15.0",
@@ -17,7 +17,7 @@
   "scripts": {
     "prepare": "node scripts/install-git-hooks.mjs",
     "dev": "vite",
-    "build": "tsc --noEmit && vite build && node scripts/write-service-worker.mjs",
+    "build": "tsc --noEmit && vite build && node scripts/write-service-worker.mjs && node scripts/served-release.mjs write",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint --deny-warnings",
