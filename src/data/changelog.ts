@@ -10,7 +10,7 @@ export type ChangelogEntry = {
  * came to accept saves from three different engines, because this number
  * moves when there is news and an engine changes whether or not there is.
  */
-export const CURRENT_VERSION = "0.35.1";
+export const CURRENT_VERSION = "0.35.2";
 
 export const NEXT_UPDATE_NOTE = "kolejna aktualizacja: wkrótce";
 
@@ -26,6 +26,13 @@ export const DEVELOPMENT_NOTICE =
   "Wersja rozwojowa: partia w toku i zapisane kariery mogą przepaść po aktualizacji gry.";
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  {
+    version: "0.35.2",
+    date: "2026-11-02",
+    notes: [
+      "Gdy gra nie może się wczytać, na przykład przy słabym połączeniu podczas pierwszej wizyty, zamiast pustej strony widzisz napis z linkiem do ponownego wczytania.",
+    ],
+  },
   {
     version: "0.35.1",
     date: "2026-11-02",

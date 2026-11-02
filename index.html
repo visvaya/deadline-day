@@ -11,7 +11,15 @@
     <title>Deadline Day</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Shown only while the game has not started: it appears after a moment (src/ui/styles.css) and the
+           game replaces it on its first render. If a script of the game cannot be fetched, this is what is
+           left instead of a blank page. -->
+      <p class="dd-boot-note">
+        Deadline Day: wczytywanie gry. Jeśli ten napis nie znika,
+        <a href="/">wczytaj stronę ponownie</a>.
+      </p>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
