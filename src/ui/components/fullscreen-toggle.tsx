@@ -30,7 +30,7 @@ const useFullscreen = (): { on: boolean; own: boolean } => {
 /**
  * Full screen, where the browser lets a page ask for it: desktop browsers and installed desktop apps,
  * Android and iPad. iPhone Safari offers no full screen to pages, so there the section is not shown. A
- * page can leave only the full screen it asked for itself; the browser's own (F11) is left with F11.
+ * page can leave only the full screen it asked for itself; the browser's own (F11, Ctrl+Cmd+F on a Mac) is left with that key.
  */
 export const FullscreenToggle = () => {
   const fullscreen = useFullscreen();
@@ -72,7 +72,7 @@ export const FullscreenToggle = () => {
       </button>
       {browserNote && fullscreen.on && (
         <p className="dd-note" role="status">
-          Ten pełny ekran włączyła przeglądarka. Wyłączysz go klawiszem F11.
+          Ten pełny ekran włączyła przeglądarka. Wyłączysz go klawiszem F11 (na Macu Ctrl+Cmd+F).
         </p>
       )}
     </section>
