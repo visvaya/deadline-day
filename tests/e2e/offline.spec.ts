@@ -1,7 +1,6 @@
-import { appendFile, cp, mkdtemp, readFile, rm } from "node:fs/promises";
+import { appendFile, cp, readFile } from "node:fs/promises";
 import { createServer, type Server } from "node:http";
 import type { AddressInfo } from "node:net";
-import { tmpdir } from "node:os";
 import path from "node:path";
 
 import { expect, test, type Page } from "@playwright/test";
@@ -64,7 +63,8 @@ const CONTENT_TYPES: Record<string, string> = {
  * the server the other tests share. No caching headers: the browser asks for the worker every time anyway.
  */
 const serveCopyOfBuild = async () => {
-  const root = await mkdtemp(path.join(tmpdir(), "deadline-day-release-"));
+  // The test's own output directory, which Playwright empties before the next run.
+  const root = test.info().outputPath("release");
   await cp("dist", root, { recursive: true });
   const server: Server = createServer((request, response) => {
     const pathname = new URL(request.url ?? "/", "http://localhost").pathname;
@@ -90,7 +90,6 @@ const serveCopyOfBuild = async () => {
     close: async () => {
       server.closeAllConnections();
       await new Promise((resolve) => server.close(resolve));
-      await rm(root, { recursive: true, force: true });
     },
   };
 };
