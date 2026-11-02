@@ -148,3 +148,26 @@ describe("temp directories only through tests/temp-dir.ts", () => {
     for (const file of Object.keys(ALLOWLIST)) expect(tracked.has(file)).toBe(true);
   });
 });
+
+describe("no trace of coding agents in the repository", () => {
+  // Built from parts, so this file does not trip the check it defines.
+  const NAMES = [
+    ["AGENTS", ".md"],
+    ["CLAUDE", ".md"],
+    ["/.", "claude"],
+    ["/.", "agents"],
+    ["/.", "codex"],
+  ].map((parts) => parts.join(""));
+  const TEXT_FILE = /\.(?:md|ts|tsx|mjs|js|json|jsonc|ya?ml|css|html|txt|sh)$/u;
+
+  test("no tracked file names an agent's instructions or configuration", () => {
+    const tracked = execFileSync("git", ["ls-files"], { encoding: "utf8" })
+      .split("\n")
+      .filter((file) => TEXT_FILE.test(file));
+    const offenders = tracked.filter((file) => {
+      const text = readFileSync(file, "utf8");
+      return NAMES.some((name) => text.includes(name));
+    });
+    expect(offenders, "agent files live in the private notes, not here").toEqual([]);
+  });
+});

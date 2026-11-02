@@ -27,3 +27,7 @@
 /manifest.webmanifest
   Cache-Control: no-cache
   Content-Type: application/manifest+json
+
+# What is deployed (scripts/served-release.mjs): read by the deploy job, a rollback and the monitor.
+/release.json
+  Cache-Control: no-cache

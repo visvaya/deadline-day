@@ -12,8 +12,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const SERVICE_WORKER_FILE = "sw.js";
 const START_PAGE_FILE = "index.html";
-// The host reads `_headers` and never serves it, and a worker does not keep itself.
-const NOT_PRECACHED_FILES = new Set(["_headers", SERVICE_WORKER_FILE]);
+// The host reads `_headers` and never serves it, a worker does not keep itself, and release.json names the
+// commit, which changes with every build (scripts/served-release.mjs).
+const NOT_PRECACHED_FILES = new Set(["_headers", SERVICE_WORKER_FILE, "release.json"]);
 const RELEASE_PLACEHOLDER = "self.DEADLINE_DAY_RELEASE_PLACEHOLDER";
 export const CACHE_PREFIX = "deadline-day-release-";
 const CACHE_ID_LENGTH_CHARS = 16;

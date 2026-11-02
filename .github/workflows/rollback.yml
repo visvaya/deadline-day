@@ -1,0 +1,98 @@
+name: Rollback
+
+# Puts an earlier release of the game back, by hand. It restores a version the host still holds, which was
+# built, checked and tested when it was first published; nothing is rebuilt. It does not touch what players
+# have saved; a player who has the newer release gets the older one as one more update, the next time every
+# window of the game is closed. Saves written by a newer engine are refused by the older one (the start screen
+# says saves may be lost in the development version).
+#
+# Before a rollback, pause automatic publishing by setting the repository variable DEPLOY_ENABLED to anything
+# but "true": otherwise the next push to main publishes the newer release again. Switch it back on once main
+# holds a release that should go out; that release needs a version above every published one.
+# Only versions deployed since release.json exists (0.35.3) can be checked after a rollback.
+on:
+  workflow_dispatch:
+    inputs:
+      version_id:
+        description: Cloudflare version to restore ("Version, for a rollback" in the summary of its deployment)
+        required: true
+        type: string
+      source_sha:
+        description: Full hash of the commit that version was built from
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+# Shares its queue with the deploy job of CI: one of them at a time, none cancelled.
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  rollback:
+    name: rollback
+    # Only the workflow as it is on main may do this.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: ${{ vars.PRODUCTION_URL }}
+    env:
+      PRODUCTION_URL: ${{ vars.PRODUCTION_URL }}
+      VERSION_ID: ${{ inputs.version_id }}
+      SOURCE_SHA: ${{ inputs.source_sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: The request names a version and a commit, and automatic publishing is paused
+        env:
+          DEPLOY_ENABLED: ${{ vars.DEPLOY_ENABLED }}
+        run: |
+          if ! printf '%s' "$VERSION_ID" | grep -qE '^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$'; then
+            echo "::error::The version is not an identifier of a deployed version."; exit 1
+          fi
+          if ! printf '%s' "$SOURCE_SHA" | grep -qE '^[0-9a-f]{40}$'; then
+            echo "::error::The commit is not a full commit hash."; exit 1
+          fi
+          if [ -z "$PRODUCTION_URL" ]; then echo "::error::The repository variable PRODUCTION_URL is not set."; exit 1; fi
+          if [ "$DEPLOY_ENABLED" = "true" ]; then
+            echo "::error::Automatic publishing is on: the next push would publish the newer release again. Set DEPLOY_ENABLED to something other than \"true\" first."
+            exit 1
+          fi
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      # No dependency cache: what is restored into this job would run next to the credentials. Only the
+      # deployment tool is installed, never the game's dependencies.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
+          package-manager-cache: false
+      - name: Install the deployment tool from its lockfile
+        working-directory: deploy
+        run: pnpm install --frozen-lockfile
+      - name: Put the earlier version back
+        working-directory: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: "false"
+        run: pnpm exec wrangler rollback "$VERSION_ID" --message "Rollback to $SOURCE_SHA" --yes
+      # The package of the restored release is not at hand, so it is checked against itself: its release.json
+      # names that commit, and every file its service worker lists is served with the listed bytes.
+      - name: The deployed game is the earlier release, whole
+        run: node scripts/served-release.mjs check "$PRODUCTION_URL" --source-sha "$SOURCE_SHA" --wait-s 180
+      - name: Report
+        if: ${{ !cancelled() }}
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          {
+            echo "### Rollback: job $JOB_STATUS"
+            echo
+            echo "- Restored version: $VERSION_ID, built from $SOURCE_SHA"
+            echo "- Automatic publishing stays paused until DEPLOY_ENABLED is \"true\" again."
+          } >> "$GITHUB_STEP_SUMMARY"
