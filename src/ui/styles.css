@@ -2716,6 +2716,25 @@ button.dd-player-tile:hover {
   color: var(--text-primary);
 }
 
+/* The update check is one group, the button and its status, set apart from the notice above and the
+   change list below by the same gap; the status sits close under the button. The live region stays in
+   the document while empty (so its first message is announced) but then takes no space. */
+.dd-update-check {
+  margin: 12px 0;
+}
+
+.dd-update-check > .dd-changelog-toggle {
+  margin-top: 0;
+}
+
+.dd-update-status {
+  margin-top: 2px;
+}
+
+.dd-update-status:empty {
+  margin-top: 0;
+}
+
 /* Busy (checking for an update, installing one): the note under it says what is going on. */
 .dd-changelog-toggle[aria-disabled="true"] {
   color: var(--text-secondary);

@@ -36,6 +36,20 @@ test("after one visit the game starts without a network, fonts included", async 
   expect(figtreeFaces).toBeGreaterThan(0);
 });
 
+test("a check for an update without a network says so, not that the game is up to date", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/");
+  await offlineReady(page);
+  await page.reload();
+
+  await context.setOffline(true);
+  await page.locator('[data-dd-action="sprawdz-aktualizacje"]').click();
+  await expect(page.getByText("Brak połączenia: nie można sprawdzić.")).toBeVisible();
+  await expect(page.getByText("Masz najnowszą wersję.")).toHaveCount(0);
+});
+
 test("the game is installable", async ({ page, browserName }) => {
   test.skip(
     browserName !== "chromium",

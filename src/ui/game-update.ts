@@ -37,11 +37,17 @@ export type RegistrationLike = {
 /** The message the worker answers with skipWaiting; the worker names it too. */
 const TAKE_OVER_MESSAGE = { type: "deadline-day:take-over" };
 
-/** Looks for a new release now and says what was found. */
+/**
+ * Looks for a new release now and says what was found. `serverAnswers` asks the server directly first:
+ * without a network Chromium resolves `registration.update()` as if nothing were new, which would tell
+ * an offline player that the game is up to date.
+ */
 export const checkForUpdate = async (
-  registration: RegistrationLike | undefined
+  registration: RegistrationLike | undefined,
+  serverAnswers: () => Promise<boolean>
 ): Promise<UpdateStatus> => {
   if (registration === undefined) return "unavailable";
+  if (!(await serverAnswers())) return "unreachable";
   try {
     await registration.update();
   } catch {
@@ -128,6 +134,13 @@ export const installUpdate = (
 const currentRegistration = async (): Promise<RegistrationLike | undefined> =>
   "serviceWorker" in navigator ? navigator.serviceWorker.getRegistration() : undefined;
 
+/** Whether the server answers at all. HEAD, which the worker leaves to the network, and never a stored copy. */
+const serverAnswers = (): Promise<boolean> =>
+  fetch("/sw.js", { method: "HEAD", cache: "no-store" }).then(
+    (response) => response.ok,
+    () => false
+  );
+
 /** The update controls of the start screen; `supported` is false where the browser has no service workers. */
 export const useGameUpdate = () => {
   const [status, setStatus] = useState<UpdateStatus>("idle");
@@ -158,7 +171,7 @@ export const useGameUpdate = () => {
     // Asked again: on a first visit the registration may not have existed when the screen opened.
     const registration = await currentRegistration().catch(() => undefined);
     watch(registration);
-    setStatus(await checkForUpdate(registration));
+    setStatus(await checkForUpdate(registration, serverAnswers));
   }, [watch]);
 
   const install = useCallback(() => {

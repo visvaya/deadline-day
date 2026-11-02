@@ -24,7 +24,7 @@ export const UpdateCheck = () => {
   const ready = status === "waiting" || status === "installing";
   const busy = status === "checking" || status === "installing";
   return (
-    <>
+    <div className="dd-update-check">
       <button
         // A new element when the meaning changes: a click on "check" that lands just as a release turns
         // ready must not install it.
@@ -41,9 +41,9 @@ export const UpdateCheck = () => {
       >
         {ready ? "Zainstaluj teraz" : "Sprawdź aktualizację"}
       </button>
-      <p className="dd-note" aria-live="polite">
+      <p className="dd-note dd-update-status" aria-live="polite">
         {STATUS_TEXT[status]}
       </p>
-    </>
+    </div>
   );
 };

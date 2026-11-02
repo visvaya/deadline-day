@@ -50,6 +50,9 @@ const makeRegistration = (
   return registration;
 };
 
+const online = () => Promise.resolve(true);
+const offline = () => Promise.resolve(false);
+
 const recorder = () => {
   const statuses: UpdateStatus[] = [];
   return { statuses, report: (status: UpdateStatus) => statuses.push(status) };
@@ -58,12 +61,12 @@ const recorder = () => {
 describe("checking for a new release", () => {
   test("says what the registration holds after asking the server", async () => {
     const active = makeWorker("activated");
-    expect(await checkForUpdate(makeRegistration({ active }))).toBe("latest");
-    expect(await checkForUpdate(makeRegistration({ active, installing: makeWorker() }))).toBe(
-      "downloading"
-    );
+    expect(await checkForUpdate(makeRegistration({ active }), online)).toBe("latest");
     expect(
-      await checkForUpdate(makeRegistration({ active, waiting: makeWorker("installed") }))
+      await checkForUpdate(makeRegistration({ active, installing: makeWorker() }), online)
+    ).toBe("downloading");
+    expect(
+      await checkForUpdate(makeRegistration({ active, waiting: makeWorker("installed") }), online)
     ).toBe("waiting");
   });
 
@@ -71,12 +74,25 @@ describe("checking for a new release", () => {
     const registration = makeRegistration({ active: makeWorker("activated") }, () =>
       Promise.reject(new TypeError("Failed to fetch"))
     );
-    expect(await checkForUpdate(registration)).toBe("unreachable");
+    expect(await checkForUpdate(registration, online)).toBe("unreachable");
+  });
+
+  test("a server that does not answer is no network, and the browser is not asked", async () => {
+    // Chromium resolves registration.update() without a network as if nothing were new.
+    let asked = 0;
+    const registration = makeRegistration({ active: makeWorker("activated") }, () => {
+      asked += 1;
+      return Promise.resolve();
+    });
+    expect(await checkForUpdate(registration, offline)).toBe("unreachable");
+    expect(asked).toBe(0);
   });
 
   test("a first visit still storing the game, or no worker at all, is not an update", async () => {
-    expect(await checkForUpdate(makeRegistration({ installing: makeWorker() }))).toBe("saving");
-    expect(await checkForUpdate(undefined)).toBe("unavailable");
+    expect(await checkForUpdate(makeRegistration({ installing: makeWorker() }), online)).toBe(
+      "saving"
+    );
+    expect(await checkForUpdate(undefined, online)).toBe("unavailable");
   });
 });
 
