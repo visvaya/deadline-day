@@ -142,7 +142,16 @@ const fetchText = async (url) => {
 
 const compare = async (address, distDir) => {
   const local = JSON.parse(readFileSync(path.join(distDir, RELEASE_FILE), "utf8"));
-  const servedText = await fetchText(`${address}/${RELEASE_FILE}`).catch(() => "");
+  // Only a missing release.json means nothing is served yet; any other failure stops the deploy, or the
+  // guard would let anything through exactly while the host misbehaves.
+  const response = await fetch(`${address}/${RELEASE_FILE}`, {
+    cache: "no-store",
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+  });
+  if (!response.ok && response.status !== 404) {
+    throw new Error(`${address}/${RELEASE_FILE}: HTTP ${response.status}`);
+  }
+  const servedText = response.ok ? await response.text() : "";
   const { same, problems } = comparisonWithServed(local, servedText);
   console.log(same ? "same" : "different");
   if (process.env.GITHUB_OUTPUT)
@@ -218,5 +227,9 @@ const main = async () => {
 };
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
-  process.exitCode = (await main()) ? 0 : 1;
+  const ok = await main().catch((error) => {
+    console.error(`served-release: ${error instanceof Error ? error.message : String(error)}`);
+    return false;
+  });
+  process.exitCode = ok ? 0 : 1;
 }

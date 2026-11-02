@@ -56,6 +56,7 @@ jobs:
           name: release-notes-${{ github.sha }}
           path: ${{ runner.temp }}/notes.md
           retention-days: 7
+          overwrite: true # a rerun of this job in the same run writes it again
 
   release:
     name: release

@@ -335,17 +335,26 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           WRANGLER_SEND_METRICS: "false"
         run: |
+          set -o pipefail # a failed deploy must fail the step, not vanish into tee
           pnpm exec wrangler deploy --message "$GITHUB_SHA" | tee "$RUNNER_TEMP/wrangler.log"
           # The id a rollback names (.github/workflows/rollback.yml).
           id=$(grep -oE 'Current Version ID: [0-9a-f-]+' "$RUNNER_TEMP/wrangler.log" | cut -d' ' -f4 || true)
+          if [ -z "$id" ]; then echo "::warning::No version id in the output of wrangler; find it in the dashboard for a rollback."; fi
           echo "version_id=$id" >> "$GITHUB_OUTPUT"
       # Every file the served worker lists, with its bytes, and release.json from this commit: what the
       # players' browsers will install. Retried, since the host can mix old and new files for a while.
+      # Also when nothing was published because the host already serves this content: then the release
+      # is checked whole without its commit, and the release job can still create a release an earlier
+      # run left missing.
       - name: The served game is this release, whole
         id: served
-        if: steps.publish.outcome == 'success'
+        if: steps.publish.outcome == 'success' || steps.compare.outputs.same_content == 'true'
+        env:
+          PUBLISHED: ${{ steps.publish.outcome }}
         run: |
-          node scripts/served-release.mjs check "$PRODUCTION_URL" --source-sha "$GITHUB_SHA" --wait-s 180
+          commit=()
+          if [ "$PUBLISHED" = "success" ]; then commit=(--source-sha "$GITHUB_SHA"); fi
+          node scripts/served-release.mjs check "$PRODUCTION_URL" "${commit[@]}" --wait-s 180
           curl -fsSI "$PRODUCTION_URL/" | grep -i '^content-security-policy:'
       - name: Report
         if: ${{ !cancelled() }}
