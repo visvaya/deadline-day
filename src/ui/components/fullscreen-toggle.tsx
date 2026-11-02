@@ -63,10 +63,12 @@ export const FullscreenToggle = () => {
           <strong>Pełny ekran</strong>
         </span>
         <span className="dd-setup-choice-description">
-          Gra zajmuje cały ekran, bez pasków przeglądarki. Wyjdziesz z niego tym przyciskiem albo
-          klawiszem Esc.
+          Gra zajmuje cały ekran, bez pasków przeglądarki. Wyłączysz go tym samym przyciskiem.
         </span>
-        {fullscreen.on && <span className="dd-setup-choice-state">włączony</span>}
+        {/* Both states written out, so the card reads as a switch and keeps its height. */}
+        <span className={`dd-setup-choice-state${fullscreen.on ? "" : " is-off"}`}>
+          {fullscreen.on ? "włączony" : "wyłączony"}
+        </span>
       </button>
       {browserNote && fullscreen.on && (
         <p className="dd-note" role="status">

@@ -2740,10 +2740,20 @@ button.dd-player-tile:hover {
   margin-top: 0;
 }
 
+/* The title's own small gap is set for the label above it, not for a sentence. */
+.dd-setup-hero .dd-update-status:not(:empty) {
+  margin-bottom: 6px;
+}
+
 .dd-changelog {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* The notice above the list is a block of its own, not part of the newest entry. */
+.dd-note + .dd-changelog {
+  margin-top: 12px;
 }
 
 .dd-changelog > li + li {
@@ -2854,6 +2864,10 @@ button.dd-player-tile:hover {
   display: block;
   margin-top: 6px;
   color: var(--meaning-positive);
+}
+
+.dd-setup-choice-state.is-off {
+  color: var(--text-secondary);
 }
 
 .dd-setup-choice:focus-visible {
