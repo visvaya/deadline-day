@@ -153,7 +153,12 @@ body {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   flex-direction: column;
-  padding: 0;
+  /* viewport-fit=cover (index.html) lets the page reach every edge of the screen, and only with it does
+     iOS report the safe-area insets at all: without it they read 0 while an installed app still draws
+     under the home indicator. The bottom inset belongs to what sits at the bottom (the action bar, the
+     squad drawer); the page keeps clear of the status bar and, in landscape, of the notch. */
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) 0
+    env(safe-area-inset-left, 0px);
   background: var(--surface-page);
   color: var(--text-primary);
   font-family: "Figtree", ui-sans-serif, system-ui, sans-serif;
@@ -3730,10 +3735,6 @@ button.dd-player-tile:hover {
 }
 
 @media (min-width: 768px) {
-  .dd-root {
-    padding-top: 0;
-  }
-
   .dd-pasek,
   .dd-club-bar,
   .dd-setup-hero {
