@@ -28,7 +28,7 @@ export const CHANGELOG: readonly ChangelogEntry[] = [
     version: "0.37",
     date: "2026-11-02",
     notes: [
-      "Nowy przycisk „Wyłącz grę” na ekranie startowym, w sekcji „Okno gry”, na komputerze. Zamyka okno zainstalowanej gry; w zwykłej karcie przeglądarki gra podpowiada, jak ją zamknąć.",
+      "Nowy przycisk „Wyłącz grę” na ekranie startowym, w sekcji „Okno gry”, na komputerze. Zamyka okno zainstalowanej gry; w zwykłej karcie przeglądarki gra podpowiada, jak ją zamknąć.",
       "Przycisk w nagłówku nazywa się teraz „Szukaj aktualizacji”.",
     ],
   },

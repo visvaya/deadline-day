@@ -74,7 +74,8 @@ const FullscreenCard = () => {
       </button>
       {browserNote && fullscreen.on && (
         <p className="dd-note" role="status">
-          Ten pełny ekran włączyła przeglądarka. Wyłączysz go klawiszem F11 (na Macu Ctrl+Cmd+F).
+          Ten pełny ekran włączyła przeglądarka. Wyłączysz go klawiszem F11{" "}
+          {"(na Macu Ctrl+Cmd+F)."}
         </p>
       )}
     </>
@@ -111,8 +112,8 @@ const QuitCard = () => {
       </button>
       {refused && (
         <p className="dd-note" role="status" tabIndex={-1} ref={noteRef}>
-          Gra nie może sama zamknąć tej karty. Zamknij ją krzyżykiem albo klawiszami Ctrl+W (na Macu
-          Cmd+W).
+          Gra nie może sama zamknąć tej karty. Zamknij ją krzyżykiem albo klawiszami Ctrl+W{" "}
+          {"(na Macu Cmd+W)."}
         </p>
       )}
     </>

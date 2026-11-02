@@ -2816,7 +2816,8 @@ button.dd-player-tile:hover {
    card's text, not a footnote to the whole list. */
 .dd-setup-choice-list > .dd-note {
   margin: -2px 0 0;
-  padding: 0 12px;
+  /* The card's 12px padding and its 1px border. */
+  padding: 0 13px;
 }
 
 .dd-setup-choice {
