@@ -17,6 +17,8 @@ Decyzja właściciela z 2026-11-02: przycisk na ekranie startowym, w sekcji „H
 
 `src/ui/game-update.ts`: „Sprawdź aktualizację” woła `registration.update()` i mówi, co znalazł (najnowsza, pobieranie, gotowa, brak sieci, gra jeszcze się zapisuje). Gotowa wersja zamienia przycisk na „Zainstaluj teraz”: strona wysyła workerowi komunikat `deadline-day:take-over`, worker woła `skipWaiting`, a strona przeładowuje się, gdy **ten** worker osiągnie stan `activated` (śledzony jego własny stan, nie `controllerchange`, więc działa też po wymuszonym przeładowaniu). Inne otwarte okna nie są przeładowywane.
 
+Przycisk ma osobny element (`key`) dla każdego znaczenia. Przeglądarka sama szuka nowego workera i potrafi go znaleźć tuż przed kliknięciem „Sprawdź aktualizację”; z jednym elementem kliknięcie w drodze trafiało w „Zainstaluj teraz” i przeładowywało grę (złapane w WebKicie, raz na kilka przebiegów).
+
 Pułapka zauważona w testach: strona z pierwszej wizyty nie jest kontrolowana przez workera. Gdy żadne okno nie używa działającego wydania, przeglądarka aktywuje nowe od razu, bez czekania (WebKit robi to natychmiast, zgodnie ze specyfikacją). Komunikat „gotowa” znika wtedy sam; test e2e przeładowuje stronę przed sprawdzeniem, jak przy każdym kolejnym uruchomieniu.
 
 ## Testy
@@ -24,6 +26,10 @@ Pułapka zauważona w testach: strona z pierwszej wizyty nie jest kontrolowana p
 - `tests/scripts/service-worker.test.ts`: wygenerowany worker uruchamiany przez `vm` na atrapach `caches` i sieci (instalacja, odmowy, pełny dysk, przejęcie bez kasowania, pliki starego wydania, sprzątanie, błąd sieci, komunikat przejęcia).
 - `tests/ui/game-update.test.ts`: sprawdzenie, śledzenie i instalacja na atrapach rejestracji.
 - `tests/e2e/offline.spec.ts`: gra startuje bez sieci po jednej wizycie (Chromium i WebKit; ta sama próba z zablokowanymi workerami pada w obu), brak błędów instalowalności według Chromium, pełna ścieżka „Sprawdź aktualizację” → „Zainstaluj teraz” → przeładowanie na kopii buildu na osobnym serwerze (Playwright nie przechwytuje pobrania skryptu workera przez `context.route`).
+
+## Warunek przy przejściu na własną domenę
+
+Worker sprawdza skrót każdego pliku, także `index.html`. Funkcje strefy Cloudflare, które przepisują HTML w locie (Rocket Loader, ukrywanie adresów e-mail, wstrzykiwany skrypt Web Analytics), zmieniłyby bajty strony startowej i żadna instalacja by się nie udała: gra działałaby tylko online. Na `*.workers.dev` ich nie ma; na własnej domenie trzeba je wyłączyć albo sprawdzić, że są wyłączone, a test po wdrożeniu powinien porównać serwowany `/` z buildem. Z tego samego powodu każdy dodatkowy plik `.html` w `dist/` wymaga uwagi: host przekierowuje `/x.html` na `/x`, a worker odrzuca przekierowania.
 
 ## Świadomie pominięte (są w Telemarku)
 

@@ -1,4 +1,5 @@
-import { appendFile, cp, readFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
+import { cp, readFile, writeFile } from "node:fs/promises";
 import { createServer, type Server } from "node:http";
 import type { AddressInfo } from "node:net";
 import path from "node:path";
@@ -48,6 +49,9 @@ test("the game is installable", async ({ page, browserName }) => {
   expect(installabilityErrors).toEqual([]);
 });
 
+const NEXT_RELEASE_MARK = '<meta name="e2e-release" content="next" />';
+const nextReleaseMark = (page: Page) => page.locator('meta[name="e2e-release"]');
+
 const CONTENT_TYPES: Record<string, string> = {
   ".html": "text/html",
   ".js": "text/javascript",
@@ -85,8 +89,13 @@ const serveCopyOfBuild = async () => {
   const { port } = server.address() as AddressInfo;
   return {
     url: `http://localhost:${port}/`,
-    /** The next release: the same files and a worker that differs by a byte. */
-    release: () => appendFile(path.join(root, "sw.js"), "\n// next release\n"),
+    /** The next release: a start page that says so, and the worker the build makes for it. */
+    release: async () => {
+      const startPage = path.join(root, "index.html");
+      const html = await readFile(startPage, "utf8");
+      await writeFile(startPage, html.replace("</head>", `${NEXT_RELEASE_MARK}</head>`));
+      execFileSync(process.execPath, ["scripts/write-service-worker.mjs", root]);
+    },
     close: async () => {
       server.closeAllConnections();
       await new Promise((resolve) => server.close(resolve));
@@ -96,6 +105,7 @@ const serveCopyOfBuild = async () => {
 
 test("a release found on demand installs from the start screen and the page reloads under it", async ({
   page,
+  context,
 }) => {
   const host = await serveCopyOfBuild();
   try {
@@ -110,15 +120,20 @@ test("a release found on demand installs from the start screen and the page relo
     await expect(page.getByText("Masz najnowszą wersję.")).toBeVisible();
 
     await host.release();
-    await check.click();
+    // The browser looks for a new worker on its own too and may find this one first; the button then
+    // already offers the install. Clicked in one step in the page, so the click cannot land on a button
+    // that changed meaning in between.
+    await page.evaluate(() =>
+      document.querySelector<HTMLButtonElement>('[data-dd-action="sprawdz-aktualizacje"]')?.click()
+    );
     const install = page.locator('[data-dd-action="zainstaluj-aktualizacje"]');
     await expect(install).toBeVisible();
+    await expect(nextReleaseMark(page)).toHaveCount(0);
 
-    await page.evaluate(() => {
-      (window as Window & { beforeUpdate?: true }).beforeUpdate = true;
-    });
+    // With no network the page after the reload can only come from the new release's own cache.
+    await context.setOffline(true);
     await install.click();
-    await expect.poll(() => page.evaluate(() => "beforeUpdate" in window)).toBe(false);
+    await expect(nextReleaseMark(page)).toHaveCount(1);
     await expect(check).toBeVisible();
     const waitingAfter = await page.evaluate(
       async () => (await navigator.serviceWorker.getRegistration())?.waiting ?? null

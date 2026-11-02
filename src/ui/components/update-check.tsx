@@ -26,6 +26,9 @@ export const UpdateCheck = () => {
   return (
     <>
       <button
+        // A new element when the meaning changes: a click on "check" that lands just as a release turns
+        // ready must not install it.
+        key={ready ? "install" : "check"}
         type="button"
         className="dd-changelog-toggle"
         data-dd-action={ready ? "zainstaluj-aktualizacje" : "sprawdz-aktualizacje"}
