@@ -36,6 +36,32 @@ test("after one visit the game starts without a network, fonts included", async 
   expect(figtreeFaces).toBeGreaterThan(0);
 });
 
+// The control for the test above: the same steps with the worker blocked must find no game.
+test.describe("without the service worker", () => {
+  test.use({ serviceWorkers: "block" });
+
+  test("the game does not start without a network", async ({ page, context }) => {
+    await page.goto("/");
+    await expect(page.locator(".dd-root[data-dd-screen]")).toBeVisible();
+    await context.setOffline(true);
+    await expect(page.reload()).rejects.toThrow();
+  });
+});
+
+test("a page whose script cannot be fetched says so and offers a reload", async ({ page }) => {
+  await page.route("**/assets/index-*.js", (route) => route.abort());
+  await page.goto("/");
+  const note = page.locator(".dd-boot-note");
+  await expect(note).toBeVisible();
+  await expect(note.getByRole("link")).toHaveAttribute("href", "/");
+});
+
+test("a normal start replaces the loading note with the game", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".dd-root[data-dd-screen]")).toBeVisible();
+  await expect(page.locator(".dd-boot-note")).toHaveCount(0);
+});
+
 test("a check for an update without a network says so, not that the game is up to date", async ({
   page,
   context,
@@ -145,9 +171,12 @@ test("a release found on demand installs from the start screen and the page relo
     await expect(nextReleaseMark(page)).toHaveCount(0);
 
     // With no network the page after the reload can only come from the new release's own cache.
+    // What the player has saved lives in localStorage, which the worker never touches.
+    await page.evaluate(() => localStorage.setItem("dd-e2e-kept", "yes"));
     await context.setOffline(true);
     await install.click();
     await expect(nextReleaseMark(page)).toHaveCount(1);
+    expect(await page.evaluate(() => localStorage.getItem("dd-e2e-kept"))).toBe("yes");
     await expect(check).toBeVisible();
     const waitingAfter = await page.evaluate(
       async () => (await navigator.serviceWorker.getRegistration())?.waiting ?? null

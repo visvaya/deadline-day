@@ -141,6 +141,34 @@ body {
   box-sizing: border-box;
 }
 
+/* The note index.html carries inside #root until the game replaces it. Hidden for the first moment, so a
+   normal start never shows it; a start that never comes leaves it with its reload link. No inline script
+   or style: the content security policy allows neither. */
+.dd-boot-note {
+  margin: 0;
+  padding: calc(24px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-right, 0px))
+    24px calc(16px + env(safe-area-inset-left, 0px));
+  color: var(--text-secondary);
+  font-family: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  animation: dd-boot-note-appear 0s linear 1.5s both;
+}
+
+.dd-boot-note a {
+  color: var(--text-primary);
+}
+
+@keyframes dd-boot-note-appear {
+  from {
+    visibility: hidden;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
 .dd-root {
   display: flex;
   min-height: 100%;
