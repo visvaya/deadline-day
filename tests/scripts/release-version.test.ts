@@ -4,6 +4,7 @@ import { describe, expect, test } from "vitest";
 import { CHANGELOG, CURRENT_VERSION } from "../../src/data/changelog";
 import {
   bumpOfTitle,
+  needsWrittenNotes,
   nextReleaseVersion,
   releaseNotes,
   releaseTagProblems,
@@ -77,28 +78,65 @@ describe("the step a pull request title asks for", () => {
   test("refuses a title that is not a Conventional Commit", () => {
     expect(() => bumpOfTitle("Make the game installable")).toThrow();
   });
+
+  test("a scope may hold any characters commitlint accepts", () => {
+    expect(bumpOfTitle("fix(UI_layer): spacing")).toBe("patch");
+  });
+
+  test("only a feature, a fix or a breaking change needs notes written for the player", () => {
+    expect(needsWrittenNotes("feat(ui): a new screen")).toBe(true);
+    expect(needsWrittenNotes("fix(ui): spacing")).toBe(true);
+    expect(needsWrittenNotes("build(deps)!: drop an old browser")).toBe(true);
+    expect(needsWrittenNotes("build(deps): bump react")).toBe(false);
+    expect(needsWrittenNotes("refactor(logic): split the reducer")).toBe(false);
+  });
 });
 
 describe("what ships", () => {
+  const pkg = {
+    name: "deadline-day",
+    version: "0.35.0",
+    scripts: { build: "vite build", test: "vitest" },
+  };
+
   test("the game's source, its static files and its build", () => {
     [
       "src/ui/app.tsx",
       "public/_headers",
       "scripts/service-worker-template.js",
       "pnpm-lock.yaml",
-    ].forEach((path) => expect(shipsTheGame([path]), path).toBe(true));
+    ].forEach((path) => expect(shipsTheGame([path], pkg, pkg), path).toBe(true));
   });
 
-  test("not tests, notes, CI, the balance tooling or package.json on its own", () => {
+  test("not tests, notes, CI or the balance tooling", () => {
     expect(
-      shipsTheGame([
-        "tests/ui/app.test.tsx",
-        "docs/decisions/x.md",
-        ".github/workflows/ci.yml",
-        "scripts/balance.ts",
-        "package.json",
-      ])
+      shipsTheGame(
+        [
+          "tests/ui/app.test.tsx",
+          "docs/decisions/x.md",
+          ".github/workflows/ci.yml",
+          "scripts/balance.ts",
+        ],
+        pkg,
+        pkg
+      )
     ).toBe(false);
+  });
+
+  test("package.json counts unless only its version or a script other than build moved", () => {
+    const head = (change: object) => ({ ...pkg, ...change });
+    expect(shipsTheGame(["package.json"], pkg, head({ version: "0.35.1" }))).toBe(false);
+    expect(
+      shipsTheGame(["package.json"], pkg, head({ scripts: { ...pkg.scripts, lint: "oxlint" } }))
+    ).toBe(false);
+    expect(
+      shipsTheGame(
+        ["package.json"],
+        pkg,
+        head({ scripts: { ...pkg.scripts, build: "vite build --x" } })
+      )
+    ).toBe(true);
+    expect(shipsTheGame(["package.json"], pkg, head({ type: "module" }))).toBe(true);
   });
 });
 

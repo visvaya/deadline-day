@@ -3,7 +3,9 @@
  * purpose.
  *
  * CURRENT_VERSION (src/data/changelog.ts) is what the player reads. It moves
- * when there is something worth telling them and stays put when there is not.
+ * with every pull request that changes what is deployed (scripts/release-
+ * version.ts), and each move gets a changelog entry; one the player never sees
+ * (a dependency, a refactor) carries the stock TECHNICAL_CHANGES_NOTE.
  *
  * ENGINE_REVISION is what a save file is allowed to trust. It must move
  * whenever the reducer's behaviour changes, whether or not the change is

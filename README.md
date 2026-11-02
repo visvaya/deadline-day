@@ -15,7 +15,8 @@ In active development. Play the development preview at
 <https://deadline-day.visvaya.workers.dev>, deployed from `main` after the full
 gate; saves may be lost between versions. The version has one source,
 `CURRENT_VERSION` in `src/data/changelog.ts` (`0.35`, or `0.35.1` for a fix),
-mirrored as semver in `package.json` (`0.35.0`) and in git tags (`v0.35.0`); a
+mirrored as semver in `package.json` (`0.35.0`) and in git tags (`v0.35.0`,
+`v0.35.1`); a
 test keeps them equal. Every pull request that changes the game moves it by the
 step its title names (`pnpm version:bump`, checked in CI), and each verified
 deployment of a new version creates its git tag and a GitHub release with the

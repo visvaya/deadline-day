@@ -2,7 +2,8 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { parseArgs } from "node:util";
 
-import { expectedVersion, toChangelogVersion } from "./release-version";
+import { TECHNICAL_CHANGES_NOTE } from "../src/data/changelog";
+import { expectedVersion, needsWrittenNotes, toChangelogVersion } from "./release-version";
 
 /**
  * `pnpm version:bump "<pull request title>" [--base <ref>]` (default base: origin/main).
@@ -10,9 +11,10 @@ import { expectedVersion, toChangelogVersion } from "./release-version";
  * Sets the version of a pull request about to be opened, by the rules CI checks
  * (scripts/check-version.ts): the next version after the base's when the change
  * touches the game, the base's otherwise. Writes it to package.json and to
- * CURRENT_VERSION, and starts a changelog entry for it with no notes, which a
- * test refuses until the player-facing notes are written. Uncommitted changes
- * count.
+ * CURRENT_VERSION, and starts a changelog entry for it: with no notes for a
+ * feat or a fix, which a test refuses until the player-facing notes are
+ * written; with the stock TECHNICAL_CHANGES_NOTE for anything else.
+ * Uncommitted changes count.
  */
 const PACKAGE_FILE = "package.json";
 const CHANGELOG_FILE = "src/data/changelog.ts";
@@ -30,30 +32,34 @@ const main = (): void => {
 
   const fork = git("merge-base", values.base, "HEAD").trim();
   const basePackage = JSON.parse(git("show", `${fork}:${PACKAGE_FILE}`)) as { version: string };
-  const packageText = readFileSync(PACKAGE_FILE, "utf8");
-  const headPackage = JSON.parse(packageText) as { version: string };
+  const headPackage = JSON.parse(readFileSync(PACKAGE_FILE, "utf8")) as { version: string };
   const changedPaths = git("diff", "--name-only", fork).split("\n").filter(Boolean);
   const version = expectedVersion({ title, changedPaths, basePackage, headPackage });
-  writeFileSync(
-    PACKAGE_FILE,
-    packageText.replace(/"version": "[^"]*"/u, `"version": "${version}"`)
-  );
+  writeFileSync(PACKAGE_FILE, `${JSON.stringify({ ...headPackage, version }, null, 2)}\n`);
 
   const changelogVersion = toChangelogVersion(version);
-  const changelog = readFileSync(CHANGELOG_FILE, "utf8").replace(
+  const baseChangelogVersion = toChangelogVersion(basePackage.version);
+  const text = readFileSync(CHANGELOG_FILE, "utf8").replace(
     /export const CURRENT_VERSION = "[^"]*";/u,
     `export const CURRENT_VERSION = "${changelogVersion}";`
   );
-  const hasEntry = changelog.includes(`version: "${changelogVersion}",`);
+  const top = /version: "([^"]+)",/u.exec(text.slice(text.indexOf(CHANGELOG_START)))?.[1];
   const date = new Date().toISOString().slice(0, 10);
-  const entry = `  {\n    version: "${changelogVersion}",\n    date: "${date}",\n    notes: [],\n  },\n`;
-  writeFileSync(
-    CHANGELOG_FILE,
-    hasEntry ? changelog : changelog.replace(CHANGELOG_START, `${CHANGELOG_START}${entry}`)
-  );
+  const notes = needsWrittenNotes(title) ? "" : JSON.stringify(TECHNICAL_CHANGES_NOTE);
+  const entry = `  {\n    version: "${changelogVersion}",\n    date: "${date}",\n    notes: [${notes}],\n  },\n`;
+  // The newest entry is this branch's own when it is not the base's: bumped again for another title
+  // (fix to feat), it takes the new number and keeps its notes.
+  const ownEntry = top !== undefined && top !== baseChangelogVersion;
+  const changelog =
+    version === basePackage.version || top === changelogVersion
+      ? text
+      : ownEntry
+        ? text.replace(`version: "${top}",`, `version: "${changelogVersion}",`)
+        : text.replace(CHANGELOG_START, `${CHANGELOG_START}${entry}`);
+  writeFileSync(CHANGELOG_FILE, changelog);
 
   const reminder =
-    hasEntry || version === basePackage.version
+    version === basePackage.version || ownEntry || !needsWrittenNotes(title)
       ? ""
       : `; write the player-facing notes of ${changelogVersion} in ${CHANGELOG_FILE}`;
   process.stdout.write(

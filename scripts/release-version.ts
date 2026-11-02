@@ -14,7 +14,7 @@ import type { ChangelogEntry } from "../src/data/changelog";
  */
 const CHANGELOG_VERSION = /^(\d+)\.(\d{2})(?:\.([1-9]\d*))?$/u;
 const RELEASE_VERSION = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/u;
-const PR_TITLE = /^([a-z]+)(\([a-z0-9./-]+\))?(!)?: /u;
+const PR_TITLE = /^([a-z]+)(\([^)]+\))?(!)?: /u;
 
 export const toReleaseVersion = (changelogVersion: string): string => {
   const match = CHANGELOG_VERSION.exec(changelogVersion);
@@ -49,6 +49,17 @@ export const bumpOfTitle = (title: string): Bump => {
   return match[1] === "feat" ? "minor" : "patch";
 };
 
+/**
+ * Whether a change needs notes written for the player: a new capability, a fix
+ * or a breaking change does; anything else (a dependency update, a refactor)
+ * gets the stock note of a technical release.
+ */
+export const needsWrittenNotes = (title: string): boolean => {
+  const match = PR_TITLE.exec(title);
+  if (!match) throw new Error(`the title is not a Conventional Commit: "${title}"`);
+  return match[3] === "!" || match[1] === "feat" || match[1] === "fix";
+};
+
 /** Before 1.0 the first number stays at 0: a breaking change moves the middle one. */
 export const nextReleaseVersion = (version: string, bump: Bump): string => {
   const [major, minor, patch] = parseRelease(version);
@@ -59,8 +70,9 @@ export const nextReleaseVersion = (version: string, bump: Bump): string => {
 
 /**
  * The files the deployed game is built from; tests, notes, CI and the balance
- * tooling do not ship. package.json does not count: a dependency that changes
- * changes pnpm-lock.yaml too, and a new script or a moved version ships nothing.
+ * tooling do not ship. scripts/static-headers.ts does not either: vite.config.ts
+ * reads it for `vite preview` only. Nor does .nvmrc: CI builds with the newest
+ * patch of its line either way.
  */
 const SHIPPED_PREFIXES = ["src/", "public/"];
 const SHIPPED_FILES = new Set([
@@ -74,12 +86,22 @@ const SHIPPED_FILES = new Set([
   "scripts/service-worker-template.js",
 ]);
 
-type PackageJson = { version: string };
+type PackageJson = { version: string; scripts?: Record<string, string> } & Record<string, unknown>;
+
+/** package.json as far as the build reads it: everything but the version and the scripts other than `build`. */
+const buildInputs = (pkg: PackageJson): string =>
+  JSON.stringify({ ...pkg, version: undefined, scripts: pkg.scripts?.["build"] });
 
 /** Whether these changed files change the game. */
-export const shipsTheGame = (changedPaths: readonly string[]): boolean =>
-  changedPaths.some(
-    (path) => SHIPPED_FILES.has(path) || SHIPPED_PREFIXES.some((prefix) => path.startsWith(prefix))
+export const shipsTheGame = (
+  changedPaths: readonly string[],
+  basePackage: PackageJson,
+  headPackage: PackageJson
+): boolean =>
+  changedPaths.some((path) =>
+    path === "package.json"
+      ? buildInputs(basePackage) !== buildInputs(headPackage)
+      : SHIPPED_FILES.has(path) || SHIPPED_PREFIXES.some((prefix) => path.startsWith(prefix))
   );
 
 /** The version a pull request must carry: the next one when it changes the game, the base one otherwise. */
@@ -89,7 +111,7 @@ export const expectedVersion = (pr: {
   basePackage: PackageJson;
   headPackage: PackageJson;
 }): string =>
-  shipsTheGame(pr.changedPaths)
+  shipsTheGame(pr.changedPaths, pr.basePackage, pr.headPackage)
     ? nextReleaseVersion(pr.basePackage.version, bumpOfTitle(pr.title))
     : pr.basePackage.version;
 
@@ -102,7 +124,7 @@ export const versionProblems = (pr: {
 }): string[] => {
   const expected = expectedVersion(pr);
   if (pr.headPackage.version === expected) return [];
-  const why = shipsTheGame(pr.changedPaths)
+  const why = shipsTheGame(pr.changedPaths, pr.basePackage, pr.headPackage)
     ? "the pull request changes the game"
     : "the pull request does not change the game";
   return [
