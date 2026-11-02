@@ -39,7 +39,7 @@ export const UpdateCheck = () => {
           else void check();
         }}
       >
-        {ready ? "Zainstaluj teraz" : "Szukaj aktualizacji"}
+        {ready ? "Zainstaluj nową wersję" : "Szukaj aktualizacji"}
       </button>
       <p className="dd-update-status" aria-live="polite">
         {STATUS_TEXT[status]}
