@@ -10,15 +10,27 @@ export type ChangelogEntry = {
  * came to accept saves from three different engines, because this number
  * moves when there is news and an engine changes whether or not there is.
  */
-export const CURRENT_VERSION = "0.35";
+export const CURRENT_VERSION = "0.35.1";
 
 export const NEXT_UPDATE_NOTE = "kolejna aktualizacja: wkrótce";
+
+/**
+ * The changelog note of a version the player never sees a difference in (a
+ * dependency update, a refactor). `pnpm version:bump` writes it for any title
+ * that is not a feat or a fix. Owner's decision of 2026-11-02.
+ */
+export const TECHNICAL_CHANGES_NOTE = "Drobne poprawki techniczne.";
 
 /** Shown under the change history while saves are not migrated between engine versions. */
 export const DEVELOPMENT_NOTICE =
   "Wersja rozwojowa: partia w toku i zapisane kariery mogą przepaść po aktualizacji gry.";
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  {
+    version: "0.35.1",
+    date: "2026-11-02",
+    notes: ["Drobne poprawki techniczne."],
+  },
   {
     version: "0.35",
     date: "2026-11-02",

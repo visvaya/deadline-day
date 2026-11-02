@@ -9,6 +9,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, test, vi } from "vitest";
 
+import { CHANGELOG, CURRENT_VERSION } from "../../src/data/changelog";
 import type { Offer, Player } from "../../src/data/types";
 import { FORMACJE } from "../../src/data/positions";
 import { ACTION_BAR_COMPACT_QUERY } from "../../src/ui/action-bar-query";
@@ -209,22 +210,26 @@ describe("shared redesign components", () => {
     expect(toggle?.getAttribute("aria-expanded")).toBe("false");
     expect(toggle?.textContent).toContain("Pokaż starsze wersje");
 
-    // The player-facing version, pinned: it is deliberately still below 1.0,
-    // and it is not the engine revision a save file trusts.
-    expect(container.querySelector(".dd-version-tag")?.textContent).toBe("v0.35");
-    expect(container.querySelector(".dd-changelog-heading strong")?.textContent).toBe("v0.35");
+    // The player-facing version: CURRENT_VERSION, which moves with every pull
+    // request that changes the game. It is deliberately still below 1.0, and it
+    // is not the engine revision a save file trusts.
+    expect(CURRENT_VERSION.startsWith("0.")).toBe(true);
+    expect(container.querySelector(".dd-version-tag")?.textContent).toBe(`v${CURRENT_VERSION}`);
+    expect(container.querySelector(".dd-changelog-heading strong")?.textContent).toBe(
+      `v${CURRENT_VERSION}`
+    );
 
     await click(container, "historia-zmian");
     expect(entries()).toBeGreaterThan(1);
-    // The whole history, in order. Renumbered on 2026-08-27 by shifting every
-    // old entry down 0.70 - dates, wording and order untouched - so 1.0 stays
-    // reserved for a moment somebody chooses.
-    expect(
-      Array.from(container.querySelectorAll(".dd-changelog-heading strong")).map(
-        (heading) => heading.textContent
-      )
-    ).toEqual([
-      "v0.35",
+    // The whole history, in order, every entry rendered. The versions up to
+    // 0.34 are pinned: renumbered on 2026-08-27 by shifting every old entry down
+    // 0.70 - dates, wording and order untouched - so 1.0 stays reserved for a
+    // moment somebody chooses. Newer ones come from the changelog itself.
+    const headings = Array.from(container.querySelectorAll(".dd-changelog-heading strong")).map(
+      (heading) => heading.textContent
+    );
+    expect(headings).toEqual(CHANGELOG.map((entry) => `v${entry.version}`));
+    expect(headings.slice(headings.indexOf("v0.34"))).toEqual([
       "v0.34",
       "v0.33",
       "v0.32",
