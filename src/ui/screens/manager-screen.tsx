@@ -13,6 +13,7 @@ import {
   viewportDefaultActionBarMode,
 } from "../action-bar-query";
 import { AppHero } from "../components/app-hero";
+import { FullscreenToggle } from "../components/fullscreen-toggle";
 import { SectionHeading } from "../components/section-heading";
 import { StickyActionBar } from "../components/sticky-action-bar";
 import { UpdateCheck } from "../components/update-check";
@@ -137,7 +138,9 @@ export const ManagerScreen = ({
 
   return (
     <>
-      <AppHero />
+      <AppHero>
+        <UpdateCheck />
+      </AppHero>
       <main className="dd-setup-content">
         <div className="dd-wrap dd-setup-options">
           <section aria-labelledby="manager-heading">
@@ -299,6 +302,8 @@ export const ManagerScreen = ({
             </div>
           </section>
 
+          <FullscreenToggle />
+
           <section aria-labelledby="archive-heading">
             <SectionHeading id="archive-heading" title="Archiwum wyników" />
             <button
@@ -317,7 +322,6 @@ export const ManagerScreen = ({
           <section aria-labelledby="changelog-heading">
             <SectionHeading id="changelog-heading" title="Historia zmian" meta={NEXT_UPDATE_NOTE} />
             <p className="dd-note">{DEVELOPMENT_NOTICE}</p>
-            <UpdateCheck />
             <ul className="dd-changelog">
               {(changelogExpanded ? CHANGELOG : CHANGELOG.slice(0, 1)).map((entry) => (
                 <li key={entry.version}>

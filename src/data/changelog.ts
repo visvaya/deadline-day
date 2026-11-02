@@ -10,7 +10,7 @@ export type ChangelogEntry = {
  * came to accept saves from three different engines, because this number
  * moves when there is news and an engine changes whether or not there is.
  */
-export const CURRENT_VERSION = "0.35.3";
+export const CURRENT_VERSION = "0.36";
 
 export const NEXT_UPDATE_NOTE = "kolejna aktualizacja: wkrótce";
 
@@ -26,6 +26,14 @@ export const DEVELOPMENT_NOTICE =
   "Wersja rozwojowa: partia w toku i zapisane kariery mogą przepaść po aktualizacji gry.";
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  {
+    version: "0.36",
+    date: "2026-11-02",
+    notes: [
+      "Sprawdzanie aktualizacji jest w nagłówku ekranu startowego, przy numerze wersji, więc widać je od razu po otwarciu gry.",
+      "Nowe ustawienie „Pełny ekran” na ekranie startowym: gra zajmuje cały ekran, bez pasków przeglądarki. Pokazuje się tam, gdzie przeglądarka na to pozwala, także w zainstalowanej grze na komputerze.",
+    ],
+  },
   {
     version: "0.35.3",
     date: "2026-11-02",

@@ -2687,10 +2687,73 @@ button.dd-player-tile:hover {
   color: var(--text-faint);
 }
 
+/* The version line of the header: the version, and on the start screen the update check after it. Its
+   status wraps to a line of its own; empty, it takes no room but stays in the document, so its first
+   message is announced. */
+.dd-setup-hero .dd-hero-version {
+  display: flex;
+  max-width: none;
+  margin-top: 4px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 6px;
+  font-size: 12.5px;
+}
+
+.dd-update-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.dd-update-button:focus-visible {
+  outline: 3px solid var(--meaning-positive);
+  outline-offset: 2px;
+}
+
+/* Busy (checking, installing): the status under it says what is going on. */
+.dd-update-button[aria-disabled="true"] {
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: progress;
+}
+
+/* Scoped to the header, so the uppercase label style of `.dd-setup-hero p` does not reach it. */
+.dd-setup-hero .dd-update-status {
+  flex-basis: 100%;
+  margin: 2px 0 0;
+  color: var(--text-secondary);
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.45;
+  text-transform: none;
+}
+
+.dd-setup-hero .dd-update-status:empty {
+  margin-top: 0;
+}
+
+/* The title's own small gap is set for the label above it, not for a sentence. */
+.dd-setup-hero .dd-update-status:not(:empty) {
+  margin-bottom: 6px;
+}
+
 .dd-changelog {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* The notice above the list is a block of its own, not part of the newest entry. */
+.dd-note + .dd-changelog {
+  margin-top: 12px;
 }
 
 .dd-changelog > li + li {
@@ -2742,31 +2805,6 @@ button.dd-player-tile:hover {
 
 .dd-changelog-toggle:hover {
   color: var(--text-primary);
-}
-
-/* The update check is one group, the button and its status, set apart from the notice above and the
-   change list below by the same gap; the status sits close under the button. The live region stays in
-   the document while empty (so its first message is announced) but then takes no space. */
-.dd-update-check {
-  margin: 12px 0;
-}
-
-.dd-update-check > .dd-changelog-toggle {
-  margin-top: 0;
-}
-
-.dd-update-status {
-  margin-top: 2px;
-}
-
-.dd-update-status:empty {
-  margin-top: 0;
-}
-
-/* Busy (checking for an update, installing one): the note under it says what is going on. */
-.dd-changelog-toggle[aria-disabled="true"] {
-  color: var(--text-secondary);
-  cursor: progress;
 }
 
 .dd-setup-choice-list {
@@ -2826,6 +2864,10 @@ button.dd-player-tile:hover {
   display: block;
   margin-top: 6px;
   color: var(--meaning-positive);
+}
+
+.dd-setup-choice-state.is-off {
+  color: var(--text-secondary);
 }
 
 .dd-setup-choice:focus-visible {

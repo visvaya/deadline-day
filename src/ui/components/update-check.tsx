@@ -5,8 +5,7 @@ const STATUS_TEXT: Record<UpdateStatus, string> = {
   checking: "Sprawdzam…",
   latest: "Masz najnowszą wersję.",
   downloading: "Jest nowa wersja gry. Pobieram ją.",
-  waiting:
-    "Nowa wersja gry jest gotowa. Zainstaluj ją teraz albo zamknij grę całkowicie i uruchom ją ponownie.",
+  waiting: "Nowa wersja gry jest gotowa. Partia w toku może po aktualizacji przepaść.",
   installing: "Instaluję…",
   failed: "Nie udało się zaktualizować gry: spróbuj później.",
   unreachable: "Brak połączenia: nie można sprawdzić.",
@@ -15,8 +14,8 @@ const STATUS_TEXT: Record<UpdateStatus, string> = {
 };
 
 /**
- * Looks for a new release of the game and installs a waiting one at once (the page reloads). Sits under the
- * notice that an update may drop the career in progress, which is what installing one now can do.
+ * Looks for a new release of the game and installs a waiting one at once (the page reloads). Sits on the
+ * version line of the start screen's header, after the version it is about; the status wraps below it.
  */
 export const UpdateCheck = () => {
   const { supported, status, check, install } = useGameUpdate();
@@ -24,13 +23,14 @@ export const UpdateCheck = () => {
   const ready = status === "waiting" || status === "installing";
   const busy = status === "checking" || status === "installing";
   return (
-    <div className="dd-update-check">
+    <>
+      <span aria-hidden="true">·</span>
       <button
         // A new element when the meaning changes: a click on "check" that lands just as a release turns
         // ready must not install it.
         key={ready ? "install" : "check"}
         type="button"
-        className="dd-changelog-toggle"
+        className="dd-update-button"
         data-dd-action={ready ? "zainstaluj-aktualizacje" : "sprawdz-aktualizacje"}
         aria-disabled={busy}
         onClick={() => {
@@ -41,9 +41,9 @@ export const UpdateCheck = () => {
       >
         {ready ? "Zainstaluj teraz" : "Sprawdź aktualizację"}
       </button>
-      <p className="dd-note dd-update-status" aria-live="polite">
+      <p className="dd-update-status" aria-live="polite">
         {STATUS_TEXT[status]}
       </p>
-    </div>
+    </>
   );
 };
