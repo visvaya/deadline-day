@@ -15,9 +15,9 @@ Decyzja z 2026-11-02: gra jest instalowalna (manifest, ikony 192 i 512 px) i po 
 
 Decyzja właściciela z 2026-11-02: przycisk na ekranie startowym, w sekcji „Historia zmian”, tuż pod ostrzeżeniem, że partia w toku może przepaść po aktualizacji. W trakcie kariery nic się nie pokazuje: gra nie ma tam menu, a instalacja w środku partii z nową wersją silnika skasowałaby karierę w toku (`readStoredState` odrzuca zapis z innym `ENGINE_REVISION`).
 
-`src/ui/game-update.ts`: „Szukaj aktualizacji” najpierw pyta serwer wprost (`HEAD /sw.js`, który worker przepuszcza do sieci), bo bez sieci Chromium kończy `registration.update()` bez błędu i gracz offline czytałby „Masz najnowszą wersję”. Potem woła `registration.update()` i mówi, co znalazł (najnowsza, pobieranie, gotowa, brak sieci, gra jeszcze się zapisuje). Gotowa wersja zamienia przycisk na „Zainstaluj teraz”: strona wysyła workerowi komunikat `deadline-day:take-over`, worker woła `skipWaiting`, a strona przeładowuje się, gdy **ten** worker osiągnie stan `activated` (śledzony jego własny stan, nie `controllerchange`, więc działa też po wymuszonym przeładowaniu). Inne otwarte okna nie są przeładowywane.
+`src/ui/game-update.ts`: „Szukaj aktualizacji” najpierw pyta serwer wprost (`HEAD /sw.js`, który worker przepuszcza do sieci), bo bez sieci Chromium kończy `registration.update()` bez błędu i gracz offline czytałby „Masz najnowszą wersję”. Potem woła `registration.update()` i mówi, co znalazł (najnowsza, pobieranie, gotowa, brak sieci, gra jeszcze się zapisuje). Gotowa wersja zamienia przycisk na „Zainstaluj nową wersję”: strona wysyła workerowi komunikat `deadline-day:take-over`, worker woła `skipWaiting`, a strona przeładowuje się, gdy **ten** worker osiągnie stan `activated` (śledzony jego własny stan, nie `controllerchange`, więc działa też po wymuszonym przeładowaniu). Inne otwarte okna nie są przeładowywane.
 
-Przycisk ma osobny element (`key`) dla każdego znaczenia. Przeglądarka sama szuka nowego workera i potrafi go znaleźć tuż przed kliknięciem „Szukaj aktualizacji”; z jednym elementem kliknięcie w drodze trafiało w „Zainstaluj teraz” i przeładowywało grę (złapane w WebKicie, raz na kilka przebiegów).
+Przycisk ma osobny element (`key`) dla każdego znaczenia. Przeglądarka sama szuka nowego workera i potrafi go znaleźć tuż przed kliknięciem „Szukaj aktualizacji”; z jednym elementem kliknięcie w drodze trafiało w „Zainstaluj nową wersję” i przeładowywało grę (złapane w WebKicie, raz na kilka przebiegów).
 
 Pułapka zauważona w testach: strona z pierwszej wizyty nie jest kontrolowana przez workera. Gdy żadne okno nie używa działającego wydania, przeglądarka aktywuje nowe od razu, bez czekania (WebKit robi to natychmiast, zgodnie ze specyfikacją). Komunikat „gotowa” znika wtedy sam; test e2e przeładowuje stronę przed sprawdzeniem, jak przy każdym kolejnym uruchomieniu.
 
@@ -25,7 +25,7 @@ Pułapka zauważona w testach: strona z pierwszej wizyty nie jest kontrolowana p
 
 - `tests/scripts/service-worker.test.ts`: wygenerowany worker uruchamiany przez `vm` na atrapach `caches` i sieci (instalacja, odmowy, pełny dysk, przejęcie bez kasowania, pliki starego wydania, sprzątanie, błąd sieci, komunikat przejęcia).
 - `tests/ui/game-update.test.ts`: sprawdzenie, śledzenie i instalacja na atrapach rejestracji.
-- `tests/e2e/offline.spec.ts`: gra startuje bez sieci po jednej wizycie (Chromium i WebKit; ta sama próba z zablokowanymi workerami pada w obu), brak błędów instalowalności według Chromium, pełna ścieżka „Szukaj aktualizacji” → „Zainstaluj teraz” → przeładowanie na kopii buildu na osobnym serwerze (Playwright nie przechwytuje pobrania skryptu workera przez `context.route`).
+- `tests/e2e/offline.spec.ts`: gra startuje bez sieci po jednej wizycie (Chromium i WebKit; ta sama próba z zablokowanymi workerami pada w obu), brak błędów instalowalności według Chromium, pełna ścieżka „Szukaj aktualizacji” → „Zainstaluj nową wersję” → przeładowanie na kopii buildu na osobnym serwerze (Playwright nie przechwytuje pobrania skryptu workera przez `context.route`).
 
 ## Warunek przy przejściu na własną domenę
 
