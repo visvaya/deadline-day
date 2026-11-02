@@ -1902,8 +1902,13 @@ button.dd-player-tile:hover {
      once the mobile browser collapsed its toolbar and started reporting
      the home-indicator inset. Taking the larger of the two keeps the
      button clear of the gesture area without paying for the same
-     clearance twice. */
-  padding: 13px 16px max(15px, calc(env(safe-area-inset-bottom, 0px) - var(--dd-vv-lift)));
+     clearance twice.
+     min(..., 21px): the portrait inset (34px on an iPhone) is measured to the screen edge and left the
+     button visibly too high once viewport-fit=cover made it count. 21px is the landscape inset and
+     still keeps the button clear of the home indicator in portrait, so the bar and the squad drawer
+     sit the same distance above it in both orientations. */
+  padding: 13px 16px
+    max(15px, calc(min(env(safe-area-inset-bottom, 0px), 21px) - var(--dd-vv-lift)));
   gap: 6px;
   border-top: 1px solid var(--border-card);
   background: var(--surface-panel);
@@ -1915,7 +1920,7 @@ button.dd-player-tile:hover {
 
 .dd-action-bar-inner:has(> button:only-child) {
   padding-top: 18px;
-  padding-bottom: max(20px, calc(env(safe-area-inset-bottom, 0px) - var(--dd-vv-lift)));
+  padding-bottom: max(20px, calc(min(env(safe-area-inset-bottom, 0px), 21px) - var(--dd-vv-lift)));
 }
 
 /* Bug fix (2026-09-18, bar "niezgrany z paskiem przeciągania iPhone" in
@@ -3376,7 +3381,9 @@ button.dd-player-tile:hover {
   width: min(100%, 470px);
   height: max-content;
   max-height: 92dvh;
-  padding: 9px 13px calc(13px + env(safe-area-inset-bottom));
+  /* The same clearance as the action bar (see .dd-action-bar-inner): the inset capped at 21px, never
+     less than the base padding. Added to the base, the full inset left the button far too high. */
+  padding: 9px 13px max(13px, min(env(safe-area-inset-bottom, 0px), 21px));
   flex-direction: column;
   border: 1px solid var(--border-card);
   border-bottom: 0;

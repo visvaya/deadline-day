@@ -110,6 +110,7 @@ Nazwa klubu i rozgrywki europejskie stoją nad HUD-em jako **słowa**, więc lim
 - Szerokość odniesienia **360 px**, bez poziomego przewijania (kryterium akceptacji 8).
 - **Nagłówek nie jest przyklejony.** Pasek klubu i HUD przewijają się z treścią; przyklejony jest wyłącznie pasek akcji.
 - **Na mobile pasek akcji reaguje na przewijanie**: chowa się w dół, wraca w górę i **zawsze wraca na końcu listy**. Od szerokości 768 px pozostaje stale widoczny. Przy `prefers-reduced-motion: reduce` mechanizm jest wyłączony i pasek zostaje na stałe.
+- **Bezpieczny obszar iPhone'a** (2026-11-02): strona ma `viewport-fit=cover`, a `.dd-root` odsuwa treść od paska stanu i wcięcia ekranu. Dolny odstęp paska akcji i szuflady to wstawka dolna obcięta do 21 px, nigdy mniejsza od zwykłego odstępu: na iPhonie oba przyciski stoją 21 px nad krawędzią, w pionie i w poziomie. Pełna wstawka (34 px w pionie) dawała przyciski wyraźnie za wysoko. Pilnuje tego test w `tests/e2e/smoke.spec.ts` (Chromium symuluje wstawki).
 - Na desktopie nagłówek i pasek akcji są wyśrodkowanymi panelami o szerokości maksymalnie 470 px, z pełną obwódką i zaokrągleniem — nie rozlewają się na całą szerokość okna.
 - **Kadra to linie formacji** 1 · 4 · 3 · 3, kafelki równej szerokości, linie wyśrodkowane względem siebie. Zmiennicy pod podstawowym, każdy w osobnym wierszu, bez limitu liczby.
 - Wszystkie listy poziome (anomalie rynkowe) muszą dać się przewijać **przeciąganiem myszą**, nie tylko gestem — gracze desktopowi też będą.

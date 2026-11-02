@@ -1127,3 +1127,32 @@ test("the squad-depth confirmation fits a 360px viewport", async ({ page }) => {
   expect(box.x + box.width).toBeLessThanOrEqual(clientWidth);
   expect(box.height).toBeLessThanOrEqual(800);
 });
+
+test("keeps the action bar and the squad drawer the same distance above an iPhone's home indicator", async ({
+  page,
+  browserName,
+}) => {
+  test.skip(browserName !== "chromium", "only Chromium can stand in for a device's safe area");
+  // A portrait iPhone: 34px reserved at the bottom for the home indicator. Without viewport-fit=cover
+  // the page reads every inset as 0 and the buttons sit on the indicator; with the whole inset as
+  // padding they sit far above it.
+  const session = await page.context().newCDPSession(page);
+  await session.send("Emulation.setSafeAreaInsetsOverride", {
+    insets: { top: 47, bottom: 34, left: 0, right: 0 },
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await startGameWithoutTimer(page);
+
+  const gapBelow = async (selector: string) => {
+    const box = (await page.locator(selector).last().boundingBox())!;
+    return 844 - (box.y + box.height);
+  };
+  const barGap = await gapBelow(".dd-action-bar-inner button");
+  await page.locator(".dd-offer-position-squad").click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  const drawerGap = await gapBelow('[data-dd-action="kadra-zamknij"]');
+
+  expect(barGap).toBeCloseTo(21, 0);
+  expect(drawerGap).toBeCloseTo(barGap, 0);
+});
