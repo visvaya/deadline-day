@@ -1156,3 +1156,18 @@ test("keeps the action bar and the squad drawer the same distance above an iPhon
   expect(barGap).toBeCloseTo(21, 0);
   expect(drawerGap).toBeCloseTo(barGap, 0);
 });
+
+test("the start screen puts the game into full screen and out of it", async ({ page }) => {
+  await page.goto("/");
+  const fullscreenEnabled = await page.evaluate(() => document.fullscreenEnabled);
+  test.skip(!fullscreenEnabled, "this browser offers pages no full screen");
+  const toggle = page.locator('[data-dd-action="pelny-ekran"]');
+  const inFullscreen = () => page.evaluate(() => document.fullscreenElement !== null);
+
+  await toggle.click();
+  await expect.poll(inFullscreen).toBe(true);
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await toggle.click();
+  await expect.poll(inFullscreen).toBe(false);
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+});
