@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type Dispatch } from "react";
-import { CHANGELOG, DEVELOPMENT_NOTICE, NEXT_UPDATE_NOTE } from "../../data/changelog";
+import { CHANGELOG, DEVELOPMENT_NOTICE } from "../../data/changelog";
 import type { GameAction, ManagerIdentity } from "../../data/types";
 import {
   randomManagerIdentity,
@@ -13,7 +13,7 @@ import {
   viewportDefaultActionBarMode,
 } from "../action-bar-query";
 import { AppHero } from "../components/app-hero";
-import { FullscreenToggle } from "../components/fullscreen-toggle";
+import { ScreenSettings } from "../components/screen-settings";
 import { SectionHeading } from "../components/section-heading";
 import { StickyActionBar } from "../components/sticky-action-bar";
 import { UpdateCheck } from "../components/update-check";
@@ -302,7 +302,7 @@ export const ManagerScreen = ({
             </div>
           </section>
 
-          <FullscreenToggle />
+          <ScreenSettings />
 
           <section aria-labelledby="archive-heading">
             <SectionHeading id="archive-heading" title="Archiwum wyników" />
@@ -320,7 +320,7 @@ export const ManagerScreen = ({
           </section>
 
           <section aria-labelledby="changelog-heading">
-            <SectionHeading id="changelog-heading" title="Historia zmian" meta={NEXT_UPDATE_NOTE} />
+            <SectionHeading id="changelog-heading" title="Historia zmian" />
             <p className="dd-note">{DEVELOPMENT_NOTICE}</p>
             <ul className="dd-changelog">
               {(changelogExpanded ? CHANGELOG : CHANGELOG.slice(0, 1)).map((entry) => (

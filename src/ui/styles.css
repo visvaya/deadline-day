@@ -2812,6 +2812,13 @@ button.dd-player-tile:hover {
   gap: 7px;
 }
 
+/* A card's answer (a refused quit, the browser's own full screen): right under its card, in line with the
+   card's text, not a footnote to the whole list. */
+.dd-setup-choice-list > .dd-note {
+  margin: -2px 0 0;
+  padding: 0 12px;
+}
+
 .dd-setup-choice {
   width: 100%;
   padding: 11px 12px 12px;

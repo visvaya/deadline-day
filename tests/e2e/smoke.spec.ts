@@ -1171,3 +1171,14 @@ test("the start screen puts the game into full screen and out of it", async ({ p
   await expect.poll(inFullscreen).toBe(false);
   await expect(toggle).toHaveAttribute("aria-pressed", "false");
 });
+
+test("quitting from a tab the browser will not close says how to close it", async ({ page }) => {
+  // Two entries in the history: a browser closes, on a page's request, only a window it cannot go back in.
+  await page.goto("/?first");
+  await page.goto("/");
+  await page.locator('[data-dd-action="wylacz-gre"]').click();
+  const note = page.getByRole("status").filter({ hasText: "Ctrl+W" });
+  await expect(note).toBeVisible();
+  await expect(note).toBeFocused();
+  expect(page.isClosed()).toBe(false);
+});

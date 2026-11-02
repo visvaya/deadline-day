@@ -10,9 +10,7 @@ export type ChangelogEntry = {
  * came to accept saves from three different engines, because this number
  * moves when there is news and an engine changes whether or not there is.
  */
-export const CURRENT_VERSION = "0.36";
-
-export const NEXT_UPDATE_NOTE = "kolejna aktualizacja: wkrótce";
+export const CURRENT_VERSION = "0.37";
 
 /**
  * The changelog note of a version the player never sees a difference in (a
@@ -26,6 +24,14 @@ export const DEVELOPMENT_NOTICE =
   "Wersja rozwojowa: partia w toku i zapisane kariery mogą przepaść po aktualizacji gry.";
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  {
+    version: "0.37",
+    date: "2026-11-02",
+    notes: [
+      "Nowy przycisk „Wyłącz grę” na ekranie startowym, w sekcji „Okno gry”, na komputerze. Zamyka okno zainstalowanej gry; w zwykłej karcie przeglądarki gra podpowiada, jak ją zamknąć.",
+      "Przycisk w nagłówku nazywa się teraz „Szukaj aktualizacji”.",
+    ],
+  },
   {
     version: "0.36",
     date: "2026-11-02",
