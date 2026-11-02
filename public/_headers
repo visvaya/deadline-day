@@ -6,7 +6,7 @@
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
 # Files with a content hash in their name never change, but they are not cached for good: the host puts this
@@ -18,3 +18,12 @@
 # The page keeps its address between releases and is revalidated on every visit.
 /
   Cache-Control: no-cache
+
+# The service worker and the manifest keep their addresses too. The browser looks for a new worker on its own
+# as well, but asking the server every time lets a release reach a player on the next start.
+/sw.js
+  Cache-Control: no-cache
+
+/manifest.webmanifest
+  Cache-Control: no-cache
+  Content-Type: application/manifest+json
