@@ -1,7 +1,7 @@
 import { IMIONA, NAZWISKA } from "../data/name-pools";
 import { MANAGER_PROFANITY_TOKENS } from "../data/profanity";
 import type { ManagerIdentity } from "../data/types";
-import { createRng, pick, randomSeed } from "./rng";
+import { createRng, pick } from "./rng";
 import { at } from "./invariant";
 
 // ManagerIdentity itself lives in data/types.ts (a dependency leaf) - see
@@ -287,15 +287,15 @@ export const validateManagerIdentity = (value: unknown): ManagerValidationResult
  * Draws a random manager identity from the same name pools the squad
  * generator uses.
  *
- * Uses its own RNG instance (`createRng(randomSeed())`), never the career
+ * Uses its own RNG instance from the seed it is given, never the career
  * RNG: at this point in the flow the career seed does not exist yet, and
  * even if it did, drawing from it would shift the career's random stream by
  * however many times the player clicked "Losuj". Every drawn pair is run
  * through `validateManagerIdentity` so the pools can never smuggle in a
  * value the reducer would otherwise reject.
  */
-export const randomManagerIdentity = (): ManagerIdentity => {
-  const rng = createRng(randomSeed());
+export const randomManagerIdentity = (seed: number): ManagerIdentity => {
+  const rng = createRng(seed);
   const firstName = pick(rng, IMIONA);
   const lastName = pick(rng, NAZWISKA);
   const result = validateManagerIdentity({ firstName, lastName });

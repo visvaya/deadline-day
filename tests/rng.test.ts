@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 
-import { createRng, randomSeed } from "../src/logic/rng";
+import { createRng } from "../src/logic/rng";
+import { randomSeed } from "../src/ui/random-seed";
 
 describe("createRng", () => {
   test("returns values inside [0, 1)", () => {

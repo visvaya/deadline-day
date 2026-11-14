@@ -442,6 +442,39 @@ export default defineConfig({
       },
     },
     {
+      // The engine decides; the UI performs. The clock, storage, network and
+      // fresh randomness come in as parameters, so a replay or a balance run
+      // gets the same answer every time. scripts/ keeps the shorter list
+      // above: a script reads files and the clock on purpose. Exceptions are
+      // inline disables with a reason, and the list of them only shrinks.
+      files: ["src/logic/**", "src/data/**"],
+      rules: {
+        "no-restricted-globals": [
+          "error",
+          { name: "window", message: "Logic and data must not depend on the browser." },
+          { name: "document", message: "Logic and data must not depend on the DOM." },
+          ...[
+            "globalThis",
+            "self",
+            "navigator",
+            "localStorage",
+            "sessionStorage",
+            "indexedDB",
+            "fetch",
+            "XMLHttpRequest",
+            "crypto",
+            "performance",
+            "Date",
+            "setTimeout",
+            "setInterval",
+          ].map((name) => ({
+            name,
+            message: `Logic and data take ${name} as a parameter from the UI layer instead of reading it.`,
+          })),
+        ],
+      },
+    },
+    {
       // src/data is the leaf of the graph: constants, pools and types that
       // everything else reads and that read nothing back.
       files: ["src/data/**"],
