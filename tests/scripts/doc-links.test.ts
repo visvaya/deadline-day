@@ -86,6 +86,10 @@ describe("documentation link check", () => {
       "README.md:1: link `missing.md` does not exist",
     ]);
     expect(check("README.md", `${backslash}${backslash}\`[x](missing.md)\``)).toEqual([]);
+    // The escape takes one backtick; the next one still opens a span.
+    expect(check("README.md", `${backslash}\`\`example\` [x](missing.md) \`tail\``)).toEqual([
+      "README.md:1: link `missing.md` does not exist",
+    ]);
   });
 
   test("a fence closes only on a fence of the same character at least as long as the opening one", () => {

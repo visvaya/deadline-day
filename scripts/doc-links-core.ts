@@ -25,12 +25,20 @@ const LINK =
 /** A backticked token without white space. */
 const BACKTICKED = /`([^`\s]+)`/g;
 /**
+ * A backtick after an odd number of backslashes: escaped, so it is text. Only
+ * that one backtick; the next one may open a span.
+ */
+const ESCAPED_BACKTICK = /(?<!\\)((?:\\\\)*)\\`/g;
+/**
  * A code span: a run of backticks up to the next run of the same length. A
  * link written inside one is an example, not a link. Backticks without such a
- * closing run are text, and so is a backtick after an odd number of
- * backslashes, which escape it.
+ * closing run are text.
  */
-const CODE_SPAN = /(?<!(?<!\\)\\(?:\\\\)*)(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)/g;
+const CODE_SPAN = /(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)/g;
+
+/** The line with escaped backticks and code spans blanked out. */
+const withoutCodeSpans = (content: string): string =>
+  content.replace(ESCAPED_BACKTICK, "$1 ").replace(CODE_SPAN, " ");
 /** A scheme (https:, mailto:) marks an address, not a file of the repository. */
 const SCHEME = /^[a-z][a-z0-9+.-]*:/i;
 /** Globs and placeholders name a family of files, not one path. */
@@ -84,7 +92,7 @@ const lineProblems = (
   { line, content }: Line,
   { exists, roots }: DocFacts
 ): string[] => {
-  const links = [...content.replace(CODE_SPAN, " ").matchAll(LINK)].flatMap(([, target = ""]) => {
+  const links = [...withoutCodeSpans(content).matchAll(LINK)].flatMap(([, target = ""]) => {
     const path = pathOfLink(file, target);
     return path === null || exists(path)
       ? []
