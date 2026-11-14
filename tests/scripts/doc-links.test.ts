@@ -48,6 +48,20 @@ describe("documentation link check", () => {
     ]);
   });
 
+  test("a link with a title is still checked", () => {
+    expect(
+      check("README.md", '[guide](docs/missing.md "Guide") [ok](docs/testing.md "Testing")')
+    ).toEqual(["README.md:1: link `docs/missing.md` does not exist"]);
+  });
+
+  test("a link to a directory may end with a slash", () => {
+    expect(check("README.md", "[logic](src/logic/)")).toEqual([]);
+  });
+
+  test("a link written inside inline code is an example, not a link", () => {
+    expect(check("README.md", "Write `[x](missing.md)` to link a file.")).toEqual([]);
+  });
+
   test("a line number or trailing punctuation after a path is not part of it", () => {
     expect(
       check("README.md", "`src/logic/rng.ts:12`, `src/logic/rng.ts:3-9`; (`src/logic`).")

@@ -60,7 +60,9 @@ reviews:
     - path: "**"
       instructions: >-
         Project rules are in CONTRIBUTING.md, "Rules the code depends on". Text the player reads is Polish;
-        code, comments, commits and documentation are English, and older code still carries Polish
+        code, comments, commits, README and CONTRIBUTING are English, while the decision notes in docs/decisions
+        and the reports in scripts/data are Polish on purpose (do not ask to translate them; the em dash in
+        docs/ and scripts/ is the house style); older code still carries Polish
         identifiers that are renamed when touched, so do not ask to rename untouched ones. No em dash (U+2014)
         or emoji in src/. Real player names never appear; club names and colours may. Lean code: reuse
         existing helpers, no option or abstraction without a current user. A pull request that changes the

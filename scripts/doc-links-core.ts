@@ -16,10 +16,12 @@ export type DocFacts = {
   readonly roots: readonly string[];
 };
 
-/** An inline Markdown link or image: [text](target) or ![alt](target). */
-const LINK = /!?\[[^\]]*\]\(([^)\s]+)\)/g;
+/** An inline Markdown link or image, with an optional title: [text](target "title"). */
+const LINK = /!?\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
 /** A backticked token without white space. */
 const BACKTICKED = /`([^`\s]+)`/g;
+/** Inline code: a link written there is an example, not a link. */
+const CODE_SPAN = /`[^`]*`/g;
 /** A scheme (https:, mailto:) marks an address, not a file of the repository. */
 const SCHEME = /^[a-z][a-z0-9+.-]*:/i;
 /** Globs and placeholders name a family of files, not one path. */
@@ -37,7 +39,9 @@ const pathOfToken = (token: string): string =>
 const pathOfLink = (file: string, target: string): string | null => {
   if (SCHEME.test(target) || target.startsWith("#")) return null;
   const withoutSuffix = target.replace(/[?#].*$/, "");
-  return posix.normalize(posix.join(posix.dirname(file), decodeURIComponent(withoutSuffix)));
+  return posix
+    .normalize(posix.join(posix.dirname(file), decodeURIComponent(withoutSuffix)))
+    .replace(/\/+$/, "");
 };
 
 type Line = { readonly line: number; readonly content: string };
@@ -59,7 +63,7 @@ const lineProblems = (
   { line, content }: Line,
   { exists, roots }: DocFacts
 ): string[] => {
-  const links = [...content.matchAll(LINK)].flatMap(([, target = ""]) => {
+  const links = [...content.replace(CODE_SPAN, "").matchAll(LINK)].flatMap(([, target = ""]) => {
     const path = pathOfLink(file, target);
     return path === null || exists(path)
       ? []
