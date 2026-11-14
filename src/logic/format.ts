@@ -17,7 +17,7 @@ export const ord = (n: number): string => `${n}.`;
 
 export const znak = (x: number): string => (x >= 0 ? "+" : "");
 
-/** "ŁATWY" -> "Łatwy". Difficulty labels (POZIOMY) are stored upper-case. */
+/** "ŁATWY" -> "Łatwy". Former difficulty labels in archived games are stored upper-case. */
 export const titleCasePl = (allCaps: string): string =>
   allCaps.charAt(0) + allCaps.slice(1).toLocaleLowerCase("pl");
 

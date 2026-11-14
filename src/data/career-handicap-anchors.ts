@@ -2,7 +2,7 @@
 // Do not edit by hand and do not hand-type these numbers - regenerate instead.
 //
 // Anchors the internal advantageScore axis (src/logic/club-projection.ts) to
-// the three former difficulty pools (src/data/difficulty-levels.ts). What is
+// the three former difficulty pools (HISTORICAL_POOL_CLUB_IDS in the script). What is
 // preserved across the club-choice redesign is the numeric HANDICAP LEVELS -
 // tenureHandicap 0/55/110 and legacyHandicap 0/85/130 - never the old
 // per-club pool assignments themselves. Those assignments exist only so this
