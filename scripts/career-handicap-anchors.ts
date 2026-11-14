@@ -13,18 +13,16 @@ import { at } from "../src/logic/invariant";
  * `advantageScore` would land on today - and freezes it as the anchor a
  * career's `tenureHandicap`/`legacyHandicap` interpolates between.
  *
- * The three former pools (`src/data/difficulty-levels.ts`) are gone as a
- * player-facing choice, but the numeric handicap LEVELS they used to hand
+ * The three former pools (once `src/data/difficulty-levels.ts`, since
+ * deleted) are gone as a player-facing choice, but the numeric handicap LEVELS they used to hand
  * out - 0/55/110 and 0/85/130 - are not being re-tuned by this task. What
  * moves is only WHERE on the new `advantageScore` axis those levels sit,
  * because that axis did not exist when the levels were picked. This script
  * measures that position and nothing else: it never touches the levels
  * themselves.
  *
- * The historical pool membership is copied here as club ids rather than
- * imported from `difficulty-levels.ts`, so this script's anchors survive
- * that file's eventual removal and do not silently change if it is ever
- * edited for an unrelated reason.
+ * The historical pool membership is copied here as club ids, which is why
+ * this script's anchors survived that file's removal.
  */
 
 export type CareerHandicapPool = "latwy" | "sredni" | "trudny";
@@ -42,11 +40,10 @@ const HANDICAP_LEVELS: Readonly<
 };
 
 /**
- * Which club ids belonged to each pool, transcribed from
+ * Which club ids belonged to each pool, transcribed from the since-deleted
  * `src/data/difficulty-levels.ts` (`POZIOMY`) as it stood before club choice
- * replaced difficulty selection. A local, historical copy rather than an
- * import: `difficulty-levels.ts` is kept around only for that history and may
- * be removed later, and this script's anchors must not move when it is.
+ * replaced difficulty selection. This copy is now the only record of that
+ * membership, so the anchors must never be derived from anything else.
  */
 export const HISTORICAL_POOL_CLUB_IDS: Readonly<Record<CareerHandicapPool, readonly string[]>> = {
   latwy: ["legia-warszawa", "lech-poznan", "rakow-czestochowa", "jagiellonia-bialystok"],
@@ -188,7 +185,7 @@ export const renderCareerHandicapAnchorsFile = (input: {
 // Do not edit by hand and do not hand-type these numbers - regenerate instead.
 //
 // Anchors the internal advantageScore axis (src/logic/club-projection.ts) to
-// the three former difficulty pools (src/data/difficulty-levels.ts). What is
+// the three former difficulty pools (HISTORICAL_POOL_CLUB_IDS in the script). What is
 // preserved across the club-choice redesign is the numeric HANDICAP LEVELS -
 // tenureHandicap 0/55/110 and legacyHandicap 0/85/130 - never the old
 // per-club pool assignments themselves. Those assignments exist only so this
