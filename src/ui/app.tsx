@@ -3,7 +3,7 @@ import type { GameAction, GameState } from "../data/types";
 import { gameReducer } from "../logic/game-reducer";
 import { initialState } from "../logic/game-state";
 import { ENGINE_REVISION } from "../logic/engine-version";
-import { randomSeed } from "../logic/rng";
+import { randomSeed } from "./random-seed";
 import { defined } from "../logic/invariant";
 import { NotificationBanner, type NotificationKind } from "./components/notification-banner";
 import { getInputModality, getInputSequence } from "./input-modality";

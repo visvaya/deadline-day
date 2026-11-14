@@ -45,6 +45,10 @@ const FIXTURES: Record<string, string> = {
     "export const both = [useState, label];",
     "export const roll = () => Math.random();",
     "export const width = () => window.innerWidth;",
+    "export const now = () => Date.now();",
+    'export const save = (value: string) => localStorage.setItem("k", value);',
+    'export const load = () => fetch("/x");',
+    "export const seed = () => globalThis.crypto.randomUUID();",
     "",
   ].join("\n"),
   "src/data/leaf.ts": [
@@ -122,7 +126,9 @@ describe("oxlint guards", () => {
 
     expect(hits(diagnostics, "src/logic/engine.ts", "no-restricted-imports")).toHaveLength(2);
     expect(hits(diagnostics, "src/logic/engine.ts", "no-restricted-properties")).toHaveLength(1);
-    expect(hits(diagnostics, "src/logic/engine.ts", "no-restricted-globals")).toHaveLength(1);
+    // window, Date, localStorage, fetch and globalThis: the engine takes the
+    // clock, storage, network and randomness as parameters.
+    expect(hits(diagnostics, "src/logic/engine.ts", "no-restricted-globals")).toHaveLength(5);
     expect(hits(diagnostics, "src/data/leaf.ts", "no-restricted-imports")).toHaveLength(1);
 
     // Importing a test file reruns its tests; a plain helper module is fine.

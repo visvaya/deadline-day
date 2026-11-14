@@ -323,7 +323,7 @@ describe("validateManagerIdentityFields", () => {
 describe("randomManagerIdentity", () => {
   it("draws 200 pairs, all from the name pools and all valid", () => {
     for (let i = 0; i < 200; i += 1) {
-      const identity = randomManagerIdentity();
+      const identity = randomManagerIdentity(i);
       expect(IMIONA).toContain(identity.firstName);
       expect(NAZWISKA).toContain(identity.lastName);
       const result = validateManagerIdentity(identity);

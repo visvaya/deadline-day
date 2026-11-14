@@ -7,6 +7,7 @@ import {
   type ManagerField,
   type ManagerFieldError,
 } from "../../logic/manager-identity";
+import { randomSeed } from "../random-seed";
 import {
   resolveActionBarMode,
   useIsActionBarCompactViewport,
@@ -107,7 +108,7 @@ export const ManagerScreen = ({
   }, [timerWl]);
 
   const handleRandomize = (): void => {
-    const identity = randomManagerIdentity();
+    const identity = randomManagerIdentity(randomSeed());
     setFirstName(identity.firstName);
     setLastName(identity.lastName);
     setErrors([]);

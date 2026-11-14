@@ -42,13 +42,6 @@ export const createRng = (seed: number): Rng => {
   };
 };
 
-/** Fresh seed for a game the player did not seed themselves. */
-export const randomSeed = (): number => {
-  const buffer = new Uint32Array(1);
-  globalThis.crypto.getRandomValues(buffer);
-  return at(Array.from(buffer), 0, "randomSeed buffer");
-};
-
 /** Float in [a, b). Mirrors the prototype's `los`. */
 export const rand = (rng: Rng, a: number, b: number): number => a + rng.next() * (b - a);
 

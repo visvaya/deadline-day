@@ -3,7 +3,7 @@ import { SEZONY_GRY } from "../../data/balance";
 import type { GameState, GameAction } from "../../data/types";
 import { pl, pluralFormPl, pluralPl, POINT_FORMS, YEAR_FORMS, money } from "../../logic/format";
 import { marketValue } from "../../logic/player";
-import { randomSeed } from "../../logic/rng";
+import { randomSeed } from "../random-seed";
 import { SectionHeading } from "../components/section-heading";
 import { StickyActionBar } from "../components/sticky-action-bar";
 import { SummaryList } from "../components/summary-list";
