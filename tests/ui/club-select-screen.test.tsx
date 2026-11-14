@@ -5,8 +5,6 @@ import { act, createElement } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, describe, expect, test, vi } from "vitest";
 
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { CLUBS } from "../../src/data/clubs";
 import { PANEL_TOP_MARGIN } from "../../src/ui/club-select-scroll";
 import {
@@ -18,6 +16,7 @@ import {
   type RatingDotState,
 } from "../../src/ui/screens/club-select-screen";
 import { clearSetupDraft, readSetupDraft } from "../../src/ui/setup-draft";
+import { ruleBody as cssRuleBody, styles, withoutMediaBlocks } from "./css-rules";
 
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -911,19 +910,11 @@ describe("club select screen dot sizing (correction 4, rounds 4 and 5)", () => {
 });
 
 describe("club select screen styling contracts (correction 8 and 10)", () => {
-  const css = readFileSync(resolve(process.cwd(), "src/ui/styles.css"), "utf8");
+  const css = styles();
 
-  // Media-query blocks are cut out first: a reduced-motion override names
-  // the same selectors as the rule it overrides, so a plain search would
-  // return whichever comes first in the file rather than the base rule that
-  // was asked for. Tests about a media block extract it themselves below.
-  const cssWithoutMedia = css.replace(/@media[^{]*\{(?:[^{}]*\{[^}]*\})*\s*\}/g, "");
-  const ruleBody = (selector: string): string => {
-    const escaped = selector.replace(/[.#]/g, "\\$&");
-    const match = cssWithoutMedia.match(new RegExp(`${escaped}\\s*\\{([^}]*)\\}`));
-    if (!match) throw new Error(`Rule not found: ${selector}`);
-    return match[1]!;
-  };
+  // Tests about a media block extract it themselves below.
+  const baseRules = withoutMediaBlocks(css);
+  const ruleBody = (selector: string): string => cssRuleBody(baseRules, selector);
 
   // Comments stripped before block-splitting below: several selector lists
   // in this file are preceded by prose comments that themselves contain

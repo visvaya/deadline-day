@@ -21,7 +21,7 @@ import { DragScroller } from "../../src/ui/components/drag-scroller";
 import { Tile } from "../../src/ui/components/tile";
 import type { SeasonChangePeriod } from "../../src/ui/components/player-tile-utils";
 import { UI_PREFERENCES_STORAGE_KEY } from "../../src/ui/ui-preferences";
-import { ruleBody as cssRuleBody, styles } from "./css-rules";
+import { ruleBody as cssRuleBody, styles, withoutMediaBlocks } from "./css-rules";
 
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -1584,14 +1584,9 @@ describe("squad tiles open their position", () => {
 });
 
 describe("action bar and the space reserved for it cannot show a detached band (Safari white-band fix)", () => {
-  const css = readFileSync(resolve(process.cwd(), "src/ui/styles.css"), "utf8");
-  const cssWithoutMedia = css.replace(/@media[^{]*\{(?:[^{}]*\{[^}]*\})*\s*\}/g, "");
-  const ruleBody = (selector: string): string => {
-    const escaped = selector.replace(/[.#>*[\]:]/g, "\\$&");
-    const match = cssWithoutMedia.match(new RegExp(`${escaped}\\s*\\{([^}]*)\\}`));
-    if (!match) throw new Error(`Rule not found: ${selector}`);
-    return match[1]!;
-  };
+  const css = styles();
+  const baseRules = withoutMediaBlocks(css);
+  const ruleBody = (selector: string): string => cssRuleBody(baseRules, selector);
 
   test("the space content reserves for the bar has no panel-coloured backdrop", () => {
     // 2026-09-21: a `.dd-root > main::after` strip used to paint that space
@@ -1659,14 +1654,8 @@ describe("action bar and the space reserved for it cannot show a detached band (
 });
 
 describe("landscape white bands fix (2026-09-18, item 3)", () => {
-  const css = readFileSync(resolve(process.cwd(), "src/ui/styles.css"), "utf8");
-  const cssWithoutMedia = css.replace(/@media[^{]*\{(?:[^{}]*\{[^}]*\})*\s*\}/g, "");
-  const ruleBody = (selector: string): string => {
-    const escaped = selector.replace(/[.#>*[\]:]/g, "\\$&");
-    const match = cssWithoutMedia.match(new RegExp(`${escaped}\\s*\\{([^}]*)\\}`));
-    if (!match) throw new Error(`Rule not found: ${selector}`);
-    return match[1]!;
-  };
+  const baseRules = withoutMediaBlocks(styles());
+  const ruleBody = (selector: string): string => cssRuleBody(baseRules, selector);
 
   test("html has a real page-colour background, not the browser's default white canvas", () => {
     // `body`/`.dd-root` only paint --surface-page over their own boxes -

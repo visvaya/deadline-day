@@ -18,6 +18,11 @@ const withoutComments = (css: string): string => css.replace(/\/\*[\s\S]*?\*\//g
 export const styles = (): string =>
   readFileSync(resolve(process.cwd(), "src/ui/styles.css"), "utf8");
 
+/** Media blocks cut out, for a test about the base rule: an override inside
+ * one (reduced motion, a breakpoint) names the same selector. */
+export const withoutMediaBlocks = (css: string): string =>
+  css.replace(/@media[^{]*\{(?:[^{}]*\{[^}]*\})*\s*\}/g, "");
+
 /**
  * Every declaration that reaches this exact selector, from all of its rules.
  *
