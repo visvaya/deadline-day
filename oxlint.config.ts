@@ -333,7 +333,10 @@ export default defineConfig({
     // Error policy, type-aware: only Error values are thrown or rejected, so
     // every failure carries a message and a stack, and a switch over a union
     // either names every case or says what the rest do in a default.
-    "typescript/only-throw-error": "error",
+    "typescript/only-throw-error": [
+      "error",
+      { allowThrowingAny: false, allowThrowingUnknown: false, allowRethrowing: true },
+    ],
     "typescript/prefer-promise-reject-errors": "error",
     "typescript/switch-exhaustiveness-check": [
       "error",
