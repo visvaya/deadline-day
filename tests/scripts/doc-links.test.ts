@@ -56,6 +56,12 @@ describe("documentation link check", () => {
       "README.md:1: link `docs/a.md` does not exist",
       "README.md:1: link `docs/b.md` does not exist",
     ]);
+    expect(
+      check("README.md", String.raw`[x](docs/gone.md "say \"hi\"") [y](docs/gone.md (a \) b))`)
+    ).toEqual([
+      "README.md:1: link `docs/gone.md` does not exist",
+      "README.md:1: link `docs/gone.md` does not exist",
+    ]);
   });
 
   test("a link to a directory may end with a slash", () => {
@@ -65,6 +71,26 @@ describe("documentation link check", () => {
   test("a link written inside inline code is an example, not a link", () => {
     expect(check("README.md", "Write `[x](missing.md)` to link a file.")).toEqual([]);
     expect(check("README.md", "[x]`example`(docs/missing.md)")).toEqual([]);
+    expect(check("README.md", "``a ` [x](missing.md)``")).toEqual([]);
+  });
+
+  test("backticks without a closing run of the same length are text, and a link after them is checked", () => {
+    expect(check("README.md", "` note [x](missing.md) ``")).toEqual([
+      "README.md:1: link `missing.md` does not exist",
+    ]);
+  });
+
+  test("an escaped backtick opens no code span, a backtick after an escaped backslash does", () => {
+    const backslash = String.fromCharCode(92);
+    expect(check("README.md", `${backslash}\` [x](missing.md) ${backslash}\``)).toEqual([
+      "README.md:1: link `missing.md` does not exist",
+    ]);
+    expect(check("README.md", `${backslash}${backslash}\`[x](missing.md)\``)).toEqual([]);
+  });
+
+  test("a fence closes only on a fence of the same character at least as long as the opening one", () => {
+    const text = ["````md", "```", "[x](gone.md)", "~~~", "```", "````", "[y](gone.md)"].join("\n");
+    expect(check("README.md", text)).toEqual(["README.md:7: link `gone.md` does not exist"]);
   });
 
   test("a line number or trailing punctuation after a path is not part of it", () => {

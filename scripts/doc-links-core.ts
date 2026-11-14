@@ -16,17 +16,27 @@ export type DocFacts = {
   readonly roots: readonly string[];
 };
 
-/** An inline Markdown link or image, with an optional title in "", '' or (). */
-const LINK = /!?\[[^\]]*\]\(([^)\s]+)(?:\s+(?:"[^"]*"|'[^']*'|\([^)]*\)))?\)/g;
+/**
+ * An inline Markdown link or image, with an optional title in "", '' or (),
+ * where a backslash escapes the closing character.
+ */
+const LINK =
+  /!?\[[^\]]*\]\(([^)\s]+)(?:\s+(?:"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|\((?:[^()\\]|\\.)*\)))?\)/g;
 /** A backticked token without white space. */
 const BACKTICKED = /`([^`\s]+)`/g;
-/** Inline code: a link written there is an example, not a link. */
-const CODE_SPAN = /`[^`]*`/g;
+/**
+ * A code span: a run of backticks up to the next run of the same length. A
+ * link written inside one is an example, not a link. Backticks without such a
+ * closing run are text, and so is a backtick after an odd number of
+ * backslashes, which escape it.
+ */
+const CODE_SPAN = /(?<!(?<!\\)\\(?:\\\\)*)(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)/g;
 /** A scheme (https:, mailto:) marks an address, not a file of the repository. */
 const SCHEME = /^[a-z][a-z0-9+.-]*:/i;
 /** Globs and placeholders name a family of files, not one path. */
 const PATTERN_CHARACTERS = /[*?<>{}[\]$]/;
-const FENCE = /^\s*(```|~~~)/;
+/** A line that opens or closes a fenced code block: the fence and what follows it. */
+const FENCE = /^\s*(`{3,}|~{3,})(.*)$/;
 
 /** The path inside a backticked token: without a line number or the punctuation of the sentence around it. */
 const pathOfToken = (token: string): string =>
@@ -46,17 +56,28 @@ const pathOfLink = (file: string, target: string): string | null => {
 
 type Line = { readonly line: number; readonly content: string };
 
+/** A fence closes a block opened by `opening` when it uses the same character, is no shorter and has no text after it. */
+const closesFence = (opening: string, fence: string, rest: string): boolean =>
+  fence[0] === opening[0] && fence.length >= opening.length && rest.trim() === "";
+
+type Scan = { readonly opening: string | null; readonly lines: Line[] };
+
 /** The lines of a document outside fenced code blocks, with their numbers. */
 const proseLines = (text: string): Line[] =>
-  text
-    .split("\n")
-    .reduce<{ fenced: boolean; lines: Line[] }>(
-      ({ fenced, lines }, content, index) =>
-        FENCE.test(content)
-          ? { fenced: !fenced, lines }
-          : { fenced, lines: fenced ? lines : [...lines, { line: index + 1, content }] },
-      { fenced: false, lines: [] }
-    ).lines;
+  text.split("\n").reduce<Scan>(
+    ({ opening, lines }, content, index): Scan => {
+      const match = FENCE.exec(content);
+      if (match === null)
+        return {
+          opening,
+          lines: opening === null ? [...lines, { line: index + 1, content }] : lines,
+        };
+      const [, fence = "", rest = ""] = match;
+      if (opening === null) return { opening: fence, lines };
+      return { opening: closesFence(opening, fence, rest) ? null : opening, lines };
+    },
+    { opening: null, lines: [] }
+  ).lines;
 
 const lineProblems = (
   file: string,
