@@ -1,8 +1,8 @@
 # This directory is a project of its own, so the game's install never brings the deployment tool in.
 
-# Supply-chain guards, as in the game's pnpm-workspace.yaml: refuse a version younger than seven days (in
+# Supply-chain guards, as in the game's pnpm-workspace.yaml: refuse a version younger than three days (in
 # minutes) and one published with weaker provenance than an earlier one of the same package.
-minimumReleaseAge: 10080
+minimumReleaseAge: 4320
 trustPolicy: no-downgrade
 
 # Build scripts of dependencies run only when allowed here. Neither is needed: each only prepares a binary

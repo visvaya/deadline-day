@@ -2,10 +2,11 @@ allowBuilds:
   esbuild: true
 
 # Supply-chain guards. Most malicious npm versions are pulled within days of
-# publication, so a week-long delay keeps them out of the lockfile. Dependabot
+# publication, so a three-day delay (the owner's rule since 2026-11-14, a week
+# before) keeps most of them out of the lockfile. Dependabot
 # uses the same window (`cooldown` in .github/dependabot.yml), so its update
 # PRs never propose a version this setting would reject.
-minimumReleaseAge: 10080 # minutes, 7 days
+minimumReleaseAge: 4320 # minutes, 3 days
 
 # Refuse a version published with weaker provenance than an earlier one of the
 # same package (for example trusted publishing dropped to a plain token).
