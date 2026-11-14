@@ -8,9 +8,9 @@ version: 2
 # no subject-case rule), so a Dependabot commit passes the same gate as any
 # other.
 #
-# `cooldown` waits a week after a version is published before proposing it,
+# `cooldown` waits three days after a version is published before proposing it,
 # matching `minimumReleaseAge` in pnpm-workspace.yaml. Security updates skip
-# the cooldown, but pnpm still refuses a version younger than a week: a patch
+# the cooldown, but pnpm still refuses a version younger than three days: a patch
 # that cannot wait goes into `minimumReleaseAgeExclude` by hand.
 updates:
   - package-ecosystem: npm
@@ -21,7 +21,7 @@ updates:
       timezone: Europe/Warsaw
     open-pull-requests-limit: 5
     cooldown:
-      default-days: 7
+      default-days: 3
     commit-message:
       prefix: build
       prefix-development: build
@@ -63,7 +63,7 @@ updates:
       day: monday
       timezone: Europe/Warsaw
     cooldown:
-      default-days: 7
+      default-days: 3
     commit-message:
       prefix: build
       prefix-development: build
@@ -79,7 +79,7 @@ updates:
       day: monday
       timezone: Europe/Warsaw
     cooldown:
-      default-days: 7
+      default-days: 3
     commit-message:
       prefix: ci
       include: scope
