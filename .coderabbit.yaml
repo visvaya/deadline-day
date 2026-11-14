@@ -1,0 +1,105 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Pull request review settings. Defaults apply to everything not listed here.
+language: en-US
+tone_instructions: >-
+  Plain, short English. No emoji and no ASCII art; state the problem, its effect and the fix.
+chat:
+  art: false
+reviews:
+  profile: chill
+  # The pull request description is the author's text; the summary goes to the walkthrough comment.
+  high_level_summary_in_walkthrough: true
+  poem: false
+  in_progress_fortune: false
+  # One maintainer: no reviewer suggestions.
+  suggested_reviewers: false
+  # `CodeRabbit` status: pending while the review runs, success when it ends, is skipped or rate limited,
+  # failure when the review stops on an error.
+  commit_status: true
+  fail_commit_status: true
+  pre_merge_checks:
+    # The project has no docstring rule; the check only adds a warning to every pull request.
+    docstrings:
+      mode: "off"
+    title:
+      mode: warning
+      requirements: >-
+        Conventional Commits: type(scope): subject, with type one of feat, fix, refactor, perf, docs, style,
+        test, build, ci, chore and an optional lower-case scope; the subject in the imperative mood, at most
+        72 characters. The squash merge turns the title into the commit on main, and the title decides the
+        version bump: feat for something new the player can do or see.
+    custom_checks:
+      - name: Checks stated
+        mode: warning
+        instructions: >-
+          Pass when the pull request description names the checks that were run and states what was not
+          checked or not run (a section saying nothing was left out counts), and states whether the golden
+          master traces changed. Fail when it claims checks passed without naming them.
+  auto_review:
+    # Keep reviewing every push: a paused review still reports a green status.
+    auto_pause_after_reviewed_commits: 0
+  # The gate runs these on every pull request with the project's pinned versions and configs (oxlint with
+  # type-aware rules in pnpm verify; gitleaks and zizmor in the Security workflow). There is no Biome or
+  # ESLint config. actionlint and shellcheck stay on: the gate does not run them.
+  tools:
+    oxc:
+      enabled: false
+    biome:
+      enabled: false
+    eslint:
+      enabled: false
+    gitleaks:
+      enabled: false
+    zizmor:
+      enabled: false
+  # Generated files: their diffs are reviewed through the change that produced them.
+  path_filters:
+    - "!**/pnpm-lock.yaml"
+    - "!src/data/career-handicap-anchors.ts"
+  path_instructions:
+    - path: "**"
+      instructions: >-
+        Project rules are in CONTRIBUTING.md, "Rules the code depends on". Text the player reads is Polish;
+        code, comments, commits and documentation are English, and older code still carries Polish
+        identifiers that are renamed when touched, so do not ask to rename untouched ones. No em dash (U+2014)
+        or emoji in src/. Real player names never appear; club names and colours may. Lean code: reuse
+        existing helpers, no option or abstraction without a current user. A pull request that changes the
+        game raises the version (pnpm version:bump). Prefix comments on problems this pull request did not
+        cause with "Pre-existing:". Do not comment on what the gate already enforces: formatting (oxfmt), lint
+        (oxlint, type-aware), types (tsc strict), dead code (knip), duplication (jscpd), coverage floors, the
+        bundle budget, em dashes and emoji (check:text), file naming and inline styles (check:conventions), the generated
+        handicap anchors (check:career-handicap-anchors), the version and the title checks.
+    - path: "src/**"
+      instructions: >-
+        The hidden ceiling (ceiling, still sufit in older code) never reaches the UI before the final screen,
+        directly or through anything derived from it: colour, sorting, ranking, an arrow, a tooltip, an
+        aria-label. The staff report (StaffOutlook) is the only channel and shows a noisy estimate; a new
+        place to read it, or a new input to its seed, changes how often it can be read and is a product
+        decision. The analyst report, market edge and the squad order read the current OVR and visible
+        fields only, never the ceiling or anything correlated with it.
+    - path: "src/logic/**"
+      instructions: >-
+        Pure functions: no React, no DOM, no storage, no clock. No Math.random outside rng.ts; every function
+        that draws takes an Rng argument, and the reducer keeps only the serialisable rngState. State updates
+        are immutable. Every function in squad.ts takes the formation as a required argument; never give it
+        a default. A change to the RNG cascade or to engine behaviour bumps ENGINE_REVISION in
+        engine-version.ts and is visible in the golden traces.
+    - path: "src/data/balance.ts"
+      instructions: >-
+        Balance constants live here only. A changed constant needs a balance simulator run (pnpm balance
+        --clubs all) named in the description. The money constants derive from
+        MONEY_SCALE_PLN_PER_GAME_MILLION; one of them changed alone describes a different currency.
+    - path: "tests/golden/**"
+      instructions: >-
+        Traces are never regenerated to make a test pass: every changed line of a trace needs an explanation
+        in the commit or the description, and an engine change bumps ENGINE_REVISION.
+    - path: "src/ui/**"
+      instructions: >-
+        data-dd-action and data-dd-screen values are a public contract with tests/ui/dom-parity.test.ts and
+        the e2e tests: new values may be added, existing ones change only together with those tests. Styling
+        comes from the CSS tokens in styles.css. Amounts are in millions of euros with a
+        Polish decimal comma and a non-breaking space before the unit.
+knowledge_base:
+  # What the bot learns here stays in this repository.
+  learnings:
+    scope: local
