@@ -16,8 +16,8 @@ export type DocFacts = {
   readonly roots: readonly string[];
 };
 
-/** An inline Markdown link or image, with an optional title: [text](target "title"). */
-const LINK = /!?\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
+/** An inline Markdown link or image, with an optional title in "", '' or (). */
+const LINK = /!?\[[^\]]*\]\(([^)\s]+)(?:\s+(?:"[^"]*"|'[^']*'|\([^)]*\)))?\)/g;
 /** A backticked token without white space. */
 const BACKTICKED = /`([^`\s]+)`/g;
 /** Inline code: a link written there is an example, not a link. */
@@ -63,7 +63,7 @@ const lineProblems = (
   { line, content }: Line,
   { exists, roots }: DocFacts
 ): string[] => {
-  const links = [...content.replace(CODE_SPAN, "").matchAll(LINK)].flatMap(([, target = ""]) => {
+  const links = [...content.replace(CODE_SPAN, " ").matchAll(LINK)].flatMap(([, target = ""]) => {
     const path = pathOfLink(file, target);
     return path === null || exists(path)
       ? []

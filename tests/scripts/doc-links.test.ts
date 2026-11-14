@@ -52,6 +52,10 @@ describe("documentation link check", () => {
     expect(
       check("README.md", '[guide](docs/missing.md "Guide") [ok](docs/testing.md "Testing")')
     ).toEqual(["README.md:1: link `docs/missing.md` does not exist"]);
+    expect(check("README.md", "[a](docs/a.md 'A') [b](docs/b.md (B))")).toEqual([
+      "README.md:1: link `docs/a.md` does not exist",
+      "README.md:1: link `docs/b.md` does not exist",
+    ]);
   });
 
   test("a link to a directory may end with a slash", () => {
@@ -60,6 +64,7 @@ describe("documentation link check", () => {
 
   test("a link written inside inline code is an example, not a link", () => {
     expect(check("README.md", "Write `[x](missing.md)` to link a file.")).toEqual([]);
+    expect(check("README.md", "[x]`example`(docs/missing.md)")).toEqual([]);
   });
 
   test("a line number or trailing punctuation after a path is not part of it", () => {
