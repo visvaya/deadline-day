@@ -63,17 +63,31 @@ export const extractLeagueSection = (bytes: Uint8Array): string => {
   const close = html.indexOf("</pre>", open);
   if (open === -1 || close === -1)
     throw new Error("The Ekstraklasa anchor is not followed by <pre>");
-  return (
-    html
-      .slice(open + "<pre>".length, close)
-      // Link, bold and underline elements carry ONLY navigation text here
-      // ("Playoff Stage", "Relegation Playoff"), never a club or a score, so
-      // their contents go with them. What survives on such a line is
-      // punctuation, which classifies as blank below.
-      .replace(/<(a|b|u)\b[^>]*>[\s\S]*?<\/\1>/g, "")
-      .replace(/<[^>]*>/g, "")
-      .replace(/&#(\d+);/g, (_match, code: string) => String.fromCharCode(Number(code)))
+  // Link, bold and underline elements carry ONLY navigation text here
+  // ("Playoff Stage", "Relegation Playoff"), never a club or a score, so
+  // their contents go with them. What survives on such a line is
+  // punctuation, which classifies as blank below.
+  const withoutNavigation = html
+    .slice(open + "<pre>".length, close)
+    .replace(/<(a|b|u)\b[^>]*>[\s\S]*?<\/\1>/g, "");
+  return stripTags(withoutNavigation).replace(/&#(\d+);/g, (_match, code: string) =>
+    String.fromCharCode(Number(code))
   );
+};
+
+/**
+ * Removes tags until none is left. A single pass already leaves no complete
+ * tag, but repeating until nothing changes states that in the code, where a
+ * static analyser can see it, at no cost on real pages.
+ */
+const stripTags = (markup: string): string => {
+  let text = markup;
+  let previous: string;
+  do {
+    previous = text;
+    text = text.replace(/<[^>]*>/g, "");
+  } while (text !== previous);
+  return text;
 };
 
 /**
