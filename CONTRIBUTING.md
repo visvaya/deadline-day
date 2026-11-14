@@ -41,6 +41,8 @@ Do not bypass them with `--no-verify`; CI runs the same checks and more.
 - `pnpm verify` must pass locally; CI also runs the e2e suite, a dependency audit and a bundle-size
   budget.
 - Fill in the pull request template: what changed and why, what you checked and what you did not.
+- CodeRabbit comments on each pull request, with the project's rules from `.coderabbit.yaml`. Its
+  comments are suggestions: answer or resolve them, the maintainer decides.
 - Only the maintainer merges. A merge into `main` deploys the game, so a pull request from a fork
   waits for the maintainer's review, and its workflows for the maintainer's approval on a first
   contribution.
