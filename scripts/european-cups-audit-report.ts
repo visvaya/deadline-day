@@ -426,7 +426,7 @@ export const renderEuropeanCupsAudit = (audit: EuropeanCupsAudit): string => {
   lines.push("## 5. Materiał zewnętrzny — przypięty, bez werdyktu");
   lines.push("");
   lines.push(
-    "Każdy punkt niesie rodzaj, rundę wejścia i dokładną definicję zdarzenia, bo dokładnie tego brakowało w usuniętym `docs/puchary.md`. Kolumna `próg?` jest twardo `NIE` dla wszystkich."
+    "Każdy punkt niesie rodzaj, rundę wejścia i dokładną definicję zdarzenia, bo dokładnie tego brakowało w usuniętym docs/puchary.md. Kolumna `próg?` jest twardo `NIE` dla wszystkich."
   );
   lines.push("");
   lines.push(referenceTable());
@@ -487,7 +487,7 @@ export const renderEuropeanCupsAudit = (audit: EuropeanCupsAudit): string => {
     "- Nie mierzy wpływu na karierę. To robią `pnpm balance --dump-raw` i `pnpm balance:compare`, według listy z rozdziału 10."
   );
   lines.push(
-    "- Nie mapuje siły na realne kluby. Rozkład z rozdziału 3 jest rozkładem uczestnika **w tej grze**; przełożenie go na Lecha czy GKS Katowice wymagałoby osi, której nikt nie zbudował — i której zmyślenie było błędem usuniętego `docs/puchary.md`."
+    "- Nie mapuje siły na realne kluby. Rozkład z rozdziału 3 jest rozkładem uczestnika **w tej grze**; przełożenie go na Lecha czy GKS Katowice wymagałoby osi, której nikt nie zbudował — i której zmyślenie było błędem usuniętego docs/puchary.md."
   );
   lines.push(
     "- Nie obejmuje kampanii z epilogu. Sezony 6–8 dziedziczą klub, ale ich kampanie nie mają linii sezonu w śladzie, więc rozkład opisuje kadencję gracza, nie całą historię klubu."

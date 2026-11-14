@@ -8,7 +8,7 @@ Audyt read-only: żadna stała balansowa nie została zmieniona przy jego wykony
 
 **Stan stałych po zamknięciu audytu:** przez rozdziały 9–12 `EUROPEAN_ADVANCE_ODDS` pozostawało nietknięte, a wszystkie pomiary niżej wykonano na wartościach sprzed zmiany. **2026-09-02, już po tych pomiarach, właściciel produktu obniżył `LK.pQualifyBase` z 0,70 na 0,31** (rozdział 12). `pQualifySlope` i `pKnockout*` bez zmian.
 
-**Zastępuje usunięty `docs/puchary.md`**, który był nieśledzonym zrzutem terminala z połamanymi tabelami i błędną metodą — powody w rozdziale 2.
+**Zastępuje usunięty docs/puchary.md**, który był nieśledzonym zrzutem terminala z połamanymi tabelami i błędną metodą — powody w rozdziale 2.
 
 ---
 
@@ -63,7 +63,7 @@ Kaskada w grze (`LM → LE → LK`, każdorazowo od zagregowanego etapu `qualify
 
 ---
 
-## 2. Ocena usuniętego `docs/puchary.md` — nie używać jako źródła kalibracji
+## 2. Ocena usuniętego docs/puchary.md — nie używać jako źródła kalibracji
 
 Dokument jest **nieśledzonym przez git zrzutem terminala** bez metody, ziarna, skryptu i daty. Ma widocznie połamane tabele: wiersz `Górnik` w drugiej tabeli zgubił dwie kolumny, a `Katowice` ma `0,83` w kolumnie `×` należącej do LS. Zdania są ucięte w połowie („liczba w balance-match-engine.md:91 yżona", „gra ma trzy etapy… s R16. To świadomy kształt modelu, nieusterka"). Sam ten stan dyskwalifikuje go jako artefakt kalibracyjny — nie da się odtworzyć tego, czego nie da się przeczytać.
 
@@ -142,7 +142,7 @@ Po kaskadzie — dowolna faza ligowa, faza knockout, oczekiwany przychód kampan
 
 ## 4. Warianty eksploracyjne
 
-Dwa warianty służą wyłącznie do pokazania wrażliwości modelu. Wariant A pochodzi z usuniętego `docs/puchary.md`; wariant B izoluje zmianę jednego parametru. Żaden nie jest rekomendacją wdrożeniową.
+Dwa warianty służą wyłącznie do pokazania wrażliwości modelu. Wariant A pochodzi z usuniętego docs/puchary.md; wariant B izoluje zmianę jednego parametru. Żaden nie jest rekomendacją wdrożeniową.
 
 `pQualify` dla LK na tle dwóch zewnętrznych projekcji:
 
@@ -204,7 +204,7 @@ Gra ma trzy etapy: `qualifying` / `league` / `knockout`. Rzeczywistość od 2024
 
 Jedyna przesłanka wewnątrz repo to proporcja premii: `LM league 4,0 → knockout 5,6`, czyli **1,4×**. Repo **nie przypina żadnej realnej kwoty za etap pucharowy** — zrzut zewnętrznej symulacji podaje wyłącznie premie za fazę ligową (LM 18,6 / LE 4,31 / LK 3,17 mln €). Bez tej kwoty proporcji 1,4× nie da się skonfrontować z niczym.
 
-Usunięty `docs/puchary.md` wybierał R16 i drukował kolumnę `×` tak, jakby to był pomiar. Był to wybór, nie wyprowadzenie, i nie został w dokumencie oznaczony jako wybór. **Dopóki nie zostanie przypięta realna premia za etap pucharowy i wykazane, które zdarzenie jej odpowiada, parametrów `pKnockout*` nie wolno kalibrować.**
+Usunięty docs/puchary.md wybierał R16 i drukował kolumnę `×` tak, jakby to był pomiar. Był to wybór, nie wyprowadzenie, i nie został w dokumencie oznaczony jako wybór. **Dopóki nie zostanie przypięta realna premia za etap pucharowy i wykazane, które zdarzenie jej odpowiada, parametrów `pKnockout*` nie wolno kalibrować.**
 
 ---
 
