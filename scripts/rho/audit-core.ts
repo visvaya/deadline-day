@@ -162,7 +162,7 @@ export const fitWithRetries = (
       lastError = error;
     }
   }
-  throw lastError;
+  throw new Error(`profile fit failed after ${retries + 1} attempts`, { cause: lastError });
 };
 
 /**

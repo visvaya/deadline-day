@@ -330,6 +330,18 @@ export default defineConfig({
     // React effect that returns early with nothing and otherwise returns its
     // cleanup, which is the idiom effects are written in.
     "typescript/consistent-return": "off",
+    // Error policy, type-aware: only Error values are thrown or rejected, so
+    // every failure carries a message and a stack, and a switch over a union
+    // either names every case or says what the rest do in a default.
+    "typescript/only-throw-error": [
+      "error",
+      { allowThrowingAny: false, allowThrowingUnknown: false, allowRethrowing: true },
+    ],
+    "typescript/prefer-promise-reject-errors": "error",
+    "typescript/switch-exhaustiveness-check": [
+      "error",
+      { considerDefaultExhaustiveForUnions: true },
+    ],
     // Side-effect imports are allowed for stylesheets only.
     "import/no-unassigned-import": ["error", { allow: ["**/*.css"] }],
     // A <button> without a type submits the form it sits in.
@@ -368,6 +380,8 @@ export default defineConfig({
         ...off(CHECKED_BY_TYPESCRIPT),
         "prefer-rest-params": "error",
         "prefer-spread": "error",
+        // TypeScript only: a JavaScript file cannot annotate the parameter.
+        "typescript/use-unknown-in-catch-callback-variable": "error",
       },
     },
     {
