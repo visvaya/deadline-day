@@ -228,7 +228,7 @@ o trzech różnych kształtach rekordu: `clubs.ts` (osiemnastka Ekstraklasy), `f
 wszystkie trzy, więc dopisanie ich do każdego z tych plików z osobna dałoby trzy kształty tej samej
 danej i trzy miejsca do rozjechania — dokładnie to, przed czym ostrzega komentarz w `clubs.ts`
 („tabela edytowana w dwóch miejscach rozjedzie się w jednym"). Barwy idą więc do **osobnego
-`src/data/club-visuals.ts` (plik jeszcze nie istnieje), kluczowanego `clubId`**, tak samo jak finanse i miejsca europejskie.
+`club-visuals.ts` w `src/data` (plik jeszcze nie istnieje), kluczowanego `clubId`**, tak samo jak finanse i miejsca europejskie.
 Test wymaga dokładnie jednego rekordu na każdy klub każdej populacji.
 
 **Pochodzenie jest obowiązkowe, jak przy każdej innej tabeli danych w tym repo.** Wzorem

@@ -19,13 +19,14 @@ Menedżer pakietów to **pnpm**, nigdy `npm` ani `npx`. Lockfile: `pnpm-lock.yam
 
 ## Bramki jakości
 
-- **`pnpm verify`** – pełna bramka: `verify:fast` + `check:text` + `check:conventions` + `typecheck` + `lint:types` + `check:career-handicap-anchors` + `test:coverage` + `test:statistical` + `quality:duplicates` + `quality:dead`. `pnpm test:e2e` jest poza nią celowo.
+- **`pnpm verify`** – pełna bramka: `verify:fast` + `check:text` + `check:conventions` + `check:doc-links` + `typecheck` + `lint:types` + `check:career-handicap-anchors` + `test:coverage` + `test:statistical` + `quality:duplicates` + `quality:dead`. `pnpm test:e2e` jest poza nią celowo.
 - **`pnpm verify:fast`** – `lint` + `format:check`; uruchamiana na każdym commicie przez hook `pre-commit`.
 - **`pnpm lint`** / **`pnpm lint:fix`** – oxlint na całym repo (konfiguracja `oxlint.config.ts`, lokalny plugin `scripts/oxlint-plugin-deadline-day.mjs`), bez albo z automatycznymi poprawkami; ostrzeżenie też zatrzymuje bramkę (`--deny-warnings`). Obejmuje cykle importów (`import/no-cycle`).
 - **`pnpm lint:types`** – ten sam oxlint z informacją o typach (`--type-aware`, `oxlint-tsgolint`), ok. 12 s. Część `pnpm verify`, poza hookiem `pre-commit`.
 - **`pnpm format`** / **`pnpm format:check`** – oxfmt (`oxfmt.config.ts`): zapisuje albo tylko sprawdza formatowanie.
 - **`pnpm check:text`** – `scripts/check-text.mjs`: emoji w każdym śledzonym pliku tekstowym, pauza (U+2014) w każdej linii `src/` i `tests/` (łącznie z komentarzami i CSS, których linter nie widzi). `docs/` i `scripts/` zostają poza regułą pauzy, bo tam jest ona stylem domu.
 - **`pnpm check:conventions`** – `scripts/check-conventions.mjs`: kebab-case nazw plików w `src/`, `tests/`, `scripts/`; style inline wyłącznie jako custom properties. Zakaz klas (poza podklasami `Error` i error boundary) pilnuje oxlint, a kolory wyłącznie w `:root` test `tests/ui/raw-colours.test.ts`.
+- **`pnpm check:doc-links`** – `scripts/check-doc-links.ts` (reguły w `scripts/doc-links-core.ts`): każdy względny link Markdown i każda ścieżka w backtickach zaczynająca się od katalogu repozytorium musi istnieć w gicie albo być przez niego ignorowana. Ścieżki celowo spoza gita (zrzuty pomiarowe przypięte skrótem) stoją w `KNOWN_ABSENT` ze swoim powodem; ta lista może tylko maleć. Wzmiankę o usuniętym pliku pisze się bez backticków. Działa też w PR z samą dokumentacją.
 - **`pnpm check:bundle`** – `scripts/check-bundle-size.mjs`: sumuje gzip `dist/assets/*.js` i `*.css` osobno i porównuje z budżetem zapisanym w skrypcie. Wymaga wcześniejszego `pnpm build`; fonty (`.woff2`) są poza budżetem, bo ładują się osobno i są już skompresowane. Poza `pnpm verify`, bo `verify` nie buduje; CI uruchamia go po `pnpm build`.
 - **`pnpm check:career-handicap-anchors`** – `scripts/career-handicap-anchors.ts --check`: regeneruje w pamięci kotwice interpolacji `tenureHandicap`/`legacyHandicap` z aktywnej ekonomii i porównuje bajt po bajcie z `src/data/career-handicap-anchors.ts`. Część `pnpm verify`. Po świadomej zmianie ekonomii plik przepisuje wywołanie skryptu z `--out`.
 - **`pnpm quality:duplicates`** – `jscpd`, wykrywanie duplikacji kodu.

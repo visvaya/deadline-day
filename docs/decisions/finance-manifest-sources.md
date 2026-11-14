@@ -17,8 +17,8 @@ osobnym krokiem.
 
 | Oznaczenie | Dokument | Okres | Dostęp |
 | --- | --- | --- | --- |
-| **GT-EKS** | Grant Thornton, „Finansowa Ekstraklasa — kluby PKO BP Ekstraklasy za sezon 2024/2025", 80 stron | 1.07.2024 – 30.06.2025 | [grantthornton.pl](https://grantthornton.pl/wp-content/uploads/2025/09/Finansowa-Ekstraklasa-sezon-2024-2025-Grant-Thornton.pdf), lokalnie `docs/finance/` (poza gitem) |
-| **GT-1L** | Grant Thornton, „Finansowa pierwsza liga — kluby Betclic 1 Ligi za sezon 2024/2025", 68 stron | 1.07.2024 – 30.06.2025 | [grantthornton.pl](https://grantthornton.pl/wp-content/uploads/2025/10/Fiannsowa-pierwsza-liga-2024-2025-Grant-Thornton.pdf), lokalnie `docs/finance/` |
+| **GT-EKS** | Grant Thornton, „Finansowa Ekstraklasa — kluby PKO BP Ekstraklasy za sezon 2024/2025", 80 stron | 1.07.2024 – 30.06.2025 | [grantthornton.pl](https://grantthornton.pl/wp-content/uploads/2025/09/Finansowa-Ekstraklasa-sezon-2024-2025-Grant-Thornton.pdf), lokalnie, poza repozytorium |
+| **GT-1L** | Grant Thornton, „Finansowa pierwsza liga — kluby Betclic 1 Ligi za sezon 2024/2025", 68 stron | 1.07.2024 – 30.06.2025 | [grantthornton.pl](https://grantthornton.pl/wp-content/uploads/2025/10/Fiannsowa-pierwsza-liga-2024-2025-Grant-Thornton.pdf), lokalnie, poza repozytorium |
 | **KSW-2025** | Sprawozdanie finansowe KS Wieczysta za 2025 | rok kalendarzowy 2025 | [kswieczysta.com](https://www.kswieczysta.com/storage/uploaded/sprawozdanie_2025.pdf) |
 | **TSP-2025** | Sprawozdanie finansowe TS Podbeskidzie | 1.07.2024 – 30.06.2025 | [tspodbeskidzie.pl](https://tspodbeskidzie.pl/static/upload/store/Sprawozdania2025/SF_TSP_06_2025.pdf) |
 | **UEFA-FR** | Raport finansowy UEFA 2024/25, strony drukowane 36–37 | 2024/25 | [editorial.uefa.com](https://editorial.uefa.com/resources/02a1-1fcc539a26d9-78ac6793e755-1000/20260113_enclosure_04_financial_report_2024-25_en.pdf) |

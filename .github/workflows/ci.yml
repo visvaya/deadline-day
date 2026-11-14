@@ -48,11 +48,12 @@ jobs:
           check-latest: true # newest patch of the .nvmrc line; no bot updates .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Formatting and text rules (documentation-only pull request)
+      - name: Formatting, text rules and links (documentation-only pull request)
         if: steps.gate.outputs.docs_only == 'true'
         run: |
           pnpm format:check
           pnpm check:text
+          pnpm check:doc-links
       - name: Lint, format, text rules, conventions, typecheck, tests with coverage, quality
         if: steps.gate.outputs.full == 'true'
         run: pnpm verify
