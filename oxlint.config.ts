@@ -120,7 +120,7 @@ export const SIZE_EXCEPTIONS: Readonly<Record<string, Partial<Record<SizeRule, n
   "src/ui/app.tsx": { "max-lines": 808, "max-lines-per-function": 741, complexity: 54 },
   "src/ui/screens/club-select-screen.tsx": { "max-lines-per-function": 364 },
   "src/ui/screens/offer-window-screen.tsx": { "max-lines-per-function": 342, complexity: 23 },
-  "src/ui/screens/manager-screen.tsx": { "max-lines-per-function": 317 },
+  "src/ui/screens/manager-screen.tsx": { "max-lines-per-function": 284 },
   "src/ui/components/squad-drawer.tsx": { "max-lines-per-function": 271 },
   "src/ui/screens/season-end-screen.tsx": { "max-lines-per-function": 245, complexity: 28 },
   "src/ui/screens/final-screen.tsx": { "max-lines-per-function": 214, complexity: 23 },

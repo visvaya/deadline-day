@@ -9,7 +9,8 @@ import { createRoot, type Root } from "react-dom/client";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, test, vi } from "vitest";
 
-import { CHANGELOG, CURRENT_VERSION } from "../../src/data/changelog";
+import { CHANGELOG, CURRENT_VERSION, TECHNICAL_CHANGES_NOTE } from "../../src/data/changelog";
+import { groupChangelog, groupVersionLabel } from "../../src/logic/changelog-groups";
 import type { Offer, Player } from "../../src/data/types";
 import { FORMACJE } from "../../src/data/positions";
 import { ACTION_BAR_COMPACT_QUERY } from "../../src/ui/action-bar-query";
@@ -215,8 +216,10 @@ describe("shared redesign components", () => {
     // is not the engine revision a save file trusts.
     expect(CURRENT_VERSION.startsWith("0.")).toBe(true);
     expect(container.querySelector(".dd-version-tag")?.textContent).toBe(`v${CURRENT_VERSION}`);
-    expect(container.querySelector(".dd-changelog-heading strong")?.textContent).toBe(
-      `v${CURRENT_VERSION}`
+    // The newest row names the current version, alone or as the end of a run
+    // of technical-only versions shown as one row.
+    expect(container.querySelector(".dd-changelog-heading strong")?.textContent).toMatch(
+      new RegExp(`${CURRENT_VERSION.replaceAll(".", "[.]")}$`)
     );
 
     await click(container, "historia-zmian");
@@ -228,7 +231,11 @@ describe("shared redesign components", () => {
     const headings = Array.from(container.querySelectorAll(".dd-changelog-heading strong")).map(
       (heading) => heading.textContent
     );
-    expect(headings).toEqual(CHANGELOG.map((entry) => `v${entry.version}`));
+    expect(headings).toEqual(
+      groupChangelog(CHANGELOG, TECHNICAL_CHANGES_NOTE).map((group) => groupVersionLabel(group))
+    );
+    // A run of technical-only versions is one row, not one per version.
+    expect(headings.length).toBeLessThan(CHANGELOG.length);
     expect(headings.slice(headings.indexOf("v0.34"))).toEqual([
       "v0.34",
       "v0.33",
