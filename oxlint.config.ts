@@ -78,6 +78,25 @@ const NO_MATH_RANDOM: ["error", { object: string; property: string; message: str
 ];
 
 /**
+ * Imports the engine (src/logic, src/data, scripts) may not make. Shared,
+ * because an override that sets no-restricted-imports replaces these options
+ * for its files rather than adding to them.
+ */
+const ENGINE_IMPORT_BANS = {
+  paths: ["react", "react-dom"].map((name) => ({
+    name,
+    message: "Simulation logic must not import React. Keep it pure and DOM-free.",
+  })),
+  patterns: [
+    {
+      group: ["**/ui/**", "../ui", "../../ui"],
+      message:
+        "src/logic and src/data must not import from src/ui - the arrow points the other way.",
+    },
+  ],
+};
+
+/**
  * Size and complexity limits for the game's code (src/), set 2026-11-15 from
  * the measured tree. A file already over a limit is listed in
  * SIZE_EXCEPTIONS at its measured value: it may shrink, not grow, and the
@@ -479,28 +498,7 @@ export default defineConfig({
       // the balance simulator a plain script.
       files: ["src/logic/**", "src/data/**", "scripts/**"],
       rules: {
-        "no-restricted-imports": [
-          "error",
-          {
-            paths: [
-              {
-                name: "react",
-                message: "Simulation logic must not import React. Keep it pure and DOM-free.",
-              },
-              {
-                name: "react-dom",
-                message: "Simulation logic must not import React. Keep it pure and DOM-free.",
-              },
-            ],
-            patterns: [
-              {
-                group: ["**/ui/**", "../ui", "../../ui"],
-                message:
-                  "src/logic and src/data must not import from src/ui - the arrow points the other way.",
-              },
-            ],
-          },
-        ],
+        "no-restricted-imports": ["error", ENGINE_IMPORT_BANS],
         "no-restricted-globals": [
           "error",
           { name: "window", message: "Logic and data must not depend on the browser." },
@@ -544,13 +542,17 @@ export default defineConfig({
     },
     {
       // src/data is the leaf of the graph: constants, pools and types that
-      // everything else reads and that read nothing back.
+      // everything else reads and that read nothing back. This override
+      // replaces the rule's options for src/data, so it repeats the engine's
+      // React and UI bans next to its own.
       files: ["src/data/**"],
       rules: {
         "no-restricted-imports": [
           "error",
           {
+            paths: ENGINE_IMPORT_BANS.paths,
             patterns: [
+              ...ENGINE_IMPORT_BANS.patterns,
               {
                 group: ["**/logic/**", "../logic", "./logic"],
                 message: "src/data is a leaf: constants and types only, no imports from src/logic.",
