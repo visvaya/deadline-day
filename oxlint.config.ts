@@ -117,7 +117,7 @@ type SizeRule = keyof typeof SIZE_LIMITS;
 export const SIZE_EXCEPTIONS: Readonly<Record<string, Partial<Record<SizeRule, number>>>> = {
   "src/logic/game-reducer.ts": { "max-lines": 1166, "max-lines-per-function": 278, complexity: 48 },
   "src/data/balance.ts": { "max-lines": 916 },
-  "src/ui/app.tsx": { "max-lines": 818, "max-lines-per-function": 741, complexity: 54 },
+  "src/ui/app.tsx": { "max-lines": 808, "max-lines-per-function": 741, complexity: 54 },
   "src/ui/screens/club-select-screen.tsx": { "max-lines-per-function": 364 },
   "src/ui/screens/offer-window-screen.tsx": { "max-lines-per-function": 342, complexity: 23 },
   "src/ui/screens/manager-screen.tsx": { "max-lines-per-function": 317 },
