@@ -159,8 +159,9 @@ describe("no agent instructions or configuration in the repository", () => {
     "571c9f71f6ec17cf97ffd718430452e8436127e3dfe0d5f0511e9f00a1f2523c",
     "751397359a6a14964c688cf0f263bd66b80f7b9c5c0558525c9b3430fc87d992",
   ]);
-  // Markdown file names and dot-directories after a slash: the shapes of the forbidden names.
-  const TOKEN = /[a-zA-Z0-9_.-]+[.]md|[/][.][a-zA-Z0-9_-]+/gu;
+  // Markdown file names and dot-directories after a slash: the shapes of the forbidden names. The
+  // lookbehind starts a name only at the beginning of a run, so a long run without `.md` scans once.
+  const TOKEN = /(?<![a-zA-Z0-9_.-])[a-zA-Z0-9_.-]+[.]md|[/][.][a-zA-Z0-9_-]+/gu;
   const TEXT_FILE = /\.(?:md|ts|tsx|mjs|js|json|jsonc|ya?ml|css|html|txt|sh)$/u;
   const hashOf = (token: string): string => createHash("sha256").update(token).digest("hex");
   const namesForbiddenToken = (text: string, hashes: ReadonlySet<string>): boolean =>
