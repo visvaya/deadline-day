@@ -30,9 +30,6 @@ export default defineConfig({
     // their tables and lists.
     "*.md",
 
-    // The retired prototype from before the split into src/ - a dead archive.
-    "reference/",
-
     // The fixture mimics real, minified HTML from a scraped page; the parser
     // in sync-ratings-core.ts matches a one-line <tr>.
     "tests/scripts/fixtures/",

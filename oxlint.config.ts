@@ -268,21 +268,6 @@ const CHECKED_BY_TYPESCRIPT = [
   "no-with",
 ];
 
-/** React Compiler lint rules that oxlint's `correctness` category enables. */
-const REACT_COMPILER_RULES = [
-  "react/error-boundaries",
-  "react/globals",
-  "react/immutability",
-  "react/incompatible-library",
-  "react/preserve-manual-memoization",
-  "react/purity",
-  "react/refs",
-  "react/set-state-in-render",
-  "react/static-components",
-  "react/use-memo",
-  "react/void-use-memo",
-];
-
 /** eslint-plugin-react `recommended`. */
 const REACT_RECOMMENDED = [
   "react/display-name",
@@ -455,23 +440,6 @@ export default defineConfig({
         "prefer-spread": "error",
         // TypeScript only: a JavaScript file cannot annotate the parameter.
         "typescript/use-unknown-in-catch-callback-variable": "error",
-      },
-    },
-    {
-      // reference/ holds the retired v7 prototype, kept as a dead archive for
-      // historical comparison - never imported, never built, never tested.
-      files: ["reference/**"],
-      rules: {
-        "no-unused-vars": "off",
-        "no-param-reassign": "off",
-        "react/no-unstable-nested-components": "off",
-        "react/no-array-index-key": "off",
-        "react/button-has-type": "off",
-        "no-shadow": "off",
-        "no-underscore-dangle": "off",
-        // The React Compiler family from `correctness`: live code passes it,
-        // the archive was written long before it existed.
-        ...off(REACT_COMPILER_RULES),
       },
     },
     {

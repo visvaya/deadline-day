@@ -1,6 +1,6 @@
 // Writes dist/sw.js: the service worker that keeps this release of the game for offline play. Its source is
 // scripts/service-worker-template.js; this step writes the list of the release's files, each with its
-// SHA-256, into the template's placeholder.
+// SHA-256, into the template's placeholder. Design and its reasons: docs/decisions/offline-play.md.
 //
 // Usage: node scripts/write-service-worker.mjs [dist directory]
 // Runs after `vite build` (`pnpm build` does both). Nothing here depends on the time of the run, so the same
