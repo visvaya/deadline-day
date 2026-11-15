@@ -24,14 +24,13 @@ import {
   clearGameSave,
   clearPendingTimeoutNotice,
   inspectGameSave,
-  isResumable,
   markPendingTimeoutNotice,
   peekPendingTimeoutNotice,
   saveFingerprint,
   writeGameSave,
   type GameSaveLoadResult,
-  type StoredGameSave,
 } from "./game-save";
+import { isResumable, type StoredGameSave } from "../logic/game-save-schema";
 import { clearSetupDraft, readSetupDraft } from "./setup-draft";
 import "./styles.css";
 

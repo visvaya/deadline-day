@@ -18,11 +18,11 @@ Autosave zamyka obie przyczyny naraz: nawet jeśli strona się przeładuje (z do
 
 Rozważaliśmy replay z `state.akcje` (mniejszy zapis, już istnieje w `game-archive.ts` dla ukończonych partii), ale token listy rejestruje tylko decyzje kartowe (`START:*`, `BIERZ`, `TARG`, `PAS`, `CZAS`), bez akcji strukturalnych (`OPEN_OFFERS`, `ADVANCE`, `RUN_EPILOGUE`) — odtworzyłby stan po auto-przewinięciu do najbliższej decyzji, nie ekran, na którym gracz naprawdę był (np. przegląd rynku między kartami). Snapshot ma też tę zaletę, że nie zależy od `src/logic/simulate.ts`.
 
-Implementacja: `src/ui/game-save.ts`, klucz `deadline-day:game-save`, wzorowany na `src/ui/game-archive.ts` (ten sam styl walidatora kształtu, ten sam wzorzec `schemaVersion`).
+Implementacja: `src/ui/game-save.ts` (odczyt i zapis `localStorage`) i `src/logic/game-save-schema.ts` (kształt, wersja schematu i walidacja przy odczycie, od 2026-11-15), klucz `deadline-day:game-save`, wzorowany na `src/ui/game-archive.ts` (ten sam styl walidatora kształtu, ten sam wzorzec `schemaVersion`).
 
 ## Zasada: zapisujemy tylko fazy rozgrywki
 
-`RESUMABLE_PHASES` w `game-save.ts`: `przeglad`, `okno`, `polSezonu`, `koniecSezonu`, `werdykt`, `epilog` i — od 2026-09-14 — `final`. Zapis kasuje się w `start` i `wybor`, więc porzucenie kariery (`CONFIRM_RESTART` → `wybor`) i rozpoczęcie następnej czyszczą go same, bez osobnej logiki.
+`RESUMABLE_PHASES` w `game-save-schema.ts`: `przeglad`, `okno`, `polSezonu`, `koniecSezonu`, `werdykt`, `epilog` i — od 2026-09-14 — `final`. Zapis kasuje się w `start` i `wybor`, więc porzucenie kariery (`CONFIRM_RESTART` → `wybor`) i rozpoczęcie następnej czyszczą go same, bez osobnej logiki.
 
 **`final` dołączyło 2026-09-14 i warto zapisać dlaczego, bo pierwotne wykluczenie brzmiało rozsądnie.** Argumentem było, że ukończoną partię trzyma już archiwum (`saveFinishedGame`). Trzyma jednak **wynik, nie ekran**: wpis archiwum niesie klub, tytuł, punkty dziedzictwa, liczbę podpisanych zawodników i replay — i ani linijki „ten, któremu odmówiłeś", ani nagłówków, ani „Wyjątkowych historii". Przełączenie karty na ekranie dziedzictwa kasowało więc **całą wypłatę** za osiem do dwunastu minut gry, zostawiając wiersz w tabeli — i to dokładnie w sytuacji, dla której ten zapis powstał: mobilna przeglądarka wyrzucająca kartę z pamięci. Zapis w `final` nic nie psuje, bo `saveFinishedGame` jest idempotentne, a następna kariera i tak przechodzi przez `wybor`.
 
