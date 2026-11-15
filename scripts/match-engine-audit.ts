@@ -1,3 +1,4 @@
+// What the audit measures and how to read it: docs/decisions/match-engine-audit.md.
 import { writeFileSync } from "node:fs";
 
 import { parseAuditCli, runMatchEngineAudit } from "./match-engine-audit-core";

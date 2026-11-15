@@ -89,7 +89,7 @@ import { defined, mapAt } from "./invariant";
 
 /**
  * Pure game reducer. Transcribes the ~340 stateful lines of DeadlineDay()
- * (prototype/deadline-day-prototyp-v7.jsx :156-540).
+ * from the retired v7 prototype.
  *
  * The cascade computes sequentially, no exceptions: every helper below
  * (nastepnaKarta, dalejKrok, symulujRunde, policzWerdykt) takes one working

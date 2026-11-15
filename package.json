@@ -1,6 +1,6 @@
 {
   "name": "deadline-day",
-  "version": "0.38.2",
+  "version": "0.38.3",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@12.15.0",
@@ -30,7 +30,6 @@
     "golden:record": "vitest run tests/golden/record.test.ts",
     "golden:retrace": "vitest run tests/golden/headless.test.ts --update",
     "quality:duplicates": "jscpd . --threshold 0 --reporters console",
-    "map": "node scripts/codemap.mjs",
     "balance": "tsx scripts/balance.ts",
     "balance:scan": "tsx scripts/legacy-scan.ts",
     "balance:compare": "tsx scripts/balance-compare.ts",
@@ -81,7 +80,6 @@
     "@vitejs/plugin-react": "6.3.0",
     "@vitest/coverage-v8": "5.1.0",
     "cross-env": "10.1.0",
-    "espree": "11.2.0",
     "jscpd": "5.4.3",
     "jsdom": "31.0.0",
     "knip": "6.45.1",
