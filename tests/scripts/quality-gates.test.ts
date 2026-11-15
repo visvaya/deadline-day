@@ -52,9 +52,12 @@ describe("quality gates only tighten", () => {
       const minutes = Number(/^minimumReleaseAge:\s*(\d+)/m.exec(read(path))?.[1]);
       expect(minutes, path).toBeGreaterThanOrEqual(3 * 24 * 60);
     }
-    const cooldowns = [...read(".github/dependabot.yml").matchAll(/default-days:\s*(\d+)/g)].map(
-      ([, days]) => Number(days)
-    );
+    // A semver-specific cooldown overrides the default for its update type.
+    const cooldowns = [
+      ...read(".github/dependabot.yml").matchAll(
+        /(?:default|semver-major|semver-minor|semver-patch)-days:\s*(\d+)/g
+      ),
+    ].map(([, days]) => Number(days));
     expect(cooldowns.length).toBeGreaterThan(0);
     for (const days of cooldowns) expect(days).toBeGreaterThanOrEqual(3);
   });
