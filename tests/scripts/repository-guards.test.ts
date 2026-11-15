@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 import { describe, expect, test } from "vitest";
@@ -149,25 +150,37 @@ describe("temp directories only through tests/temp-dir.ts", () => {
   });
 });
 
-describe("no trace of coding agents in the repository", () => {
-  // Built from parts, so this file does not trip the check it defines.
-  const NAMES = [
-    ["AGENTS", ".md"],
-    ["CLAUDE", ".md"],
-    ["/.", "claude"],
-    ["/.", "agents"],
-    ["/.", "codex"],
-  ].map((parts) => parts.join(""));
+describe("no agent instructions or configuration in the repository", () => {
+  // SHA-256 of the forbidden file and directory names, so this public file does not name them.
+  const FORBIDDEN_TOKEN_HASHES: ReadonlySet<string> = new Set([
+    "a54ff182c7e8acf56acfd6e4b9c3ff41e2c41a31c9b211b2deb9df75d9a478f9",
+    "6ebdb617a8104a7756d0cf36578ab01103dc9f07e4dc6feb751296b9c402faf7",
+    "376e4d5b957a1cf1d478f45de059e179a8f92163345e4933b2b24a6ebb1d87f5",
+    "571c9f71f6ec17cf97ffd718430452e8436127e3dfe0d5f0511e9f00a1f2523c",
+    "751397359a6a14964c688cf0f263bd66b80f7b9c5c0558525c9b3430fc87d992",
+  ]);
+  // Markdown file names and dot-directories after a slash: the shapes of the forbidden names. The
+  // lookbehind starts a name only at the beginning of a run, so a long run without `.md` scans once.
+  const TOKEN = /(?<![a-zA-Z0-9_.-])[a-zA-Z0-9_.-]+[.]md|[/][.][a-zA-Z0-9_-]+/gu;
   const TEXT_FILE = /\.(?:md|ts|tsx|mjs|js|json|jsonc|ya?ml|css|html|txt|sh)$/u;
+  const hashOf = (token: string): string => createHash("sha256").update(token).digest("hex");
+  const namesForbiddenToken = (text: string, hashes: ReadonlySet<string>): boolean =>
+    (text.match(TOKEN) ?? []).some((token) => hashes.has(hashOf(token)));
+
+  test("a token is recognised by the hash of its exact text", () => {
+    const hashes = new Set([hashOf("notes.md"), hashOf("/.tool")]);
+    expect(namesForbiddenToken("see docs/notes.md", hashes)).toBe(true);
+    expect(namesForbiddenToken("ignore src/.tool/x", hashes)).toBe(true);
+    expect(namesForbiddenToken("see docs/other.md and src/.tools/x", hashes)).toBe(false);
+  });
 
   test("no tracked file names an agent's instructions or configuration", () => {
     const tracked = execFileSync("git", ["ls-files"], { encoding: "utf8" })
       .split("\n")
       .filter((file) => TEXT_FILE.test(file));
-    const offenders = tracked.filter((file) => {
-      const text = readFileSync(file, "utf8");
-      return NAMES.some((name) => text.includes(name));
-    });
+    const offenders = tracked.filter((file) =>
+      namesForbiddenToken(readFileSync(file, "utf8"), FORBIDDEN_TOKEN_HASHES)
+    );
     expect(offenders, "agent files live in the private notes, not here").toEqual([]);
   });
 });
