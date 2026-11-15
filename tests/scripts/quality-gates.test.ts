@@ -111,4 +111,17 @@ describe("quality gates only tighten", () => {
       }
     }
   });
+
+  test("every direct dependency is pinned to an exact version", () => {
+    // Decided 2026-11-15: a version moves only through a pull request (Dependabot
+    // or a person), never through a range a fresh install resolves differently.
+    for (const path of ["package.json", "deploy/package.json"]) {
+      const manifest = JSON.parse(read(path)) as Record<string, Record<string, string> | undefined>;
+      for (const field of ["dependencies", "devDependencies"]) {
+        for (const [name, spec] of Object.entries(manifest[field] ?? {})) {
+          expect(spec, `${path} ${name}`).toMatch(/^\d+\.\d+\.\d+$/);
+        }
+      }
+    }
+  });
 });
