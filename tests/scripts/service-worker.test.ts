@@ -153,10 +153,11 @@ const startWorker = (release: Release, { caches, network, registration }: World)
     tookOver,
     install: () => lifecycle("install"),
     activate: () => lifecycle("activate"),
-    message: async (data: unknown) => {
+    message: async (data: unknown, origin: string = ORIGIN) => {
       const pending: Promise<unknown>[] = [];
       handlers.get("message")?.({
         data,
+        origin,
         waitUntil: (promise: Promise<unknown>) => pending.push(promise),
       });
       await Promise.all(pending);
@@ -318,6 +319,7 @@ describe("install", () => {
     const worker = await installed(RELEASE_A, world());
     await worker.message({ type: "something-else" });
     await worker.message(null);
+    await worker.message({ type: "deadline-day:take-over" }, "https://elsewhere.example");
     expect(worker.tookOver).toEqual([]);
     await worker.message({ type: "deadline-day:take-over" });
     expect(worker.tookOver).toEqual(["skipWaiting"]);
