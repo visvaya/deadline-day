@@ -53,7 +53,9 @@ const FIXTURES: Record<string, string> = {
   ].join("\n"),
   "src/data/leaf.ts": [
     'import { roll } from "../logic/engine";',
-    "export const r = roll;",
+    'import { useState } from "react";',
+    'import { label } from "../ui/sinks";',
+    "export const r = [roll, useState, label];",
     "",
   ].join("\n"),
   "src/logic/cycle-a.ts": [
@@ -129,7 +131,8 @@ describe("oxlint guards", () => {
     // window, Date, localStorage, fetch and globalThis: the engine takes the
     // clock, storage, network and randomness as parameters.
     expect(hits(diagnostics, "src/logic/engine.ts", "no-restricted-globals")).toHaveLength(5);
-    expect(hits(diagnostics, "src/data/leaf.ts", "no-restricted-imports")).toHaveLength(1);
+    // logic, React and the UI: src/data is a leaf and must keep the engine's ban as well.
+    expect(hits(diagnostics, "src/data/leaf.ts", "no-restricted-imports")).toHaveLength(3);
 
     // Importing a test file reruns its tests; a plain helper module is fine.
     expect(
