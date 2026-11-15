@@ -24,21 +24,47 @@ const LINK =
   /!?\[[^\]]*\]\(([^)\s]+)(?:\s+(?:"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|\((?:[^()\\]|\\.)*\)))?\)/g;
 /** A backticked token without white space. */
 const BACKTICKED = /`([^`\s]+)`/g;
-/**
- * A backtick after an odd number of backslashes: escaped, so it is text. Only
- * that one backtick; the next one may open a span.
- */
-const ESCAPED_BACKTICK = /(?<!\\)((?:\\\\)*)\\`/g;
-/**
- * A code span: a run of backticks up to the next run of the same length. A
- * link written inside one is an example, not a link. Backticks without such a
- * closing run are text.
- */
-const CODE_SPAN = /(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)/g;
+const BACKSLASH = String.fromCharCode(92);
+const BACKTICK_RUN = /`+/y;
 
-/** The line with escaped backticks and code spans blanked out. */
-const withoutCodeSpans = (content: string): string =>
-  content.replace(ESCAPED_BACKTICK, "$1 ").replace(CODE_SPAN, " ");
+/** Where the next run of exactly `length` backticks starts at or after `from`, or -1. */
+const closingRunAt = (content: string, from: number, length: number): number => {
+  const runs = /`+/g;
+  runs.lastIndex = from;
+  for (let run = runs.exec(content); run !== null; run = runs.exec(content)) {
+    if (run[0].length === length) return run.index;
+  }
+  return -1;
+};
+
+/**
+ * The line with its code spans blanked out, read left to right as CommonMark
+ * reads it: outside a span a backslash escapes the next character; a run of
+ * backticks opens a span only when a run of the same length follows, and
+ * inside the span a backslash is text. A link written in a span is an
+ * example, not a link.
+ */
+const withoutCodeSpans = (content: string): string => {
+  const kept: string[] = [];
+  let index = 0;
+  while (index < content.length) {
+    const char = content.charAt(index);
+    if (char === BACKSLASH) {
+      kept.push(content.slice(index, index + 2));
+      index += 2;
+    } else if (char === "`") {
+      BACKTICK_RUN.lastIndex = index;
+      const run = BACKTICK_RUN.exec(content)?.[0] ?? "`";
+      const close = closingRunAt(content, index + run.length, run.length);
+      kept.push(close === -1 ? run : " ");
+      index = close === -1 ? index + run.length : close + run.length;
+    } else {
+      kept.push(char);
+      index += 1;
+    }
+  }
+  return kept.join("");
+};
 /** A scheme (https:, mailto:) marks an address, not a file of the repository. */
 const SCHEME = /^[a-z][a-z0-9+.-]*:/i;
 /** Globs and placeholders name a family of files, not one path. */
