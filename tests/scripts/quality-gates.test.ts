@@ -117,7 +117,7 @@ describe("quality gates only tighten", () => {
     // or a person), never through a range a fresh install resolves differently.
     for (const path of ["package.json", "deploy/package.json"]) {
       const manifest = JSON.parse(read(path)) as Record<string, Record<string, string> | undefined>;
-      for (const field of ["dependencies", "devDependencies"]) {
+      for (const field of ["dependencies", "devDependencies", "optionalDependencies"]) {
         for (const [name, spec] of Object.entries(manifest[field] ?? {})) {
           expect(spec, `${path} ${name}`).toMatch(/^\d+\.\d+\.\d+$/);
         }
