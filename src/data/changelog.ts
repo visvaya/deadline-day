@@ -27,7 +27,7 @@ export const CHANGELOG: readonly ChangelogEntry[] = [
   {
     version: "0.38.2",
     date: "2026-11-15",
-    notes: [],
+    notes: ["Drobne poprawki techniczne."],
   },
   {
     version: "0.38.1",
