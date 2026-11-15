@@ -31,6 +31,7 @@ import {
   type GameSaveLoadResult,
 } from "./game-save";
 import { isResumable, type StoredGameSave } from "../logic/game-save-schema";
+import { elapsedWholeSeconds, wouldExpire } from "../logic/time-reconcile";
 import { clearSetupDraft, readSetupDraft } from "./setup-draft";
 import "./styles.css";
 
@@ -53,16 +54,6 @@ const ARCHIVE_SAVE_FAILED_NOTICE =
  * does not accept a reducer with an optional third parameter, so the hook
  * gets a two-argument view of gameReducer. */
 const uiReducer = (state: GameState, action: GameAction): GameState => gameReducer(state, action);
-
-/** Whether `elapsedSeconds` of real time would blow through the countdown on
- * an open, timed offer - shared by the reload-resume and same-session
- * backgrounding paths below, since both reconcile against the wall clock. */
-const wouldExpire = (state: GameState, elapsedSeconds: number): boolean =>
-  elapsedSeconds > 0 &&
-  state.faza === "okno" &&
-  state.timerWl &&
-  state.karta !== null &&
-  elapsedSeconds >= state.czas;
 
 /**
  * Mirrors prototype's DeadlineDay() top-level render :709-1242. All game
@@ -140,7 +131,7 @@ const Game = () => {
     const resumedGame = resumedSaveRef.current;
     if (!resumedGame) return "none";
     if (peekPendingTimeoutNotice()) return "timedOut";
-    const elapsedSeconds = Math.floor((Date.now() - resumedGame.savedAt) / 1000);
+    const elapsedSeconds = elapsedWholeSeconds(resumedGame.savedAt, Date.now());
     return wouldExpire(resumedGame.state, elapsedSeconds) ? "timedOut" : "resumed";
   });
   const rootRef = useRef<HTMLDivElement>(null);
@@ -661,7 +652,7 @@ const Game = () => {
     reconciledOnMount.current = true;
     const resumedGame = resumedSaveRef.current;
     if (!resumedGame) return;
-    const elapsedSeconds = Math.floor((Date.now() - resumedGame.savedAt) / 1000);
+    const elapsedSeconds = elapsedWholeSeconds(resumedGame.savedAt, Date.now());
     if (elapsedSeconds <= 0) return;
     dispatch({ type: "RECONCILE_TIME", elapsedSeconds });
   }, []);
@@ -707,7 +698,7 @@ const Game = () => {
       const hiddenAt = hiddenAtRef.current;
       hiddenAtRef.current = null;
       if (hiddenAt === null) return;
-      const elapsedSeconds = Math.floor((Date.now() - hiddenAt) / 1000);
+      const elapsedSeconds = elapsedWholeSeconds(hiddenAt, Date.now());
       if (elapsedSeconds <= 0) return;
       if (wouldExpire(state, elapsedSeconds)) pendingTimeoutNotice.current = true;
       dispatch({ type: "RECONCILE_TIME", elapsedSeconds });
