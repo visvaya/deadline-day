@@ -13,10 +13,10 @@ import {
   GAME_SAVE_STORAGE_KEY,
   clearGameSave,
   inspectGameSave,
-  isResumable,
   readGameSave,
   writeGameSave,
 } from "../../src/ui/game-save";
+import { isResumable } from "../../src/logic/game-save-schema";
 import { writeStoredJson } from "../../src/ui/local-storage";
 import { autoAdvance } from "../golden/headless";
 import { testClub, testManager } from "../logic/fixtures";
