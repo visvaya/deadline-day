@@ -77,6 +77,53 @@ const NO_MATH_RANDOM: ["error", { object: string; property: string; message: str
   },
 ];
 
+/**
+ * Size and complexity limits for the game's code (src/), set 2026-11-15 from
+ * the measured tree. A file already over a limit is listed in
+ * SIZE_EXCEPTIONS at its measured value: it may shrink, not grow, and the
+ * list only shrinks (pinned in tests/scripts/quality-gates.test.ts). The fix
+ * for a finding is to split the file or function, not to raise a number.
+ * tests/ and scripts/ are not limited yet.
+ */
+export const SIZE_LIMITS = {
+  "max-lines": 800,
+  "max-lines-per-function": 150,
+  complexity: 20,
+  "max-depth": 4,
+  "max-params": 5,
+} as const;
+
+type SizeRule = keyof typeof SIZE_LIMITS;
+
+export const SIZE_EXCEPTIONS: Readonly<Record<string, Partial<Record<SizeRule, number>>>> = {
+  "src/logic/game-reducer.ts": { "max-lines": 1166, "max-lines-per-function": 278, complexity: 48 },
+  "src/data/balance.ts": { "max-lines": 916 },
+  "src/ui/app.tsx": { "max-lines": 818, "max-lines-per-function": 741, complexity: 54 },
+  "src/ui/screens/club-select-screen.tsx": { "max-lines-per-function": 364 },
+  "src/ui/screens/offer-window-screen.tsx": { "max-lines-per-function": 342, complexity: 23 },
+  "src/ui/screens/manager-screen.tsx": { "max-lines-per-function": 317 },
+  "src/ui/components/squad-drawer.tsx": { "max-lines-per-function": 271 },
+  "src/ui/screens/season-end-screen.tsx": { "max-lines-per-function": 245, complexity: 28 },
+  "src/ui/screens/final-screen.tsx": { "max-lines-per-function": 214, complexity: 23 },
+  "src/ui/components/offer-card.tsx": { "max-lines-per-function": 196, complexity: 38 },
+  "src/logic/offers.ts": { "max-lines-per-function": 176, complexity: 31, "max-params": 9 },
+  "src/logic/epilogue.ts": { "max-lines-per-function": 165 },
+  "src/ui/components/info-popover.tsx": { "max-lines-per-function": 162 },
+  "src/ui/screens/market-screen.tsx": { "max-lines-per-function": 160 },
+  "src/ui/components/player-reports.tsx": { "max-lines-per-function": 151 },
+  "src/logic/european-cups.ts": { "max-params": 6 },
+};
+
+const sizeRules = (
+  limits: Partial<Record<SizeRule, number>>
+): Record<string, ["error", { max: number }]> =>
+  Object.fromEntries(
+    Object.entries(limits).map(([rule, max]): [string, ["error", { max: number }]] => [
+      rule,
+      ["error", { max }],
+    ])
+  );
+
 /** Mouse handlers only: see the jsx-a11y override below for why. */
 const POINTER_HANDLERS = ["onClick", "onError", "onLoad", "onMouseDown", "onMouseUp"];
 
@@ -373,6 +420,13 @@ export default defineConfig({
     "import/no-cycle": "error",
   },
   overrides: [
+    // Size and complexity limits: the general ones for src/, then each listed
+    // file at its own measured ceiling (see SIZE_LIMITS).
+    { files: ["src/**"], rules: sizeRules(SIZE_LIMITS) },
+    ...Object.entries(SIZE_EXCEPTIONS).map(([file, limits]) => ({
+      files: [file],
+      rules: sizeRules(limits),
+    })),
     {
       // typescript-eslint's `eslint-recommended` layer for TypeScript files.
       files: ["**/*.{ts,tsx,mts,cts}"],
