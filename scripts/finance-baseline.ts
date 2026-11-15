@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readFileSync, statSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 
 import { ENGINE_REVISION } from "../src/logic/engine-version";
@@ -47,10 +47,11 @@ const HELP = `pnpm exec tsx scripts/finance-baseline.ts --control <csv> --active
 Sprawdza komplet artefaktow baseline'u finansowego i zapisuje notatke.
 Niczego nie symuluje ponownie.`;
 
+/** One read: size and hash describe the same bytes even if the file changes meanwhile. */
 const factsFor = (path: string): ArtefactFact => {
-  const bytes = statSync(path).size;
-  const sha256 = createHash("sha256").update(readFileSync(path)).digest("hex");
-  return { path, bytes, sha256 };
+  const content = readFileSync(path);
+  const sha256 = createHash("sha256").update(content).digest("hex");
+  return { path, bytes: content.length, sha256 };
 };
 
 const commitHash = (): string => {

@@ -166,7 +166,10 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(fromOtherRelease(path).then((kept) => kept ?? fromNetwork(request)));
 });
 
-// For an active worker the request to take over changes nothing.
+// For an active worker the request to take over changes nothing. Only this
+// game's own pages may ask; the browser already limits senders to this origin,
+// and the check says so where a reader (or an analyser) can see it.
 self.addEventListener("message", (event) => {
+  if (event.origin !== self.location.origin) return;
   if (event.data?.type === TAKE_OVER_MESSAGE) event.waitUntil(self.skipWaiting());
 });
