@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type Dispatch } from "react";
-import { CHANGELOG, DEVELOPMENT_NOTICE } from "../../data/changelog";
 import type { GameAction, ManagerIdentity } from "../../data/types";
 import {
   randomManagerIdentity,
@@ -15,6 +14,7 @@ import {
 } from "../action-bar-query";
 import { AppHero } from "../components/app-hero";
 import { ScreenSettings } from "../components/screen-settings";
+import { ChangelogSection } from "../components/changelog-section";
 import { SectionHeading } from "../components/section-heading";
 import { StickyActionBar } from "../components/sticky-action-bar";
 import { UpdateCheck } from "../components/update-check";
@@ -83,7 +83,6 @@ export const ManagerScreen = ({
   const lastNameRef = useRef<HTMLInputElement>(null);
   /* Only the newest version is worth the vertical space on a phone; the rest
      stays one tap away. Not persisted - the start screen is short-lived. */
-  const [changelogExpanded, setChangelogExpanded] = useState(false);
   const { actionBarMode, setActionBarMode } = useUiPreferences();
   const isCompactViewport = useIsActionBarCompactViewport();
   const viewportDefaultMode = viewportDefaultActionBarMode(isCompactViewport);
@@ -320,39 +319,7 @@ export const ManagerScreen = ({
             </button>
           </section>
 
-          <section aria-labelledby="changelog-heading">
-            <SectionHeading id="changelog-heading" title="Historia zmian" />
-            <p className="dd-note">{DEVELOPMENT_NOTICE}</p>
-            <ul className="dd-changelog">
-              {(changelogExpanded ? CHANGELOG : CHANGELOG.slice(0, 1)).map((entry) => (
-                <li key={entry.version}>
-                  <div className="dd-changelog-heading">
-                    <strong>v{entry.version}</strong>
-                    <span>{entry.date}</span>
-                  </div>
-                  <ul>
-                    {entry.notes.map((note) => (
-                      <li key={note}>{note}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-            {CHANGELOG.length > 1 && (
-              <button
-                type="button"
-                className="dd-changelog-toggle"
-                data-dd-action="historia-zmian"
-                aria-expanded={changelogExpanded}
-                onClick={() => setChangelogExpanded((expanded) => !expanded)}
-              >
-                {changelogExpanded
-                  ? "Zwiń starsze wersje"
-                  : `Pokaż starsze wersje (${CHANGELOG.length - 1})`}{" "}
-                <span aria-hidden="true">{changelogExpanded ? "▴" : "▾"}</span>
-              </button>
-            )}
-          </section>
+          <ChangelogSection />
         </div>
       </main>
 
