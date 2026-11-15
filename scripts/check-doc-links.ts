@@ -13,23 +13,7 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { posix } from "node:path";
 
-import { findDocLinkProblems } from "./doc-links-core";
-
-/**
- * Paths a document names on purpose although they are not in git. The list
- * only shrinks: a new entry needs a reason as strong as these.
- */
-const KNOWN_ABSENT: ReadonlySet<string> = new Set(
-  // Measurement dumps of the spec 4 control run: too large for git, so the
-  // reports pin each one by row count and sha256 instead.
-  [
-    "control-seasons.csv",
-    "control-raw.csv",
-    "active-signings.csv",
-    "active-original-13-raw.csv",
-    "active-original-13-seasons.csv",
-  ].map((name) => `scripts/data/spec4-control-2026-09-25/${name}`)
-);
+import { findDocLinkProblems, KNOWN_ABSENT } from "./doc-links-core";
 
 const trackedFiles = (...patterns: string[]): string[] =>
   execFileSync("git", ["ls-files", "-z", "--", ...patterns], { encoding: "utf8" })
