@@ -55,7 +55,7 @@ describe("quality gates only tighten", () => {
     // A semver-specific cooldown overrides the default for its update type.
     const cooldowns = [
       ...read(".github/dependabot.yml").matchAll(
-        /(?:default|semver-major|semver-minor|semver-patch)-days:\s*(\d+)/g
+        /["']?(?:default|semver-major|semver-minor|semver-patch)-days["']?\s*:\s*["']?(\d+)/g
       ),
     ].map(([, days]) => Number(days));
     expect(cooldowns.length).toBeGreaterThan(0);
